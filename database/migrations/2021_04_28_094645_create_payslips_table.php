@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactDetailsTable extends Migration
+class CreatePayslipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateContactDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_details', function (Blueprint $table) {
+        Schema::create('payslips', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained('employees');
-            $table->string('address',200)->nullable();
-            $table->string('number',15)->nullable();
-            $table->string('email',50)->nullable();
+            $table->string('original_file_name','200');
+            $table->string('file_name',200);
+            $table->foreignId('employee')->constrained('employees');
+            $table->foreignId('user')->constrained('users');
+            $table->string('link',300);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateContactDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_details');
+        Schema::dropIfExists('payslips');
     }
 }
