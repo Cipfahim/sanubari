@@ -18,7 +18,7 @@ class CreatePayslipsTable extends Migration
             $table->string('original_file_name','200');
             $table->string('file_name',200);
             $table->foreignId('employee')->constrained('employees');
-            $table->foreignId('user')->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('link',300);
             $table->timestamps();
         });

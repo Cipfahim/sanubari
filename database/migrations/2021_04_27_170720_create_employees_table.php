@@ -17,8 +17,8 @@ class CreateEmployeesTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained('users');
             $table->enum('gender', ['M', 'F']);
-            $table->string('official_name',30);
-            $table->string('nick_name',30)->nullable();
+            $table->string('official_name',50);
+            $table->string('nick_name',50)->nullable();
             $table->date('date_of_join');
             $table->date('date_of_birth');
             $table->enum('citizenship', ['L', 'F']);
