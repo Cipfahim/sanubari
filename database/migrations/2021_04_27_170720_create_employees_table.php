@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->enum('gender', ['M', 'F']);
             $table->string('official_name',50);
             $table->string('nick_name',50)->nullable();
+            $table->foreignId('location')->constrained('locations');
             $table->date('date_of_join');
             $table->date('date_of_birth');
             $table->enum('citizenship', ['L', 'F']);

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class HonorariumCategory extends Model
 {
     use HasFactory;
+
+    public function salary(){
+        return $this->belongsTo(Salary::class);
+    }
 }
