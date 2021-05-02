@@ -15,12 +15,12 @@ class CreateLeavesTable extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->constrained();
             $table->date('from');
             $table->enum('from_type', ['f', 'h'])->default('f');
             $table->date('to');
             $table->enum('to_type', ['f', 'h'])->default('f');
-            $table->foreignId('employee_id')->constrained('employees');
-            $table->foreignId('file_id')->constrained('files');
+            $table->foreignId('file_id')->constrained();
             $table->timestamps();
         });
     }

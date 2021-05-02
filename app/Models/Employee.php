@@ -9,10 +9,13 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->hasOne(User::class);
     }
+
     public function bank()
     {
         return $this->hasOne(Bank::class);
@@ -23,14 +26,14 @@ class Employee extends Model
         return $this->hasMany(ContactDetails::class);
     }
 
-    public function contributions()
+    public function contribution()
     {
-        return $this->belongsTo(Contributions::class);
+        return $this->belongsTo(Contribution::class);
     }
 
     public function payslips()
     {
-        return $this->belongsTo(Payslips::class);
+        return $this->hasMany(Payslip::class);
     }
 
     public function location()
@@ -43,5 +46,5 @@ class Employee extends Model
         return $this->belongsTo(Leave::class);
     }
 
-    
+
 }

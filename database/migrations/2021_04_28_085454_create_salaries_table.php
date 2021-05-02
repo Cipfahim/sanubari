@@ -15,9 +15,9 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hororarium_id')->constrained('honorarium_categories');
+            $table->foreignId('honorarium_category_id')->constrained();
+            $table->foreignId('employee_id')->constrained();
             $table->double('amount');
-            $table->foreignId('employee_id')->constrained('employees');
             $table->timestamps();
         });
     }

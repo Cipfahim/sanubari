@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contributions;
+use App\Models\Contribution;
 use Illuminate\Http\Request;
 
 class ContributionsController extends Controller
@@ -41,10 +41,10 @@ class ContributionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contributions  $contributions
+     * @param  \App\Models\Contribution  $contributions
      * @return \Illuminate\Http\Response
      */
-    public function show(Contributions $contributions)
+    public function show(Contribution $contributions)
     {
         //
     }
@@ -52,10 +52,10 @@ class ContributionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contributions  $contributions
+     * @param  \App\Models\Contribution  $contributions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contributions $contributions)
+    public function edit(Contribution $contributions)
     {
         //
     }
@@ -64,10 +64,10 @@ class ContributionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contributions  $contributions
+     * @param  \App\Models\Contribution  $contributions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contributions $contributions)
+    public function update(Request $request, Contribution $contributions)
     {
         //
     }
@@ -75,10 +75,10 @@ class ContributionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contributions  $contributions
+     * @param  \App\Models\Contribution  $contributions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contributions $contributions)
+    public function destroy(Contribution $contributions)
     {
         //
     }

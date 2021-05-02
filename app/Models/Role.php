@@ -11,7 +11,12 @@ class Role extends Model
 
     protected $guarded = ['id'];
 
-    public function user()
+    const SystemAdmin = 1;
+    const Admin = 2;
+    const Auditor = 3;
+    const Employee = 4;
+
+    public function users()
     {
         return $this->hasMany(User::class);
     }
