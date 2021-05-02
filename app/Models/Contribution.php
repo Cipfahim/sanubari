@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contributions extends Model
+class Contribution extends Model
 {
     use HasFactory;
 
-    public function employee(){
+    protected $guarded = ['id'];
+
+    public function employee()
+    {
         return $this->hasOne(Employee::class);
     }
-    
 }

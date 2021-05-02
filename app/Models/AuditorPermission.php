@@ -9,12 +9,14 @@ class AuditorPermission extends Model
 {
     use HasFactory;
 
-    public function employee()
+    protected $guarded = ['id'];
+
+    public function employees()
     {
         return $this->hasMany(Employee::class);
     }
 
-    public function user()
+    public function users()
     {
         return $this->hasMany(User::class);
     }

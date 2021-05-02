@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Role;
-use App\Models\User;
-use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+
 class RoleSeeder extends Seeder
 {
     /**
@@ -15,18 +14,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = [
-            "System Admin",
-            "Admin",
-            "Auditor",
-            "Employee"
-        ];
-        foreach($roles as $role){
-            Role::create([
-            'name' => $role,
-            'slug' => Str::slug($role),
-        ]);
-        
-        }
+        Role::updateOrCreate(['name' => 'System Admin'], ['slug' => 'system-admin']);
+        Role::updateOrCreate(['name' => 'Admin'], ['slug' => 'admin']);
+        Role::updateOrCreate(['name' => 'Auditor'], ['slug' => 'auditor']);
+        Role::updateOrCreate(['name' => 'Employee'], ['slug' => 'employee']);
     }
 }

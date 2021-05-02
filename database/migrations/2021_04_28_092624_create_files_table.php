@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Files extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,11 @@ class Files extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->longText('link');
-            $table->string('desctiption',100);
-            $table->integer('year');
             $table->foreignId('employee_id')->constrained('employees');
             $table->foreignId('uploaded_by')->constrained('users');
+            $table->longText('link');
+            $table->string('description', 100);
+            $table->integer('year');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class Files extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('files');
     }
 }

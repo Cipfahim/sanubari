@@ -9,7 +9,10 @@ class Payslip extends Model
 {
     use HasFactory;
 
-      public function employee(){
-        return $this->hasMany(Employee::class);
+    protected $guarded = ['id'];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
     }
 }

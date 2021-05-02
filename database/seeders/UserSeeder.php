@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,25 +16,28 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        User::updateOrCreate([
             'name' => "System Admin",
-            "email"=> "systemadmin@mail.com",
+            "email" => "systemadmin@mail.com"
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"system-admin")->first()->id,
+            "role_id" => Role::SystemAdmin,
         ]);
 
-        User::create([
+        User::updateOrCreate([
             'name' => "Admin",
-            "email"=> "admin@mail.com",
+            "email" => "admin@mail.com",
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"admin")->first()->id,
+            "role_id" => Role::Admin,
         ]);
 
-        User::create([
+        User::updateOrCreate([
             'name' => "Jhon Doe",
-            "email"=> "user@mail.com",
+            "email" => "user@mail.com",
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"employee")->first()->id,
+            "role_id" => Role::Employee,
         ]);
     }
 }

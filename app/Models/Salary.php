@@ -9,13 +9,15 @@ class Salary extends Model
 {
     use HasFactory;
 
-    public function employee(){
+    protected $guarded = ['id'];
+
+    public function employee()
+    {
         return $this->belongsTo(Employee::class);
     }
 
-    public function honorariumCategory()
+    public function honorariumCategories()
     {
         return $this->hasMany(HonorariumCategory::class);
     }
-    
 }

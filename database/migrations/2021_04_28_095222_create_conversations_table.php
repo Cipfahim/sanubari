@@ -15,10 +15,10 @@ class CreateConversationsTable extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->string('subject',150);
-            $table->longText('message');
             $table->foreignId('form')->constrained('users');
             $table->foreignId('to')->constrained('users');
+            $table->string('subject',150);
+            $table->longText('message');
             $table->timestamps();
         });
     }

@@ -9,7 +9,9 @@ class Leave extends Model
 {
     use HasFactory;
 
-    public function employee()
+    protected $guarded = ['id'];
+
+    public function employees()
     {
         return $this->hasMany(Employee::class);
     }
