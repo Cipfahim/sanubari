@@ -42,7 +42,7 @@
                         <div class="mt-6 pt-6">
                             <div class="px-2 space-y-1">
                                 <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
-                                   class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                              class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
                                     <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                                     {{ item.name }}
                                 </inertia-link>
@@ -70,8 +70,8 @@
                 <nav class="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
                     <div class="px-2 space-y-1">
                         <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"
-                           :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
-                           :aria-current="item.current ? 'page' : undefined">
+                                      :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
+                                      :aria-current="item.current ? 'page' : undefined">
                             <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                             {{ item.name }}
                         </inertia-link>
@@ -79,7 +79,7 @@
                     <div class="mt-6 pt-6">
                         <div class="px-2 space-y-1">
                             <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
-                               class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                          class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
                                 <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                                 {{ item.name }}
                             </inertia-link>
@@ -94,23 +94,8 @@
 <script>
 import {ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot,} from '@headlessui/vue'
-import {
-    ClockIcon,
-    CogIcon,
-    CreditCardIcon,
-    DocumentReportIcon,
-    HomeIcon,
-    QuestionMarkCircleIcon,
-    ScaleIcon,
-    ShieldCheckIcon,
-    UserGroupIcon,
-    XIcon,
-} from '@heroicons/vue/outline'
+import {ClockIcon, CogIcon, HomeIcon, XIcon,} from '@heroicons/vue/outline'
 
-const navigation = [
-    {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
-    {name: 'Demo', href: '#', icon: ClockIcon, current: false},
-]
 const secondaryNavigation = [
     {name: 'Settings', href: '#', icon: CogIcon},
 ]
@@ -128,9 +113,22 @@ export default {
 
         return {
             sidebarOpen,
-            navigation,
             secondaryNavigation
         }
     },
+    data() {
+        return {
+            navigation: [
+                {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
+                {
+                    name: 'Honorarium Categories',
+                    href: route('honorarium-categories.index'),
+                    icon: ClockIcon,
+                    current: route().current('honorarium-categories.*')
+                },
+                {name: 'Demo', href: '#', icon: ClockIcon, current: false},
+            ]
+        }
+    }
 }
 </script>

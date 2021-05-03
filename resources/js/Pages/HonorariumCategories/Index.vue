@@ -1,0 +1,278 @@
+<template>
+    <app-layout>
+        <div class="mt-4 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <breadcrumb :links="[
+                {
+                   title: 'Honorarium Categories',
+                   active: true
+                }
+            ]"
+            />
+            <div class="mb-6 flex justify-between items-center">
+                <div class="flex items-center w-full max-w-md mr-4">
+                    <div class="flex w-full bg-white shadow rounded relative">
+                        <input v-model="queryForm.filter" autocomplete="off" type="text" name="search"
+                               placeholder="Search…"
+                               class="relative w-full border-0 px-4 py-2 rounded">
+                    </div>
+                    <button type="button"
+                            @click="reset"
+                            class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500">Reset
+                    </button>
+                </div>
+
+                <div class="flex justify-between">
+
+                    <inertia-link :href="route('honorarium-categories.create')"
+                                  class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">
+                        Add Category
+                    </inertia-link>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div v-if="honorariumCategories.data.length"
+                             class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Sl.
+                                    </th>
+                                    <th scope="col"
+                                        @click="sort('name')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="name"/>
+                                        Name
+                                    </th>
+
+                                    <th scope="col"
+                                        @click="sort('description')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="description"/>
+                                        Description
+                                    </th>
+
+                                    <th scope="col"
+                                        @click="sort('status')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="status"/>
+                                        Status
+                                    </th>
+
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Actions</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tr v-for="(category,index) in honorariumCategories.data">
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ index + 1 }}
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ category.name }}
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ category.description }}
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                       <span
+                                           v-if="category.status"
+                                           class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                          Active
+                                        </span>
+                                        <span
+                                            v-else
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                          Inactive
+                                        </span>
+                                    </td>
+
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <inertia-link :href="route('honorarium-categories.edit',category.id)"
+                                                      class="text-indigo-600 hover:text-indigo-900">Edit
+                                        </inertia-link>
+
+                                        <button type="button"
+                                                @click="confirmDeletion(category)"
+                                                class="text-indigo-600 hover:text-indigo-900">Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <pagination class="m-2" :links="honorariumCategories.links"/>
+                        </div>
+                        <no-data-found v-else
+                                       resource="categories"
+                                       action-text="Add Category"
+                                       :action-link="route('honorarium-categories.create')"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete confirmation modal -->
+        <jet-confirmation-modal :show="confirmingDeletion" @close="confirmingDeletion = false">
+            <template #title>
+                Delete Category
+            </template>
+
+            <template #content>
+                Are you sure you want to delete this category? Once category is deleted, all of its resources and
+                data will be permanently deleted.
+            </template>
+
+            <template #footer>
+                <jet-secondary-button @click.native="confirmingDeletion = false">
+                    Nevermind
+                </jet-secondary-button>
+
+                <jet-danger-button class="ml-2" @click="destroy">
+                    Delete
+                </jet-danger-button>
+            </template>
+        </jet-confirmation-modal>
+    </app-layout>
+</template>
+
+<script>
+import AppLayout from '@/Layouts/App'
+import Breadcrumb from "@/Components/Breadcrumb";
+import NoDataFound from "@/Components/NoDataFound";
+import Pagination from "@/Components/Pagination";
+import SortArrow from "@/Components/SortArrow";
+import JetCheckbox from '@/Jetstream/Checkbox'
+import JetConfirmationModal from '@/Jetstream/ConfirmationModal.vue'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue'
+import JetDangerButton from '@/Jetstream/DangerButton.vue'
+import throttle from 'lodash/throttle'
+import pickBy from 'lodash/pickBy'
+import Button from "@/Jetstream/Button";
+
+export default {
+    components: {
+        Button,
+        AppLayout,
+        JetCheckbox,
+        Breadcrumb,
+        NoDataFound,
+        Pagination,
+        SortArrow,
+        JetConfirmationModal,
+        JetSecondaryButton,
+        JetDangerButton
+    },
+    props: {
+        requests: Object,
+        honorariumCategories: Object
+    },
+    data() {
+        return {
+            queryForm: {
+                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : 'name',
+                filter: this.requests.filter ? Object.values(this.requests.filter)[0] : '',
+                sort: this.requests.sort
+            },
+            bulkIds: [],
+            confirmingBulkDeletion: false,
+            confirmingDeletion: false,
+            deleteCategory: null,
+            checkAll: false,
+        }
+    },
+    watch: {
+        queryForm: {
+            handler: throttle(function () {
+                let customQuery = {
+                    ['filter[' + this.queryForm.field + ']']: this.queryForm.filter,
+                    sort: this.queryForm.sort
+                }
+                let queryString = pickBy(customQuery);
+                this.$inertia.get(
+                    this.route(
+                        "honorarium-categories.index",
+                        Object.keys(queryString).length ? queryString : {remember: "forget"}
+                    ), {}, {
+                        preserveState: true,
+                        preserveScroll: true
+                    }
+                );
+            }, 150),
+            deep: true
+        }
+    },
+    methods: {
+
+        toggleAll() {
+            if (!this.checkAll) {
+                this.bulkIds = []
+            } else {
+                let ids = [];
+                this.honorariumCategories.data.forEach(function (category) {
+                    ids.push(category.id)
+                });
+                this.bulkIds = ids
+            }
+        },
+        // Sort data by field
+        sort(field) {
+            this.queryForm.sort === field
+                ? this.queryForm.sort = '-' + field
+                : this.queryForm.sort = field;
+        },
+
+        // Reset all filters
+        reset() {
+            this.$inertia.visit(this.route('honorarium-categories.index'));
+        },
+
+        // Confirm deletion.
+        confirmDeletion(category) {
+            this.deleteCategory = category
+            this.confirmingDeletion = true
+        },
+
+        // Send delete request.
+        destroy() {
+            this.$inertia.delete(this.route('honorarium-categories.destroy', this.deleteCategory), {
+                preserveState: true,
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.deleteCategory = null
+                    this.confirmingDeletion = false
+                }
+            })
+        },
+
+        // Confirm bulk deletion.
+        confirmBulkDeletion() {
+            this.confirmingBulkDeletion = true
+        },
+
+        // Send bulk delete request.
+        bulkDestroy() {
+            this.$inertia.post(this.route('honorarium-categories.bulk-destroy'), {
+                _method: "DELETE",
+                categories: this.bulkIds
+            }, {
+                preserveState: true,
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.bulkIds = []
+                    this.confirmingBulkDeletion = false
+                    this.checkAll = false
+                }
+            })
+        },
+    }
+}
+</script>

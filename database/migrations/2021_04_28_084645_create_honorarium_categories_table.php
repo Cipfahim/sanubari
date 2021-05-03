@@ -19,7 +19,7 @@ class CreateHonorariumCategoriesTable extends Migration
             $table->id();
             $table->string('name',50);
             $table->string('description',200)->nullable();
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
