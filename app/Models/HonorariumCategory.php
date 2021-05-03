@@ -11,6 +11,10 @@ class HonorariumCategory extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
     public function salary()
     {
         return $this->belongsTo(Salary::class);

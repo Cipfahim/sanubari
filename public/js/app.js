@@ -38836,6 +38836,30 @@ var map = {
 		"./resources/js/Pages/Dashboard.vue",
 		"resources_js_Pages_Dashboard_vue"
 	],
+	"./HonorariumCategories/Create": [
+		"./resources/js/Pages/HonorariumCategories/Create.vue",
+		"resources_js_Pages_HonorariumCategories_Create_vue"
+	],
+	"./HonorariumCategories/Create.vue": [
+		"./resources/js/Pages/HonorariumCategories/Create.vue",
+		"resources_js_Pages_HonorariumCategories_Create_vue"
+	],
+	"./HonorariumCategories/Edit": [
+		"./resources/js/Pages/HonorariumCategories/Edit.vue",
+		"resources_js_Pages_HonorariumCategories_Edit_vue"
+	],
+	"./HonorariumCategories/Edit.vue": [
+		"./resources/js/Pages/HonorariumCategories/Edit.vue",
+		"resources_js_Pages_HonorariumCategories_Edit_vue"
+	],
+	"./HonorariumCategories/Index": [
+		"./resources/js/Pages/HonorariumCategories/Index.vue",
+		"resources_js_Pages_HonorariumCategories_Index_vue"
+	],
+	"./HonorariumCategories/Index.vue": [
+		"./resources/js/Pages/HonorariumCategories/Index.vue",
+		"resources_js_Pages_HonorariumCategories_Index_vue"
+	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.vue",
 		"resources_js_Pages_Welcome_vue"
@@ -38981,7 +39005,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Auth_ConfirmPassword_vue":"4ecb21fcbd8391b09c2c","resources_js_Pages_Auth_ForgotPassword_vue":"7b9e6b1186540ebf0bff","resources_js_Pages_Auth_Login_vue":"26f2813d6bdf597032d5","resources_js_Pages_Auth_Register_vue":"9bfbcf555b466a2fdb71","resources_js_Pages_Auth_ResetPassword_vue":"363f592e43daa9dbf3ed","resources_js_Pages_Auth_VerifyEmail_vue":"98790b363803e018b5eb","resources_js_Pages_Dashboard_vue":"9cc270d96fed9e5afc83","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Auth_ConfirmPassword_vue":"4ecb21fcbd8391b09c2c","resources_js_Pages_Auth_ForgotPassword_vue":"7b9e6b1186540ebf0bff","resources_js_Pages_Auth_Login_vue":"26f2813d6bdf597032d5","resources_js_Pages_Auth_Register_vue":"9bfbcf555b466a2fdb71","resources_js_Pages_Auth_ResetPassword_vue":"363f592e43daa9dbf3ed","resources_js_Pages_Auth_VerifyEmail_vue":"98790b363803e018b5eb","resources_js_Pages_Dashboard_vue":"a5ab1e028c7b9462dec6","resources_js_Pages_HonorariumCategories_Create_vue":"04ca685e08bd5fabefb3","resources_js_Pages_HonorariumCategories_Edit_vue":"c55861ee0bdf7d5af20e","resources_js_Pages_HonorariumCategories_Index_vue":"e46e5215db4968f2e1b8","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

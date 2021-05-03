@@ -8,16 +8,19 @@
             </main>
         </div>
     </div>
+    <notification/>
 </template>
 
 <script>
 import Sidebar from "./Partials/Sidebar";
 import AppHeader from "./Partials/Header";
+import Notification from "@/Components/Notification";
 
 export default {
     components: {
         AppHeader,
         Sidebar,
+        Notification
     },
     methods: {
         changeSidebarState() {
