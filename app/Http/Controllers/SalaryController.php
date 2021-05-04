@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Salary;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
+
 class SalaryController extends Controller
 {
     /**
@@ -14,7 +19,15 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Salary/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(Salary::class)
+                ->allowedFilters(['number'])
+                ->allowedSorts(['number'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**

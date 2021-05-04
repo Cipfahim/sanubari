@@ -1137,6 +1137,9 @@ select {
 .mt-10 {
 	margin-top: 2.5rem;
 }
+.mr-10 {
+	margin-right: 2.5rem;
+}
 .block {
 	display: block;
 }
@@ -1800,6 +1803,10 @@ select {
 	font-size: 1rem;
 	line-height: 1.5rem;
 }
+.text-xl {
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+}
 .font-medium {
 	font-weight: 500;
 }
@@ -1938,6 +1945,10 @@ select {
 .text-cyan-400 {
 	--tw-text-opacity: 1;
 	color: rgba(34, 211, 238, var(--tw-text-opacity));
+}
+.text-blue-600 {
+	--tw-text-opacity: 1;
+	color: rgba(37, 99, 235, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;

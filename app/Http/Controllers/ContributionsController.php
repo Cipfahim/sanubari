@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Contribution;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
+
 class ContributionsController extends Controller
 {
     /**
@@ -14,7 +19,15 @@ class ContributionsController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Contribution/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(Contribution::class)
+                ->allowedFilters(['epf_no'])
+                ->allowedSorts(['epf_no'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**

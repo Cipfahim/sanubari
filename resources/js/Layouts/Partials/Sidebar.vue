@@ -140,6 +140,24 @@ export default {
                     icon: ClockIcon,
                     current: route().current('employees.*')
                 },
+                {
+                    name: 'Contact Details',
+                    href: route('contact-details.index'),
+                    icon: ClockIcon,
+                    current: route().current('contact-details.*')
+                },
+                {
+                    name: 'Contribution',
+                    href: route('contributions.index'),
+                    icon: ClockIcon,
+                    current: route().current('contributions.*')
+                },
+                {
+                    name: 'Salary',
+                    href: route('salaries.index'),
+                    icon: ClockIcon,
+                    current: route().current('salaries.*')
+                },
                 {name: 'Demo', href: '#', icon: ClockIcon, current: false},
             ]
         }
