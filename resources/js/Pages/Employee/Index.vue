@@ -105,7 +105,7 @@
                             </div>
                         </div>
 
-                        <div class="pt-4 space-y-6 sm:pt-10 sm:space-y-5">
+                        <div class="space-y-6 sm:pt-10 sm:space-y-5">
                             <div class="sm:border-b sm:border-gray-200 pb-2">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                                     Official Information

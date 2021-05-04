@@ -21139,7 +21139,7 @@ var _hoisted_27 = {
 };
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "pt-4 space-y-6 sm:pt-10 sm:space-y-5"
+  "class": "space-y-6 sm:pt-10 sm:space-y-5"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "sm:border-b sm:border-gray-200 pb-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", {
