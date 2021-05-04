@@ -21398,7 +21398,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_3 = {
-  "class": "flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8"
+  "class": "flex-1 flex justify-between px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "flex-1 flex"
@@ -21920,7 +21920,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mt-4 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+  "class": "mt-4 px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_2 = {
   "class": "mb-6 flex justify-between items-center"

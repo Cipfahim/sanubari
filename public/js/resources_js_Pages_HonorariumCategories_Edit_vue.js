@@ -20991,7 +20991,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_3 = {
-  "class": "flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8"
+  "class": "flex-1 flex justify-between px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "flex-1 flex"
