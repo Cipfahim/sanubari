@@ -20434,7 +20434,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_3 = {
-  "class": "flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8"
+  "class": "flex-1 flex justify-between px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_4 = {
   "class": "flex-1 flex"
@@ -20959,7 +20959,7 @@ var _hoisted_1 = {
   "class": "bg-white shadow"
 };
 var _hoisted_2 = {
-  "class": "px-4 sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8"
+  "class": "px-4 sm:px-6 lg:px-8"
 };
 var _hoisted_3 = {
   "class": "py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200"
@@ -21035,7 +21035,7 @@ var _hoisted_16 = {
   "class": "mt-8"
 };
 var _hoisted_17 = {
-  "class": "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+  "class": "px-4 sm:px-6 lg:px-8"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
@@ -21073,7 +21073,7 @@ var _hoisted_27 = {
 };
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8"
+  "class": "mt-8 text-lg leading-6 font-medium text-gray-900 px-4 sm:px-6 lg:px-8"
 }, " Recent activity ", -1
 /* HOISTED */
 );

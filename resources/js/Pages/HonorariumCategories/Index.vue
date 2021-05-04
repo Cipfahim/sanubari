@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 px-4 sm:px-6 lg:px-8">
             <breadcrumb :links="[
                 {
                    title: 'Honorarium Categories',
