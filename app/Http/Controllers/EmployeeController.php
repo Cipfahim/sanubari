@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeValidator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EmployeeController extends Controller
 {
@@ -15,7 +19,15 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Employee/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'employees' => QueryBuilder::for(Employee::class)
+                ->allowedFilters(['name'])
+                ->allowedSorts(['name'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**
