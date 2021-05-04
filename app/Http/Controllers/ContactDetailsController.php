@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ContactDetailsController extends Controller
 {
@@ -14,7 +18,15 @@ class ContactDetailsController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('ContactDetails/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(ContactDetails::class)
+                ->allowedFilters(['number'])
+                ->allowedSorts(['number'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**

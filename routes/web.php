@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\HonorariumCategoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ContactDetailsController;
+use App\Http\Controllers\ContributionsController;
+use App\Http\Controllers\SalaryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,3 +40,6 @@ require __DIR__ . '/auth.php';
 // HonorariumCategories
 Route::resource('honorarium-categories', HonorariumCategoryController::class)->except('show');
 Route::resource('employees', EmployeeController::class)->except('show');
+Route::resource('contact-details', ContactDetailsController::class)->except('show');
+Route::resource('contributions', ContributionsController::class)->except('show');
+Route::resource('salaries', SalaryController::class)->except('show');

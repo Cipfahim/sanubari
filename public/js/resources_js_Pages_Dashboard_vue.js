@@ -20211,6 +20211,21 @@ var secondaryNavigation = [{
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('employees.*')
       }, {
+        name: 'Contact Details',
+        href: route('contact-details.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('contact-details.*')
+      }, {
+        name: 'Contribution',
+        href: route('contributions.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('contributions.*')
+      }, {
+        name: 'Salary',
+        href: route('salaries.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('salaries.*')
+      }, {
         name: 'Demo',
         href: '#',
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
