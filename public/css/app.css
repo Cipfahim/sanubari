@@ -1020,6 +1020,9 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-1 {
+	grid-column: span 1 / span 1;
+}
 .m-2 {
 	margin: 0.5rem;
 }
@@ -1194,6 +1197,9 @@ select {
 .h-10 {
 	height: 2.5rem;
 }
+.h-7 {
+	height: 1.75rem;
+}
 .min-h-screen {
 	min-height: 100vh;
 }
@@ -1247,6 +1253,9 @@ select {
 }
 .w-64 {
 	width: 16rem;
+}
+.w-2\/4 {
+	width: 50%;
 }
 .min-w-0 {
 	min-width: 0px;
@@ -1344,8 +1353,8 @@ select {
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.grid-cols-6 {
-	grid-template-columns: repeat(6, minmax(0, 1fr));
+.grid-cols-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .flex-col {
 	flex-direction: column;
@@ -1612,9 +1621,17 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(6, 182, 212, var(--tw-bg-opacity));
 }
+.bg-red-500 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
 .bg-gray-700 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+}
+.bg-green-500 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
@@ -1854,9 +1871,9 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
-.text-purple-700 {
+.text-cyan-700 {
 	--tw-text-opacity: 1;
-	color: rgba(109, 40, 217, var(--tw-text-opacity));
+	color: rgba(14, 116, 144, var(--tw-text-opacity));
 }
 .text-white {
 	--tw-text-opacity: 1;
@@ -1889,10 +1906,6 @@ select {
 .text-green-400 {
 	--tw-text-opacity: 1;
 	color: rgba(52, 211, 153, var(--tw-text-opacity));
-}
-.text-cyan-700 {
-	--tw-text-opacity: 1;
-	color: rgba(14, 116, 144, var(--tw-text-opacity));
 }
 .text-green-800 {
 	--tw-text-opacity: 1;
@@ -1929,6 +1942,10 @@ select {
 .text-red-800 {
 	--tw-text-opacity: 1;
 	color: rgba(153, 27, 27, var(--tw-text-opacity));
+}
+.text-red-500 {
+	--tw-text-opacity: 1;
+	color: rgba(239, 68, 68, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2114,6 +2131,14 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
 }
+.hover\:bg-green-700:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+}
+.hover\:bg-red-700:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -2142,9 +2167,9 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
-.hover\:text-indigo-900:hover {
+.hover\:text-gray-100:hover {
 	--tw-text-opacity: 1;
-	color: rgba(49, 46, 129, var(--tw-text-opacity));
+	color: rgba(243, 244, 246, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
@@ -2183,6 +2208,10 @@ select {
 .focus\:border-cyan-500:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(6, 182, 212, var(--tw-border-opacity));
+}
+.focus\:border-cyan-300:focus {
+	--tw-border-opacity: 1;
+	border-color: rgba(103, 232, 249, var(--tw-border-opacity));
 }
 .focus\:bg-gray-100:focus {
 	--tw-bg-opacity: 1;
@@ -2267,6 +2296,17 @@ select {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(99, 102, 241, var(--tw-ring-opacity));
 }
+.focus\:ring-cyan-100:focus {
+	--tw-ring-opacity: 1;
+	--tw-ring-color: rgba(207, 250, 254, var(--tw-ring-opacity));
+}
+.focus\:ring-cyan-200:focus {
+	--tw-ring-opacity: 1;
+	--tw-ring-color: rgba(165, 243, 252, var(--tw-ring-opacity));
+}
+.focus\:ring-transparent:focus {
+	--tw-ring-color: transparent;
+}
 .focus\:ring-opacity-50:focus {
 	--tw-ring-opacity: 0.5;
 }
@@ -2321,6 +2361,10 @@ select {
 
 	.sm\:col-span-2 {
 		grid-column: span 2 / span 2;
+	}
+
+	.sm\:col-span-12 {
+		grid-column: span 12 / span 12;
 	}
 
 	.sm\:col-span-4 {
@@ -2612,6 +2656,10 @@ select {
 		grid-column: span 1 / span 1;
 	}
 
+	.md\:col-span-12 {
+		grid-column: span 12 / span 12;
+	}
+
 	.md\:mt-0 {
 		margin-top: 0px;
 	}
@@ -2652,6 +2700,10 @@ select {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
+	.md\:grid-cols-1 {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+
 	.md\:items-center {
 		align-items: center;
 	}
@@ -2662,6 +2714,14 @@ select {
 
 	.md\:gap-6 {
 		gap: 1.5rem;
+	}
+
+	.md\:gap-0 {
+		gap: 0px;
+	}
+
+	.md\:gap-y-6 {
+		row-gap: 1.5rem;
 	}
 
 	.md\:divide-y-0 > :not([hidden]) ~ :not([hidden]) {

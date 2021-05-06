@@ -140,7 +140,7 @@
                   <label class="block text-sm font-medium text-gray-700"
                     >Contact Address</label
                   >
-                  <div class="mt-1">
+                  <div class="mt-1 sm:mt-0 sm:col-span-2">
                     <textarea
                       id="message"
                       rows="4"

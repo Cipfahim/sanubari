@@ -46,6 +46,26 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/auth.php'));
+
+            Route::middleware(['web', 'auth', 'role:system-admin'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/system-admin.php'));
+
+            Route::middleware(['web', 'auth', 'role:system-admin|admin'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+
+            Route::middleware(['web', 'auth', 'role:auditor'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/auditor.php'));
+
+            Route::middleware(['web', 'auth', 'role:employee'])
+                ->namespace($this->namespace)
+                ->group(base_path('routes/employee.php'));
         });
     }
 
