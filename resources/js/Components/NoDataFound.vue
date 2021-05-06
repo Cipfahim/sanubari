@@ -66,7 +66,7 @@
                 section
                 will contain the list of {{ resource }}. </label>
         </div>
-        <div class="mt-8">
+        <div class="mt-8" v-if="actionLink">
             <inertia-link :href="actionLink"
                           class="inline-flex justify-center items-center focus:outline-none font-normal transition ease-in-out duration-150 border border-transparent border border-solid border-primary-500 text-primary-500 hover:bg-primary-200 shadow-inner whitespace-nowrap py-2 px-4 text-base leading-6 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"

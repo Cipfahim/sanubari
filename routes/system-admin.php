@@ -11,3 +11,9 @@
 |
 */
 
+use App\Http\Controllers\ActivityLogController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('activity-logs', [ActivityLogController::class, 'index'])->name('activityLogs.index');
+Route::get('activity-logs/{id}/show', [ActivityLogController::class, 'show'])->name('activityLogs.show');
+
