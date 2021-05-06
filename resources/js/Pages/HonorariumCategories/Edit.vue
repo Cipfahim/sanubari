@@ -19,7 +19,7 @@
 
           <template #description> Provide category details. </template>
 
-          <template #form class="col-span-1">
+          <template #form>
             <!-- Name -->
             <div class="col-span-6 sm:col-span-12">
               <jet-label for="name" value="Name *" />
@@ -27,7 +27,7 @@
                 id="name"
                 type="text"
                 v-model="form.name"
-                class="mt-1 block w-2/4 focus:ring-cyan-100"
+                class="mt-1 block w-full focus:ring-cyan-100"
                 :class="{ 'border-red-500': form.errors.name }"
                 autocomplete="name"
                 required
@@ -43,7 +43,7 @@
                 id="description"
                 type="text"
                 v-model="form.description"
-                class="mt-1 block w-2/4 focus:ring-cyan-100"
+                class="mt-1 block w-full focus:ring-cyan-100"
                 :class="{ 'border-red-500': form.errors.description }"
               />
               <jet-input-error

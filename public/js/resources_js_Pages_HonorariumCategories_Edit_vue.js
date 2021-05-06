@@ -20763,10 +20763,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "md:grid md:grid-cols-2 md:gap-0 md:gap-y-6"
+  "class": "md:grid md:grid-cols-12 md:gap-0 md:gap-y-6"
 };
 var _hoisted_2 = {
-  "class": "mt-5 md:mt-0 md:col-span-2"
+  "class": "mt-5 md:mt-0 md:col-span-8 md:col-end-8"
 };
 var _hoisted_3 = {
   "class": "grid grid-cols-2 gap-6"
@@ -20779,7 +20779,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_section_title = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-section-title");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_title, {
-    "class": "mt-5 md:mt-0 md:col-span-2"
+    "class": "mt-5 md:mt-0 md:col-span-12"
   }, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "title")];
@@ -21615,7 +21615,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
               return $data.form.name = $event;
             }),
-            "class": ["mt-1 block w-2/4 focus:ring-cyan-100", {
+            "class": ["mt-1 block w-full focus:ring-cyan-100", {
               'border-red-500': $data.form.errors.name
             }],
             autocomplete: "name",
@@ -21638,7 +21638,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
               return $data.form.description = $event;
             }),
-            "class": ["mt-1 block w-2/4 focus:ring-cyan-100", {
+            "class": ["mt-1 block w-full focus:ring-cyan-100", {
               'border-red-500': $data.form.errors.description
             }]
           }, null, 8
