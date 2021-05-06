@@ -20407,22 +20407,22 @@ var secondaryNavigation = [{
         current: route().current('honorarium-categories.*')
       }, {
         name: 'Employee',
-        href: route('employees.index'),
+        href: route('employees.create'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('employees.*')
       }, {
         name: 'Contact Details',
-        href: route('contact-details.index'),
+        href: route('contact-details.create'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('contact-details.*')
       }, {
         name: 'Contribution',
-        href: route('contributions.index'),
+        href: route('contributions.create'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('contributions.*')
       }, {
         name: 'Salary',
-        href: route('salaries.index'),
+        href: route('salaries.create'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('salaries.*')
       }, {

@@ -19,15 +19,7 @@ class ContributionsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Contribution/Index', [
-            'requests' => QueryRequest::all(['filter', 'sort']),
-            'honorariumCategories' => QueryBuilder::for(Contribution::class)
-                ->allowedFilters(['epf_no'])
-                ->allowedSorts(['epf_no'])
-                ->latest('id')
-                ->paginate()
-                ->appends(request()->query()),
-        ]);
+        
     }
 
     /**
@@ -37,7 +29,15 @@ class ContributionsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Contribution/Create', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(Contribution::class)
+                ->allowedFilters(['epf_no'])
+                ->allowedSorts(['epf_no'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**

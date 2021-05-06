@@ -136,25 +136,25 @@ export default {
                 },
                 {
                     name: 'Employee',
-                    href: route('employees.index'),
+                    href: route('employees.create'),
                     icon: ClockIcon,
                     current: route().current('employees.*')
                 },
                 {
                     name: 'Contact Details',
-                    href: route('contact-details.index'),
+                    href: route('contact-details.create'),
                     icon: ClockIcon,
                     current: route().current('contact-details.*')
                 },
                 {
                     name: 'Contribution',
-                    href: route('contributions.index'),
+                    href: route('contributions.create'),
                     icon: ClockIcon,
                     current: route().current('contributions.*')
                 },
                 {
                     name: 'Salary',
-                    href: route('salaries.index'),
+                    href: route('salaries.create'),
                     icon: ClockIcon,
                     current: route().current('salaries.*')
                 },

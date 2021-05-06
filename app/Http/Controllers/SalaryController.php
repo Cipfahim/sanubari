@@ -19,15 +19,7 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Salary/Index', [
-            'requests' => QueryRequest::all(['filter', 'sort']),
-            'honorariumCategories' => QueryBuilder::for(Salary::class)
-                ->allowedFilters(['number'])
-                ->allowedSorts(['number'])
-                ->latest('id')
-                ->paginate()
-                ->appends(request()->query()),
-        ]);
+        
     }
 
     /**
@@ -37,7 +29,15 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Salary/Create', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(Salary::class)
+                ->allowedFilters(['number'])
+                ->allowedSorts(['number'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**
