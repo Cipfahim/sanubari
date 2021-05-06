@@ -20,8 +20,6 @@ use Inertia\Inertia;
 
 Route::redirect('/', 'login');
 
-require __DIR__ . '/auth.php';
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:system-admin|admin'])->name('dashboard');

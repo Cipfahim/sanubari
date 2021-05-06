@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -34,6 +35,11 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
+            'app' => [
+                'name' => fn() => Config::get('app.name'),
+                'env' => fn() => app()->environment(),
+                'url' => fn() => Config::get('app.url'),
+            ],
             'auth' => [
                 'user' => $request->user(),
             ],
