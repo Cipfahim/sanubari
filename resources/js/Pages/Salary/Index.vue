@@ -83,20 +83,12 @@
       </nav>
       <!-- Strat::Stepper Contents -->
       <div class="bg-gray-50 p-4 mt-4">
-        <!-- <div class="w-full flex justify-center py-4">
-          <div
-            class="h-20 w-20 rounded-full border-2 border-dashed border-gray-200 flex items-center justify-center cursor-pointer"
-          >
-            <PlusCircleIcon class="h-10 w-10 text-gray-300" />
-            <input type="file" class="hidden" placeholder="Avatar" />
-          </div>
-        </div> -->
         <form class="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
               <div class="sm:border-b sm:border-gray-200 pb-2">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
-                  Official Information
+                  Salary Details
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
                   Star (*) means required!
@@ -104,384 +96,34 @@
               </div>
 
               <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
+                <!-- Start::ingle Field -->
                 <div
                   class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                  v-for="(salary, index) in salaries"
+                  :key="index"
                 >
                   <label
                     for="username"
                     class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                   >
-                    Official Name<span class="text-blue-600"> *</span>
+                    {{ salary.label }} <span class="text-blue-600"> *</span>
                   </label>
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex shadow-sm">
+                    <div class="max-w-lg">
                       <input
-                        type="text"
+                        :type="salary.type"
                         name="username"
                         id="username"
                         autocomplete="username"
-                        class="flex-1 block w-full focus:ring-cyan-500 focus:border-cyan-500 min-w-0 rounded-md sm:text-sm border-gray-300"
+                        class="flex-1 block w-full focus:ring-cyan-500 focus:border-cyan-500 min-w-0 rounded-md sm:text-sm border-gray-300 shadow-sm"
                       />
-                    </div>
-                    <!-- <p class="text-xs text-gray-400 mt-1 block">Required</p> -->
-                  </div>
-                </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="first_name"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Nick Name<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex shadow-sm">
-                      <input
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        autocomplete="given-name"
-                        class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md"
-                      />
+                      <p class="text-xs text-red-500 mt-1">
+                        Somthing went wrong!
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Location<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex justify-space-between">
-                      <select
-                        id="country"
-                        name="country"
-                        autocomplete="country"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      >
-                        <option>Select one</option>
-                        <option>Location - 1</option>
-                        <option>Location - 2</option>
-                        <option>Location - 3</option>
-                        <option>Location - 4</option>
-                      </select>
-                      <button
-                        type="button"
-                        class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
-                      >
-                        <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2" />
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Date of Join<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div
-                      class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
-                    >
-                      <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
-                      />
-                      <button
-                        class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
-                      >
-                        <CalendarIcon
-                          class="h-5 w-5 text-cyan-400"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-6 sm:pt-10 sm:space-y-5">
-              <div class="sm:border-b sm:border-gray-200 pb-2">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                  Identification Details
-                </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                  This section contains sensitive information.
-                </p>
-              </div>
-              <div class="space-y-6 sm:space-y-5">
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="first_name"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Sex<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="flex">
-                      <div class="flex items-center mr-10">
-                        <input
-                          id="push_everything"
-                          name="push_notifications"
-                          type="radio"
-                          class="focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300"
-                        />
-                        <label
-                          for="push_everything"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Male
-                        </label>
-                      </div>
-                      <div class="flex items-center">
-                        <input
-                          id="push_email"
-                          name="push_notifications"
-                          type="radio"
-                          class="focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300"
-                        />
-                        <label
-                          for="push_email"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Female
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Date of Birth<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div
-                      class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
-                    >
-                      <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
-                      />
-                      <button
-                        class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
-                      >
-                        <CalendarIcon
-                          class="h-5 w-5 text-cyan-400"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Citizenship<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex">
-                      <div class="flex items-center mr-10">
-                        <input
-                          id="push_everything"
-                          name="push_notifications"
-                          type="radio"
-                          class="focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300"
-                        />
-                        <label
-                          for="push_everything"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Malaysian
-                        </label>
-                      </div>
-                      <div class="flex items-center">
-                        <input
-                          id="push_email"
-                          name="push_notifications"
-                          type="radio"
-                          class="focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300"
-                        />
-                        <label
-                          for="push_email"
-                          class="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Foriegn
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Country of Birth<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <select
-                      id="country"
-                      name="country"
-                      autocomplete="country"
-                      class="max-w-lg block focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    >
-                      <option>Select one</option>
-                      <option>Malaysian</option>
-                      <option>Canadian</option>
-                      <option>Mexican</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="street_address"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Street of Birth<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <input
-                      type="text"
-                      name="street_address"
-                      id="street_address"
-                      autocomplete="street-address"
-                      class="block max-w-lg w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="state"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Identity Card (IC) Number<span class="text-blue-600">
-                      *</span
-                    >
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <input
-                      type="text"
-                      name="state"
-                      id="state"
-                      class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
-
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="city"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Passport Number<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <input
-                      type="text"
-                      name="city"
-                      id="city"
-                      class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-6 sm:pt-10 sm:space-y-5">
-              <div class="sm:border-b sm:border-gray-200 pb-2">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                  Bank Details
-                </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                  This section contains sensitive information.
-                </p>
-              </div>
-              <div class="space-y-6 sm:space-y-5">
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Bank Name<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <select
-                      id="bank"
-                      name="bank"
-                      autocomplete="bank"
-                      class="max-w-lg block focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    >
-                      <option>Select one</option>
-                      <option>AFFIN BANK</option>
-                      <option>AMBANK BERHAD</option>
-                      <option>RHB BANK BERHAD</option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                >
-                  <label
-                    for="country"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    Account No<span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div
-                      class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
-                    >
-                      <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <!-- End::ingle Field -->
               </div>
             </div>
 
@@ -512,34 +154,8 @@
 
 <script>
 import AppLayout from "../../Layouts/App";
-import {
-  CheckCircleIcon,
-  OfficeBuildingIcon,
-  CashIcon,
-  ChevronRightIcon,
-  CheckIcon,
-  CalendarIcon,
-  PlusCircleIcon,
-} from "@heroicons/vue/solid";
-import { ScaleIcon } from "@heroicons/vue/outline/esm";
+import { CheckIcon } from "@heroicons/vue/solid";
 
-const cards = [
-  { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
-  // More items...
-];
-const transactions = [
-  {
-    id: 1,
-    name: "Payment to Molly Sanders",
-    href: "#",
-    amount: "$20,000",
-    currency: "USD",
-    status: "success",
-    date: "July 11, 2020",
-    datetime: "2020-07-11",
-  },
-  // More transactions...
-];
 const statusStyles = {
   success: "bg-green-100 text-green-800",
   processing: "bg-yellow-100 text-yellow-800",
@@ -552,23 +168,25 @@ const steps = [
   { id: "C", name: "Contribution", href: "#", status: "complete" },
   { id: "D", name: "Salary Details", href: "#", status: "current" },
 ];
+
+const salaries = [
+  { label: "Basic Salary", type: "text" },
+  { label: "Cost of Living Allowance", type: "text" },
+  { label: "Attendance Allowance", type: "text" },
+  { label: "Levy", type: "text" },
+  { label: "In Charge Allowance", type: "text" },
+];
+
 export default {
   components: {
     AppLayout,
-    OfficeBuildingIcon,
-    CheckCircleIcon,
-    CashIcon,
-    ChevronRightIcon,
     CheckIcon,
-    CalendarIcon,
-    PlusCircleIcon,
   },
   setup() {
     return {
-      cards,
-      transactions,
       statusStyles,
       steps,
+      salaries,
     };
   },
 };

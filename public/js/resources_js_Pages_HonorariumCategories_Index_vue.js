@@ -20556,7 +20556,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
 /* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -20581,7 +20583,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SortArrow: _Components_SortArrow__WEBPACK_IMPORTED_MODULE_4__.default,
     JetConfirmationModal: _Jetstream_ConfirmationModal_vue__WEBPACK_IMPORTED_MODULE_6__.default,
     JetSecondaryButton: _Jetstream_SecondaryButton_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-    JetDangerButton: _Jetstream_DangerButton_vue__WEBPACK_IMPORTED_MODULE_8__.default
+    JetDangerButton: _Jetstream_DangerButton_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+    SearchIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_12__.SearchIcon
   },
   props: {
     requests: Object,
@@ -20590,8 +20593,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       queryForm: {
-        field: this.requests.filter ? Object.keys(this.requests.filter)[0] : 'name',
-        filter: this.requests.filter ? Object.values(this.requests.filter)[0] : '',
+        field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "name",
+        filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
         sort: this.requests.sort
       },
       bulkIds: [],
@@ -20606,7 +20609,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       handler: lodash_throttle__WEBPACK_IMPORTED_MODULE_9___default()(function () {
         var _customQuery;
 
-        var customQuery = (_customQuery = {}, _defineProperty(_customQuery, 'filter[' + this.queryForm.field + ']', this.queryForm.filter), _defineProperty(_customQuery, "sort", this.queryForm.sort), _customQuery);
+        var customQuery = (_customQuery = {}, _defineProperty(_customQuery, "filter[" + this.queryForm.field + "]", this.queryForm.filter), _defineProperty(_customQuery, "sort", this.queryForm.sort), _customQuery);
         var queryString = lodash_pickBy__WEBPACK_IMPORTED_MODULE_10___default()(customQuery);
         this.$inertia.get(this.route("honorarium-categories.index", Object.keys(queryString).length ? queryString : {
           remember: "forget"
@@ -20632,11 +20635,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // Sort data by field
     sort: function sort(field) {
-      this.queryForm.sort === field ? this.queryForm.sort = '-' + field : this.queryForm.sort = field;
+      this.queryForm.sort === field ? this.queryForm.sort = "-" + field : this.queryForm.sort = field;
     },
     // Reset all filters
     reset: function reset() {
-      this.$inertia.visit(this.route('honorarium-categories.index'));
+      this.$inertia.visit(this.route("honorarium-categories.index"));
     },
     // Confirm deletion.
     confirmDeletion: function confirmDeletion(category) {
@@ -20647,7 +20650,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     destroy: function destroy() {
       var _this = this;
 
-      this.$inertia["delete"](this.route('honorarium-categories.destroy', this.deleteCategory), {
+      this.$inertia["delete"](this.route("honorarium-categories.destroy", this.deleteCategory), {
         preserveState: true,
         preserveScroll: true,
         onSuccess: function onSuccess() {
@@ -20664,7 +20667,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     bulkDestroy: function bulkDestroy() {
       var _this2 = this;
 
-      this.$inertia.post(this.route('honorarium-categories.bulk-destroy'), {
+      this.$inertia.post(this.route("honorarium-categories.bulk-destroy"), {
         _method: "DELETE",
         categories: this.bulkIds
       }, {
@@ -20700,7 +20703,7 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-  "class": "text-2xl text-purple-700 font-bold mx-2"
+  "class": "text-2xl text-gray-400 font-bold mx-2"
 }, "/", -1
 /* HOISTED */
 );
@@ -20717,7 +20720,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: 0
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
       href: link.url,
-      "class": "text-2xl text-purple-700 font-bold"
+      "class": "text-2xl text-cyan-700 font-bold"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.title), 1
@@ -20738,7 +20741,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
       key: 1,
       href: "#",
-      "class": "text-2xl text-purple-700 font-bold"
+      "class": "text-2xl text-cyan-700 font-bold"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.title), 1
@@ -21944,7 +21947,7 @@ var _hoisted_3 = {
   "class": "flex items-center w-full max-w-md mr-4"
 };
 var _hoisted_4 = {
-  "class": "flex w-full bg-white shadow rounded relative"
+  "class": "flex items-center w-full bg-white shadow-sm rounded relative"
 };
 var _hoisted_5 = {
   "class": "flex justify-between"
@@ -22018,7 +22021,7 @@ var _hoisted_24 = {
   "class": "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
 };
 var _hoisted_25 = {
-  "class": "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+  "class": "px-6 whitespace-nowrap text-right text-sm font-medium"
 };
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit ");
@@ -22033,6 +22036,8 @@ var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breadcrumb = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breadcrumb");
+
+  var _component_SearchIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SearchIcon");
 
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
 
@@ -22057,7 +22062,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           title: 'Honorarium Categories',
           active: true
         }]
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SearchIcon, {
+        "class": "h-7 w-7 text-gray-300 mx-2"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return $data.queryForm.filter = $event;
         }),
@@ -22065,7 +22072,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         name: "search",
         placeholder: "Search…",
-        "class": "relative w-full border-0 px-4 py-2 rounded"
+        "class": "relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
       }, null, 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.queryForm.filter]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
@@ -22073,8 +22080,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = function () {
           return $options.reset && $options.reset.apply($options, arguments);
         }),
-        "class": "ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500"
-      }, "Reset ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+        "class": "py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+      }, " Reset ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
         href: _ctx.route('honorarium-categories.create'),
         "class": "py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
       }, {
@@ -22120,7 +22127,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["sort"]), _hoisted_16]), _hoisted_17])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.honorariumCategories.data, function (category, index) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+          key: index
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
         /* TEXT */
@@ -22128,7 +22137,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_22, [category.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_23, " Active ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_24, " Inactive "))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
           href: _ctx.route('honorarium-categories.edit', category.id),
-          "class": "text-indigo-600 hover:text-indigo-900"
+          "class": "text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [_hoisted_26];
@@ -22138,17 +22147,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-          type: "button",
-          onClick: function onClick($event) {
-            return $options.confirmDeletion(category);
-          },
-          "class": "text-indigo-600 hover:text-indigo-900"
-        }, "Delete ", 8
-        /* PROPS */
-        , ["onClick"])])]);
-      }), 256
-      /* UNKEYED_FRAGMENT */
+        , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button\n                        type=\"button\"\n                        @click=\"confirmDeletion(category)\"\n                        class=\"text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2\"\n                      >\n                        Delete\n                      </button> ")])]);
+      }), 128
+      /* KEYED_FRAGMENT */
       ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
         "class": "m-2",
         links: $props.honorariumCategories.links
