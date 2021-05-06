@@ -24,7 +24,7 @@ class EmployeeValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+            'official_name' => ['required', 'string', 'max:50'],
         ];
     }
 }

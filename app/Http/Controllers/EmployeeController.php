@@ -19,7 +19,17 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Employee/Index', [
+        
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return Inertia::render('Employee/Create', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
                 ->allowedFilters(['name'])
@@ -31,16 +41,6 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,7 +48,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeValidator $request)
     {
-        //
+        
     }
 
     /**
