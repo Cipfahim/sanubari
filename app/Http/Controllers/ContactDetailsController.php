@@ -18,15 +18,7 @@ class ContactDetailsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('ContactDetails/Index', [
-            'requests' => QueryRequest::all(['filter', 'sort']),
-            'honorariumCategories' => QueryBuilder::for(ContactDetails::class)
-                ->allowedFilters(['number'])
-                ->allowedSorts(['number'])
-                ->latest('id')
-                ->paginate()
-                ->appends(request()->query()),
-        ]);
+        
     }
 
     /**
@@ -36,7 +28,15 @@ class ContactDetailsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('ContactDetails/Create', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'honorariumCategories' => QueryBuilder::for(ContactDetails::class)
+                ->allowedFilters(['number'])
+                ->allowedSorts(['number'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
     }
 
     /**
