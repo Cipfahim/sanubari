@@ -472,9 +472,9 @@
                     >
                       <input
                         type="tel"
-                        v-mask="'####-####-####-####'"
+                        v-mask="'#####-####-####-####'"
                         class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="#### - #### - #### - ####"
+                        placeholder="##### - #### - #### - ####"
                       />
                     </div>
                   </div>
