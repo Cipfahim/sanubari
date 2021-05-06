@@ -20758,7 +20758,7 @@ var _hoisted_1 = {
   "class": "md:grid md:grid-cols-12 md:gap-0 md:gap-y-6"
 };
 var _hoisted_2 = {
-  "class": "mt-5 md:mt-0 md:col-span-6 md:col-end-6"
+  "class": "mt-5 md:mt-0 md:col-span-8 md:col-end-8"
 };
 var _hoisted_3 = {
   "class": "grid grid-cols-2 gap-6"

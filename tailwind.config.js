@@ -15,6 +15,7 @@ module.exports = {
             colors: {
                 cyan: colors.cyan,
                 red: colors.red,
+                green: colors.green,
                 transparent: 'transparent',
             },
             fontFamily: {

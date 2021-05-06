@@ -5,7 +5,7 @@
       <template #description><slot name="description"></slot></template>
     </jet-section-title>
 
-    <div class="mt-5 md:mt-0 md:col-span-6 md:col-end-6">
+    <div class="mt-5 md:mt-0 md:col-span-8 md:col-end-8">
       <form @submit.prevent="$emit('submitted')">
         <div
           class="px-4 py-5 bg-white sm:p-6 shadow"
