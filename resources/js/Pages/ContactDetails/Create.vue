@@ -108,13 +108,36 @@
                   >
                     Contact Number<span class="text-blue-600"> *</span>
                   </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
+                  <!-- <div class="mt-1 sm:mt-0 sm:col-span-2">
                     <div class="max-w-lg flex shadow-sm">
                       <input
                         type="text"
                         class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
+                  </div> -->
+                  <div class="mt-1 relative sm:mt-0 sm:col-span-2 max-w-lg">
+                    <div
+                      class="absolute inset-y-0 left-0 flex items-center max-w-lg shadow-sm"
+                    >
+                      <label for="country" class="sr-only">Country</label>
+                      <select
+                        id="country"
+                        name="country"
+                        class="focus:ring-cyan-500 focus:border-cyan-500 h-full py-0 pl-3 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+                      >
+                        <option>US</option>
+                        <option>CA</option>
+                        <option>EU</option>
+                      </select>
+                    </div>
+                    <input
+                      type="text"
+                      name="phone_number"
+                      id="phone_number"
+                      class="focus:ring-cyan-500 focus:border-cyan-500 block w-full pl-16 sm:text-sm border-gray-300 rounded-md"
+                      placeholder="+1 (555) 987-6543"
+                    />
                   </div>
                 </div>
                 <div
@@ -185,7 +208,6 @@
 <script>
 import AppLayout from "../../Layouts/App";
 import { CheckIcon } from "@heroicons/vue/solid";
-
 const statusStyles = {
   success: "bg-green-100 text-green-800",
   processing: "bg-yellow-100 text-yellow-800",
