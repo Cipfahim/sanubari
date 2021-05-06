@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\HonorariumCategoryController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SalaryController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,25 +18,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::redirect('/', 'login');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'role:system-admin|admin'])->name('dashboard');
 
-
-
-require __DIR__ . '/auth.php';
-
-// HonorariumCategories
-Route::resource('honorarium-categories', HonorariumCategoryController::class)->except('show');
 Route::resource('employees', EmployeeController::class)->except('show');
 Route::resource('contact-details', ContactDetailsController::class)->except('show');
 Route::resource('contributions', ContributionsController::class)->except('show');
