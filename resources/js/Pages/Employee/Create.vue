@@ -280,20 +280,18 @@
                       class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
                     >
                       <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
+                        type="date"
+                        class="text-gray-600 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
                         placeholder="DD / MM / YY"
                       />
-                      <button
+                      <!-- <button
                         class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
                       >
                         <CalendarIcon
                           class="h-5 w-5 text-cyan-400"
                           aria-hidden="true"
                         />
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -473,11 +471,10 @@
                       class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
                     >
                       <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
+                        type="tel"
+                        v-mask="'####-####-####-####'"
                         class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
+                        placeholder="#### - #### - #### - ####"
                       />
                     </div>
                   </div>
@@ -520,7 +517,6 @@
                 </div>
               </div>
             </div>
-
             <div class="pt-5">
               <div class="flex justify-end">
                 <button
@@ -558,6 +554,7 @@ import {
   PlusCircleIcon,
 } from "@heroicons/vue/solid";
 import { ScaleIcon } from "@heroicons/vue/outline/esm";
+import { mask } from "vue-the-mask";
 
 const cards = [
   { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
@@ -599,6 +596,7 @@ export default {
     CalendarIcon,
     PlusCircleIcon,
   },
+  directives: { mask },
   setup() {
     return {
       cards,
