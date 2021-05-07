@@ -158,6 +158,12 @@ export default {
                     icon: ClockIcon,
                     current: route().current('salaries.*')
                 },
+                {
+                    name: 'Location',
+                    href: route('locations.index'),
+                    icon: ClockIcon,
+                    current: route().current('locations.*')
+                },
                 {name: 'Demo', href: '#', icon: ClockIcon, current: false},
             ]
         }

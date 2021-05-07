@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request as QueryRequest;
+
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Str;
+use App\Models\Bank;
 
-
-class LocationController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,15 +21,15 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Location/Index',[
-           'requests' => QueryRequest::all(['filter','sort']),
-           'locations' => QueryBuilder::for(Location::class)
-               ->allowedFilters(['name'])
-               ->allowedSorts(['name'])
-                ->latest('id')
-            ->paginate()
-            ->appends(\request()->query()),
-        ]);
+        return Inertia::render('Bank/Index',[
+            'requests' => QueryRequest::all(['filter','sort']),
+            'banks' => QueryBuilder::for(Bank::class)
+                        ->allowedFilters(['name'])
+                        ->allowedSorts(['name'])
+                        ->latest('id')
+                        ->paginate()
+                        ->appends(\request()->query()),
+            ]);
     }
 
     /**
@@ -38,7 +39,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Location/Create');
+        return Inertia::render('Bank/Create');
     }
 
     /**
@@ -50,22 +51,24 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request , [
-            "name" => ['required','string','max:90','unique:locations'],
+            "name" => ['required','string','max:90','unique:banks'],
+            "swift_code" => ['required','regex:/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i'],
         ]);
-        Location::create([
+        Bank::create([
             'name' => $request->get('name'),
+            'swift_code' => $request->get('swift_code'),
             'slug' => Str::of($request->get('name'))->slug('-'),
         ]);
-        return Redirect::route('locations.index')->with('success',"Location Added");
+        return Redirect::route('banks.index')->with('success',"Bank Added");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show($id)
     {
         //
     }
@@ -73,13 +76,13 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Bank $bank)
     {
-        return Inertia::render('Location/Edit', [
-            'locations' => $location
+        return Inertia::render('Bank/Edit', [
+            'banks' => $bank
         ]);
     }
 
@@ -87,31 +90,33 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Bank $bank)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:50', 'unique:locations,name,' . $location->id]
+            'name' => ['required', 'string', 'max:50', 'unique:banks,name,' . $bank->id],
+            "swift_code" => ['required','regex:/^[a-z]{6}[0-9a-z]{2}([0-9a-z]{3})?\z/i'],
         ]);
 
         // Create new category.
-        $location->update([
+        $bank->update([
             'name' => $request->get('name'),
+            'swift_code' => $request->get('swift_code'),
 
         ]);
         return Redirect::back()
-            ->with('success', 'Location Saved');
+            ->with('success', 'Bank Details Saved');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Location  $location
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy($id)
     {
         //
     }

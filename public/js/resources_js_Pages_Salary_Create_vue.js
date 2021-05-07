@@ -20226,6 +20226,11 @@ var secondaryNavigation = [{
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('salaries.*')
       }, {
+        name: 'Location',
+        href: route('locations.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('locations.*')
+      }, {
         name: 'Demo',
         href: '#',
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,

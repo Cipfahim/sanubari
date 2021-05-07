@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ContactDetailsController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,3 +30,5 @@ Route::resource('employees', EmployeeController::class)->except('show');
 Route::resource('contact-details', ContactDetailsController::class)->except('show');
 Route::resource('contributions', ContributionsController::class)->except('show');
 Route::resource('salaries', SalaryController::class)->except('show');
+Route::resource('locations', LocationController::class)->except('show');
+Route::resource('banks', BankController::class)->except('show');
