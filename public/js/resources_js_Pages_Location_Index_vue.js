@@ -20907,6 +20907,7 @@ var _hoisted_6 = {
   "class": "mt-1 text-base font-extralight text-gray-500 text-center flex"
 };
 var _hoisted_7 = {
+  key: 0,
   "class": "mt-8"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -20918,7 +20919,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_6, " This section will contain the list of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.resource) + ". ", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+  )]), $props.actionLink ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
     href: $props.actionLink,
     "class": "inline-flex justify-center items-center focus:outline-none font-normal transition ease-in-out duration-500 text-white bg-cyan-600 hover:bg-cyan-700 whitespace-nowrap py-2 px-4 text-base leading-6 rounded-md"
   }, {
@@ -20934,7 +20935,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])])]);
+  , ["href"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),

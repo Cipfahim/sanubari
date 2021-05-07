@@ -38780,6 +38780,22 @@ function compileToFunction(template, options) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./ActivityLogs/Index": [
+		"./resources/js/Pages/ActivityLogs/Index.vue",
+		"resources_js_Pages_ActivityLogs_Index_vue"
+	],
+	"./ActivityLogs/Index.vue": [
+		"./resources/js/Pages/ActivityLogs/Index.vue",
+		"resources_js_Pages_ActivityLogs_Index_vue"
+	],
+	"./ActivityLogs/Show": [
+		"./resources/js/Pages/ActivityLogs/Show.vue",
+		"resources_js_Pages_ActivityLogs_Show_vue"
+	],
+	"./ActivityLogs/Show.vue": [
+		"./resources/js/Pages/ActivityLogs/Show.vue",
+		"resources_js_Pages_ActivityLogs_Show_vue"
+	],
 	"./Auth/ConfirmPassword": [
 		"./resources/js/Pages/Auth/ConfirmPassword.vue",
 		"resources_js_Pages_Auth_ConfirmPassword_vue"
@@ -39085,7 +39101,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Auth_ConfirmPassword_vue":"4ecb21fcbd8391b09c2c","resources_js_Pages_Auth_ForgotPassword_vue":"7b9e6b1186540ebf0bff","resources_js_Pages_Auth_Login_vue":"ab19a624c79a6d538c07","resources_js_Pages_Auth_Register_vue":"9bfbcf555b466a2fdb71","resources_js_Pages_Auth_ResetPassword_vue":"363f592e43daa9dbf3ed","resources_js_Pages_Auth_VerifyEmail_vue":"98790b363803e018b5eb","resources_js_Pages_Bank_Create_vue":"bedc97908a5f87f3e41f","resources_js_Pages_Bank_Edit_vue":"dfb0bd08bddf100d2eb9","resources_js_Pages_Bank_Index_vue":"86fd7c1f4cb792cc5fab","resources_js_Pages_ContactDetails_Create_vue":"7d76d6500c7373208247","resources_js_Pages_Contribution_Create_vue":"1bdf8eb5d693fddc6c52","resources_js_Pages_Dashboard_vue":"7c16c94a053782c72a6a","resources_js_Pages_Employee_Create_vue":"72c2599fc4153aefd934","resources_js_Pages_HonorariumCategories_Create_vue":"1583c7651c3b4bba8620","resources_js_Pages_HonorariumCategories_Edit_vue":"e2fb557db21def31c1c8","resources_js_Pages_HonorariumCategories_Index_vue":"9768db7ceebae298cca6","resources_js_Pages_Location_Create_vue":"132e417fe86af27fb2df","resources_js_Pages_Location_Edit_vue":"00974852f219e30c6c38","resources_js_Pages_Location_Index_vue":"7242ffd49bdb9ae46142","resources_js_Pages_Salary_Create_vue":"fbbf0ad20be106b58127","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"28a436aa92b64dda9f0b","resources_js_Pages_ActivityLogs_Show_vue":"bee5168ec9019213e817","resources_js_Pages_Auth_ConfirmPassword_vue":"4ecb21fcbd8391b09c2c","resources_js_Pages_Auth_ForgotPassword_vue":"7b9e6b1186540ebf0bff","resources_js_Pages_Auth_Login_vue":"ab19a624c79a6d538c07","resources_js_Pages_Auth_Register_vue":"9bfbcf555b466a2fdb71","resources_js_Pages_Auth_ResetPassword_vue":"363f592e43daa9dbf3ed","resources_js_Pages_Auth_VerifyEmail_vue":"98790b363803e018b5eb","resources_js_Pages_Bank_Create_vue":"bedc97908a5f87f3e41f","resources_js_Pages_Bank_Edit_vue":"dfb0bd08bddf100d2eb9","resources_js_Pages_Bank_Index_vue":"35d6ce8c356106d5c285","resources_js_Pages_ContactDetails_Create_vue":"5fe6a1be88e5d1faa87a","resources_js_Pages_Contribution_Create_vue":"1bdf8eb5d693fddc6c52","resources_js_Pages_Dashboard_vue":"7c16c94a053782c72a6a","resources_js_Pages_Employee_Create_vue":"3d97d63357eaa36503ca","resources_js_Pages_HonorariumCategories_Create_vue":"1583c7651c3b4bba8620","resources_js_Pages_HonorariumCategories_Edit_vue":"e2fb557db21def31c1c8","resources_js_Pages_HonorariumCategories_Index_vue":"c1b9bb7064ba1653dc43","resources_js_Pages_Location_Create_vue":"132e417fe86af27fb2df","resources_js_Pages_Location_Edit_vue":"00974852f219e30c6c38","resources_js_Pages_Location_Index_vue":"813453c79b8abe06ef39","resources_js_Pages_Salary_Create_vue":"fbbf0ad20be106b58127","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

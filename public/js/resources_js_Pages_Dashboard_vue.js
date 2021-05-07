@@ -20173,11 +20173,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var secondaryNavigation = [{
-  name: 'Settings',
-  href: '#',
-  icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon
-}];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Dialog: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.Dialog,
@@ -20189,8 +20184,7 @@ var secondaryNavigation = [{
   setup: function setup() {
     var sidebarOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     return {
-      sidebarOpen: sidebarOpen,
-      secondaryNavigation: secondaryNavigation
+      sidebarOpen: sidebarOpen
     };
   },
   data: function data() {
@@ -20235,6 +20229,16 @@ var secondaryNavigation = [{
         href: '#',
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: false
+      }, {
+        name: 'Activity Logs',
+        href: route('activityLogs.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon,
+        current: route().current('activityLogs.*')
+      }],
+      secondaryNavigation: [{
+        name: 'Settings',
+        href: '#',
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon
       }]
     };
   }
@@ -20854,7 +20858,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 , ["href", "class", "aria-current"]);
               }), 128
               /* KEYED_FRAGMENT */
-              ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.secondaryNavigation, function (item) {
+              ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.secondaryNavigation, function (item) {
                 return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
                   key: item.name,
                   href: item.href,
@@ -20918,7 +20922,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href", "class", "aria-current"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.secondaryNavigation, function (item) {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.secondaryNavigation, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
       key: item.name,
       href: item.href,

@@ -104,10 +104,6 @@ import {ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot,} from '@headlessui/vue'
 import {ClockIcon, CogIcon, HomeIcon, XIcon,} from '@heroicons/vue/outline'
 
-const secondaryNavigation = [
-    {name: 'Settings', href: '#', icon: CogIcon},
-]
-
 export default {
     components: {
         Dialog,
@@ -121,7 +117,6 @@ export default {
 
         return {
             sidebarOpen,
-            secondaryNavigation
         }
     },
     data() {
@@ -165,6 +160,19 @@ export default {
                     current: route().current('locations.*')
                 },
                 {name: 'Demo', href: '#', icon: ClockIcon, current: false},
+                {
+                    name: 'Activity Logs',
+                    href: route('activityLogs.index'),
+                    icon: CogIcon,
+                    current: route().current('activityLogs.*')
+                },
+            ],
+            secondaryNavigation: [
+                {
+                    name: 'Settings',
+                    href: '#',
+                    icon: CogIcon,
+                },
             ]
         }
     }

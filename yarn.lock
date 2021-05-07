@@ -856,12 +856,12 @@
 
 "@headlessui/vue@^1.1.1":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@headlessui/vue/-/vue-1.1.1.tgz#62db45068e0906696e4c1cd4c421f34c9e891798"
+  resolved "https://registry.npmjs.org/@headlessui/vue/-/vue-1.1.1.tgz"
   integrity sha512-7FalIR+WbTI+mQWhOCagCbAGIp4pscN698Hs5G50PabmZ7inwGaXSmQ2CeuvAalPsjGqDQfGdXaQKQVlBqZTSQ==
 
 "@heroicons/vue@^1.0.1":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@heroicons/vue/-/vue-1.0.1.tgz#bd37662a45ed031d9b4ab1c860574e2174ca1bd3"
+  resolved "https://registry.npmjs.org/@heroicons/vue/-/vue-1.0.1.tgz"
   integrity sha512-pClbScVNpkBCHdM86+EAjQ5iUAs1PVjRHDFRNImQQyot75KrAk4SDfeKGDkQqPaGdJ9ZHIK13cl2W0eYc29QWg==
 
 "@inertiajs/inertia-vue3@^0.3.5":
@@ -3014,9 +3014,9 @@ encodeurl@~1.0.1, encodeurl@~1.0.2:
   integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
 
 engine.io-client@~3.5.0:
-  version "3.5.1"
-  resolved "https://registry.npmjs.org/engine.io-client/-/engine.io-client-3.5.1.tgz"
-  integrity sha512-oVu9kBkGbcggulyVF0kz6BV3ganqUeqXvD79WOFKa+11oK692w1NyFkuEj4xrkFRpZhn92QOqTk4RQq5LiBXbQ==
+  version "3.5.2"
+  resolved "https://registry.npmjs.org/engine.io-client/-/engine.io-client-3.5.2.tgz"
+  integrity sha512-QEqIp+gJ/kMHeUun7f5Vv3bteRHppHH/FMBQX/esFj/fuYfjyUKWGMo3VCvIP/V8bE9KcjHmRZrhIz2Z9oNsDA==
   dependencies:
     component-emitter "~1.3.0"
     component-inherit "0.0.3"
@@ -3027,7 +3027,7 @@ engine.io-client@~3.5.0:
     parseqs "0.0.6"
     parseuri "0.0.6"
     ws "~7.4.2"
-    xmlhttprequest-ssl "~1.5.4"
+    xmlhttprequest-ssl "~1.6.2"
     yeast "0.1.2"
 
 engine.io-parser@~2.2.0:
@@ -7229,6 +7229,11 @@ vue-style-loader@^4.1.3:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
+vue-the-mask@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.npmjs.org/vue-the-mask/-/vue-the-mask-0.11.1.tgz"
+  integrity sha512-UquSfnSWejD0zAfcD+3jJ1chUAkOAyoxya9Lxh9acCRtrlmGcAIvd0cQYraWqKenbuZJUdum+S174atv2AuEHQ==
+
 vue@^3.0.5:
   version "3.0.11"
   resolved "https://registry.npmjs.org/vue/-/vue-3.0.11.tgz"
@@ -7463,10 +7468,10 @@ ws@^7.4.4, ws@~7.4.2:
   resolved "https://registry.npmjs.org/ws/-/ws-7.4.5.tgz"
   integrity sha512-xzyu3hFvomRfXKH8vOFMU3OguG6oOvhXMo3xsGy3xWExqaM2dxBbVxuD99O7m3ZUFMvvscsZDqxfgMaRr/Nr1g==
 
-xmlhttprequest-ssl@~1.5.4:
-  version "1.5.5"
-  resolved "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz"
-  integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
+xmlhttprequest-ssl@~1.6.2:
+  version "1.6.2"
+  resolved "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.6.2.tgz"
+  integrity sha512-tYOaldF/0BLfKuoA39QMwD4j2m8lq4DIncqj1yuNELX4vz9+z/ieG/vwmctjJce+boFHXstqhWnHSxc4W8f4qg==
 
 xtend@^4.0.0, xtend@^4.0.2:
   version "4.0.2"

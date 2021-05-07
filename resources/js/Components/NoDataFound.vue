@@ -127,7 +127,7 @@
         This section will contain the list of {{ resource }}.
       </label>
     </div>
-    <div class="mt-8">
+    <div class="mt-8" v-if="actionLink">
       <inertia-link
         :href="actionLink"
         class="inline-flex justify-center items-center focus:outline-none font-normal transition ease-in-out duration-500 text-white bg-cyan-600 hover:bg-cyan-700 whitespace-nowrap py-2 px-4 text-base leading-6 rounded-md"
