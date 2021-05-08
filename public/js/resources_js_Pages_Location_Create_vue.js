@@ -20465,14 +20465,14 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-  "class": "text-2xl text-gray-400 font-bold mx-2"
+  "class": "text-xl text-gray-400 font-bold mx-2"
 }, "/", -1
 /* HOISTED */
 );
 
 var _hoisted_3 = {
   key: 0,
-  "class": "text-2xl text-gray-700 font-bold"
+  "class": "text-xl text-gray-700 font-bold"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
@@ -20482,7 +20482,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: 0
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
       href: link.url,
-      "class": "text-2xl text-cyan-700 font-bold"
+      "class": "text-xl text-cyan-700 font-bold"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.title), 1
@@ -20503,7 +20503,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
       key: 1,
       href: "#",
-      "class": "text-2xl text-cyan-700 font-bold"
+      "class": "text-xl text-cyan-700 font-bold"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.title), 1
@@ -20670,10 +20670,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "md:grid md:grid-cols-12 md:gap-0 md:gap-y-6"
+  "class": "md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
 };
 var _hoisted_2 = {
-  "class": "mt-5 md:mt-0 md:col-span-8 md:col-end-8"
+  "class": "mt-5 md:mt-0 md:col-span-12"
 };
 var _hoisted_3 = {
   "class": "grid grid-cols-2 gap-6"
@@ -20686,7 +20686,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_section_title = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-section-title");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_section_title, {
-    "class": "mt-5 md:mt-0 md:col-span-12"
+    "class": "mt-5 md:mt-0 col-span-12"
   }, {
     title: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "title")];
@@ -21417,7 +21417,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mt-4 px-4 sm:px-6 lg:px-8"
+  "class": "mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto"
 };
 var _hoisted_2 = {
   "class": "mt-10 sm:mt-0"
@@ -21485,7 +21485,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
               return $data.form.name = $event;
             }),
-            "class": ["mt-1 block w-2/4 focus:ring-cyan-100", {
+            "class": ["mt-1 block w-full focus:ring-cyan-100", {
               'border-red-500': $data.form.errors.name
             }],
             autocomplete: "name",

@@ -170,21 +170,30 @@
                 </div>
               </div>
             </div>
-
             <div class="pt-5">
-              <div class="flex justify-end">
-                <inertia-link
-                  href="/contact-details"
-                  class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+              <div class="space-y-6 sm:space-y-5">
+                <div
+                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                 >
-                  Previous
-                </inertia-link>
-                <inertia-link
-                  href="/salaries"
-                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                >
-                  Next
-                </inertia-link>
+                  <div class="mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2">
+                    <div
+                      class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
+                    >
+                      <inertia-link
+                        href="/contact-details"
+                        class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      >
+                        Previous
+                      </inertia-link>
+                      <inertia-link
+                        href="/salaries"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      >
+                        Next
+                      </inertia-link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

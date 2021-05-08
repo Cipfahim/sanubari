@@ -1,6 +1,6 @@
 <template>
   <app-layout>
-    <div class="mt-4 px-4 sm:px-6 lg:px-8">
+    <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
       <breadcrumb
         :links="[
           {
@@ -34,7 +34,7 @@
                 id="name"
                 type="text"
                 v-model="form.name"
-                class="mt-1 block w-2/4 focus:ring-cyan-100"
+                class="mt-1 block w-full focus:ring-cyan-100"
                 :class="{ 'border-red-500': form.errors.name }"
                 autocomplete="name"
                 required
@@ -50,7 +50,7 @@
                 id="description"
                 type="text"
                 v-model="form.description"
-                class="mt-1 block w-2/4 focus:ring-cyan-100"
+                class="mt-1 block w-full focus:ring-cyan-100"
                 :class="{ 'border-red-500': form.errors.description }"
               />
               <jet-input-error

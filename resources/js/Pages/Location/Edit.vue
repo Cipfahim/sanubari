@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
             <breadcrumb
                 :links="[
           {

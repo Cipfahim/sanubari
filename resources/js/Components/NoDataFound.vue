@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col items-center justify-center mt-16 md:mt-32"
+    class="flex flex-col items-center justify-center mt-16 md:mt-20"
     style=""
   >
     <div class="flex flex-col items-center justify-center">
