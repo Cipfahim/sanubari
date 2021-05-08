@@ -33,6 +33,7 @@
         "@heroicons/vue": "^1.0.1",
         "vue-tailwind": "^2.2.1",
         "vue-the-mask": "^0.11.1",
-        "vue3-datepicker": "^0.2.4"
+        "vue3-datepicker": "^0.2.4",
+        "vue3-tel-input": "^1.0.4"
     }
 }
