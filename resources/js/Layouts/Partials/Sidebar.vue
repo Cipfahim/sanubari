@@ -159,6 +159,12 @@ export default {
                     icon: ClockIcon,
                     current: route().current('locations.*')
                 },
+                {
+                    name: 'Bank',
+                    href: route('banks.index'),
+                    icon: ClockIcon,
+                    current: route().current('banks.*')
+                },
                 {name: 'Demo', href: '#', icon: ClockIcon, current: false},
                 {
                     name: 'Activity Logs',
