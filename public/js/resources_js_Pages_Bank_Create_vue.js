@@ -21423,7 +21423,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "mt-4 px-4 sm:px-6 lg:px-8"
+  "class": "mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto"
 };
 var _hoisted_2 = {
   "class": "mt-10 sm:mt-0"
@@ -21494,7 +21494,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
               return $data.form.name = $event;
             }),
-            "class": ["mt-1 block w-2/4 focus:ring-cyan-100", {
+            "class": ["mt-1 block w-full focus:ring-cyan-100", {
               'border-red-500': $data.form.errors.name
             }],
             autocomplete: "name",
@@ -21517,7 +21517,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
               return $data.form.swift_code = $event;
             }),
-            "class": ["mt-1 block w-2/4 focus:ring-cyan-100", {
+            "class": ["mt-1 block w-full focus:ring-cyan-100", {
               'border-red-500': $data.form.errors.swift_code
             }],
             autocomplete: "name",
