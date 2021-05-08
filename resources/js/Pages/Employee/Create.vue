@@ -190,24 +190,11 @@
                     Date of Join<span class="text-blue-600"> *</span>
                   </label>
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div
-                      class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
-                    >
-                      <input
-                        type="text"
-                        name="join-date"
-                        id="join-date"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
+                    <div class="max-w-lg focus-within:z-10">
+                      <datepicker
+                        v-model="joinDate"
+                        class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 relative block min-w-full rounded-md focus:z-10 sm:text-sm border-gray-300"
                       />
-                      <button
-                        class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
-                      >
-                        <CalendarIcon
-                          class="h-5 w-5 text-cyan-400"
-                          aria-hidden="true"
-                        />
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -276,22 +263,11 @@
                     Date of Birth<span class="text-blue-600"> *</span>
                   </label>
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div
-                      class="max-w-lg shadow-sm relative flex items-stretch flex-grow focus-within:z-10"
-                    >
-                      <input
-                        type="date"
-                        class="text-gray-600 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-none rounded-tl-md rounded-bl-md focus:z-10 sm:text-sm border-gray-300"
-                        placeholder="DD / MM / YY"
+                    <div class="max-w-lg focus-within:z-10">
+                      <datepicker
+                        v-model="birthDate"
+                        class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 relative block min-w-full rounded-md focus:z-10 sm:text-sm border-gray-300"
                       />
-                      <!-- <button
-                        class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500"
-                      >
-                        <CalendarIcon
-                          class="h-5 w-5 text-cyan-400"
-                          aria-hidden="true"
-                        />
-                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -566,6 +542,12 @@ import {
 import { ScaleIcon } from "@heroicons/vue/outline/esm";
 import { mask } from "vue-the-mask";
 
+// Date-picker
+import Datepicker from "vue3-datepicker";
+import { ref } from "vue";
+const joinDate = ref(new Date());
+const birthDate = ref(new Date());
+
 const cards = [
   { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
   // More items...
@@ -605,6 +587,7 @@ export default {
     CheckIcon,
     CalendarIcon,
     PlusCircleIcon,
+    Datepicker,
   },
   directives: { mask },
   setup() {
@@ -613,6 +596,8 @@ export default {
       transactions,
       statusStyles,
       steps,
+      joinDate,
+      birthDate
     };
   },
 };

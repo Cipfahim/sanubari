@@ -20389,6 +20389,11 @@ __webpack_require__.r(__webpack_exports__);
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('locations.*')
       }, {
+        name: 'Bank',
+        href: route('banks.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('banks.*')
+      }, {
         name: 'Demo',
         href: '#',
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
