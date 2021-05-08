@@ -1417,9 +1417,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
 }
-.bg-transparent {
-	background-color: transparent;
-}
 .bg-cyan-500 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(6, 182, 212, var(--tw-bg-opacity));
@@ -1559,12 +1556,6 @@ select {
 }
 .pb-5 {
 	padding-bottom: 1.25rem;
-}
-.pr-7 {
-	padding-right: 1.75rem;
-}
-.pl-16 {
-	padding-left: 4rem;
 }
 .text-center {
 	text-align: center;
