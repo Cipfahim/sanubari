@@ -14,7 +14,7 @@
                     <div
                         class="flex items-center w-full bg-white shadow-sm rounded relative"
                     >
-                        <SearchIcon class="h-7 w-7 text-gray-300 mx-2" />
+                        <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
                         <input
                             v-model="queryForm.filter"
                             autocomplete="off"
@@ -65,12 +65,9 @@
                                         @click="sort('name')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name" />
+                                        <sort-arrow :sort="queryForm.sort" field="name"/>
                                         Name
                                     </th>
-
-
-
 
 
                                     <th scope="col" class="relative px-6 py-3">
@@ -96,9 +93,6 @@
                                     </td>
 
 
-
-
-
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
@@ -119,13 +113,13 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <pagination class="m-2" :links="locations.links" />
+                            <pagination class="m-2" :links="locations.links"/>
                         </div>
                         <no-data-found
                             v-else
                             resource="categories"
                             action-text="Add Category"
-                            :action-link="route('location.create')"
+                            :action-link="route('locations.create')"
                         />
                     </div>
                 </div>
@@ -137,7 +131,7 @@
             :show="confirmingDeletion"
             @close="confirmingDeletion = false"
         >
-            <template #title> Delete Category </template>
+            <template #title> Delete Category</template>
 
             <template #content>
                 Are you sure you want to delete this category? Once category is deleted,
@@ -170,7 +164,7 @@ import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import Button from "@/Jetstream/Button";
-import { SearchIcon } from "@heroicons/vue/solid";
+import {SearchIcon} from "@heroicons/vue/solid";
 
 export default {
     components: {
@@ -221,7 +215,7 @@ export default {
                         "locations.index",
                         Object.keys(queryString).length
                             ? queryString
-                            : { remember: "forget" }
+                            : {remember: "forget"}
                     ),
                     {},
                     {
