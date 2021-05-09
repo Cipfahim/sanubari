@@ -9,7 +9,7 @@
             >
                 <template #form class=" md:col-span-12">
                     <!-- Strat::Stepper Contents -->
-                    <div class="bg-gray-50 p-4 mt-4">
+                    <div class="bg-gray-50 p-4 rounded-md">
                         <div class="space-y-8 divide-y divide-gray-200">
                             <div>
                                 <div>
@@ -28,7 +28,7 @@
                                             <jet-label for="official_name" value="Official Name *"/>
                                             <jet-input
                                                 id="official_name"
-                                                type="official_name"
+                                                type="text"
                                                 :class="{ 'border-red-500': form.errors.official_name }"
                                             />
                                             <jet-input-error
@@ -42,7 +42,7 @@
                                             <jet-label for="nick_name" value="Nick Name *"/>
                                             <jet-input
                                                 id="nick_name"
-                                                type="nick_name"
+                                                type="text"
                                                 :class="{ 'border-red-500': form.errors.nick_name }"
                                             />
                                             <jet-input-error

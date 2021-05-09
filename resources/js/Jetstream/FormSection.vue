@@ -13,7 +13,7 @@
             hasActions ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md'
           "
         >
-          <div class="grid grid-cols-2 gap-6">
+          <div class="grid grid-cols-1">
             <slot name="form"></slot>
           </div>
         </div>

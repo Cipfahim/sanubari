@@ -826,6 +826,9 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-2 {
+	grid-column: span 2 / span 2;
+}
 .m-2 {
 	margin: 0.5rem;
 }
@@ -939,6 +942,9 @@ select {
 }
 .mt-10 {
 	margin-top: 2.5rem;
+}
+.mr-10 {
+	margin-right: 2.5rem;
 }
 .block {
 	display: block;
@@ -1177,6 +1183,9 @@ select {
 .gap-5 {
 	gap: 1.25rem;
 }
+.gap-y-6 {
+	row-gap: 1.5rem;
+}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-x-reverse: 0;
 	margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -1292,6 +1301,9 @@ select {
 }
 .border-b {
 	border-bottom-width: 1px;
+}
+.border-dashed {
+	border-style: dashed;
 }
 .border-gray-300 {
 	--tw-border-opacity: 1;
@@ -1981,12 +1993,12 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(185, 28, 28, var(--tw-border-opacity));
 }
+.focus\:border-transparent:focus {
+	border-color: transparent;
+}
 .focus\:border-cyan-500:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(6, 182, 212, var(--tw-border-opacity));
-}
-.focus\:border-transparent:focus {
-	border-color: transparent;
 }
 .focus\:border-cyan-300:focus {
 	--tw-border-opacity: 1;
