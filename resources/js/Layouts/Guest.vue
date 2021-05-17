@@ -1,23 +1,26 @@
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <inertia-link href="/">
-                <breeze-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </inertia-link>
-        </div>
-
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <slot />
-        </div>
+  <div class="min-h-screen bg-white flex">
+    <div
+      class="flex-1 flex flex-col justify-center py-6 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-gradient-to-r from-green-200 to-blue-300"
+    >
+      <slot />
     </div>
+    <div class="hidden lg:block relative flex-1">
+      <img
+        class="absolute inset-0 h-full w-full object-cover"
+        src="http://www.sanubarisecurity.com/wp-content/uploads/2012/01/slide-1.jpg"
+        alt=""
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-    import BreezeApplicationLogo from '@/Components/ApplicationLogo'
+import BreezeApplicationLogo from "@/Components/ApplicationLogo";
 
-    export default {
-        components: {
-            BreezeApplicationLogo,
-        }
-    }
+export default {
+  components: {
+    BreezeApplicationLogo,
+  },
+};
 </script>
