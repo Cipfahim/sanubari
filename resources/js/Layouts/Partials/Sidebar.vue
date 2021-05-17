@@ -165,6 +165,12 @@ export default {
                     icon: ClockIcon,
                     current: route().current('banks.*')
                 },
+                {
+                    name: 'Auditor Access',
+                    href: route('auditor-access.create'),
+                    icon: ClockIcon,
+                    current: route().current('auditor-access.*')
+                },
                 {name: 'Demo', href: '#', icon: ClockIcon, current: false},
                 {
                     name: 'Activity Logs',

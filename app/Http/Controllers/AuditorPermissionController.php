@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\AuditorPermission;
 use Illuminate\Http\Request;
 
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Str;
+
 class AuditorPermissionController extends Controller
 {
     /**
@@ -24,7 +30,7 @@ class AuditorPermissionController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('AuditorAccess/Create');
     }
 
     /**
