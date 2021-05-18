@@ -1,5 +1,5 @@
 <template>
-  <breeze-validation-errors class="mb-4" />
+  
   <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
     {{ status }}
   </div>
@@ -86,6 +86,7 @@
           <div class="relative flex justify-center text-sm">
             <span class="px-2 bg-white text-gray-500"> Or continue with </span>
           </div>
+          
         </div>
       </div>
       <div class="mt-6">
@@ -124,6 +125,9 @@
                 autocomplete="current-password"
               />
             </div>
+          </div>
+          <div class="mt-2">
+            <breeze-validation-errors />
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center">

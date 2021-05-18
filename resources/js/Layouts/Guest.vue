@@ -5,13 +5,6 @@
     >
       <slot />
     </div>
-    <!-- <div class="hidden lg:block relative flex-1">
-      <img
-        class="absolute inset-0 h-full w-full object-cover"
-        src="http://www.sanubarisecurity.com/wp-content/uploads/2012/01/slide-1.jpg"
-        alt=""
-      />
-    </div> -->
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <app-layout>
     <!-- Page header -->
-    <div class="bg-white shadow">
+    <div class="bg-white shadow sticky top-0">
       <div class="px-4 sm:px-6 lg:px-8">
         <div
           class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200"

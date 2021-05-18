@@ -63,7 +63,7 @@ class AuditorPermissionController extends Controller
      */
     public function edit(AuditorPermission $auditorPermission)
     {
-        //
+        return Inertia::render('AuditorAccess/Edit');
     }
 
     /**

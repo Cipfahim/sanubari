@@ -38804,6 +38804,14 @@ var map = {
 		"./resources/js/Pages/AuditorAccess/Create.vue",
 		"resources_js_Pages_AuditorAccess_Create_vue"
 	],
+	"./AuditorAccess/Edit": [
+		"./resources/js/Pages/AuditorAccess/Edit.vue",
+		"resources_js_Pages_AuditorAccess_Edit_vue"
+	],
+	"./AuditorAccess/Edit.vue": [
+		"./resources/js/Pages/AuditorAccess/Edit.vue",
+		"resources_js_Pages_AuditorAccess_Edit_vue"
+	],
 	"./Auth/ConfirmPassword": [
 		"./resources/js/Pages/Auth/ConfirmPassword.vue",
 		"resources_js_Pages_Auth_ConfirmPassword_vue"
@@ -39109,7 +39117,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"9471e28c6958f2a198fa","resources_js_Pages_ActivityLogs_Show_vue":"43f72a7891e471983140","resources_js_Pages_AuditorAccess_Create_vue":"b3060d378f4c616b659d","resources_js_Pages_Auth_ConfirmPassword_vue":"dde91708de8caf6cde6c","resources_js_Pages_Auth_ForgotPassword_vue":"b300ba8e51aae15a60d8","resources_js_Pages_Auth_Login_vue":"98adf8e106b87376d113","resources_js_Pages_Auth_Register_vue":"a444eefeffd7889c39a2","resources_js_Pages_Auth_ResetPassword_vue":"f3cd2d7ee59d1cc33153","resources_js_Pages_Auth_VerifyEmail_vue":"b306a8e73534ce2405b3","resources_js_Pages_Bank_Create_vue":"ce9428ce1591051de23b","resources_js_Pages_Bank_Edit_vue":"d6509a16b297aea88145","resources_js_Pages_Bank_Index_vue":"726f3db15258f1faf9ca","resources_js_Pages_ContactDetails_Create_vue":"95a17451f6fba17a9f10","resources_js_Pages_Contribution_Create_vue":"a9574924b9c7d8d7e994","resources_js_Pages_Dashboard_vue":"cc6d621030f9fea5a0f8","resources_js_Pages_Employee_Create_vue":"08a088b722357ea1f7bf","resources_js_Pages_HonorariumCategories_Create_vue":"e84d39976c4518dde6b5","resources_js_Pages_HonorariumCategories_Edit_vue":"ebb7c734458fa7bba870","resources_js_Pages_HonorariumCategories_Index_vue":"5c18eb3fb7ae57570ccf","resources_js_Pages_Location_Create_vue":"fd4b7ea3c7949199617b","resources_js_Pages_Location_Edit_vue":"73d835e8d358da51920d","resources_js_Pages_Location_Index_vue":"ccc3a035585ec53f9920","resources_js_Pages_Salary_Create_vue":"b83d7dfadb1ec38075c2","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"e03bbf0bdf26fb413d74","resources_js_Pages_ActivityLogs_Show_vue":"0d3dba7278afb338134b","resources_js_Pages_AuditorAccess_Create_vue":"f3f093d577a027e45a2c","resources_js_Pages_AuditorAccess_Edit_vue":"de8de5b1cee9aaaece90","resources_js_Pages_Auth_ConfirmPassword_vue":"86a870be60b38f892b1b","resources_js_Pages_Auth_ForgotPassword_vue":"545e1da066bd9ebb2c31","resources_js_Pages_Auth_Login_vue":"ec1cab0eb73a25376d97","resources_js_Pages_Auth_Register_vue":"df98697015e0045dc674","resources_js_Pages_Auth_ResetPassword_vue":"10cb0ca9dc3c6e1fe0af","resources_js_Pages_Auth_VerifyEmail_vue":"b19c9851c672d183ba14","resources_js_Pages_Bank_Create_vue":"0120035dfa29aeb2091f","resources_js_Pages_Bank_Edit_vue":"9f8d6ccd1e58adcbdb2a","resources_js_Pages_Bank_Index_vue":"a63613b71dd1fcc6422a","resources_js_Pages_ContactDetails_Create_vue":"91123817cafdc65b8ddd","resources_js_Pages_Contribution_Create_vue":"62748d826192769e2f68","resources_js_Pages_Dashboard_vue":"2ae08e78215a7afacd23","resources_js_Pages_Employee_Create_vue":"f88a1870648468231df5","resources_js_Pages_HonorariumCategories_Create_vue":"e65bc331b18a99e1631f","resources_js_Pages_HonorariumCategories_Edit_vue":"fe06cd97dfcebc83d1b2","resources_js_Pages_HonorariumCategories_Index_vue":"873e989f24b17f2a00c2","resources_js_Pages_Location_Create_vue":"bc34895e947e692ba4e7","resources_js_Pages_Location_Edit_vue":"1f38404d556f51f860db","resources_js_Pages_Location_Index_vue":"ff2f4ec5a325ec6c68e8","resources_js_Pages_Salary_Create_vue":"fe1a2c4330e56f7c01ac","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -147,9 +147,9 @@
         </div>
 
         <inertia-link
-          :href="route('auditor-access.edit', 1)"
-          class="bg-gray-50 hover:bg-cyan-500 rounded py-2 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
-          >Grand Access</inertia-link
+          href="/"
+          class="bg-gray-50 hover:bg-cyan-500 rounded py-1 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
+          >Back</inertia-link
         >
       </div>
       <!-- Employee Table -->
@@ -172,53 +172,47 @@
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       User Id
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Offical Name
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Nick Name
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Location Id
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       IC Number
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Citizenship
                     </th>
                     <th scope="col" class="relative px-6 py-3">
                       <span class="sr-only">Action</span>
                       <span class="flex items-center">
-                        <input
-                          id="select-all"
-                          type="checkbox"
-                          name="select-all"
-                          class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
-                        />
                         <label
                           for="select-all"
                           class="text-xs font-medium text-gray-500 uppercase"
-                          >Access all</label
+                          >Access</label
                         >
                       </span>
                     </th>
@@ -271,9 +265,9 @@
                       Malay
                     </td>
                     <td
-                      class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium"
+                      class="px-4 py-2 whitespace-nowrap flex"
                     >
-                      <span class="flex items-center">
+                      <span class="flex items-center mr-2">
                         <input
                           id="select-all"
                           type="checkbox"
@@ -283,7 +277,46 @@
                         <label
                           for="select-all"
                           class="text-xs font-medium text-gray-500"
-                          >Check</label
+                          >A</label
+                        >
+                      </span>
+                      <span class="flex items-center mr-2">
+                        <input
+                          id="select-all"
+                          type="checkbox"
+                          name="select-all"
+                          class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                          for="select-all"
+                          class="text-xs font-medium text-gray-500"
+                          >B</label
+                        >
+                      </span>
+                      <span class="flex items-center mr-2">
+                        <input
+                          id="select-all"
+                          type="checkbox"
+                          name="select-all"
+                          class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                          for="select-all"
+                          class="text-xs font-medium text-gray-500"
+                          >C</label
+                        >
+                      </span>
+                      <span class="flex items-center mr-2">
+                        <input
+                          id="select-all"
+                          type="checkbox"
+                          name="select-all"
+                          class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                          for="select-all"
+                          class="text-xs font-medium text-gray-500"
+                          >D</label
                         >
                       </span>
                     </td>
