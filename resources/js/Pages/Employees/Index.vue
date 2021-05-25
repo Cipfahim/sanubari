@@ -94,7 +94,7 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                 <tr
-                                    v-for="(category, index) in employees.data"
+                                    v-for="(employee, index) in employees.data"
                                     :key="index"
                                 >
                                     <td
@@ -106,20 +106,20 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ category.name }}
+                                        {{ employee.official_name }}
                                     </td>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ category.description }}
+                                        {{ employee.description }}
                                     </td>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
                       <span
-                          v-if="category.status"
+                          v-if="employee.status"
                           class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                       >
                         Active
@@ -136,14 +136,14 @@
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('employees.edit', category.id)"
+                                            :href="route('employees.edit', employee.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
 
                                         <!-- <button
                                           type="button"
-                                          @click="confirmDeletion(category)"
+                                          @click="confirmDeletion(employee)"
                                           class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
                                         >
                                           Delete
@@ -173,7 +173,7 @@
             <template #title> Delete Employee</template>
 
             <template #content>
-                Are you sure you want to delete this category? Once category is deleted,
+                Are you sure you want to delete this employee? Once employee is deleted,
                 all of its resources and data will be permanently deleted.
             </template>
 
@@ -272,8 +272,8 @@ export default {
                 this.bulkIds = [];
             } else {
                 let ids = [];
-                this.employees.data.forEach(function (category) {
-                    ids.push(category.id);
+                this.employees.data.forEach(function (employee) {
+                    ids.push(employee.id);
                 });
                 this.bulkIds = ids;
             }
@@ -291,8 +291,8 @@ export default {
         },
 
         // Confirm deletion.
-        confirmDeletion(category) {
-            this.deleteEmployee = category;
+        confirmDeletion(employee) {
+            this.deleteEmployee = employee;
             this.confirmingDeletion = true;
         },
 

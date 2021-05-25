@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\EmployeeStatusEnum;
+use App\Http\Requests\Employees\StoreEmployee;
 use App\Http\Requests\EmployeeValidator;
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Role;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -47,9 +54,24 @@ class EmployeeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeValidator $request)
+    public function store(StoreEmployee $request)
     {
+        $user = User::create([
+            'role_id' => Role::Employee,
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'password' => Hash::make($request->get('password')),
+        ]);
+        $user->employee()->create([
+            'official_name' => $request->get('official_name'),
+            'nick_name' => $request->get('nick_name'),
+            'location_id' => $request->get('location'),
+            'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
+            'status' => EmployeeStatusEnum::draft()
+        ]);
 
+        return Redirect::route('employees.index');
     }
 
     /**
