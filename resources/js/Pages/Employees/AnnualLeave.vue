@@ -3,12 +3,12 @@
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
             <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true},
-                {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true, current: true},
+                 {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true},
+                {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true},
                 {id: 'C', name: 'Contact Details', href: route('employees.contact-details.index',employee.id), status: true},
                 {id: 'D', name: 'Contribution',href: route('employees.contributions.index',employee.id), status: true},
                 {id: 'E', name: 'Salary Details', href: route('employees.salary-details.index',employee.id), status: true},
-                {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true},
+                {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true,  current: true},
             ]"/>
             <jet-form-section
                 @submitted="submit"
@@ -22,7 +22,7 @@
                             <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Identification Details
+                                        Annual Leave
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         This section contains sensitive information.

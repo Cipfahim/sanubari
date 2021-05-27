@@ -5,10 +5,10 @@
             <top-bar :steps="[
                 {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true, current: true},
                 {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true},
-                {id: 'C', name: 'Contact Details', href: '#', status: true},
-                {id: 'D', name: 'Contribution',href: '#', status: true},
-                {id: 'E', name: 'Salary Details', href: '#', status: true},
-                {id: 'F', name: 'Annual Leave', href: '#', status: true},
+                {id: 'C', name: 'Contact Details', href: route('employees.contact-details.index',employee.id), status: true},
+                {id: 'D', name: 'Contribution',href: route('employees.contributions.index',employee.id), status: true},
+                {id: 'E', name: 'Salary Details', href: route('employees.salary-details.index',employee.id), status: true},
+                {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true},
             ]"/>
             <jet-form-section
                 @submitted="submit"

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Salary;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -17,9 +16,11 @@ class SalaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        
+        return Inertia::render('Employees/SalaryDetails', [
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**
@@ -43,7 +44,7 @@ class SalaryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +55,7 @@ class SalaryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Salary  $salary
+     * @param \App\Models\Salary $salary
      * @return \Illuminate\Http\Response
      */
     public function show(Salary $salary)
@@ -65,7 +66,7 @@ class SalaryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Salary  $salary
+     * @param \App\Models\Salary $salary
      * @return \Illuminate\Http\Response
      */
     public function edit(Salary $salary)
@@ -76,8 +77,8 @@ class SalaryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Salary  $salary
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Salary $salary
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Salary $salary)
@@ -88,7 +89,7 @@ class SalaryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Salary  $salary
+     * @param \App\Models\Salary $salary
      * @return \Illuminate\Http\Response
      */
     public function destroy(Salary $salary)

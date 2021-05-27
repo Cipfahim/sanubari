@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contribution;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
@@ -17,9 +18,11 @@ class ContributionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        
+        return Inertia::render('Employees/Contributions', [
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**

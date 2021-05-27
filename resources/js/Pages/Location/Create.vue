@@ -77,7 +77,6 @@ export default {
         JetInputError,
         JetButton,
         JetActionMessage
-
     },
     data(){
         return{
