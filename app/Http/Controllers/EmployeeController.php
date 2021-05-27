@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\EmployeeStatusEnum;
+use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Models\Employee;
+use App\Models\Location;
+use App\Models\Role;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Requests\EmployeeValidator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
@@ -15,25 +21,15 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return Inertia::render('Employee/Create', [
+        return Inertia::render('Employees/Index', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
-                ->allowedFilters(['name'])
-                ->allowedSorts(['name'])
+//                ->allowedFilters(['name'])
+//                ->allowedSorts(['name', 'description', 'status'])
                 ->latest('id')
                 ->paginate()
                 ->appends(request()->query()),
@@ -41,20 +37,47 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Inertia\Response
+     */
+    public function create()
+    {
+        return Inertia::render('Employees/Create', [
+            'locations' => Location::all()
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(EmployeeValidator $request)
+    public function store(StoreEmployeeRequest $request)
     {
-        
+        $user = User::create([
+            'role_id' => Role::Employee,
+            'name' => $request->get('nick_name'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'password' => Hash::make($request->get('password')),
+        ]);
+        $user->employee()->create([
+            'official_name' => $request->get('official_name'),
+            'nick_name' => $request->get('nick_name'),
+            'location_id' => $request->get('location'),
+            'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
+            'status' => EmployeeStatusEnum::Draft
+        ]);
+
+        return Redirect::route('employees.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param \App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
     public function show(Employee $employee)
@@ -65,30 +88,52 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Employee $employee
+     * @return \Inertia\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        return Inertia::render('Employees/Edit', [
+            'locations' => Location::all(),
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Employee $employee
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(EmployeeValidator $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        $employee->update([
+            'official_name' => $request->get('official_name'),
+            'nick_name' => $request->get('nick_name'),
+            'location_id' => $request->get('location'),
+            'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
+        ]);
+
+        $employee->user()->update([
+            'role_id' => Role::Employee,
+            'name' => $request->get('nick_name'),
+            'phone' => $request->get('phone'),
+            'password' => Hash::make($request->get('password')),
+            'status' => $request->get('status') === true
+                ? EmployeeStatusEnum::Active
+                : EmployeeStatusEnum::Inactive
+        ]);
+
+        return Redirect::back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param \App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy(Employee $employee)

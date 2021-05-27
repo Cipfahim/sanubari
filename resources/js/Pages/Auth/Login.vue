@@ -7,9 +7,9 @@
 
     <form @submit.prevent="submit">
         <div>
-            <breeze-label for="email" value="Email"/>
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus
-                          autocomplete="username"/>
+            <breeze-label for="phone" value="Phone"/>
+            <breeze-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required autofocus
+                          autocomplete="phone"/>
         </div>
 
         <div class="mt-4">
@@ -76,7 +76,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                email: '',
+                phone: '',
                 password: '',
                 remember: false
             })

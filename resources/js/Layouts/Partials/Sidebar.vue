@@ -130,8 +130,8 @@ export default {
                     current: route().current('honorarium-categories.*')
                 },
                 {
-                    name: 'Employee',
-                    href: route('employees.create'),
+                    name: 'Employees',
+                    href: route('employees.index'),
                     icon: ClockIcon,
                     current: route().current('employees.*')
                 },
