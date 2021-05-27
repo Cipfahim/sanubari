@@ -118,18 +118,18 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                      <span
-                          v-if="employee.status"
-                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                      >
-                        Active
-                      </span>
-                                        <span
-                                            v-else
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                                        >
-                        Inactive
-                      </span>
+                                      <span
+                                          v-if="employee.status"
+                                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                                      >
+                                        Active
+                                      </span>
+                                    <span
+                                        v-else
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                                    >
+                                        Inactive
+                                      </span>
                                     </td>
 
                                     <td

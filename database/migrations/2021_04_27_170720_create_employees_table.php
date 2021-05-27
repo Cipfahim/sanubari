@@ -19,13 +19,13 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->enum('gender', ['M', 'F'])->nullable();
+            $table->enum('gender', ['Male', 'Female'])->nullable();
             $table->string('official_name', 50);
             $table->string('nick_name', 50)->nullable();
             $table->foreignId('location_id')->constrained();
             $table->date('date_of_join');
             $table->date('date_of_birth')->nullable();
-            $table->enum('citizenship', ['L', 'F'])->nullable();
+            $table->enum('citizenship', ['Malaysian', 'Foreigner'])->nullable();
             $table->string('ic_number', 31)->nullable();
             $table->string('passport_number', 100)->nullable();
             $table->string('country_of_birth', 20)->nullable();
@@ -33,8 +33,6 @@ class CreateEmployeesTable extends Migration
             $table->tinyInteger('leave_quota')->nullable();
             $table->foreignId('bank_id')->nullable()->constrained();
             $table->string('accounts', 25)->nullable();
-            $table->string('avatar')->nullable();
-            $table->enum('status', ['active', 'inactive', 'draft'])->default('draft');
             $table->timestamps();
         });
     }

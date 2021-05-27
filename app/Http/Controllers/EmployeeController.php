@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\EmployeeStatusEnum;
-use App\Http\Requests\Employees\StoreEmployee;
-use App\Http\Requests\EmployeeValidator;
+use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
@@ -52,13 +52,13 @@ class EmployeeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreEmployee $request)
+    public function store(StoreEmployeeRequest $request)
     {
         $user = User::create([
             'role_id' => Role::Employee,
-            'name' => $request->get('name'),
+            'name' => $request->get('nick_name'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
             'password' => Hash::make($request->get('password')),
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
             'nick_name' => $request->get('nick_name'),
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
-            'status' => EmployeeStatusEnum::draft()
+            'status' => EmployeeStatusEnum::Draft
         ]);
 
         return Redirect::route('employees.index');
@@ -89,11 +89,14 @@ class EmployeeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        return Inertia::render('Employees/Edit', [
+            'locations' => Location::all(),
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**
@@ -101,11 +104,30 @@ class EmployeeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(EmployeeValidator $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        $employee->update([
+            'official_name' => $request->get('official_name'),
+            'nick_name' => $request->get('nick_name'),
+            'location_id' => $request->get('location'),
+            'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
+        ]);
+
+        $employee->user()->update([
+            'role_id' => Role::Employee,
+            'name' => $request->get('nick_name'),
+            'phone' => $request->get('phone'),
+            'password' => Hash::make($request->get('password')),
+            'status' => $request->get('status') === true
+                ? EmployeeStatusEnum::Active
+                : EmployeeStatusEnum::Inactive
+        ]);
+
+        return Redirect::back();
     }
 
     /**

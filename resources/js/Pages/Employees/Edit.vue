@@ -3,12 +3,12 @@
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
             <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: '#', status: true, current: true},
-                {id: 'B', name: 'Identification Details', href: '#', status: false},
-                {id: 'C', name: 'Contact Details', href: '#', status: false},
-                {id: 'D', name: 'Contribution',href: '#', status: false},
-                {id: 'E', name: 'Salary Details', href: '#', status: false},
-                {id: 'F', name: 'Annual Leave', href: '#', status: false},
+                {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true, current: true},
+                {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true},
+                {id: 'C', name: 'Contact Details', href: '#', status: true},
+                {id: 'D', name: 'Contribution',href: '#', status: true},
+                {id: 'E', name: 'Salary Details', href: '#', status: true},
+                {id: 'F', name: 'Annual Leave', href: '#', status: true},
             ]"/>
             <jet-form-section
                 @submitted="submit"
@@ -137,7 +137,6 @@
                                             type="text"
                                             v-model="form.phone"
                                             :class="{ 'border-red-500': form.errors.phone }"
-                                            required
                                         />
                                         <jet-input-error
                                             :message="form.errors.phone"
@@ -158,6 +157,18 @@
                                             :message="form.errors.password"
                                             class="mt-2"
                                         />
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <div></div>
+                                        <label class="flex items-center">
+                                            <jet-checkbox name="status" v-model:checked="form.status"/>
+                                            <span class="ml-2 text-sm text-gray-600">Status: {{
+                                                    form.status ? 'Active' : 'Inactive'
+                                                }}</span>
+                                        </label>
+                                        <jet-input-error :message="form.errors.status" class="mt-2"/>
                                     </div>
                                 </div>
                             </div>
@@ -218,13 +229,17 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import Input from "../../Components/Input";
+import JetCheckbox from "@/Jetstream/Checkbox";
 
 
 export default {
     props: {
-        locations: Array
+        locations: Array,
+        employee: Object,
     },
     components: {
+        Input,
         TopBar,
         AppLayout,
         OfficeBuildingIcon,
@@ -241,21 +256,21 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
+        JetCheckbox
     },
     directives: {mask},
     data() {
         return {
             form: this.$inertia.form(
                 {
-                    official_name: null,
-                    nick_name: null,
-                    location: null,
-                    date_of_join: null,
-                    name: null,
-                    email: null,
-                    phone: '+60',
+                    _method: 'PUT',
+                    official_name: this.employee.official_name,
+                    nick_name: this.employee.nick_name,
+                    location: this.employee.location_id,
+                    date_of_join: this.employee.date_of_join,
+                    phone: this.employee.user.phone,
                     password: null,
-                    status: null
+                    status: this.employee.user.status === 'Active'
                 },
                 {
                     resetOnSuccess: true,
@@ -265,7 +280,7 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.store'))
+            this.form.post(this.route('employees.update', this.employee.id))
         }
     }
 };

@@ -11,7 +11,7 @@ use BenSampo\Enum\Enum;
  */
 final class EmployeeStatusEnum extends Enum
 {
-    const Draft = 'draft';
-    const Active = 'active';
-    const Inactive = 'inactive';
+    const Draft = 'Draft';
+    const Active = 'Active';
+    const Inactive = 'Inactive';
 }
