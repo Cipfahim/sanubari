@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EmployeeStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,9 +12,13 @@ class Employee extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'status' => EmployeeStatusEnum::class,
+    ];
+
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function bank()
@@ -45,6 +50,4 @@ class Employee extends Model
     {
         return $this->belongsTo(Leave::class);
     }
-
-
 }

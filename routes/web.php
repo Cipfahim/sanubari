@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\AuditorPermissionController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:system-admin|admin'])->name('dashboard');
 
+Route::get('employees/{id}/identification-details', [IdentificationController::class, 'index'])->name('employees.identification.index');
 Route::resource('employees', EmployeeController::class)->except('show');
+
 Route::resource('contact-details', ContactDetailsController::class)->except('show');
 Route::resource('contributions', ContributionsController::class)->except('show');
 Route::resource('salaries', SalaryController::class)->except('show');
