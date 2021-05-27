@@ -21,7 +21,7 @@
                             <div>
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Official Information
+                                        Official Information 
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         Star (*) means required!

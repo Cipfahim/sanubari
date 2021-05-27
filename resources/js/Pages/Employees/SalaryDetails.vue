@@ -29,49 +29,36 @@
                                     </p>
                                 </div>
 
-                                <div class="space-y-6 sm:space-y-5">
-                                    <!-- Phone field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="phone" value="Phone *"/>
-                                        <jet-input
-                                            id="phone"
-                                            type="text"
-                                            v-model="form.phone"
-                                            :class="{ 'border-red-500': form.errors.phone }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.phone"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- Password field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="password" value="Password *"/>
-                                        <jet-input
-                                            id="password"
-                                            type="password"
-                                            v-model="form.password"
-                                            :class="{ 'border-red-500': form.errors.password }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.password"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- Status -->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <div></div>
-                                        <label class="flex items-center">
-                                            <jet-checkbox name="status" v-model:checked="form.status"/>
-                                            <span class="ml-2 text-sm text-gray-600">Status: {{
-                                                    form.status ? 'Active' : 'Inactive'
-                                                }}</span>
-                                        </label>
-                                        <jet-input-error :message="form.errors.status" class="mt-2"/>
-                                    </div>
-                                </div>
+                                <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
+                <!-- Start::ingle Field -->
+                <div
+                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                  v-for="(salary, index) in salaries"
+                  :key="index"
+                >
+                  <label
+                    for="username"
+                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                  >
+                    {{ salary.label }} <span class="text-blue-600"> *</span>
+                  </label>
+                  <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg">
+                      <input
+                        :type="salary.type"
+                        name="username"
+                        id="username"
+                        autocomplete="username"
+                        class="flex-1 block w-full focus:ring-cyan-500 focus:border-cyan-500 min-w-0 rounded-md sm:text-sm border-gray-300 shadow-sm"
+                      />
+                      <!-- <p class="text-xs text-red-500 mt-1">
+                        Somthing went wrong!
+                      </p> -->
+                    </div>
+                  </div>
+                </div>
+                <!-- End::ingle Field -->
+              </div>
                             </div>
 
                             <div class="pt-5">
@@ -134,6 +121,13 @@ import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 
 
+const salaries = [
+  { label: "Basic Salary", type: "text" },
+  { label: "Cost of Living Allowance", type: "text" },
+  { label: "Attendance Allowance", type: "text" },
+  { label: "Levy", type: "text" },
+  { label: "In Charge Allowance", type: "text" },
+];
 export default {
     props: {
         locations: Array,
@@ -172,6 +166,7 @@ export default {
                     resetOnSuccess: true,
                 }
             ),
+            salaries
         }
     },
     methods: {
