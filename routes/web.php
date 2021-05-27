@@ -4,9 +4,10 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\AuditorPermissionController;
 use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\SalaryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,3 +36,4 @@ Route::resource('contributions', ContributionsController::class)->except('show')
 Route::resource('salaries', SalaryController::class)->except('show');
 Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
+Route::resource('auditor-access', AuditorPermissionController::class)->except('show');

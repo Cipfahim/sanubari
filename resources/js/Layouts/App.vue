@@ -3,7 +3,7 @@
         <sidebar ref="sidebar"/>
         <div class="flex-1 overflow-auto focus:outline-none">
             <app-header @toggleSidebar="changeSidebarState"/>
-            <main class="flex-1 relative pb-8 z-0 overflow-y-auto">
+            <main class="flex-1 relative pb-8 z-0">
                 <slot/>
             </main>
         </div>

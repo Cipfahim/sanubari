@@ -1,59 +1,103 @@
 <template>
-    <breeze-validation-errors class="mb-4"/>
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}
     </div>
-
-    <form @submit.prevent="submit">
-        <div>
-            <breeze-label for="phone" value="Phone"/>
-            <breeze-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required autofocus
-                          autocomplete="phone"/>
+    <div class="mx-auto w-full max-w-sm lg:w-96 shadow-lg bg-white rounded p-5 z-50">
+        <div class="w-full flex justify-center">
+            <img
+                class="h-12 w-auto"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                alt="Workflow"
+            />
         </div>
-
         <div class="mt-4">
-            <breeze-label for="password" value="Password"/>
-            <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required
-                          autocomplete="current-password"/>
-        </div>
+            <div class="mt-6">
+                <form @submit.prevent="submit" class="space-y-6">
+                    <div>
+                        <breeze-label for="phone" value="Phone"/>
+                        <breeze-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required
+                                      autofocus
+                                      autocomplete="phone"/>
+                    </div>
+                    <div class="space-y-1">
+                        <breeze-label
+                            for="password"
+                            value="Password"
+                            class="block text-sm font-medium text-gray-700"
+                        />
+                        <div class="mt-1">
+                            <breeze-input
+                                id="password"
+                                type="password"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                v-model="form.password"
+                                required
+                                autocomplete="current-password"
+                            />
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <breeze-validation-errors/>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <label class="ml-2 block text-sm text-gray-900">
+                                <breeze-checkbox
+                                    name="remember"
+                                    v-model:checked="form.remember"
+                                />
+                                <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                            </label>
+                        </div>
+                        <div class="text-sm">
+                            <inertia-link
+                                v-if="canResetPassword"
+                                :href="route('password.request')"
+                                class="font-medium text-indigo-600 hover:text-indigo-500"
+                            >
+                                Forgot your password?
+                            </inertia-link>
+                        </div>
+                    </div>
+                    <breeze-button
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Log in
+                    </breeze-button>
 
-        <div class="block mt-4">
-            <label class="flex items-center">
-                <breeze-checkbox name="remember" v-model:checked="form.remember"/>
-                <span class="ml-2 text-sm text-gray-600">Remember me</span>
-            </label>
-        </div>
+                    <div v-if="$page.props.app.env === 'local'">
+                        <div class="my-4 relative">
+                            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500"> Or continue with </span>
+                            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <inertia-link v-if="canResetPassword" :href="route('password.request')"
-                          class="underline text-sm text-gray-600 hover:text-gray-900">
-                Forgot your password?
-            </inertia-link>
+                        </div>
 
-            <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Log in
-            </breeze-button>
+                        <inertia-link
+                            :href="route('dev-login')"
+                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                        >
+                            <span>Developer Account</span>
+                        </inertia-link>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="flex flex-col items-center mt-4" v-if="$page.props.app.env === 'local'">
-            <p>Or continue with </p> <br>
-            <inertia-link :href="route('dev-login')">
-                <breeze-button>
-                    Developer Account
-                </breeze-button>
-            </inertia-link>
-        </div>
-    </form>
+    </div>
 </template>
-
 <script>
-import BreezeButton from '@/Components/Button'
-import BreezeGuestLayout from "@/Layouts/Guest"
-import BreezeInput from '@/Components/Input'
-import BreezeCheckbox from '@/Components/Checkbox'
-import BreezeLabel from '@/Components/Label'
-import BreezeValidationErrors from '@/Components/ValidationErrors'
+import BreezeButton from "@/Components/Button";
+import BreezeGuestLayout from "@/Layouts/Guest";
+import BreezeInput from "@/Components/Input";
+import BreezeCheckbox from "@/Components/Checkbox";
+import BreezeLabel from "@/Components/Label";
+import BreezeValidationErrors from "@/Components/ValidationErrors";
 
 export default {
     layout: BreezeGuestLayout,
