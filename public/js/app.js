@@ -38900,6 +38900,30 @@ var map = {
 		"./resources/js/Pages/Contribution/Create.vue",
 		"resources_js_Pages_Contribution_Create_vue"
 	],
+	"./Country/Create": [
+		"./resources/js/Pages/Country/Create.vue",
+		"resources_js_Pages_Country_Create_vue"
+	],
+	"./Country/Create.vue": [
+		"./resources/js/Pages/Country/Create.vue",
+		"resources_js_Pages_Country_Create_vue"
+	],
+	"./Country/Edit": [
+		"./resources/js/Pages/Country/Edit.vue",
+		"resources_js_Pages_Country_Edit_vue"
+	],
+	"./Country/Edit.vue": [
+		"./resources/js/Pages/Country/Edit.vue",
+		"resources_js_Pages_Country_Edit_vue"
+	],
+	"./Country/Index": [
+		"./resources/js/Pages/Country/Index.vue",
+		"resources_js_Pages_Country_Index_vue"
+	],
+	"./Country/Index.vue": [
+		"./resources/js/Pages/Country/Index.vue",
+		"resources_js_Pages_Country_Index_vue"
+	],
 	"./Dashboard": [
 		"./resources/js/Pages/Dashboard.vue",
 		"resources_js_Pages_Dashboard_vue"
@@ -39117,7 +39141,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"e03bbf0bdf26fb413d74","resources_js_Pages_ActivityLogs_Show_vue":"0d3dba7278afb338134b","resources_js_Pages_AuditorAccess_Create_vue":"f3f093d577a027e45a2c","resources_js_Pages_AuditorAccess_Edit_vue":"de8de5b1cee9aaaece90","resources_js_Pages_Auth_ConfirmPassword_vue":"86a870be60b38f892b1b","resources_js_Pages_Auth_ForgotPassword_vue":"545e1da066bd9ebb2c31","resources_js_Pages_Auth_Login_vue":"ec1cab0eb73a25376d97","resources_js_Pages_Auth_Register_vue":"df98697015e0045dc674","resources_js_Pages_Auth_ResetPassword_vue":"10cb0ca9dc3c6e1fe0af","resources_js_Pages_Auth_VerifyEmail_vue":"b19c9851c672d183ba14","resources_js_Pages_Bank_Create_vue":"0120035dfa29aeb2091f","resources_js_Pages_Bank_Edit_vue":"9f8d6ccd1e58adcbdb2a","resources_js_Pages_Bank_Index_vue":"a63613b71dd1fcc6422a","resources_js_Pages_ContactDetails_Create_vue":"91123817cafdc65b8ddd","resources_js_Pages_Contribution_Create_vue":"62748d826192769e2f68","resources_js_Pages_Dashboard_vue":"2ae08e78215a7afacd23","resources_js_Pages_Employee_Create_vue":"f88a1870648468231df5","resources_js_Pages_HonorariumCategories_Create_vue":"e65bc331b18a99e1631f","resources_js_Pages_HonorariumCategories_Edit_vue":"fe06cd97dfcebc83d1b2","resources_js_Pages_HonorariumCategories_Index_vue":"873e989f24b17f2a00c2","resources_js_Pages_Location_Create_vue":"bc34895e947e692ba4e7","resources_js_Pages_Location_Edit_vue":"1f38404d556f51f860db","resources_js_Pages_Location_Index_vue":"ff2f4ec5a325ec6c68e8","resources_js_Pages_Salary_Create_vue":"fe1a2c4330e56f7c01ac","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"e03bbf0bdf26fb413d74","resources_js_Pages_ActivityLogs_Show_vue":"0d3dba7278afb338134b","resources_js_Pages_AuditorAccess_Create_vue":"f3f093d577a027e45a2c","resources_js_Pages_AuditorAccess_Edit_vue":"de8de5b1cee9aaaece90","resources_js_Pages_Auth_ConfirmPassword_vue":"86a870be60b38f892b1b","resources_js_Pages_Auth_ForgotPassword_vue":"545e1da066bd9ebb2c31","resources_js_Pages_Auth_Login_vue":"ec1cab0eb73a25376d97","resources_js_Pages_Auth_Register_vue":"df98697015e0045dc674","resources_js_Pages_Auth_ResetPassword_vue":"10cb0ca9dc3c6e1fe0af","resources_js_Pages_Auth_VerifyEmail_vue":"b19c9851c672d183ba14","resources_js_Pages_Bank_Create_vue":"0120035dfa29aeb2091f","resources_js_Pages_Bank_Edit_vue":"9f8d6ccd1e58adcbdb2a","resources_js_Pages_Bank_Index_vue":"a63613b71dd1fcc6422a","resources_js_Pages_ContactDetails_Create_vue":"7c320fb93fd7c259944f","resources_js_Pages_Contribution_Create_vue":"62748d826192769e2f68","resources_js_Pages_Country_Create_vue":"9f9912a1a1338f60f1b6","resources_js_Pages_Country_Edit_vue":"c9ceb5a4181f3249d4db","resources_js_Pages_Country_Index_vue":"6611881b18579a36b64e","resources_js_Pages_Dashboard_vue":"2ae08e78215a7afacd23","resources_js_Pages_Employee_Create_vue":"f88a1870648468231df5","resources_js_Pages_HonorariumCategories_Create_vue":"e65bc331b18a99e1631f","resources_js_Pages_HonorariumCategories_Edit_vue":"fe06cd97dfcebc83d1b2","resources_js_Pages_HonorariumCategories_Index_vue":"873e989f24b17f2a00c2","resources_js_Pages_Location_Create_vue":"bc34895e947e692ba4e7","resources_js_Pages_Location_Edit_vue":"1f38404d556f51f860db","resources_js_Pages_Location_Index_vue":"ff2f4ec5a325ec6c68e8","resources_js_Pages_Salary_Create_vue":"fe1a2c4330e56f7c01ac","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

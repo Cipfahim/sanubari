@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Location;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
-
-class LocationController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +20,14 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Location/Index',[
-           'requests' => QueryRequest::all(['filter','sort']),
-           'locations' => QueryBuilder::for(Location::class)
-               ->allowedFilters(['name'])
-               ->allowedSorts(['name'])
+        return Inertia::render('Country/Index',[
+            'requests' => QueryRequest::all(['filter','sort']),
+            'countries' => QueryBuilder::for(Country::class)
+                ->allowedFilters(['name'])
+                ->allowedSorts(['name'])
                 ->latest('id')
-            ->paginate()
-            ->appends(\request()->query()),
+                ->paginate()
+                ->appends(\request()->query()),
         ]);
     }
 
@@ -52,20 +52,20 @@ class LocationController extends Controller
         $this->validate($request , [
             "name" => ['required','string','max:90','unique:locations'],
         ]);
-        Location::create([
+        Country::create([
             'name' => $request->get('name'),
             'slug' => Str::of($request->get('name'))->slug('-'),
         ]);
-        return Redirect::route('locations.index')->with('success',"Location Added");
+        return Redirect::route('countries.index')->with('success',"Country Added");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(Country $country)
     {
         //
     }
@@ -73,13 +73,13 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Country $country)
     {
-        return Inertia::render('Location/Edit', [
-            'locations' => $location
+        return Inertia::render('Country/Edit', [
+            'countries' => $country
         ]);
     }
 
@@ -87,31 +87,31 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Country $country)
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:50', 'unique:locations,name,' . $location->id]
+            'name' => ['required', 'string', 'max:50', 'unique:locations,name,' . $country->id]
         ]);
 
         // Create new category.
-        $location->update([
+        $country->update([
             'name' => $request->get('name'),
 
         ]);
         return Redirect::back()
-            ->with('success', 'Location Saved');
+            ->with('success', 'Country Saved');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Country $country)
     {
         //
     }
