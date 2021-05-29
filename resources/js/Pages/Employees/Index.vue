@@ -137,6 +137,12 @@
                                     >
                                         <inertia-link
                                             :href="route('employees.edit', employee.id)"
+                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                        >Show
+                                        </inertia-link>
+
+                                        <inertia-link
+                                            :href="route('employees.edit', employee.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
