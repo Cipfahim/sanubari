@@ -19,18 +19,9 @@ class CreateHonorariumCategoriesTable extends Migration
             $table->id();
             $table->string('name',50);
             $table->string('description',200)->nullable();
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
-        DB::table('honorarium_categories')->insert(
-            array(
-                'name' => 'Salary',
-                'description' => "Basic Honorarium",
-                'status' => '1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            )
-        );
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Leave;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LeaveController extends Controller
 {
@@ -12,9 +14,11 @@ class LeaveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return Inertia::render('Employees/AnnualLeave', [
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**

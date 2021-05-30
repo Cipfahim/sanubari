@@ -2,84 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contributions;
-use Illuminate\Http\Request;
+use App\Http\Requests\Employees\ContributionRequest;
+use App\Models\Employee;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ContributionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Inertia::render('Employees/Contributions', [
+            'employee' => Employee::with('user', 'contribution')->findOrFail($id)
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function update(ContributionRequest $request, $id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contributions  $contributions
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contributions $contributions)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contributions  $contributions
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contributions $contributions)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contributions  $contributions
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contributions $contributions)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contributions  $contributions
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contributions $contributions)
-    {
-        //
+        Employee::findOrFail($id)->contribution()->updateOrCreate([
+            'employee_id' => $id,
+            'epf_employee' => $request->get('epf_employee'),
+        ], [
+            'epf_employer' => $request->get('epf_employer'),
+            'socso_group' => $request->get('socso_group'),
+            'epf_no' => $request->get('epf_no'),
+        ]);
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.salary-details.index', $id)
+                ->with('success', 'Contribution Details Saved.');
+        }
+        return Redirect::back()->with('success', 'Contribution Details Saved.');
     }
 }

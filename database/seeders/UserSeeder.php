@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-
+use App\Enums\EmployeeStatusEnum;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -17,25 +17,31 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        User::updateOrCreate([
             'name' => "System Admin",
-            "email"=> "systemadmin@mail.com",
+            "phone" => "01701234567",
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"system-admin")->first()->id,
+            "role_id" => Role::SystemAdmin,
+            'status' => EmployeeStatusEnum::Active
         ]);
 
-        User::create([
+        User::updateOrCreate([
             'name' => "Admin",
-            "email"=> "admin@mail.com",
+            "phone" => "01701234568",
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"admin")->first()->id,
+            "role_id" => Role::Admin,
+            'status' => EmployeeStatusEnum::Active
         ]);
 
-        User::create([
+        User::updateOrCreate([
             'name' => "Jhon Doe",
-            "email"=> "user@mail.com",
+            "phone" => "017012345638",
+        ], [
             "password" => Hash::make('password'),
-            "role_id"=>Role::where('slug',"employee")->first()->id,
+            "role_id" => Role::Employee,
+            'status' => EmployeeStatusEnum::Active
         ]);
     }
 }

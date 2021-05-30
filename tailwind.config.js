@@ -14,6 +14,9 @@ module.exports = {
         extend: {
             colors: {
                 cyan: colors.cyan,
+                red: colors.red,
+                green: colors.green,
+                transparent: 'transparent',
             },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
@@ -27,5 +30,8 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('tailwind-scrollbar-hide')
+    ],
 };

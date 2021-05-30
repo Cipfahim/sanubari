@@ -13,7 +13,7 @@ class EmployeeValidator extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class EmployeeValidator extends FormRequest
     public function rules()
     {
         return [
-            //
+            'official_name' => ['required', 'string', 'max:50'],
+            'nick_name' => ['required', 'string', 'max:50'],
+            
         ];
     }
 }

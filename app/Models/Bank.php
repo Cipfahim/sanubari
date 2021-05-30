@@ -4,12 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Bank extends Model
 {
     use HasFactory;
 
-    public function employee(){
+    use LogsActivity;
+
+    protected static $logAttributes = ['*'];
+
+    protected $guarded = ['id'];
+
+    public function employee()
+    {
         return $this->belongsTo(Employee::class);
     }
 }

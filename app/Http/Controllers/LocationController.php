@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Spatie\QueryBuilder\QueryBuilder;
+
 
 class LocationController extends Controller
 {
@@ -14,7 +20,15 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Location/Index',[
+           'requests' => QueryRequest::all(['filter','sort']),
+           'locations' => QueryBuilder::for(Location::class)
+               ->allowedFilters(['name'])
+               ->allowedSorts(['name'])
+                ->latest('id')
+            ->paginate()
+            ->appends(\request()->query()),
+        ]);
     }
 
     /**
@@ -24,7 +38,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Location/Create');
     }
 
     /**
@@ -35,7 +49,14 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request , [
+            "name" => ['required','string','max:90','unique:locations'],
+        ]);
+        Location::create([
+            'name' => $request->get('name'),
+            'slug' => Str::of($request->get('name'))->slug('-'),
+        ]);
+        return Redirect::route('locations.index')->with('success',"Location Added");
     }
 
     /**
@@ -57,7 +78,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return Inertia::render('Location/Edit', [
+            'locations' => $location
+        ]);
     }
 
     /**
@@ -69,7 +92,17 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:50', 'unique:locations,name,' . $location->id]
+        ]);
+
+        // Create new category.
+        $location->update([
+            'name' => $request->get('name'),
+
+        ]);
+        return Redirect::back()
+            ->with('success', 'Location Saved');
     }
 
     /**
