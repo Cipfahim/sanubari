@@ -69,16 +69,16 @@
                   >
                     <jet-label for="citizenship" value="Citizenship *" />
                     <Switch
-                      v-model="enabled"
-                      :class="enabled ? 'bg-cyan-900' : 'bg-cyan-700'"
+                      v-model="enabledCountry"
+                      :class="enabledCountry ? 'bg-cyan-900' : 'bg-cyan-700'"
                       class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
                       <span
                         aria-hidden="true"
-                        :class="enabled ? 'translate-x-20' : 'translate-x-0'"
-                        class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                        :class="enabledCountry ? 'translate-x-20' : 'translate-x-0'"
+                        class="flex items-center justify-center pointer-events-none h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
                       >                         
-                        <span v-if="enabled" class="text-cyan-900">Foreigner</span>
+                        <span v-if="enabledCountry" class="text-cyan-900">Foreigner</span>
                         <span v-else  class="text-cyan-900">Malaysian</span>
                       </span>
                     </Switch>
@@ -168,23 +168,23 @@
                   <div
                     class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                   >
-                    <jet-label for="citizenship" value="Sex *" />
+                    <jet-label for="gender" value="Sex *" />
                     <Switch
-                      v-model="enabled"
-                      :class="enabled ? 'bg-cyan-900' : 'bg-cyan-700'"
+                      v-model="enabledGender"
+                      :class="enabledGender ? 'bg-cyan-900' : 'bg-cyan-700'"
                       class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
                       <span
                         aria-hidden="true"
-                        :class="enabled ? 'translate-x-20' : 'translate-x-0'"
-                        class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                        :class="enabledGender ? 'translate-x-20' : 'translate-x-0'"
+                        class="flex items-center justify-center pointer-events-none h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
                       >                         
-                        <span v-if="enabled" class="text-cyan-900">Male</span>
+                        <span v-if="enabledGender" class="text-cyan-900">Male</span>
                         <span v-else  class="text-cyan-900">Female</span>
                       </span>
                     </Switch>
                     <jet-input-error
-                      :message="form.errors.citizenship"
+                      :message="form.errors.gender"
                       class="mt-2"
                     />
                   </div>
@@ -281,9 +281,13 @@ export default {
   directives: { mask },
 
   setup() {
-    const enabled = ref(false);
+    const enabledCountry = ref(false);
+    const enabledGender = ref(false);
 
-    return { enabled };
+    return { 
+      enabledCountry,
+      enabledGender
+    };
   },
   data() {
     return {

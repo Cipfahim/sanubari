@@ -75,8 +75,8 @@
 
               <button
                 type="button"
-                v-on:click="toggleTabs(2)"
-                v-bind:class="{
+                @click="toggleTabs(2)"
+                :class="{
                   'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200':
                     openTab !== 2,
                   'border-cyan-500 text-cyan-600': openTab === 2,
@@ -97,8 +97,8 @@
 
               <button
                 type="button"
-                v-on:click="toggleTabs(3)"
-                v-bind:class="{
+                @click="toggleTabs(3)"
+                :class="{
                   'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200':
                     openTab !== 3,
                   'border-cyan-500 text-cyan-600': openTab === 3,
@@ -123,7 +123,7 @@
         <!-- Personal Phone -->
         <div
           class="mt-4 h-full sm:h-96"
-          v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }"
+          :class="{ hidden: openTab !== 1, block: openTab === 1 }"
         >
           <!-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"> -->
           <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
@@ -166,7 +166,7 @@
         <!-- Personal Email -->
         <div
           class="mt-4 h-full sm:h-96"
-          v-bind:class="{ hidden: openTab !== 2, block: openTab === 2 }"
+          :class="{ hidden: openTab !== 2, block: openTab === 2 }"
         > 
           <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
             <div class="flex items-center justify-between mb-3">
@@ -205,7 +205,7 @@
         <!-- Address -->
         <div
           class="mt-4 h-full sm:h-96"
-          v-bind:class="{ hidden: openTab !== 3, block: openTab === 3 }"
+          :class="{ hidden: openTab !== 3, block: openTab === 3 }"
         > 
           <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
             <div class="flex items-center justify-between mb-3">
@@ -320,7 +320,7 @@ export default {
     submit() {
       this.form.post(this.route("employees.update", this.employee.id));
     },
-    toggleTabs: function (tabNumber) {
+    toggleTabs(tabNumber) {
       this.openTab = tabNumber;
     },
   },
