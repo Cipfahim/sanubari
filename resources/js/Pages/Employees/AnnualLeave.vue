@@ -36,7 +36,7 @@
           },
           {
             id: 'F',
-            name: 'Annual Leave',
+            name: 'Annual Leave (TODO)',
             href: route('employees.annual-leave.index', employee.id),
             status: true,
             current: true,

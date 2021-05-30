@@ -18,7 +18,7 @@
           },
           {
             id: 'C',
-            name: 'Contact Details',
+            name: 'Contact Details (TODO)',
             href: route('employees.contact-details.index', employee.id),
             status: true,
             current: true,
@@ -44,7 +44,7 @@
         ]"
       />
       <div class="bg-gray-50 p-4 rounded-md mt-5">
-        
+
         <!-- Tab for Desktop & mobile -->
         <div class="block sm:block overflow-x-scroll scrollbar-hide">
           <div class="border-b border-gray-200">
@@ -131,7 +131,7 @@
               <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
                 Contact Number<span class="text-blue-600"> *</span>
               </label>
-              
+
               <button
                   type="button"
                   class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
@@ -167,13 +167,13 @@
         <div
           class="mt-4 h-full sm:h-96"
           :class="{ hidden: openTab !== 2, block: openTab === 2 }"
-        > 
+        >
           <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
             <div class="flex items-center justify-between mb-3">
               <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
                 Contact Email<span class="text-blue-600"> *</span>
               </label>
-              
+
               <button
                   type="button"
                   class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
@@ -200,19 +200,19 @@
               </div>
             </div>
           </div>
-          
+
         </div>
         <!-- Address -->
         <div
           class="mt-4 h-full sm:h-96"
           :class="{ hidden: openTab !== 3, block: openTab === 3 }"
-        > 
+        >
           <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
             <div class="flex items-center justify-between mb-3">
               <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
                 Contact Address<span class="text-blue-600"> *</span>
               </label>
-              
+
               <button
                   type="button"
                   class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"

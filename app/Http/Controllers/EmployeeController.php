@@ -28,6 +28,7 @@ class EmployeeController extends Controller
         return Inertia::render('Employees/Index', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
+                ->with(['user', 'location'])
 //                ->allowedFilters(['name'])
 //                ->allowedSorts(['name', 'description', 'status'])
                 ->latest('id')
