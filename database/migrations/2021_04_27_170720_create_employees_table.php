@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->enum('gender', ['Male', 'Female'])->nullable();
+            $table->enum('sex', ['Male', 'Female'])->nullable();
             $table->string('official_name', 50);
             $table->string('nick_name', 50)->nullable();
             $table->foreignId('location_id')->constrained();

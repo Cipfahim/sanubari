@@ -33,7 +33,12 @@ class Employee extends Model
 
     public function contribution()
     {
-        return $this->belongsTo(Contribution::class);
+        return $this->hasOne(Contribution::class);
+    }
+
+    public function salaryDetails()
+    {
+        return $this->hasOne(SalaryDetails::class);
     }
 
     public function payslips()

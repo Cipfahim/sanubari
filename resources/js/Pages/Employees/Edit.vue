@@ -11,7 +11,7 @@
                 {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true},
             ]"/>
             <jet-form-section
-                @submitted="submit"
+                @submitted="save"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
             >
                 <template #form class=" md:col-span-12">
@@ -192,6 +192,14 @@
                                                     type="submit"
                                                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                                 >
+                                                    Save
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    @click="saveAndContinue()"
+                                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                >
                                                     Save & Continue
                                                 </button>
                                             </div>
@@ -270,7 +278,8 @@ export default {
                     date_of_join: this.employee.date_of_join,
                     phone: this.employee.user.phone,
                     password: null,
-                    status: this.employee.user.status === 'Active'
+                    status: this.employee.user.status === 'Active',
+                    continue: false
                 },
                 {
                     resetOnSuccess: true,
@@ -281,6 +290,14 @@ export default {
     methods: {
         submit() {
             this.form.post(this.route('employees.update', this.employee.id))
+        },
+        save() {
+            this.submit()
+        },
+
+        saveAndContinue() {
+            this.form.continue = true
+            this.submit()
         }
     }
 };

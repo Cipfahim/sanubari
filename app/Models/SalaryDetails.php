@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Salary extends Model
+class SalaryDetails extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,5 @@ class Salary extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
-    }
-
-    public function honorariumCategories()
-    {
-        return $this->hasMany(HonorariumCategory::class);
     }
 }

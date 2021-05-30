@@ -142,18 +142,6 @@ export default {
                     current: route().current('contact-details.*')
                 },
                 {
-                    name: 'Contribution',
-                    href: route('contributions.create'),
-                    icon: ClockIcon,
-                    current: route().current('contributions.*')
-                },
-                {
-                    name: 'Salary',
-                    href: route('salaries.create'),
-                    icon: ClockIcon,
-                    current: route().current('salaries.*')
-                },
-                {
                     name: 'Location',
                     href: route('locations.index'),
                     icon: ClockIcon,

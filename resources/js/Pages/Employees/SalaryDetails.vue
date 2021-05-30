@@ -2,14 +2,47 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true},
-                {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true},
-                {id: 'C', name: 'Contact Details', href: route('employees.contact-details.index',employee.id), status: true},
-                {id: 'D', name: 'Contribution',href: route('employees.contributions.index',employee.id), status: true},
-                {id: 'E', name: 'Salary Details', href: route('employees.salary-details.index',employee.id), status: true, current: true},
-                {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true},
-            ]"/>
+            <top-bar
+                :steps="[
+          {
+            id: 'A',
+            name: 'Employee Details',
+            href: route('employees.edit', employee.id),
+            status: true,
+          },
+          {
+            id: 'B',
+            name: 'Identification Details',
+            href: route('employees.identification.index', employee.id),
+            status: true,
+          },
+          {
+            id: 'C',
+            name: 'Contact Details',
+            href: route('employees.contact-details.index', employee.id),
+            status: true,
+          },
+          {
+            id: 'D',
+            name: 'Contribution',
+            href: route('employees.contributions.index', employee.id),
+            status: true,
+          },
+          {
+            id: 'E',
+            name: 'Salary Details',
+            href: route('employees.salary-details.index', employee.id),
+            status: true,
+            current: true,
+          },
+          {
+            id: 'F',
+            name: 'Annual Leave',
+            href: route('employees.annual-leave.index', employee.id),
+            status: true,
+          },
+        ]"
+            />
             <jet-form-section
                 @submitted="submit"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
@@ -30,66 +63,133 @@
                                 </div>
 
                                 <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
-                <!-- Start::ingle Field -->
-                <div
-                  class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                  v-for="(salary, index) in salaries"
-                  :key="index"
-                >
-                  <label
-                    for="username"
-                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                  >
-                    {{ salary.label }} <span class="text-blue-600"> *</span>
-                  </label>
-                  <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg">
-                      <input
-                        :type="salary.type"
-                        name="username"
-                        id="username"
-                        autocomplete="username"
-                        class="flex-1 block w-full focus:ring-cyan-500 focus:border-cyan-500 min-w-0 rounded-md sm:text-sm border-gray-300 shadow-sm"
-                      />
-                      <!-- <p class="text-xs text-red-500 mt-1">
-                        Somthing went wrong!
-                      </p> -->
-                    </div>
-                  </div>
-                </div>
-                <!-- End::ingle Field -->
-              </div>
-                            </div>
 
-                            <div class="pt-5">
-                                <div class="space-y-6 sm:space-y-5">
+                                    <!-- Basic salary-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2">
-                                            <div
-                                                class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
-                                            >
-                                                <inertia-link
-                                                    :href="route('employees.index')"
-                                                    class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                        <jet-label for="basic_salary" value="Basic Salary *"/>
+                                        <jet-input
+                                            id="basic_salary"
+                                            type="text"
+                                            v-model="form.basic_salary"
+                                            :class="{ 'border-red-500': form.errors.basic_salary }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.basic_salary"
+                                            class="mt-2"
+                                        />
+                                    </div>
+
+                                    <!-- living_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="living_allowance" value="Cost of Living Allowance *"/>
+                                        <jet-input
+                                            id="living_allowance"
+                                            type="text"
+                                            v-model="form.living_allowance"
+                                            :class="{ 'border-red-500': form.errors.living_allowance }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.living_allowance"
+                                            class="mt-2"
+                                        />
+                                    </div>
+
+                                    <!-- attendance_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="attendance_allowance" value="Attendance Allowance *"/>
+                                        <jet-input
+                                            id="attendance_allowance"
+                                            type="text"
+                                            v-model="form.attendance_allowance"
+                                            :class="{ 'border-red-500': form.errors.attendance_allowance }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.attendance_allowance"
+                                            class="mt-2"
+                                        />
+                                    </div>
+
+                                    <!-- levy-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="levy" value="Levy *"/>
+                                        <jet-input
+                                            id="levy"
+                                            type="text"
+                                            v-model="form.levy"
+                                            :class="{ 'border-red-500': form.errors.levy }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.levy"
+                                            class="mt-2"
+                                        />
+                                    </div>
+
+
+                                    <!-- in_charge_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="in_charge_allowance" value="In Charge Allowance *"/>
+                                        <jet-input
+                                            id="in_charge_allowance"
+                                            type="text"
+                                            v-model="form.in_charge_allowance"
+                                            :class="{ 'border-red-500': form.errors.in_charge_allowance }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.in_charge_allowance"
+                                            class="mt-2"
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div class="pt-5">
+                                    <div class="space-y-6 sm:space-y-5">
+                                        <div
+                                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                        >
+                                            <div class="mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2">
+                                                <div
+                                                    class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                                 >
-                                                    Cancel
-                                                </inertia-link>
-                                                <button
-                                                    type="submit"
-                                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                                                >
-                                                    Save & Continue
-                                                </button>
+                                                    <inertia-link
+                                                        :href="route('employees.index')"
+                                                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                                    >
+                                                        Cancel
+                                                    </inertia-link>
+                                                    <button
+                                                        type="submit"
+                                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                    >
+                                                        Save
+                                                    </button>
+
+                                                    <button
+                                                        @click.prevent="saveAndContinue"
+                                                        type="button"
+                                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                    >
+                                                        Save & Continue
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- End::Stepper Contents -->
                     </div>
-                    <!-- End::Stepper Contents -->
                 </template>
             </jet-form-section>
         </div>
@@ -109,7 +209,6 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
-import {mask} from "vue-the-mask";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -120,17 +219,8 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 
-
-const salaries = [
-  { label: "Basic Salary", type: "text" },
-  { label: "Cost of Living Allowance", type: "text" },
-  { label: "Attendance Allowance", type: "text" },
-  { label: "Levy", type: "text" },
-  { label: "In Charge Allowance", type: "text" },
-];
 export default {
     props: {
-        locations: Array,
         employee: Object,
     },
     components: {
@@ -153,25 +243,42 @@ export default {
         JetButton,
         JetCheckbox
     },
-    directives: {mask},
     data() {
         return {
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
-                    phone: this.employee.user.phone,
-                    password: null,
+                    basic_salary: null,
+                    living_allowance: null,
+                    attendance_allowance: null,
+                    levy: null,
+                    in_charge_allowance: null,
+                    continue: false
                 },
                 {
                     resetOnSuccess: true,
                 }
             ),
-            salaries
+        }
+    },
+    mounted() {
+        const salary_details = this.employee.salary_details;
+        if (salary_details) {
+            this.form.basic_salary = salary_details.basic_salary
+            this.form.living_allowance = salary_details.living_allowance
+            this.form.attendance_allowance = salary_details.attendance_allowance
+            this.form.levy = salary_details.levy
+            this.form.in_charge_allowance = salary_details.in_charge_allowance
         }
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.update', this.employee.id))
+            this.form.post(this.route('employees.salary-details.update', this.employee.id))
+        },
+
+        saveAndContinue() {
+            this.form.continue = true
+            this.submit()
         }
     }
 };
