@@ -21694,22 +21694,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, {
           id: 'C',
           name: 'Contact Details',
-          href: '#',
+          href: _ctx.route('employees.contact-details.index', $props.employee.id),
           status: true
         }, {
           id: 'D',
           name: 'Contribution',
-          href: '#',
+          href: _ctx.route('employees.contributions.index', $props.employee.id),
           status: true
         }, {
           id: 'E',
           name: 'Salary Details',
-          href: '#',
+          href: _ctx.route('employees.salary-details.index', $props.employee.id),
           status: true
         }, {
           id: 'F',
           name: 'Annual Leave',
-          href: '#',
+          href: _ctx.route('employees.annual-leave.index', $props.employee.id),
           status: true
         }]
       }, null, 8

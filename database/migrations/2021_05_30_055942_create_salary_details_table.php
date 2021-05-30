@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalariesTable extends Migration
+class CreateSalaryDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateSalariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
+        Schema::create('salary_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('honorarium_category_id')->constrained();
             $table->foreignId('employee_id')->constrained();
-            $table->double('amount');
+            $table->decimal('basic_salary')->nullable();
+            $table->decimal('living_allowance')->nullable();
+            $table->decimal('attendance_allowance')->nullable();
+            $table->decimal('levy')->nullable();
+            $table->decimal('in_charge_allowance')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateSalariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salaries');
+        Schema::dropIfExists('salary_details');
     }
 }

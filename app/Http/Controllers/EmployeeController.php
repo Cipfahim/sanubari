@@ -28,6 +28,7 @@ class EmployeeController extends Controller
         return Inertia::render('Employees/Index', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
+                ->with(['user', 'location'])
 //                ->allowedFilters(['name'])
 //                ->allowedSorts(['name', 'description', 'status'])
                 ->latest('id')
@@ -71,7 +72,7 @@ class EmployeeController extends Controller
             'status' => EmployeeStatusEnum::Draft
         ]);
 
-        return Redirect::route('employees.index');
+        return Redirect::route('employees.identification.index', $user->employee->id);
     }
 
     /**
@@ -127,7 +128,11 @@ class EmployeeController extends Controller
                 : EmployeeStatusEnum::Inactive
         ]);
 
-        return Redirect::back();
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.identification.index', $id)
+                ->with('success', 'Employee info Saved.');
+        }
+        return Redirect::back()->with('success', 'Employee info Saved.');
     }
 
     /**

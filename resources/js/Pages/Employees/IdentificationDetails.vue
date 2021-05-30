@@ -2,126 +2,60 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true},
-                {id: 'B', name: 'Identification Details', href: '#', status: true, current:true},
-                {id: 'C', name: 'Contact Details', href: '#', status: true},
-                {id: 'D', name: 'Contribution',href: '#', status: true},
-                {id: 'E', name: 'Salary Details', href: '#', status: true},
-                {id: 'F', name: 'Annual Leave', href: '#', status: true},
-            ]"/>
+            <top-bar
+                :steps="[
+                  {
+                    id: 'A',
+                    name: 'Employee Details',
+                    href: route('employees.edit', employee.id),
+                    status: true,
+                  },
+                  {
+                    id: 'B',
+                    name: 'Identification Details',
+                    href: route('employees.identification.index', employee.id),
+                    status: true,
+                    current: true,
+                  },
+                  {
+                    id: 'C',
+                    name: 'Contact Details',
+                    href: route('employees.contact-details.index', employee.id),
+                    status: true,
+                  },
+                  {
+                    id: 'D',
+                    name: 'Contribution',
+                    href: route('employees.contributions.index', employee.id),
+                    status: true,
+                  },
+                  {
+                    id: 'E',
+                    name: 'Salary Details',
+                    href: route('employees.salary-details.index', employee.id),
+                    status: true,
+                  },
+                  {
+                    id: 'F',
+                    name: 'Annual Leave',
+                    href: route('employees.annual-leave.index', employee.id),
+                    status: true,
+                  },
+                ]"
+            />
             <jet-form-section
-                @submitted="submit"
+                @submitted="save"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
             >
-                <template #form class=" md:col-span-12">
+                <template #form class="md:col-span-12">
                     <!-- Strat::Stepper Contents -->
                     <div class="bg-gray-50 p-4 rounded-md">
                         <div class="space-y-8 divide-y divide-gray-200">
-                            <div>
-                                <div class="sm:border-b sm:border-gray-200 pb-2">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Official Information
-                                    </h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                        Star (*) means required!
-                                    </p>
-                                </div>
-
-                                <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
-                                    <!-- Official Name field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="official_name" value="Official Name *"/>
-                                        <jet-input
-                                            id="official_name"
-                                            type="text"
-                                            v-model="form.official_name"
-                                            :class="{ 'border-red-500': form.errors.official_name }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.official_name"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- Nick Name field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="nick_name" value="Nick Name *"/>
-                                        <jet-input
-                                            id="nick_name"
-                                            type="text"
-                                            v-model="form.nick_name"
-                                            :class="{ 'border-red-500': form.errors.nick_name }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.nick_name"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- Location field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="location" value="Location *"/>
-
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
-                                                <select
-                                                    v-model="form.location"
-                                                    id="location"
-                                                    name="location"
-                                                    autocomplete="location"
-                                                    class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                >
-                                                    <option>Select one</option>
-                                                    <option v-for="(location,index) in locations"
-                                                            :value="location.id">{{ location.name }}
-                                                    </option>
-                                                </select>
-
-                                                <button
-                                                    type="button"
-                                                    class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
-                                                >
-                                                    <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
-                                                    Add
-                                                </button>
-
-                                                <jet-input-error
-                                                    :message="form.errors.location"
-                                                    class="mt-2"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Date of join field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="date_of_join" value="Date of Join *"/>
-
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg focus-within:z-10">
-                                                <jet-input
-                                                    id="date_of_join"
-                                                    type="date"
-                                                    v-model="form.date_of_join"
-                                                    :class="{ 'border-red-500': form.errors.date_of_join }"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <jet-input-error
-                                            :message="form.errors.date_of_join"
-                                            class="mt-2"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Login details-->
                             <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Login Details
+                                        Identification Details
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         This section contains sensitive information.
@@ -129,46 +63,136 @@
                                 </div>
 
                                 <div class="space-y-6 sm:space-y-5">
-                                    <!-- Phone field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="phone" value="Phone *"/>
+                                    <!-- Citizenship field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="citizenship" value="Citizenship *"/>
+                                        <Switch
+                                            v-model="form.citizenship"
+                                            :class="form.citizenship ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        >
+                                          <span
+                                              aria-hidden="true"
+                                              :class="form.citizenship ? 'translate-x-20' : 'translate-x-0'"
+                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                          >
+                                            <span v-if="form.citizenship" class="text-cyan-900">Foreigner</span>
+                                            <span v-else class="text-cyan-900">Malaysian</span>
+                                          </span>
+                                        </Switch>
+                                        <jet-input-error
+                                            :message="form.errors.citizenship"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                    <!-- Identity Card field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                        v-if="!form.citizenship"
+                                    >
+                                        <jet-label for="identity" value="Identity Card (IC) Number *"/>
                                         <jet-input
-                                            id="phone"
+                                            id="identity"
                                             type="text"
-                                            v-model="form.phone"
-                                            :class="{ 'border-red-500': form.errors.phone }"
+                                            v-model="form.identity_card_number"
+                                            :class="{ 'border-red-500': form.errors.identity_card_number }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.phone"
+                                            :message="form.errors.identity_card_number"
                                             class="mt-2"
                                         />
                                     </div>
 
-                                    <!-- Password field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="password" value="Password *"/>
+                                    <!-- Passport Numbrt field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="passport" value="Passport Number *"/>
                                         <jet-input
-                                            id="password"
-                                            type="password"
-                                            v-model="form.password"
-                                            :class="{ 'border-red-500': form.errors.password }"
+                                            id="passport"
+                                            type="text"
+                                            v-model="form.passport_number"
+                                            :class="{ 'border-red-500': form.errors.passport_number }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.password"
+                                            :message="form.errors.passport_number"
                                             class="mt-2"
                                         />
                                     </div>
 
-                                    <!-- Status -->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <div></div>
-                                        <label class="flex items-center">
-                                            <jet-checkbox name="status" v-model:checked="form.status"/>
-                                            <span class="ml-2 text-sm text-gray-600">Status: {{
-                                                    form.status ? 'Active' : 'Inactive'
-                                                }}</span>
-                                        </label>
-                                        <jet-input-error :message="form.errors.status" class="mt-2"/>
+                                    <!-- Date of birth field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="dob" value="Date of Birth *"/>
+                                        <jet-input
+                                            id="dob"
+                                            type="date"
+                                            v-model="form.date_of_birth"
+                                            :class="{ 'border-red-500': form.errors.date_of_birth }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.date_of_birth"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                    <!-- Country of birth field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="cob" value="Country of Birth *"/>
+                                        <jet-input
+                                            id="cob"
+                                            type="text"
+                                            v-model="form.country_of_birth"
+                                            :class="{ 'border-red-500': form.errors.country_of_birth }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.country_of_birth"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                    <!-- State of birth field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="sob" value="State of Birth *"/>
+                                        <jet-input
+                                            id="sob"
+                                            type="text"
+                                            v-model="form.state_of_birth"
+                                            :class="{ 'border-red-500': form.errors.state_of_birth }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.state_of_birth"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                    <!-- Citizenship field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="citizenship" value="Sex *"/>
+                                        <Switch
+                                            v-model="form.sex"
+                                            :class="form.sex ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        >
+                                          <span
+                                              aria-hidden="true"
+                                              :class="form.sex ? 'translate-x-20' : 'translate-x-0'"
+                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                          >
+                                            <span v-if="form.sex" class="text-cyan-900">Female</span>
+                                            <span v-else class="text-cyan-900">Male</span>
+                                          </span>
+                                        </Switch>
+                                        <jet-input-error
+                                            :message="form.errors.sex"
+                                            class="mt-2"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -190,6 +214,13 @@
                                                 </inertia-link>
                                                 <button
                                                     type="submit"
+                                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    @click="saveAndContinue()"
                                                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                                 >
                                                     Save & Continue
@@ -231,11 +262,11 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
-
+import {ref} from "vue";
+import {Switch} from "@headlessui/vue";
 
 export default {
     props: {
-        locations: Array,
         employee: Object,
     },
     components: {
@@ -256,32 +287,55 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
-        JetCheckbox
+        JetCheckbox,
+        Switch,
     },
     directives: {mask},
+
+    setup() {
+        const enabled = ref(false);
+
+        return {enabled};
+    },
     data() {
         return {
             form: this.$inertia.form(
                 {
-                    _method: 'PUT',
-                    official_name: this.employee.official_name,
-                    nick_name: this.employee.nick_name,
-                    location: this.employee.location_id,
-                    date_of_join: this.employee.date_of_join,
-                    phone: this.employee.user.phone,
-                    password: null,
-                    status: this.employee.user.status === 'Active'
+                    _method: "PUT",
+                    citizenship: this.employee.citizenship === 'Foreigner' ? true : false,
+                    identity_card_number: this.employee.ic_number,
+                    passport_number: this.employee.passport_number,
+                    date_of_birth: this.employee.date_of_birth,
+                    country_of_birth: this.employee.country_of_birth,
+                    state_of_birth: this.employee.state_of_birth,
+                    sex: this.employee.sex === 'Female' ? true : false,
+                    continue: false
                 },
                 {
                     resetOnSuccess: true,
                 }
             ),
-        }
+        };
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.update', this.employee.id))
+            this.form
+                .transform(data => ({
+                    ...data,
+                    citizenship: this.form.citizenship ? 'Foreigner' : 'Malaysian',
+                    sex: this.form.sex ? 'Female' : 'Male'
+                }))
+                .post(this.route("employees.identification.update", this.employee.id));
+        },
+
+        save() {
+            this.submit()
+        },
+
+        saveAndContinue() {
+            this.form.continue = true
+            this.submit()
         }
-    }
+    },
 };
 </script>

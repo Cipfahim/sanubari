@@ -16,10 +16,10 @@ class CreateContributionsTable extends Migration
         Schema::create('contributions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained();
-            $table->integer('epf_no');
             $table->double('epf_employee');
             $table->double('epf_employer');
-            $table->enum('socso', ['Group-1', 'Group-2']);
+            $table->enum('socso_group', ['Group-1', 'Group-2']);
+            $table->integer('epf_no');
             $table->timestamps();
         });
     }

@@ -2,97 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Employees\SalaryDetailsRequest;
+use App\Models\Employee;
 use App\Models\Salary;
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class SalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index($id)
     {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return Inertia::render('Salary/Create', [
-            'requests' => QueryRequest::all(['filter', 'sort']),
-            'honorariumCategories' => QueryBuilder::for(Salary::class)
-                ->allowedFilters(['number'])
-                ->allowedSorts(['number'])
-                ->latest('id')
-                ->paginate()
-                ->appends(request()->query()),
+        return Inertia::render('Employees/SalaryDetails', [
+            'employee' => Employee::with('user', 'salaryDetails')
+                ->findOrFail($id)
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Salary  $salary
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Salary $salary)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Salary  $salary
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Salary $salary)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Salary  $salary
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Salary $salary
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Salary $salary)
+    public function update(SalaryDetailsRequest $request, $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Salary  $salary
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Salary $salary)
-    {
-        //
+        Employee::findOrFail($id)->salaryDetails()->updateOrCreate([
+            'employee_id' => $id,
+            'basic_salary' => $request->get('basic_salary'),
+        ], [
+            'living_allowance' => $request->get('living_allowance'),
+            'attendance_allowance' => $request->get('attendance_allowance'),
+            'levy' => $request->get('levy'),
+            'in_charge_allowance' => $request->get('in_charge_allowance'),
+        ]);
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.annual-leave.index', $id)
+                ->with('success', 'Salary Details Saved.');
+        }
+        return Redirect::back()->with('success', 'Salary Details Saved.');
     }
 }

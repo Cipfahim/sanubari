@@ -5,10 +5,14 @@ namespace App\Models;
 use App\Enums\EmployeeStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Employee extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
+    protected static $logAttributes = ['*'];
 
     protected $guarded = ['id'];
 
@@ -33,7 +37,12 @@ class Employee extends Model
 
     public function contribution()
     {
-        return $this->belongsTo(Contribution::class);
+        return $this->hasOne(Contribution::class);
+    }
+
+    public function salaryDetails()
+    {
+        return $this->hasOne(SalaryDetails::class);
     }
 
     public function payslips()
@@ -43,7 +52,7 @@ class Employee extends Model
 
     public function location()
     {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function leave()

@@ -71,11 +71,29 @@
 
                                     <th
                                         scope="col"
-                                        @click="sort('description')"
+                                        @click="sort('phone')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="description"/>
-                                        Description
+                                        <sort-arrow :sort="queryForm.sort" field="phone"/>
+                                        Phone
+                                    </th>
+
+                                    <th
+                                        scope="col"
+                                        @click="sort('location')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                    >
+                                        <sort-arrow :sort="queryForm.sort" field="location"/>
+                                        Location
+                                    </th>
+
+                                    <th
+                                        scope="col"
+                                        @click="sort('date_of_join')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                    >
+                                        <sort-arrow :sort="queryForm.sort" field="date_of_join"/>
+                                        Date of Join
                                     </th>
 
                                     <th
@@ -112,22 +130,34 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ employee.description }}
+                                        {{ employee.user.phone }}
+                                    </td>
+
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        {{ employee.location.name }}
+                                    </td>
+
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        {{ employee.date_of_join }}
                                     </td>
 
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
                                       <span
-                                          v-if="employee.status"
+                                          v-if="employee.status === 'Active'"
                                           class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                                       >
                                         Active
                                       </span>
-                                    <span
-                                        v-else
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                                    >
+                                        <span
+                                            v-else
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                                        >
                                         Inactive
                                       </span>
                                     </td>
@@ -135,6 +165,12 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
+<!--                                        <inertia-link-->
+<!--                                            :href="route('employees.edit', employee.id)"-->
+<!--                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"-->
+<!--                                        >Show-->
+<!--                                        </inertia-link>-->
+
                                         <inertia-link
                                             :href="route('employees.edit', employee.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"

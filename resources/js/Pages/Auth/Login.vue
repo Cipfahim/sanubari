@@ -14,13 +14,35 @@
         <div class="mt-4">
             <div class="mt-6">
                 <form @submit.prevent="submit" class="space-y-6">
+                    <div class="text-center">
+                        <Switch
+                            v-model="employeeLogin"
+                            :class="employeeLogin ? 'bg-cyan-900' : 'bg-cyan-700'"
+                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                        >
+                                  <span
+                                      aria-hidden="true"
+                                      :class="employeeLogin ? 'translate-x-20' : 'translate-x-0'"
+                                      class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                  >
+                                    <span v-if="employeeLogin" class="text-cyan-900">Employee</span>
+                                    <span v-else class="text-cyan-900">User</span>
+                                  </span>
+                        </Switch>
+                    </div>
+
+                    <div v-if="employeeLogin" class="text-center">
+                        <strong>In Progress please use user login for now.</strong>
+                    </div>
+
+
                     <div>
                         <breeze-label for="phone" value="Phone"/>
                         <breeze-input id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required
                                       autofocus
                                       autocomplete="phone"/>
                     </div>
-                    <div class="space-y-1">
+                    <div v-if="!employeeLogin" class="space-y-1">
                         <breeze-label
                             for="password"
                             value="Password"
@@ -36,6 +58,16 @@
                                 autocomplete="current-password"
                             />
                         </div>
+                    </div>
+                    <div v-else>
+                        <breeze-button
+                            typeof="button"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
+                            Send OTP
+                        </breeze-button>
                     </div>
                     <div class="mt-2">
                         <breeze-validation-errors/>
@@ -61,11 +93,22 @@
                         </div>
                     </div>
                     <breeze-button
+                        v-if="!employeeLogin"
                         class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
                         Log in
+                    </breeze-button>
+
+                    <breeze-button
+                        v-else
+                        typeof="button"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Verify
                     </breeze-button>
 
                     <div v-if="$page.props.app.env === 'local'">
@@ -98,6 +141,7 @@ import BreezeInput from "@/Components/Input";
 import BreezeCheckbox from "@/Components/Checkbox";
 import BreezeLabel from "@/Components/Label";
 import BreezeValidationErrors from "@/Components/ValidationErrors";
+import {Switch} from "@headlessui/vue";
 
 export default {
     layout: BreezeGuestLayout,
@@ -107,7 +151,8 @@ export default {
         BreezeInput,
         BreezeCheckbox,
         BreezeLabel,
-        BreezeValidationErrors
+        BreezeValidationErrors,
+        Switch
     },
 
     props: {
@@ -119,6 +164,7 @@ export default {
 
     data() {
         return {
+            employeeLogin: false,
             form: this.$inertia.form({
                 phone: '',
                 password: '',
