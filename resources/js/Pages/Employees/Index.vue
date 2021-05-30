@@ -149,7 +149,7 @@
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
                                       <span
-                                          v-if="employee.status === 'Active'"
+                                          v-if="employee.user.status === 'Active'"
                                           class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                                       >
                                         Active
