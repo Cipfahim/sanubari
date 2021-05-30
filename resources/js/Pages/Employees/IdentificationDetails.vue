@@ -69,18 +69,18 @@
                                     >
                                         <jet-label for="citizenship" value="Citizenship *"/>
                                         <Switch
-                                            v-model="form.citizenship"
-                                            :class="form.citizenship ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            v-model="enabledCountry"
+                                            :class="enabledCountry ? 'bg-cyan-900' : 'bg-cyan-700'"
                                             class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                         >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.citizenship ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.citizenship" class="text-cyan-900">Foreigner</span>
-                                            <span v-else class="text-cyan-900">Malaysian</span>
-                                          </span>
+                      <span
+                          aria-hidden="true"
+                          :class="enabledCountry ? 'translate-x-20' : 'translate-x-0'"
+                          class="flex items-center justify-center pointer-events-none h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                      >
+                        <span v-if="enabledCountry" class="text-cyan-900">Foreigner</span>
+                        <span v-else class="text-cyan-900">Malaysian</span>
+                      </span>
                                         </Switch>
                                         <jet-input-error
                                             :message="form.errors.citizenship"
@@ -90,17 +90,15 @@
                                     <!-- Identity Card field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                        v-if="!form.citizenship"
                                     >
                                         <jet-label for="identity" value="Identity Card (IC) Number *"/>
                                         <jet-input
                                             id="identity"
                                             type="text"
-                                            v-model="form.identity_card_number"
-                                            :class="{ 'border-red-500': form.errors.identity_card_number }"
+                                            :class="{ 'border-red-500': form.errors.identity }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.identity_card_number"
+                                            :message="form.errors.identity"
                                             class="mt-2"
                                         />
                                     </div>
@@ -113,11 +111,10 @@
                                         <jet-input
                                             id="passport"
                                             type="text"
-                                            v-model="form.passport_number"
-                                            :class="{ 'border-red-500': form.errors.passport_number }"
+                                            :class="{ 'border-red-500': form.errors.passport }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.passport_number"
+                                            :message="form.errors.passport"
                                             class="mt-2"
                                         />
                                     </div>
@@ -129,12 +126,11 @@
                                         <jet-label for="dob" value="Date of Birth *"/>
                                         <jet-input
                                             id="dob"
-                                            type="date"
-                                            v-model="form.date_of_birth"
-                                            :class="{ 'border-red-500': form.errors.date_of_birth }"
+                                            type="text"
+                                            :class="{ 'border-red-500': form.errors.dob }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.date_of_birth"
+                                            :message="form.errors.dob"
                                             class="mt-2"
                                         />
                                     </div>
@@ -146,11 +142,10 @@
                                         <jet-input
                                             id="cob"
                                             type="text"
-                                            v-model="form.country_of_birth"
-                                            :class="{ 'border-red-500': form.errors.country_of_birth }"
+                                            :class="{ 'border-red-500': form.errors.cob }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.country_of_birth"
+                                            :message="form.errors.cob"
                                             class="mt-2"
                                         />
                                     </div>
@@ -162,11 +157,10 @@
                                         <jet-input
                                             id="sob"
                                             type="text"
-                                            v-model="form.state_of_birth"
-                                            :class="{ 'border-red-500': form.errors.state_of_birth }"
+                                            :class="{ 'border-red-500': form.errors.sob }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.state_of_birth"
+                                            :message="form.errors.sob"
                                             class="mt-2"
                                         />
                                     </div>
@@ -174,23 +168,23 @@
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <jet-label for="citizenship" value="Sex *"/>
+                                        <jet-label for="gender" value="Sex *"/>
                                         <Switch
-                                            v-model="form.sex"
-                                            :class="form.sex ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            v-model="enabledGender"
+                                            :class="enabledGender ? 'bg-cyan-900' : 'bg-cyan-700'"
                                             class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                         >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.sex ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.sex" class="text-cyan-900">Female</span>
-                                            <span v-else class="text-cyan-900">Male</span>
-                                          </span>
+                      <span
+                          aria-hidden="true"
+                          :class="enabledGender ? 'translate-x-20' : 'translate-x-0'"
+                          class="flex items-center justify-center pointer-events-none h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                      >
+                        <span v-if="enabledGender" class="text-cyan-900">Male</span>
+                        <span v-else class="text-cyan-900">Female</span>
+                      </span>
                                         </Switch>
                                         <jet-input-error
-                                            :message="form.errors.sex"
+                                            :message="form.errors.gender"
                                             class="mt-2"
                                         />
                                     </div>
@@ -293,23 +287,21 @@ export default {
     directives: {mask},
 
     setup() {
-        const enabled = ref(false);
+        const enabledCountry = ref(false);
+        const enabledGender = ref(false);
 
-        return {enabled};
+        return {
+            enabledCountry,
+            enabledGender
+        };
     },
     data() {
         return {
             form: this.$inertia.form(
                 {
                     _method: "PUT",
-                    citizenship: this.employee.citizenship === 'Foreigner' ? true : false,
-                    identity_card_number: this.employee.ic_number,
-                    passport_number: this.employee.passport_number,
-                    date_of_birth: this.employee.date_of_birth,
-                    country_of_birth: this.employee.country_of_birth,
-                    state_of_birth: this.employee.state_of_birth,
-                    sex: this.employee.sex === 'Female' ? true : false,
-                    continue: false
+                    phone: this.employee.user.phone,
+                    password: null,
                 },
                 {
                     resetOnSuccess: true,
@@ -319,17 +311,7 @@ export default {
     },
     methods: {
         submit() {
-            this.form
-                .transform(data => ({
-                    ...data,
-                    citizenship: this.form.citizenship ? 'Foreigner' : 'Malaysian',
-                    sex: this.form.sex ? 'Female' : 'Male'
-                }))
-                .post(this.route("employees.identification.update", this.employee.id));
-        },
-
-        save() {
-            this.submit()
+            this.form.post(this.route("employees.update", this.employee.id));
         },
 
         saveAndContinue() {

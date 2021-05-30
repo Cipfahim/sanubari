@@ -43,120 +43,204 @@
           },
         ]"
       />
-      <jet-form-section
-        @submitted="submit"
-        class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
-      >
-        <template #form class="md:col-span-12">
-          <!-- Strat::Stepper Contents -->
-          <div class="bg-gray-50 p-4 rounded-md">
-            <div class="space-y-8 divide-y divide-gray-200">
-              <!-- Login details-->
-              <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
-                <div class="sm:border-b sm:border-gray-200 pb-2">
-                  <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    Contact Details
-                  </h3>
-                  <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    This section contains sensitive information.
-                  </p>
-                </div>
+      <div class="bg-gray-50 p-4 rounded-md mt-5">
+        
+        <!-- Tab for Desktop & mobile -->
+        <div class="block sm:block overflow-x-scroll scrollbar-hide">
+          <div class="border-b border-gray-200">
+            <nav class="-mb-px flex space-x-6 sm:space-x-8" aria-label="Tabs">
+              <!-- Current: "border-cyan-500 text-cyan-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200" -->
+              <button
+                type="button"
+                @click="toggleTabs(1)"
+                :class="{
+                  'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200':
+                    openTab !== 1,
+                  'border-cyan-500 text-cyan-600': openTab === 1,
+                }"
+                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+              >
+                Contact Number
 
-                <div
-                  class="mt-4 sm:mt-3 space-y-6 sm:space-y-5 border-b border-gray-200 pb-5"
-                  v-for="(n, index) in 2"
-                  :key="index"
+                <!-- Current: "bg-cyan-100 text-cyan-600", Default: "bg-gray-100 text-gray-900" -->
+                <span
+                  class="hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
+                  :class="{
+                    'bg-gray-100 text-gray-900 ': openTab !== 1,
+                    'bg-cyan-100 text-cyan-600 ': openTab === 1,
+                  }"
+                  >2</span
                 >
-                  <!-- Start::international Telephone -->
-                  <div
-                    class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                  >
-                    <label
-                      class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      Contact Number<span class="text-blue-600"> *</span>
-                    </label>
-                    <div class="mt-1 relative sm:mt-0 sm:col-span-2 max-w-lg">
-                      <vue-tel-input
-                        v-model="phone"
-                        mode="international"
-                        class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md"
-                      >
-                      </vue-tel-input>
-                    </div>
-                  </div>
-                  <!-- End::international Telephone -->
-                  <div
-                    class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                  >
-                    <label
-                      class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      Personal E-mail<span class="text-blue-600"> *</span>
-                    </label>
-                    <div class="mt-1 sm:mt-0 sm:col-span-2">
-                      <div class="max-w-lg flex shadow-sm">
-                        <input
-                          type="email"
-                          class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                  >
-                    <label class="block text-sm font-medium text-gray-700"
-                      >Contact Address</label
-                    >
-                    <div class="mt-1 sm:mt-0 sm:col-span-2">
-                      <textarea
-                        id="message"
-                        rows="4"
-                        class="py-3 px-4 block w-full sm:max-w-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <button
+              </button>
+
+              <button
+                type="button"
+                @click="toggleTabs(2)"
+                :class="{
+                  'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200':
+                    openTab !== 2,
+                  'border-cyan-500 text-cyan-600': openTab === 2,
+                }"
+                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+              >
+                Personal Email
+
+                <span
+                  class="hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
+                  :class="{
+                    'bg-gray-100 text-gray-900 ': openTab !== 2,
+                    'bg-cyan-100 text-cyan-600 ': openTab === 2,
+                  }"
+                  >3</span
+                >
+              </button>
+
+              <button
+                type="button"
+                @click="toggleTabs(3)"
+                :class="{
+                  'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200':
+                    openTab !== 3,
+                  'border-cyan-500 text-cyan-600': openTab === 3,
+                }"
+                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                aria-current="page"
+              >
+                Contact Address
+
+                <span
+                  class="hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
+                  :class="{
+                    'bg-gray-100 text-gray-900 ': openTab !== 3,
+                    'bg-cyan-100 text-cyan-600 ': openTab === 3,
+                  }"
+                  >5</span
+                >
+              </button>
+            </nav>
+          </div>
+        </div>
+        <!-- Personal Phone -->
+        <div
+          class="mt-4 h-full sm:h-96"
+          :class="{ hidden: openTab !== 1, block: openTab === 1 }"
+        >
+          <!-- <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"> -->
+          <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Contact Number<span class="text-blue-600"> *</span>
+              </label>
+              
+              <button
                   type="button"
-                  class="mx-auto block mt-10 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                  class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
                 >
-                  Add Address
+                  <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2" />
+                  Add
                 </button>
-              </div>
+            </div>
 
-              <div class="pt-5">
-                <div class="space-y-6 sm:space-y-5">
-                  <div
-                    class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                  >
-                    <div class="mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2">
-                      <div
-                        class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
-                      >
-                        <inertia-link
-                          :href="route('employees.index')"
-                          class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
-                        >
-                          Cancel
-                        </inertia-link>
-                        <button
-                          type="submit"
-                          class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                        >
-                          Save & Continue
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="mt-1 sm:mt-0">
+              <vue-tel-input
+                  v-model="phone"
+                  mode="international"
+                  class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+              >
+              </vue-tel-input>
+
+              <div class="relative">
+                <vue-tel-input
+                  v-model="phone"
+                  mode="international"
+                  class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                >
+                </vue-tel-input>
+                <button class="absolute right-2 top-2 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                  <XIcon class="h-5 w-5 text-red-400 mx-auto" />
+                </button>
               </div>
             </div>
           </div>
-          <!-- End::Stepper Contents -->
-        </template>
-      </jet-form-section>
+        </div>
+        <!-- Personal Email -->
+        <div
+          class="mt-4 h-full sm:h-96"
+          :class="{ hidden: openTab !== 2, block: openTab === 2 }"
+        > 
+          <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Contact Email<span class="text-blue-600"> *</span>
+              </label>
+              
+              <button
+                  type="button"
+                  class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                >
+                  <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2" />
+                  Add
+                </button>
+            </div>
+
+            <div class="mt-1 sm:mt-0">
+              <input
+                  type="email"
+                  class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md mb-3"
+                />
+
+              <div class="relative">
+                <input
+                  type="email"
+                  class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md mb-3"
+                />
+                <button class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                  <XIcon class="h-5 w-5 text-red-400 mx-auto" />
+                </button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!-- Address -->
+        <div
+          class="mt-4 h-full sm:h-96"
+          :class="{ hidden: openTab !== 3, block: openTab === 3 }"
+        > 
+          <div class="w-full sm:w-3/6 mx-auto sm:pt-2 sm:px-3">
+            <div class="flex items-center justify-between mb-3">
+              <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
+                Contact Address<span class="text-blue-600"> *</span>
+              </label>
+              
+              <button
+                  type="button"
+                  class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                >
+                  <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2" />
+                  Add
+                </button>
+            </div>
+
+            <div class="mt-1 sm:mt-0">
+              <input
+                  type="email"
+                  class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md mb-3"
+                />
+
+              <div class="relative">
+                <input
+                  type="email"
+                  class="max-w-lg block w-full shadow-sm focus:ring-cyan-500 focus:border-cyan-500 sm:max-w-lg sm:text-sm border-gray-300 rounded-md mb-3"
+                />
+                <button class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                  <XIcon class="h-5 w-5 text-red-400 mx-auto" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- End::Stepper -->
   </app-layout>
@@ -165,6 +249,7 @@
 <script>
 import AppLayout from "../../Layouts/App";
 import TopBar from "./TopBar";
+
 import {
   CalendarIcon,
   CashIcon,
@@ -173,6 +258,7 @@ import {
   ChevronRightIcon,
   OfficeBuildingIcon,
   PlusCircleIcon,
+  XIcon,
 } from "@heroicons/vue/solid";
 import { mask } from "vue-the-mask";
 import JetFormSection from "@/Jetstream/FormSection";
@@ -184,8 +270,8 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
-import { VueTelInput } from 'vue3-tel-input'
-import 'vue3-tel-input/dist/vue3-tel-input.css'
+import { VueTelInput } from "vue3-tel-input";
+import "vue3-tel-input/dist/vue3-tel-input.css";
 
 export default {
   props: {
@@ -203,6 +289,7 @@ export default {
     CheckIcon,
     CalendarIcon,
     PlusCircleIcon,
+    XIcon,
     JetFormSection,
     JetSecondaryButton,
     JetLabel,
@@ -211,7 +298,7 @@ export default {
     JetActionMessage,
     JetButton,
     JetCheckbox,
-    VueTelInput
+    VueTelInput,
   },
   directives: { mask },
   data() {
@@ -226,11 +313,15 @@ export default {
           resetOnSuccess: true,
         }
       ),
+      openTab: 1,
     };
   },
   methods: {
     submit() {
       this.form.post(this.route("employees.update", this.employee.id));
+    },
+    toggleTabs(tabNumber) {
+      this.openTab = tabNumber;
     },
   },
 };
