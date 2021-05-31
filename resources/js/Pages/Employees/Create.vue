@@ -2,14 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: '#', status: true, current: true},
-                {id: 'B', name: 'Identification Details', href: '#', status: false},
-                {id: 'C', name: 'Contact Details', href: '#', status: false},
-                {id: 'D', name: 'Contribution',href: '#', status: false},
-                {id: 'E', name: 'Salary Details', href: '#', status: false},
-                {id: 'F', name: 'Annual Leave', href: '#', status: false},
-            ]"/>
+            <top-bar/>
             <jet-form-section
                 @submitted="submit"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
@@ -21,7 +14,7 @@
                             <div>
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Official Information 
+                                        Official Information
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         Star (*) means required!
@@ -29,6 +22,32 @@
                                 </div>
 
                                 <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
+                                    <!-- Profile Photo -->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <!-- Profile Photo File Input -->
+                                        <input type="file" class="hidden"
+                                               ref="photo"
+                                               @change="updatePhotoPreview">
+
+                                        <jet-label for="photo" value="Photo"/>
+
+                                        <div class="block">
+                                            <!-- New Profile Photo Preview -->
+                                            <div class="mt-2" v-show="photoPreview">
+                                            <span class="block rounded-full w-20 h-20"
+                                                  :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                                            </span>
+                                            </div>
+
+                                            <jet-secondary-button class="mt-2 mr-2" type="button"
+                                                                  @click.prevent="selectNewPhoto">
+                                                Select A New Photo
+                                            </jet-secondary-button>
+
+                                            <jet-input-error :message="form.errors.photo" class="mt-2"/>
+                                        </div>
+                                    </div>
+
                                     <!-- Official Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="official_name" value="Official Name *"/>
@@ -159,6 +178,31 @@
                                             class="mt-2"
                                         />
                                     </div>
+
+                                    <!-- Status field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="status" value="Status *"/>
+                                        <Switch
+                                            v-model="form.status"
+                                            :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        >
+                                          <span
+                                              aria-hidden="true"
+                                              :class="form.status ? 'translate-x-20' : 'translate-x-0'"
+                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                          >
+                                            <span v-if="form.status" class="text-cyan-900">Active</span>
+                                            <span v-else class="text-cyan-900">Inactive</span>
+                                          </span>
+                                        </Switch>
+                                        <jet-input-error
+                                            :message="form.errors.status"
+                                            class="mt-2"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -210,7 +254,6 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
-import {mask} from "vue-the-mask";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -218,13 +261,16 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-
+import Input from "../../Components/Input";
+import JetCheckbox from "@/Jetstream/Checkbox";
+import {Switch} from "@headlessui/vue";
 
 export default {
     props: {
         locations: Array
     },
     components: {
+        Input,
         TopBar,
         AppLayout,
         OfficeBuildingIcon,
@@ -241,12 +287,16 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
+        JetCheckbox,
+        Switch
     },
-    directives: {mask},
     data() {
         return {
+            photoPreview: null,
+
             form: this.$inertia.form(
                 {
+                    photo: null,
                     official_name: null,
                     nick_name: null,
                     location: null,
@@ -265,8 +315,30 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.store'))
-        }
+            if (this.$refs.photo) {
+                this.form.photo = this.$refs.photo.files[0]
+            }
+
+            this.form
+                .transform(data => ({
+                    ...data,
+                    status: this.form.status ? 'Active' : 'Inactive'
+                }))
+                .post(this.route('employees.store'))
+        },
+        selectNewPhoto() {
+            this.$refs.photo.click();
+        },
+
+        updatePhotoPreview() {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                this.photoPreview = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.photo.files[0]);
+        },
     }
 };
 </script>

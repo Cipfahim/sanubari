@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\EmployeeStatusEnum;
 use App\Http\Requests\Employees\StoreEmployeeRequest;
+use App\Http\Requests\Employees\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
@@ -69,7 +68,8 @@ class EmployeeController extends Controller
             'nick_name' => $request->get('nick_name'),
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
-            'status' => EmployeeStatusEnum::Draft
+            'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
+            'status' => $request->get('status')
         ]);
 
         return Redirect::route('employees.identification.index', $user->employee->id);
@@ -107,7 +107,7 @@ class EmployeeController extends Controller
      * @param \App\Models\Employee $employee
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEmployeeRequest $request, $id)
     {
         $employee = Employee::findOrFail($id);
 
@@ -118,14 +118,14 @@ class EmployeeController extends Controller
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
         ]);
 
-        $employee->user()->update([
+        $user = $employee->user;
+        $user->update([
             'role_id' => Role::Employee,
             'name' => $request->get('nick_name'),
             'phone' => $request->get('phone'),
             'password' => Hash::make($request->get('password')),
-            'status' => $request->get('status') === true
-                ? EmployeeStatusEnum::Active
-                : EmployeeStatusEnum::Inactive
+            'photo' => upload($request->file('photo'), 'profile-photos', 'public', $user->photo),
+            'status' => $request->get('status')
         ]);
 
         if ($request->get('continue') == true) {

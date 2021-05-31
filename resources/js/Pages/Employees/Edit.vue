@@ -2,16 +2,9 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :steps="[
-                {id: 'A', name: 'Employee Details', href: route('employees.edit',employee.id), status: true, current: true},
-                {id: 'B', name: 'Identification Details', href: route('employees.identification.index',employee.id), status: true},
-                {id: 'C', name: 'Contact Details', href: route('employees.contact-details.index',employee.id), status: true},
-                {id: 'D', name: 'Contribution',href: route('employees.contributions.index',employee.id), status: true},
-                {id: 'E', name: 'Salary Details', href: route('employees.salary-details.index',employee.id), status: true},
-                {id: 'F', name: 'Annual Leave', href: route('employees.annual-leave.index',employee.id), status: true},
-            ]"/>
+            <top-bar :employee="employee.id" :current="route('employees.edit', employee.id)"/>
             <jet-form-section
-                @submitted="save"
+                @submitted="submit"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
             >
                 <template #form class=" md:col-span-12">
@@ -29,6 +22,38 @@
                                 </div>
 
                                 <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
+                                    <!-- Profile Photo -->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <!-- Profile Photo File Input -->
+                                        <input type="file" class="hidden"
+                                               ref="photo"
+                                               @change="updatePhotoPreview">
+
+                                        <jet-label for="photo" value="Photo"/>
+
+                                        <div class="block">
+                                            <!-- Current Profile Photo -->
+                                            <div class="mt-2" v-show="! photoPreview">
+                                                <img :src="getFileUrl(employee.user.photo)" :alt="employee.user.name"
+                                                     class="rounded-full h-20 w-20 object-cover">
+                                            </div>
+
+                                            <!-- New Profile Photo Preview -->
+                                            <div class="mt-2" v-show="photoPreview">
+                                            <span class="block rounded-full w-20 h-20"
+                                                  :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                                            </span>
+                                            </div>
+
+                                            <jet-secondary-button class="mt-2 mr-2" type="button"
+                                                                  @click.prevent="selectNewPhoto">
+                                                Select A New Photo
+                                            </jet-secondary-button>
+
+                                            <jet-input-error :message="form.errors.photo" class="mt-2"/>
+                                        </div>
+                                    </div>
+
                                     <!-- Official Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="official_name" value="Official Name *"/>
@@ -159,16 +184,29 @@
                                         />
                                     </div>
 
-                                    <!-- Status -->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <div></div>
-                                        <label class="flex items-center">
-                                            <jet-checkbox name="status" v-model:checked="form.status"/>
-                                            <span class="ml-2 text-sm text-gray-600">Status: {{
-                                                    form.status ? 'Active' : 'Inactive'
-                                                }}</span>
-                                        </label>
-                                        <jet-input-error :message="form.errors.status" class="mt-2"/>
+                                    <!-- Status field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="status" value="Status *"/>
+                                        <Switch
+                                            v-model="form.status"
+                                            :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        >
+                                          <span
+                                              aria-hidden="true"
+                                              :class="form.status ? 'translate-x-20' : 'translate-x-0'"
+                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                          >
+                                            <span v-if="form.status" class="text-cyan-900">Active</span>
+                                            <span v-else class="text-cyan-900">Inactive</span>
+                                          </span>
+                                        </Switch>
+                                        <jet-input-error
+                                            :message="form.errors.status"
+                                            class="mt-2"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +267,6 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
-import {mask} from "vue-the-mask";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -239,7 +276,7 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
-
+import {Switch} from "@headlessui/vue";
 
 export default {
     props: {
@@ -264,21 +301,24 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
-        JetCheckbox
+        JetCheckbox,
+        Switch
     },
-    directives: {mask},
     data() {
         return {
+            photoPreview: null,
+
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
+                    photo: null,
                     official_name: this.employee.official_name,
                     nick_name: this.employee.nick_name,
                     location: this.employee.location_id,
                     date_of_join: this.employee.date_of_join,
                     phone: this.employee.user.phone,
                     password: null,
-                    status: this.employee.user.status === 'Active',
+                    status: this.employee.user.status === 'Active' ? true : false,
                     continue: false
                 },
                 {
@@ -289,16 +329,36 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.update', this.employee.id))
-        },
-        save() {
-            this.submit()
+            if (this.$refs.photo) {
+                this.form.photo = this.$refs.photo.files[0]
+            }
+
+            this.form
+                .transform(data => ({
+                    ...data,
+                    status: this.form.status ? 'Active' : 'Inactive'
+                }))
+                .post(this.route('employees.update', this.employee.id))
         },
 
         saveAndContinue() {
             this.form.continue = true
             this.submit()
-        }
+        },
+
+        selectNewPhoto() {
+            this.$refs.photo.click();
+        },
+
+        updatePhotoPreview() {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                this.photoPreview = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.photo.files[0]);
+        },
     }
 };
 </script>

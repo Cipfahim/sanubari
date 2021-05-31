@@ -27,6 +27,7 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             'official_name' => ['required', 'string', 'min:3', 'max:255'],
             'nick_name' => ['required', 'string', 'min:3', 'max:255'],
+            'photo' => ['nullable', 'image'],
             'location' => ['required'],
             'date_of_join' => ['required'],
             'phone' => [
