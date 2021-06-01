@@ -62,11 +62,11 @@
                                     </th>
                                     <th
                                         scope="col"
-                                        @click="sort('name')"
+                                        @click="sort('official_name')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name"/>
-                                        Name
+                                        <sort-arrow :sort="queryForm.sort" field="official_name"/>
+                                        Official_name
                                     </th>
 
                                     <th
@@ -264,7 +264,7 @@ export default {
             queryForm: {
                 field: this.requests.filter
                     ? Object.keys(this.requests.filter)[0]
-                    : "name",
+                    : "official_name",
                 filter: this.requests.filter
                     ? Object.values(this.requests.filter)[0]
                     : "",

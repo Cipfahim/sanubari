@@ -52,14 +52,11 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
 
 Route::resource('employees', EmployeeController::class)->except('destroy');
 
-Route::resource('contact-details', ContactDetailsController::class)->except('show');
-//Route::resource('contributions', ContributionsController::class)->except('show');
-//Route::resource('salaries', SalaryController::class)->except('show');
 Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
 Route::resource('countries', CountryController::class)->except('show');
 
-Route::get('/document', function() {
+Route::get('/document', function () {
     return inertia('Employees/Document');
 });
