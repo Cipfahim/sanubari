@@ -59,3 +59,7 @@ Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
 Route::resource('countries', CountryController::class)->except('show');
+
+Route::get('/document', function() {
+    return inertia('Employees/Document');
+});
