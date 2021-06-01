@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Employees\SalaryDetailsRequest;
+use App\Http\Requests\Employees\BankDetailsRequest;
+use App\Models\Bank;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -16,8 +17,9 @@ class BankDetailsController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/SalaryDetails', [
-            'employee' => Employee::with('user', 'salaryDetails')
+        return Inertia::render('Employees/BankDetails', [
+            'banks' => Bank::select('id', 'name')->get(),
+            'employee' => Employee::with('user', 'bankDetails')
                 ->findOrFail($id)
         ]);
     }
@@ -25,25 +27,22 @@ class BankDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Salary $salary
+     * @param BankDetailsRequest $request
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(SalaryDetailsRequest $request, $id)
+    public function update(BankDetailsRequest $request, $id)
     {
-        Employee::findOrFail($id)->salaryDetails()->updateOrCreate([
+        Employee::findOrFail($id)->bankDetails()->updateOrCreate([
             'employee_id' => $id,
-            'basic_salary' => $request->get('basic_salary'),
+            'bank_id' => $request->get('bank'),
         ], [
-            'living_allowance' => $request->get('living_allowance'),
-            'attendance_allowance' => $request->get('attendance_allowance'),
-            'levy' => $request->get('levy'),
-            'in_charge_allowance' => $request->get('in_charge_allowance'),
+            'account_number' => $request->get('account_number'),
         ]);
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.annual-leave.index', $id)
-                ->with('success', 'Salary Details Saved.');
+            return Redirect::route('employees.salary-details.index', $id)
+                ->with('success', 'Bank Details Saved.');
         }
-        return Redirect::back()->with('success', 'Salary Details Saved.');
+        return Redirect::back()->with('success', 'Bank Details Saved.');
     }
 }
