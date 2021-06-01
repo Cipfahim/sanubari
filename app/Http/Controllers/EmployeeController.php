@@ -79,11 +79,13 @@ class EmployeeController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Employee $employee)
     {
-        //
+        return Inertia::render('Employees/Show', [
+            'employee' => $employee
+        ]);
     }
 
     /**

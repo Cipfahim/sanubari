@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuditorPermissionController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\CountryController;
@@ -39,6 +40,9 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::get('contributions', [ContributionsController::class, 'index'])->name('contributions.index');
     Route::put('contributions', [ContributionsController::class, 'update'])->name('contributions.update');
 
+    Route::get('bank-details', [BankDetailsController::class, 'index'])->name('bank-details.index');
+    Route::put('bank-details', [BankDetailsController::class, 'update'])->name('bank-details.update');
+
     Route::get('salary-details', [SalaryController::class, 'index'])->name('salary-details.index');
     Route::put('salary-details', [SalaryController::class, 'update'])->name('salary-details.update');
 
@@ -46,7 +50,7 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
 
 });
 
-Route::resource('employees', EmployeeController::class)->except('show');
+Route::resource('employees', EmployeeController::class)->except('destroy');
 
 Route::resource('contact-details', ContactDetailsController::class)->except('show');
 //Route::resource('contributions', ContributionsController::class)->except('show');

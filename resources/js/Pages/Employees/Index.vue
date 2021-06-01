@@ -165,11 +165,11 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
-<!--                                        <inertia-link-->
-<!--                                            :href="route('employees.edit', employee.id)"-->
-<!--                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"-->
-<!--                                        >Show-->
-<!--                                        </inertia-link>-->
+                                        <inertia-link
+                                            :href="route('employees.show', employee.id)"
+                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                        >Show
+                                        </inertia-link>
 
                                         <inertia-link
                                             :href="route('employees.edit', employee.id)"
