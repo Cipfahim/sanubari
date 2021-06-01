@@ -2,47 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar
-                :steps="[
-                  {
-                    id: 'A',
-                    name: 'Employee Details',
-                    href: route('employees.edit', employee.id),
-                    status: true,
-                  },
-                  {
-                    id: 'B',
-                    name: 'Identification Details',
-                    href: route('employees.identification.index', employee.id),
-                    status: true,
-                    current: true,
-                  },
-                  {
-                    id: 'C',
-                    name: 'Contact Details',
-                    href: route('employees.contact-details.index', employee.id),
-                    status: true,
-                  },
-                  {
-                    id: 'D',
-                    name: 'Contribution',
-                    href: route('employees.contributions.index', employee.id),
-                    status: true,
-                  },
-                  {
-                    id: 'E',
-                    name: 'Salary Details',
-                    href: route('employees.salary-details.index', employee.id),
-                    status: true,
-                  },
-                  {
-                    id: 'F',
-                    name: 'Annual Leave',
-                    href: route('employees.annual-leave.index', employee.id),
-                    status: true,
-                  },
-                ]"
-            />
+            <top-bar :employee="employee.id" :current="route('employees.identification.index', employee.id)"/>
             <jet-form-section
                 @submitted="save"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"

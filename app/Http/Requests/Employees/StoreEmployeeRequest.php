@@ -26,6 +26,7 @@ class StoreEmployeeRequest extends FormRequest
         return [
             'official_name' => ['required', 'string', 'min:3', 'max:255'],
             'nick_name' => ['required', 'string', 'min:3', 'max:255'],
+            'photo' => ['nullable', 'image'],
             'location' => ['required', 'numeric'],
             'date_of_join' => ['required'],
             'phone' => ['required', 'string', 'min:3', 'max:255', 'unique:users', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/'],

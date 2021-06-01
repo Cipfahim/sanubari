@@ -25,11 +25,6 @@ class Employee extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function bank()
-    {
-        return $this->hasOne(Bank::class);
-    }
-
     public function contactDetails()
     {
         return $this->hasMany(ContactDetails::class);
@@ -43,6 +38,11 @@ class Employee extends Model
     public function salaryDetails()
     {
         return $this->hasOne(SalaryDetails::class);
+    }
+
+    public function bankDetails()
+    {
+        return $this->hasOne(BankDetails::class);
     }
 
     public function payslips()
