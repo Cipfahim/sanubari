@@ -108,12 +108,18 @@ export default {
                 },
                 {
                     id: 'E',
+                    name: 'Bank Details',
+                    href: route('employees.bank-details.index', this.employee),
+                    status: true
+                },
+                {
+                    id: 'F',
                     name: 'Salary Details',
                     href: route('employees.salary-details.index', this.employee),
                     status: true
                 },
                 {
-                    id: 'F',
+                    id: 'G',
                     name: 'Annual Leave',
                     href: route('employees.annual-leave.index', this.employee),
                     status: true

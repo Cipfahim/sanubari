@@ -62,11 +62,11 @@
                                     </th>
                                     <th
                                         scope="col"
-                                        @click="sort('name')"
+                                        @click="sort('official_name')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name"/>
-                                        Name
+                                        <sort-arrow :sort="queryForm.sort" field="official_name"/>
+                                        Official_name
                                     </th>
 
                                     <th
@@ -165,11 +165,11 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
-<!--                                        <inertia-link-->
-<!--                                            :href="route('employees.edit', employee.id)"-->
-<!--                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"-->
-<!--                                        >Show-->
-<!--                                        </inertia-link>-->
+                                        <inertia-link
+                                            :href="route('employees.show', employee.id)"
+                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                        >Show
+                                        </inertia-link>
 
                                         <inertia-link
                                             :href="route('employees.edit', employee.id)"
@@ -264,7 +264,7 @@ export default {
             queryForm: {
                 field: this.requests.filter
                     ? Object.keys(this.requests.filter)[0]
-                    : "name",
+                    : "official_name",
                 filter: this.requests.filter
                     ? Object.values(this.requests.filter)[0]
                     : "",

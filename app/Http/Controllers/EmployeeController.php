@@ -28,8 +28,8 @@ class EmployeeController extends Controller
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
                 ->with(['user', 'location'])
-//                ->allowedFilters(['name'])
-//                ->allowedSorts(['name', 'description', 'status'])
+                ->allowedFilters(['official_name'])
+                ->allowedSorts(['official_name', 'status'])
                 ->latest('id')
                 ->paginate()
                 ->appends(request()->query()),
@@ -78,18 +78,21 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Employee $employee
-     * @return \Illuminate\Http\Response
+     * @param Employee $employee
+     * @return \Inertia\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        return Inertia::render('Employees/Show', [
+            'employee' => Employee::with(['user', 'location', 'bankDetails', 'salaryDetails', 'contribution'])
+                ->findOrfail($id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Employee $employee
+     * @param Employee $employee
      * @return \Inertia\Response
      */
     public function edit($id)
@@ -104,7 +107,7 @@ class EmployeeController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Employee $employee
+     * @param Employee $employee
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateEmployeeRequest $request, $id)
@@ -138,7 +141,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Employee $employee
+     * @param Employee $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy(Employee $employee)
