@@ -117,8 +117,8 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="categories"
-                            action-text="Add Category"
+                            resource="locations"
+                            action-text="Add Location"
                             :action-link="route('locations.create')"
                         />
                     </div>

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactDetails;
+use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -16,9 +16,11 @@ class ContactDetailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        
+        return Inertia::render('Employees/ContactDetails', [
+            'employee' => Employee::with('user')->findOrFail($id)
+        ]);
     }
 
     /**
@@ -42,7 +44,7 @@ class ContactDetailsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,7 +55,7 @@ class ContactDetailsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ContactDetails  $contactDetails
+     * @param \App\Models\ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
     public function show(ContactDetails $contactDetails)
@@ -64,7 +66,7 @@ class ContactDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ContactDetails  $contactDetails
+     * @param \App\Models\ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
     public function edit(ContactDetails $contactDetails)
@@ -75,8 +77,8 @@ class ContactDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactDetails  $contactDetails
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ContactDetails $contactDetails)
@@ -87,7 +89,7 @@ class ContactDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ContactDetails  $contactDetails
+     * @param \App\Models\ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
     public function destroy(ContactDetails $contactDetails)

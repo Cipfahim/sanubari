@@ -130,37 +130,19 @@ export default {
                     current: route().current('honorarium-categories.*')
                 },
                 {
-                    name: 'Employee',
-                    href: route('employees.create'),
+                    name: 'Employees',
+                    href: route('employees.index'),
                     icon: ClockIcon,
                     current: route().current('employees.*')
                 },
                 {
-                    name: 'Contact Details',
-                    href: route('contact-details.create'),
-                    icon: ClockIcon,
-                    current: route().current('contact-details.*')
-                },
-                {
-                    name: 'Contribution',
-                    href: route('contributions.create'),
-                    icon: ClockIcon,
-                    current: route().current('contributions.*')
-                },
-                {
-                    name: 'Salary',
-                    href: route('salaries.create'),
-                    icon: ClockIcon,
-                    current: route().current('salaries.*')
-                },
-                {
-                    name: 'Location',
+                    name: 'Locations',
                     href: route('locations.index'),
                     icon: ClockIcon,
                     current: route().current('locations.*')
                 },
                 {
-                    name: 'Bank',
+                    name: 'Banks List',
                     href: route('banks.index'),
                     icon: ClockIcon,
                     current: route().current('banks.*')
@@ -171,7 +153,6 @@ export default {
                     icon: ClockIcon,
                     current: route().current('auditor-access.*')
                 },
-                {name: 'Demo', href: '#', icon: ClockIcon, current: false},
                 {
                     name: 'Activity Logs',
                     href: route('activityLogs.index'),

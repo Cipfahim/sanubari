@@ -42,7 +42,7 @@
                                 <dt class="text-sm font-medium text-gray-500">
                                     Causer Info
                                 </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <dd v-if="activityLog.causer" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     Name: {{ activityLog.causer.name }} <br>
                                     Email: {{ activityLog.causer.email }}
                                 </dd>
