@@ -154,6 +154,12 @@ export default {
                     current: route().current('auditor-access.*')
                 },
                 {
+                    name: 'Documents',
+                    href: '/documents',
+                    icon: CogIcon,
+                    current: ''
+                },
+                {
                     name: 'Activity Logs',
                     href: route('activityLogs.index'),
                     icon: CogIcon,
