@@ -102,7 +102,7 @@
 <script>
 import {ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot,} from '@headlessui/vue'
-import {ClockIcon, CogIcon, HomeIcon, XIcon,} from '@heroicons/vue/outline'
+import {ClockIcon, CogIcon, HomeIcon, UsersIcon, XIcon,} from '@heroicons/vue/outline'
 
 export default {
     components: {
@@ -110,7 +110,8 @@ export default {
         DialogOverlay,
         TransitionRoot,
         TransitionChild,
-        XIcon
+        XIcon,
+        UsersIcon
     },
     setup() {
         const sidebarOpen = ref(false)
@@ -154,10 +155,22 @@ export default {
                     current: route().current('auditor-access.*')
                 },
                 {
+                    name: 'Documents',
+                    href: '/documents',
+                    icon: CogIcon,
+                    current: ''
+                },
+                {
                     name: 'Activity Logs',
                     href: route('activityLogs.index'),
                     icon: CogIcon,
                     current: route().current('activityLogs.*')
+                },
+                {
+                    name: 'Users',
+                    href: route('users.index'),
+                    icon: UsersIcon,
+                    current: route().current('users.*')
                 },
             ],
             secondaryNavigation: [

@@ -13,10 +13,10 @@
             </div>
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="flex flex-col">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="-my-2 overflow-x-auto scrollbar-hide sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-200">
+                        <div class="shadow overflow-hidden scrollbar-hide border-b border-gray-200 sm:rounded-lg">
+                            <table class="min-w-full divide-y overflow-x-auto  scrollbar-hide divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -48,18 +48,23 @@
                                             <div class="text-sm text-gray-900">2017</div>
                                         </td>
                                         <td class="px-2 text-center py-4 whitespace-nowrap">
-                                            <img class="h-24 w-36 mx-auto rounded" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                                            <img class="h-24 w-36 mx-auto rounded" src="https://cdn.pixabay.com/photo/2018/10/29/22/25/analysis-3782319__340.jpg" alt="">
                                         </td>
-                                        <td class="px-2 text-center py-4 whitespace-nowrap flex items-center text-sm font-medium">
-                                            <a href="#" class="text-green-600 hover:text-green-900">
-                                                <PencilAltIcon class="h-5 w-5 mx-2" />
-                                            </a>
-                                            <a href="#" class="text-cyan-600 hover:text-cyan-900">
-                                                <EyeIcon class="h-5 w-5 mx-2" />
-                                            </a>
-                                            <a href="#" class="text-red-600 hover:text-red-900">
-                                                <TrashIcon class="h-5 w-5 mx-2" />
-                                            </a>
+                                        <td class="px-2 text-center py-4 whitespace-nowrap text-sm font-medium">
+                                            <div class="flex h-24 justify-center items-center">
+                                                <a href="#" class="text-green-600 hover:text-green-700">
+                                                    <PencilAltIcon class="h-5 w-5 mx-2" />
+                                                </a>
+                                                <a href="#" class="text-cyan-600 hover:text-cyan-700">
+                                                    <EyeIcon class="h-5 w-5 mx-2" />
+                                                </a>
+                                                <a href="#" class="text-red-600 hover:text-red-700">
+                                                    <!-- <DownloadIcon class="h-5 w-5 mx-2" /> -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                     <!-- More people... -->
@@ -96,7 +101,7 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
-import { PencilAltIcon , EyeIcon , TrashIcon } from "@heroicons/vue/solid";
+import { PencilAltIcon , EyeIcon , DownloadIcon } from "@heroicons/vue/solid";
 
 export default {
     props: {
@@ -124,7 +129,7 @@ export default {
         Switch,
         PencilAltIcon,
         EyeIcon, 
-        TrashIcon
+        DownloadIcon
     },
 };
 </script>

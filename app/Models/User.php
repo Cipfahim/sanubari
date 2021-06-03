@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [
-       'id'
+        'id'
     ];
 
     /**
@@ -42,6 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeExceptEmployee($query)
+    {
+        return $query->where('role_id', '!=', Role::Employee);
+    }
 
     public function employee()
     {
