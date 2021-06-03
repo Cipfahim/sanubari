@@ -11,6 +11,7 @@ use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -57,11 +58,9 @@ Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
 Route::resource('countries', CountryController::class)->except('show');
 
-<<<<<<< HEAD
-Route::get('/documents', function() {
+Route::resource('users', UserController::class)->except('destroy');
+
+
+Route::get('/documents', function () {
     return inertia('Employees/Documents');
-=======
-Route::get('/document', function () {
-    return inertia('Employees/Document');
->>>>>>> 8020638c19489c769ef3fa1d61def4cd346bbcd1
 });
