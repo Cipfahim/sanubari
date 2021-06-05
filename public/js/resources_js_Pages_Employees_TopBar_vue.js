@@ -12,7 +12,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["steps"]
+  props: {
+    current: Number,
+    employee: {
+      "default": '',
+      required: false
+    }
+  },
+  data: function data() {
+    return {
+      steps: [{
+        id: 'A',
+        name: 'Employee Details',
+        href: route('employees.edit', this.employee),
+        status: true
+      }, {
+        id: 'B',
+        name: 'Identification Details',
+        href: route('employees.identification.index', this.employee),
+        status: true
+      }, {
+        id: 'C',
+        name: 'Contact Details',
+        href: route('employees.contact-details.index', this.employee),
+        status: true
+      }, {
+        id: 'D',
+        name: 'Contribution',
+        href: route('employees.contributions.index', this.employee),
+        status: true
+      }, {
+        id: 'E',
+        name: 'Bank Details',
+        href: route('employees.bank-details.index', this.employee),
+        status: true
+      }, {
+        id: 'F',
+        name: 'Salary Details',
+        href: route('employees.salary-details.index', this.employee),
+        status: true
+      }, {
+        id: 'G',
+        name: 'Annual Leave',
+        href: route('employees.annual-leave.index', this.employee),
+        status: true
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -37,19 +83,19 @@ var _hoisted_2 = {
   "class": "border border-gray-300 rounded-md divide-y divide-gray-300 md:flex md:divide-y-0"
 };
 var _hoisted_3 = {
-  "class": "ml-4 text-sm font-medium text-cyan-600"
-};
-var _hoisted_4 = {
   "class": "px-4 py-3 flex items-center text-sm font-medium"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "flex-shrink-0 w-8 h-8 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "text-gray-500 group-hover:text-gray-900"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
+};
+var _hoisted_7 = {
+  "class": "ml-4 text-sm font-medium text-cyan-600"
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -72,12 +118,22 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ol", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.steps, function (step, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ol", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.steps, function (step, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
       key: step.name,
       "class": "relative md:flex-1 md:flex"
-    }, [step.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+    }, [_ctx.route().current('employees.create') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
       key: 0,
+      href: step.href,
+      "class": "group flex items-center"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.id), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.name), 1
+    /* TEXT */
+    )])], 8
+    /* PROPS */
+    , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+      key: 1,
       href: step.href,
       "class": "px-4 py-3 flex items-center text-sm font-medium",
       "aria-current": "step"
@@ -85,19 +141,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
           "class": ["flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full", {
-            'bg-cyan-600 group-hover:bg-green-800': step.current,
-            'border-2 border-cyan-600': !step.current
+            'bg-cyan-600 group-hover:bg-green-800': step.href === $props.current,
+            'border-2 border-cyan-600': step.current !== $props.current
           }]
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
           "class": {
-            'text-white': step.current,
-            'text-cyan-600': !step.current
+            'text-white': step.current === $props.current,
+            'text-cyan-600': step.current !== $props.current
           }
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.id), 3
         /* TEXT, CLASS */
         )], 2
         /* CLASS */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.name), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.name), 1
         /* TEXT */
         )];
       }),
@@ -106,17 +162,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
     }, 1032
     /* PROPS, DYNAMIC_SLOTS */
-    , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
-      key: 1,
-      href: step.href,
-      "class": "group flex items-center"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.id), 1
-    /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.name), 1
-    /* TEXT */
-    )])], 8
-    /* PROPS */
-    , ["href"])), index !== $props.steps.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    , ["href"])), index !== $data.steps.length - 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
       key: 2
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Arrow separator for lg screens and up "), _hoisted_8], 2112
     /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
