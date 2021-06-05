@@ -80,6 +80,14 @@
 
                                     <th
                                         scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                    >
+                                        <!--                                        <sort-arrow :sort="queryForm.sort" field="role"/>-->
+                                        Role
+                                    </th>
+
+                                    <th
+                                        scope="col"
                                         @click="sort('created_at')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
@@ -122,6 +130,14 @@
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
                                         {{ user.phone }}
+                                    </td>
+
+
+                                    <td
+                                        v-if="user.role"
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        {{ user.role.name }}
                                     </td>
 
 

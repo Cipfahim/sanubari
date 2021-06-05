@@ -199,6 +199,15 @@
                                         </dd>
                                     </div>
 
+                                    <div class="sm:col-span-1">
+                                        <dt class="text-sm font-medium text-gray-500">
+                                            Status
+                                        </dt>
+                                        <dd v-if="employee.user" class="mt-1 text-sm text-gray-900">
+                                            {{ employee.user.status }}
+                                        </dd>
+                                    </div>
+
                                 </dl>
                             </div>
 
@@ -210,14 +219,10 @@
                                         <dt class="text-sm font-medium text-gray-500">
                                             Contact Number
                                         </dt>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            {{ employee.employee_number || 'Unknown' }}
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            {{ employee.employee_number || 'Unknown' }}
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            {{ employee.employee_number || 'Unknown' }}
+                                        <dd v-if="employee.contact_numbers.length"
+                                            v-for="contactNumber in employee.contact_numbers"
+                                            class="my-1 text-sm text-gray-900">
+                                            {{ contactNumber.value }}
                                         </dd>
                                     </div>
 
@@ -225,11 +230,10 @@
                                         <dt class="text-sm font-medium text-gray-500">
                                             Personal Email
                                         </dt>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            demo@example.com
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            demo@example.com
+                                        <dd v-if="employee.contact_emails.length"
+                                            v-for="contactEmail in employee.contact_emails"
+                                            class="my-1 text-sm text-gray-900">
+                                            {{ contactEmail.value }}
                                         </dd>
                                     </div>
 
@@ -237,17 +241,10 @@
                                         <dt class="text-sm font-medium text-gray-500">
                                             Personal Address
                                         </dt>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            Dhaka, Bangladesh -1000
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            Dhaka, Bangladesh -1000
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            Dhaka, Bangladesh -1000
-                                        </dd>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            Dhaka, Bangladesh -1000
+                                        <dd v-if="employee.contact_address.length"
+                                            v-for="contactAddress in employee.contact_address"
+                                            class="my-1 text-sm text-gray-900">
+                                            {{ contactAddress.value }}
                                         </dd>
                                     </div>
                                 </dl>
@@ -355,18 +352,18 @@
                                             Quota
                                         </dt>
                                         <dd class="my-1 text-sm text-gray-900">
-                                            Quota
+                                            {{ employee.annual_leave_quota }}
                                         </dd>
                                     </div>
 
-                                    <div class="sm:col-span-1">
-                                        <dt class="text-sm font-medium text-gray-500">
-                                            Annual Leave Taken (Days)
-                                        </dt>
-                                        <dd class="my-1 text-sm text-gray-900">
-                                            12
-                                        </dd>
-                                    </div>
+                                    <!--                                    <div class="sm:col-span-1">-->
+                                    <!--                                        <dt class="text-sm font-medium text-gray-500">-->
+                                    <!--                                            Annual Leave Taken (Days)-->
+                                    <!--                                        </dt>-->
+                                    <!--                                        <dd class="my-1 text-sm text-gray-900">-->
+                                    <!--                                            12-->
+                                    <!--                                        </dd>-->
+                                    <!--                                    </div>-->
                                 </dl>
                             </div>
                         </article>

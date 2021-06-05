@@ -84,7 +84,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         return Inertia::render('Employees/Show', [
-            'employee' => Employee::with(['user', 'location', 'bankDetails', 'salaryDetails', 'contribution'])
+            'employee' => Employee::with(['user', 'location', 'bankDetails', 'salaryDetails', 'contribution', 'contactNumbers', 'contactEmails', 'contactAddress'])
                 ->findOrfail($id)
         ]);
     }
