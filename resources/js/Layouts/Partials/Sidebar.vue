@@ -125,12 +125,6 @@ export default {
             navigation: [
                 {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
                 {
-                    name: 'Honorarium Categories',
-                    href: route('honorarium-categories.index'),
-                    icon: ClockIcon,
-                    current: route().current('honorarium-categories.*')
-                },
-                {
                     name: 'Employees',
                     href: route('employees.index'),
                     icon: ClockIcon,
@@ -143,22 +137,10 @@ export default {
                     current: route().current('locations.*')
                 },
                 {
-                    name: 'Banks List',
+                    name: 'Bank List',
                     href: route('banks.index'),
                     icon: ClockIcon,
                     current: route().current('banks.*')
-                },
-                {
-                    name: 'Auditor Access',
-                    href: route('auditor-access.create'),
-                    icon: ClockIcon,
-                    current: route().current('auditor-access.*')
-                },
-                {
-                    name: 'Documents',
-                    href: '/documents',
-                    icon: CogIcon,
-                    current: ''
                 },
                 {
                     name: 'Activity Logs',
@@ -174,6 +156,18 @@ export default {
                 },
             ],
             secondaryNavigation: [
+                {
+                    name: 'Auditor Access',
+                    href: route('auditor-access.create'),
+                    icon: ClockIcon,
+                    current: route().current('auditor-access.*')
+                },
+                {
+                    name: 'Documents',
+                    href: '/documents',
+                    icon: CogIcon,
+                    current: ''
+                },
                 {
                     name: 'Settings',
                     href: '#',

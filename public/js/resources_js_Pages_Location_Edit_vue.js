@@ -20343,7 +20343,8 @@ __webpack_require__.r(__webpack_exports__);
     DialogOverlay: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.DialogOverlay,
     TransitionRoot: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.TransitionRoot,
     TransitionChild: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.TransitionChild,
-    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.XIcon
+    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.XIcon,
+    UsersIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.UsersIcon
   },
   setup: function setup() {
     var sidebarOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
@@ -20384,10 +20385,20 @@ __webpack_require__.r(__webpack_exports__);
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('auditor-access.*')
       }, {
+        name: 'Documents',
+        href: '/documents',
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon,
+        current: ''
+      }, {
         name: 'Activity Logs',
         href: route('activityLogs.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon,
         current: route().current('activityLogs.*')
+      }, {
+        name: 'Users',
+        href: route('users.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.UsersIcon,
+        current: route().current('users.*')
       }],
       secondaryNavigation: [{
         name: 'Settings',

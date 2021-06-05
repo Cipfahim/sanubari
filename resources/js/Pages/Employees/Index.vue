@@ -124,7 +124,10 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ employee.official_name }}
+                                        <inertia-link :href="route('employees.show',employee.id)"
+                                                      title="Click to show details">
+                                            {{ employee.official_name }}
+                                        </inertia-link>
                                     </td>
 
                                     <td

@@ -37,6 +37,13 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::put('identification-details', [IdentificationController::class, 'update'])->name('identification.update');
 
     Route::get('contact-details', [ContactDetailsController::class, 'index'])->name('contact-details.index');
+    Route::post('contact-details/number', [ContactDetailsController::class, 'storeNumber'])->name('contact-details.store.number');
+    Route::post('contact-details/email', [ContactDetailsController::class, 'storeEmail'])->name('contact-details.store.email');
+    Route::post('contact-details/address', [ContactDetailsController::class, 'storeAddress'])->name('contact-details.store.address');
+
+
+    Route::delete('contact-details/{contactDetailsId}', [ContactDetailsController::class, 'destroyItem'])
+        ->name('contact-details.item-destroy');
 
     Route::get('contributions', [ContributionsController::class, 'index'])->name('contributions.index');
     Route::put('contributions', [ContributionsController::class, 'update'])->name('contributions.update');
@@ -48,6 +55,7 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::put('salary-details', [SalaryController::class, 'update'])->name('salary-details.update');
 
     Route::get('annual-leave', [LeaveController::class, 'index'])->name('annual-leave.index');
+    Route::put('annual-leave', [LeaveController::class, 'update'])->name('annual-leave.update');
 
 });
 
