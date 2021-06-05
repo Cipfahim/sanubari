@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ContactDetails;
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class ContactDetailsController extends Controller
 {
@@ -18,9 +17,18 @@ class ContactDetailsController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/ContactDetails', [
-            'employee' => Employee::with('user')->findOrFail($id)
+        return Inertia::render('Employees/ContactDetails/Index', [
+            'employee' => Employee::with('user', 'contactNumbers', 'contactEmails','contactAddress')->findOrFail($id)
         ]);
+    }
+
+    public function destroyItem($employeeId, $contactDetailsId)
+    {
+        Employee::findOrFail($employeeId)
+            ->contactDetails()
+            ->findOrFail($contactDetailsId)
+            ->delete();
+        return Redirect::back();
     }
 
     /**
@@ -30,26 +38,85 @@ class ContactDetailsController extends Controller
      */
     public function create()
     {
-        return Inertia::render('ContactDetails/Create', [
-            'requests' => QueryRequest::all(['filter', 'sort']),
-            'honorariumCategories' => QueryBuilder::for(ContactDetails::class)
-                ->allowedFilters(['number'])
-                ->allowedSorts(['number'])
-                ->latest('id')
-                ->paginate()
-                ->appends(request()->query()),
-        ]);
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function storeNumber(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/']
+        ]);
+
+        $employee = Employee::findOrFail($id);
+
+        foreach ($request->get('items') as $item) {
+            if (isset($item['id'])) {
+                $employee->contactNumbers()->find($item['id'])->update([
+                    'value' => $item['contact_number'],
+                ]);
+            } else {
+                $employee->contactNumbers()->create([
+                    'type' => 'number',
+                    'value' => $item['contact_number'],
+                ]);
+            }
+        }
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.contributions.index', $id)
+                ->with('success', 'Contact Details Saved.');
+        }
+        return Redirect::back()->with('success', 'Contact Details Saved.');
+    }
+
+    public function storeEmail(Request $request, $id)
+    {
+        $this->validate($request, [
+            'items.*.email' => ['required', 'string', 'min:3', 'max:255', 'email']
+        ]);
+
+        $employee = Employee::findOrFail($id);
+
+        foreach ($request->get('items') as $item) {
+            $employee->contactEmails()->updateOrCreate([
+                'employee_id' => $employee->id,
+                'type' => 'email',
+                'value' => $item['email'],
+            ], []);
+        }
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.contributions.index', $id)
+                ->with('success', 'Contact Details Saved.');
+        }
+        return Redirect::back()->with('success', 'Contact Details Saved.');
+    }
+
+    public function storeAddress(Request $request, $id)
+    {
+        $this->validate($request, [
+            'items.*.address' => ['required', 'string', 'min:3', 'max:255']
+        ]);
+
+        $employee = Employee::findOrFail($id);
+
+        foreach ($request->get('items') as $item) {
+            $employee->contactEmails()->updateOrCreate([
+                'employee_id' => $employee->id,
+                'type' => 'address',
+                'value' => $item['address'],
+            ], []);
+        }
+        if ($request->get('continue') == true) {
+            return Redirect::route('employees.contributions.index', $id)
+                ->with('success', 'Contact Details Saved.');
+        }
+        return Redirect::back()->with('success', 'Contact Details Saved.');
     }
 
     /**
