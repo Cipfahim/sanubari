@@ -83,10 +83,10 @@
                                                     class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                                 >
                                                     <inertia-link
-                                                        :href="route('employees.index')"
+                                                        :href="route('employees.contributions.index',employee.id)"
                                                         class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                                     >
-                                                        Cancel
+                                                        Previous
                                                     </inertia-link>
                                                     <button
                                                         type="submit"

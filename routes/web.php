@@ -55,6 +55,7 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::put('salary-details', [SalaryController::class, 'update'])->name('salary-details.update');
 
     Route::get('annual-leave', [LeaveController::class, 'index'])->name('annual-leave.index');
+    Route::put('annual-leave', [LeaveController::class, 'update'])->name('annual-leave.update');
 
 });
 

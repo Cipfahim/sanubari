@@ -27,120 +27,17 @@
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <jet-label for="quota" value="Quota *"/>
+                                        <jet-label for="annual_leave_quota" value="Leave Quota *"/>
                                         <jet-input
-                                            id="quota"
-                                            type="text"
-                                            v-model="form.quota"
-                                            :class="{ 'border-red-500': form.errors.quota }"
+                                            id="leave_quota"
+                                            type="number"
+                                            v-model="form.leave_quota"
+                                            :class="{ 'border-red-500': form.errors.leave_quota }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.quota"
+                                            :message="form.errors.leave_quota"
                                             class="mt-2"
                                         />
-                                    </div>
-                                </div>
-                                <div class="space-y-6 sm:space-y-5">
-                                    <!-- Quota field-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="quota" value="Annual Leave Taken *"/>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                        <div
-                                            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
-                                        >
-                                            <div
-                                                class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
-                                            >
-                                                <table class="min-w-full divide-y divide-gray-200">
-                                                    <thead class="bg-gray-50">
-                                                    <tr>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            No
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            From Date
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            Half/Full
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            To Date
-                                                        </th>
-
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            How many days
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            Document Evidence
-                                                        </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr
-                                                        v-for="(person, personIdx) in people"
-                                                        :key="person.personIdx"
-                                                        :class="
-                                personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                              "
-                                                    >
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500"
-                                                        >
-                                                            {{ personIdx }}
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                                        >
-                                                            {{ person.from }}
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                                        >
-                                                            {{ person.hour }}
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                                        >
-                                                            {{ person.to }}
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                                        >
-                                                            {{ person.days }}
-                                                        </td>
-                                                        <td
-                                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                                        >
-                                                            {{ person.documents }}
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -155,16 +52,16 @@
                                                 class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                             >
                                                 <inertia-link
-                                                    :href="route('employees.index')"
+                                                    :href="route('employees.salary-details.index',employee.id)"
                                                     class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                                 >
-                                                    Cancel
+                                                    Previous
                                                 </inertia-link>
                                                 <button
                                                     type="submit"
                                                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                                 >
-                                                    Save & Continue
+                                                    Save
                                                 </button>
                                             </div>
                                         </div>
@@ -193,7 +90,6 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
-import {mask} from "vue-the-mask";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -203,62 +99,10 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
+import {Switch} from "@headlessui/vue";
 
-const people = [
-    {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    }, {
-        id: "01",
-        from: "10-0-2021",
-        hour: "Full",
-        to: "12-09-2021",
-        days: 5,
-        documents: 'Required document evidence'
-    },
-];
 export default {
     props: {
-        locations: Array,
         employee: Object,
     },
     components: {
@@ -280,26 +124,25 @@ export default {
         JetActionMessage,
         JetButton,
         JetCheckbox,
+        Switch,
     },
-    directives: {mask},
     data() {
         return {
             form: this.$inertia.form(
                 {
                     _method: "PUT",
-                    phone: this.employee.user.phone,
-                    password: null,
+                    leave_quota: this.employee.annual_leave_quota
                 },
                 {
                     resetOnSuccess: true,
                 }
             ),
-            people,
         };
     },
     methods: {
         submit() {
-            this.form.post(this.route("employees.update", this.employee.id));
+            this.form
+                .post(this.route("employees.annual-leave.update", this.employee.id));
         },
     },
 };
