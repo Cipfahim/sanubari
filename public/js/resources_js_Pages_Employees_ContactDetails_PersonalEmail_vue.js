@@ -7826,10 +7826,10 @@ var _hoisted_8 = {
   "class": "space-y-6 sm:space-y-5"
 };
 var _hoisted_9 = {
-  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+  "class": "sm:grid sm:grid-cols-1 sm:gap-4 sm:items-start sm:pt-2"
 };
 var _hoisted_10 = {
-  "class": "mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2"
+  "class": "mt-1 sm:mt-0 sm:col-span-1"
 };
 var _hoisted_11 = {
   "class": "max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
@@ -7893,7 +7893,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $options.removeItem(index, item);
           }, ["prevent"]),
-          "class": "absolute right-2 top-2 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center"
+          "class": "absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
           "class": "h-5 w-5 text-red-400 mx-auto"
         })], 8
