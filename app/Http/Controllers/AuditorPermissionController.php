@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuditorPermission;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Inertia\Inertia;
@@ -30,7 +31,14 @@ class AuditorPermissionController extends Controller
      */
     public function create()
     {
-        return Inertia::render('AuditorAccess/Create');
+        $auditors = User::whereIN('role_id',function($q){
+                    $q->select('id')
+                        ->from('roles')
+                        ->where('slug','auditor');
+        })->get();
+        return Inertia::render('AuditorAccess/Create',[
+            'auditors' => $auditors
+        ]);
     }
 
     /**

@@ -1,15 +1,7 @@
 <template>
   <app-layout>
     <div class="mt-4 px-4 sm:px-6 lg:px-8 min-h-screen">
-      <!-- This example requires Tailwind CSS v2.0+ -->
-      <!--
-  Custom select controls like this require a considerable amount of JS to implement from scratch. We're planning
-  to build some low-level libraries to make this easier with popular frameworks like React, Vue, and even Alpine.js
-  in the near future, but in the mean time we recommend these reference guides when building your implementation:
 
-  https://www.w3.org/TR/wai-aria-practices/#Listbox
-  https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
--->
       <div
         class="flex justify-between items-end sticky top-16 p-2 rounded-tl rounded-tr border-b bg-gray-50 z-10"
       >
@@ -33,7 +25,7 @@
               <span
                 class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
               >
-                <!-- Heroicon name: solid/selector -->
+
                 <svg
                   class="h-5 w-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -50,16 +42,7 @@
               </span>
             </button>
 
-            <!--
-      Select popover, show/hide based on select state.
 
-      Entering: ""
-        From: ""
-        To: ""
-      Leaving: "transition ease-in duration-100"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
             <ul
               v-if="selected"
               class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-y-auto focus:outline-none sm:text-sm"
@@ -68,27 +51,18 @@
               aria-labelledby="listbox-label"
               aria-activedescendant="listbox-option-3"
             >
-              <!--
-        Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
 
-        Highlighted: "text-white bg-cyan-600", Not Highlighted: "text-gray-900"
-      -->
               <li
                 @click="selected = !selected"
-                v-for="item in 6"
-                :key="item"
+                v-for="auditor in auditors"
+                :key="auditor.id"
                 class="text-gray-900 cursor-default select-none relative py-2 pl-8 pr-4"
                 id="listbox-option-0"
                 role="option"
               >
-                <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                <span class="font-normal block truncate"> Wade Cooper </span>
+                <span class="font-normal block truncate"> {{auditor.name}} </span>
 
-                <!--
-          Checkmark, only display for selected option.
 
-          Highlighted: "text-white", Not Highlighted: "text-cyan-600"
-        -->
                 <span
                   class="text-cyan-600 absolute inset-y-0 left-0 flex items-center pl-1.5"
                 >
@@ -300,6 +274,9 @@
 <script>
 import AppLayout from "../../Layouts/App";
 export default {
+    props:{
+      'auditors': Object,
+    },
   components: {
     AppLayout,
   },
