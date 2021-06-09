@@ -20379,11 +20379,6 @@ __webpack_require__.r(__webpack_exports__);
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.HomeIcon,
         current: route().current('dashboard')
       }, {
-        name: 'Honorarium Categories',
-        href: route('honorarium-categories.index'),
-        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
-        current: route().current('honorarium-categories.*')
-      }, {
         name: 'Employees',
         href: route('employees.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
@@ -20394,20 +20389,10 @@ __webpack_require__.r(__webpack_exports__);
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('locations.*')
       }, {
-        name: 'Banks List',
+        name: 'Bank List',
         href: route('banks.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('banks.*')
-      }, {
-        name: 'Auditor Access',
-        href: route('auditor-access.create'),
-        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
-        current: route().current('auditor-access.*')
-      }, {
-        name: 'Documents',
-        href: '/documents',
-        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon,
-        current: ''
       }, {
         name: 'Activity Logs',
         href: route('activityLogs.index'),
@@ -20420,6 +20405,16 @@ __webpack_require__.r(__webpack_exports__);
         current: route().current('users.*')
       }],
       secondaryNavigation: [{
+        name: 'Auditor Access',
+        href: route('auditor-access.create'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('auditor-access.*')
+      }, {
+        name: 'Documents',
+        href: '/documents',
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon,
+        current: ''
+      }, {
         name: 'Settings',
         href: '#',
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.CogIcon
