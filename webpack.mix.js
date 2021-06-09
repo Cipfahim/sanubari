@@ -25,3 +25,4 @@ if (mix.inProduction()) {
 } else  {
     // mix.browserSync('http://sanubari.test');
 }
+

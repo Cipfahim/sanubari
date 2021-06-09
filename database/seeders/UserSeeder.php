@@ -43,5 +43,13 @@ class UserSeeder extends Seeder
             "role_id" => Role::Employee,
             'status' => EmployeeStatusEnum::Active
         ]);
+        User::updateOrCreate([
+            'name' => "Auditor Person",
+            "phone" => "0170123456448",
+        ], [
+            "password" => Hash::make('password'),
+            "role_id" => Role::Auditor,
+            'status' => EmployeeStatusEnum::Active
+        ]);
     }
 }

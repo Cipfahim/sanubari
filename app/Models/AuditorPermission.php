@@ -20,4 +20,8 @@ class AuditorPermission extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    static public function hasAccess($auditor , $employee){
+        return  AuditorPermission::where('user_id',$auditor)->where('employee_id',$employee)->exists();
+    }
 }
