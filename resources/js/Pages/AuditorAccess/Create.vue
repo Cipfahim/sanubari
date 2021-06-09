@@ -13,78 +13,14 @@
             Assigned to
           </label>
           <div class="relative w-36">
-            <button
-              @click="selected = !selected"
-              type="button"
-              class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
-              aria-haspopup="listbox"
-              aria-expanded="true"
-              aria-labelledby="listbox-label"
-            >
-              <span class="block truncate"> Tom Cook </span>
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
-              >
 
-                <svg
-                  class="h-5 w-5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-            </button>
+              <select @change="employeeList" v-model="auditor" class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" >
+                  <option v-for="auditor in auditors"
+                          :key="auditor.id" :value="auditor.id" >
+                      {{auditor.name}}
+                  </option>
+              </select>
 
-
-            <ul
-              v-if="selected"
-              class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-y-auto focus:outline-none sm:text-sm"
-              tabindex="-1"
-              role="listbox"
-              aria-labelledby="listbox-label"
-              aria-activedescendant="listbox-option-3"
-            >
-
-              <li
-                @click="selected = !selected"
-                v-for="auditor in auditors"
-                :key="auditor.id"
-                class="text-gray-900 cursor-default select-none relative py-2 pl-8 pr-4"
-                id="listbox-option-0"
-                role="option"
-              >
-                <span class="font-normal block truncate"> {{auditor.name}} </span>
-
-
-                <span
-                  class="text-cyan-600 absolute inset-y-0 left-0 flex items-center pl-1.5"
-                >
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    class="h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </li>
-
-              <!-- More items... -->
-            </ul>
           </div>
         </div>
 
@@ -121,7 +57,7 @@
         </div>
 
         <inertia-link
-          :href="route('auditor-access.edit', 1)"
+          :href="route('auditor-access.edit', auditor)"
           class="bg-gray-50 hover:bg-cyan-500 rounded py-2 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
           >Grand Access</inertia-link
         >
@@ -202,8 +138,8 @@
                   <!-- Odd row -->
                   <tr
                     :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
-                    v-for="(item, index) in 20"
-                    :key="index"
+                    v-for="(employee ,index ) in employees.data"
+                    :key="employee.id"
                   >
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -217,41 +153,42 @@
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      34443
+                      {{employee.id}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Abu Hanifa Jobbar
+                      {{employee.official_name}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Jobbar
+                        {{employee.nick_name}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Malaysia
+                        {{employee.location}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      23
+                        {{employee.ic_number}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Malay
+                        {{employee.citizenship}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium"
                     >
                       <span class="flex items-center">
                         <input
-                          id="select-all"
+                          @click="giveAccess(employee.id)"
                           type="checkbox"
                           name="select-all"
+                          v-model="employee.check"
                           class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                         />
                         <label
@@ -264,6 +201,22 @@
                   </tr>
                 </tbody>
               </table>
+
+                <div v-if="paginationLength > 2">
+                    <div class="flex flex-wrap -mb-1">
+                        <template v-for="(link , index) in links">
+                            <div v-if="link[0] === null" class="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded"
+                                 v-html="link[0].label"/>
+                            <button
+                                @click="employeeList(index)"
+                                v-else
+                                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
+                                :class="{ 'bg-white': link.active }">
+                                <span v-html="link.label"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
@@ -273,16 +226,62 @@
 </template>
 <script>
 import AppLayout from "../../Layouts/App";
+import Pagination from "../../Components/Pagination";
+
 export default {
     props:{
       'auditors': Object,
+
     },
   components: {
-    AppLayout,
+      Pagination,
+    AppLayout
   },
+    methods:{
+      giveAccess(employee){
+          this.$inertia.post(
+              this.route("auditor-access.give-access"),
+              {
+                  _method: "POST",
+                  auditor: this.auditor,
+                  employee: employee,
+                  paginationLength : 0,
+                  links : Array,
+
+              },
+              {
+                  onSuccess: (data) => {
+
+                  },
+              }
+          );
+      },
+        employeeList(page = 1){
+
+           var that = this;
+            axios.get(
+                this.route("auditor-access.employee-list"),
+                {
+                    params:{
+                        'auditor' : this.auditor,
+                        'page' : page,
+                    },
+                }
+            ).then(function (response){
+                that.employees = response.data;
+                that.paginationLength = that.employees.links.length;
+                that.links = response.data.links;
+
+            });
+
+        }
+
+    },
   data() {
     return {
-      selected: false,
+        selected: false,
+        auditor : 0,
+        employees : Object,
     };
   },
 };

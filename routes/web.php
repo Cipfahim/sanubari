@@ -64,6 +64,8 @@ Route::resource('employees', EmployeeController::class)->except('destroy');
 Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
+Route::post('give-auditor-access', [AuditorPermissionController::class ,'giveAccess'])->name('auditor-access.give-access');
+Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class ,'employeeList'])->name('auditor-access.employee-list');
 Route::resource('countries', CountryController::class)->except('show');
 
 Route::resource('users', UserController::class)->except('destroy');

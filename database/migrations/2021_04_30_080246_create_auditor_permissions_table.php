@@ -15,7 +15,7 @@ class CreateAuditorPermissionsTable extends Migration
     {
         Schema::create('auditor_permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+
             $table->foreignId('employee_id')->constrained();
             $table->boolean('basic_info')->default(1);
             $table->boolean('salary_info')->default(0);
