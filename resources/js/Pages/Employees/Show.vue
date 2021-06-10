@@ -91,6 +91,13 @@
                                                     aria-current="page">
                                                 Annual Leave
                                             </button>
+
+                                            <inertia-link :href="route('employees.documents.index',employee.id)"
+                                                          :class="{'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': route().current('employees.documents.index',employee.id) !== 5 , 'border-cyan-500 text-gray-900' : route().current('employees.documents.index',employee.id) === 5}"
+                                                          class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                                          aria-current="page">
+                                                Documents
+                                            </inertia-link>
                                         </nav>
                                     </div>
                                 </div>
@@ -377,7 +384,7 @@
 
 <script>
 import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import TopBar from "./Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -401,6 +408,7 @@ import {Switch} from "@headlessui/vue";
 export default {
     props: {
         employee: Object,
+        showTab: Number
     },
     components: {
         Input,
@@ -425,7 +433,9 @@ export default {
     },
     data() {
         return {
-            openTab: 1
+            openTab: this.showTab
+                ? Number(this.showTab)
+                : 1
         }
     },
     methods: {

@@ -25,6 +25,11 @@ class Employee extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
     public function contactDetails()
     {
         return $this->hasMany(ContactDetails::class);
@@ -63,14 +68,14 @@ class Employee extends Model
         return $this->hasOne(BankDetails::class);
     }
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
     public function payslips()
     {
         return $this->hasMany(Payslip::class);
-    }
-
-    public function location()
-    {
-        return $this->belongsTo(Location::class);
     }
 
     public function leave()

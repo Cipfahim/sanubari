@@ -1,0 +1,279 @@
+<template>
+    <app-layout>
+        <!-- Start::Stepper -->
+        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col min-w-0 flex-1 overflow-hidden bg-white rounded-md">
+                <div class="flex-1 relative z-0 flex overflow-hidden">
+                    <div class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
+                        <article>
+                            <TopBar :employee="employee"/>
+
+                            <!-- Tab-1 -->
+                            <div class="my-6 block max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                                <dl class="gap-x-4 gap-y-8 sm:grid-cols-2">
+                                    <div class="mb-6 flex justify-between items-center">
+                                        <div class="flex items-center w-full max-w-md mr-4">
+                                            <div
+                                                class="flex items-center w-full bg-white shadow-sm rounded relative"
+                                            >
+                                                <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
+                                                <input
+                                                    v-model="queryForm.filter"
+                                                    autocomplete="off"
+                                                    type="text"
+                                                    name="search"
+                                                    placeholder="Search…"
+                                                    class="relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
+                                                />
+                                            </div>
+                                            <button
+                                                type="button"
+                                                @click="reset"
+                                                class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                            >
+                                                Reset
+                                            </button>
+                                        </div>
+
+                                        <div class="flex justify-between">
+                                            <inertia-link
+                                                :href="route('employees.documents.create',employee.id)"
+                                                class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                                            >
+                                                Upload
+                                            </inertia-link>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div
+                                                class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+                                            >
+                                                <div
+                                                    v-if="documents.data.length"
+                                                    class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                                                >
+                                                    <table class="min-w-full divide-y divide-gray-200">
+                                                        <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <th
+                                                                scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                            >
+                                                                Sl.
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                @click="sort('description')"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                                            >
+                                                                <sort-arrow :sort="queryForm.sort" field="description"/>
+                                                                Description
+                                                            </th>
+
+                                                            <th
+                                                                scope="col"
+                                                                @click="sort('year')"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                                            >
+                                                                <sort-arrow :sort="queryForm.sort" field="year"/>
+                                                                Year
+                                                            </th>
+
+                                                            <th
+                                                                scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                                            >
+                                                                View
+                                                                (pop-up on click)
+                                                            </th>
+
+                                                            <th scope="col" class="relative px-6 py-3">
+                                                                <span class="sr-only">Actions</span>
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody class="bg-white divide-y divide-gray-200">
+                                                        <tr
+                                                            v-for="(document, index) in documents.data"
+                                                            :key="index"
+                                                        >
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                            >
+                                                                {{ index + 1 }}
+                                                            </td>
+
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                            >
+                                                                {{ document.description }}
+                                                            </td>
+
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                            >
+                                                                {{ document.year }}
+                                                            </td>
+
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                            >
+                                                                View
+                                                            </td>
+
+
+                                                            <td
+                                                                class="px-6 whitespace-nowrap text-right text-sm font-medium"
+                                                            >
+                                                                <inertia-link
+                                                                    :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"
+                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                                                >Edit
+                                                                </inertia-link>
+                                                                <inertia-link
+                                                                    :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"
+                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                                                >Download
+                                                                </inertia-link>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <pagination class="m-2" :links="documents.links"/>
+                                                </div>
+                                                <no-data-found
+                                                    v-else
+                                                    resource="documents"
+                                                    action-text="Upload document"
+                                                    :action-link="route('employees.documents.create',employee.id)"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </dl>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: -->
+    </app-layout>
+</template>
+
+<script>
+import AppLayout from "@/Layouts/App";
+import {
+    CalendarIcon,
+    CashIcon,
+    CheckCircleIcon,
+    CheckIcon,
+    ChevronRightIcon,
+    OfficeBuildingIcon,
+    PlusCircleIcon,
+    SearchIcon
+} from "@heroicons/vue/solid";
+import JetFormSection from "@/Jetstream/FormSection";
+import JetLabel from "@/Jetstream/Label";
+import JetInputError from "@/Jetstream/InputError";
+import JetInput from "@/Jetstream/Input";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetButton from "@/Jetstream/Button";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import Input from "@/Components/Input";
+import JetCheckbox from "@/Jetstream/Checkbox";
+import {Switch} from "@headlessui/vue";
+import throttle from "lodash/throttle";
+import pickBy from "lodash/pickBy";
+import NoDataFound from "@/Components/NoDataFound";
+import Pagination from "@/Components/Pagination";
+import SortArrow from "@/Components/SortArrow";
+import TopBar from "./TopBar";
+
+
+export default {
+    props: {
+        employee: Object,
+        requests: Object,
+        documents: Object,
+    },
+    components: {
+        TopBar,
+        NoDataFound,
+        SortArrow,
+        Pagination,
+        Input,
+        AppLayout,
+        OfficeBuildingIcon,
+        CheckCircleIcon,
+        CashIcon,
+        ChevronRightIcon,
+        CheckIcon,
+        CalendarIcon,
+        PlusCircleIcon,
+        SearchIcon,
+        JetFormSection,
+        JetSecondaryButton,
+        JetLabel,
+        JetInput,
+        JetInputError,
+        JetActionMessage,
+        JetButton,
+        JetCheckbox,
+        Switch
+    },
+    data() {
+        return {
+            queryForm: {
+                field: this.requests.filter
+                    ? Object.keys(this.requests.filter)[0]
+                    : "description",
+                filter: this.requests.filter
+                    ? Object.values(this.requests.filter)[0]
+                    : "",
+                sort: this.requests.sort,
+            },
+        }
+    },
+    watch: {
+        queryForm: {
+            handler: throttle(function () {
+                let customQuery = {
+                    ["filter[" + this.queryForm.field + "]"]: this.queryForm.filter,
+                    sort: this.queryForm.sort,
+                    id: this.employee.id
+                };
+                let queryString = pickBy(customQuery);
+                this.$inertia.get(
+                    this.route(
+                        "employees.documents.index",
+                        Object.keys(queryString).length
+                            ? queryString
+                            : {remember: "forget"}
+                    ),
+                    {},
+                    {
+                        preserveState: true,
+                        preserveScroll: true,
+                    }
+                );
+            }, 150),
+            deep: true,
+        },
+    },
+    methods: {
+        // Sort data by field
+        sort(field) {
+            this.queryForm.sort === field
+                ? (this.queryForm.sort = "-" + field)
+                : (this.queryForm.sort = field);
+        },
+
+        // Reset all filters
+        reset() {
+            this.$inertia.visit(this.route("employees.documents.index", this.employee.id));
+        },
+    }
+};
+</script>

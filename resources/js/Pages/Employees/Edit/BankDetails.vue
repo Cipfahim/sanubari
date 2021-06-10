@@ -2,7 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :employee="employee.id" :current="route('employees.salary-details.index', employee.id)"/>
+            <top-bar :employee="employee.id" :current="route('employees.edit.bank-details.index', employee.id)"/>
 
             <jet-form-section
                 @submitted="submit"
@@ -16,7 +16,7 @@
                             <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Salary Details
+                                        Bank Details
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         This section contains sensitive information.
@@ -25,90 +25,50 @@
 
                                 <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
 
-                                    <!-- Basic salary-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="basic_salary" value="Basic Salary *"/>
-                                        <jet-input
-                                            id="basic_salary"
-                                            type="text"
-                                            v-model="form.basic_salary"
-                                            :class="{ 'border-red-500': form.errors.basic_salary }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.basic_salary"
-                                            class="mt-2"
-                                        />
+                                    <!-- Location field-->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <jet-label for="location" value="Location *"/>
+
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div class="max-w-lg flex justify-space-between">
+                                                <select
+                                                    v-model="form.bank"
+                                                    id="bank"
+                                                    name="bank"
+                                                    autocomplete="bank"
+                                                    class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    :class="{ 'border-red-500': form.errors.bank }"
+                                                >
+                                                    <option disabled selected>Select one</option>
+                                                    <option v-for="(bank) in banks"
+                                                            :value="bank.id">{{ bank.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <jet-input-error
+                                                :message="form.errors.bank"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
-                                    <!-- living_allowance-->
+                                    <!-- account_number-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <jet-label for="living_allowance" value="Cost of Living Allowance *"/>
-                                        <jet-input
-                                            id="living_allowance"
-                                            type="text"
-                                            v-model="form.living_allowance"
-                                            :class="{ 'border-red-500': form.errors.living_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.living_allowance"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- attendance_allowance-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="attendance_allowance" value="Attendance Allowance *"/>
-                                        <jet-input
-                                            id="attendance_allowance"
-                                            type="text"
-                                            v-model="form.attendance_allowance"
-                                            :class="{ 'border-red-500': form.errors.attendance_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.attendance_allowance"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-                                    <!-- levy-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="levy" value="Levy *"/>
-                                        <jet-input
-                                            id="levy"
-                                            type="text"
-                                            v-model="form.levy"
-                                            :class="{ 'border-red-500': form.errors.levy }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.levy"
-                                            class="mt-2"
-                                        />
-                                    </div>
-
-
-                                    <!-- in_charge_allowance-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="in_charge_allowance" value="In Charge Allowance *"/>
-                                        <jet-input
-                                            id="in_charge_allowance"
-                                            type="text"
-                                            v-model="form.in_charge_allowance"
-                                            :class="{ 'border-red-500': form.errors.in_charge_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.in_charge_allowance"
-                                            class="mt-2"
-                                        />
+                                        <jet-label for="account_number" value="Account Number *"/>
+                                        <div class="block">
+                                            <jet-input
+                                                id="account_number"
+                                                type="text"
+                                                v-model="form.account_number"
+                                                :class="{ 'border-red-500': form.errors.account_number }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.account_number"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                 </div>
@@ -123,7 +83,7 @@
                                                     class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                                 >
                                                     <inertia-link
-                                                        :href="route('employees.bank-details.index',employee.id)"
+                                                        :href="route('employees.edit.contributions.index',employee.id)"
                                                         class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                                     >
                                                         Previous
@@ -159,8 +119,8 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -177,11 +137,12 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 
 export default {
     props: {
+        banks: Array,
         employee: Object,
     },
     components: {
@@ -209,11 +170,8 @@ export default {
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
-                    basic_salary: null,
-                    living_allowance: null,
-                    attendance_allowance: null,
-                    levy: null,
-                    in_charge_allowance: null,
+                    bank: '',
+                    account_number: null,
                     continue: false
                 },
                 {
@@ -223,18 +181,15 @@ export default {
         }
     },
     mounted() {
-        const salary_details = this.employee.salary_details;
-        if (salary_details) {
-            this.form.basic_salary = salary_details.basic_salary
-            this.form.living_allowance = salary_details.living_allowance
-            this.form.attendance_allowance = salary_details.attendance_allowance
-            this.form.levy = salary_details.levy
-            this.form.in_charge_allowance = salary_details.in_charge_allowance
+        const bank_details = this.employee.bank_details;
+        if (bank_details) {
+            this.form.bank = bank_details.bank_id
+            this.form.account_number = bank_details.account_number
         }
     },
     methods: {
         submit() {
-            this.form.post(this.route('employees.salary-details.update', this.employee.id))
+            this.form.post(this.route('employees.edit.bank-details.update', this.employee.id))
         },
 
         saveAndContinue() {

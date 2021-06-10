@@ -2,7 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :employee="employee.id" :current="route('employees.contact-details.index', employee.id)"/>
+            <top-bar :employee="employee.id" :current="route('employees.edit.contact-details.index', employee.id)"/>
             <div class="bg-gray-50 p-4 rounded-md mt-5">
 
                 <!-- Tab for Desktop & mobile -->
@@ -106,8 +106,8 @@
 </template>
 
 <script>
-import AppLayout from "../../../Layouts/App";
-import TopBar from "../TopBar";
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
 
 import {
     CalendarIcon,
@@ -126,7 +126,7 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {VueTelInput} from "vue3-tel-input";
 import "vue3-tel-input/dist/vue3-tel-input.css";

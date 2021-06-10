@@ -13,12 +13,12 @@ class ContactDetailsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index($id)
     {
-        return Inertia::render('Employees/ContactDetails/Index', [
-            'employee' => Employee::with('user', 'contactNumbers', 'contactEmails','contactAddress')->findOrFail($id)
+        return Inertia::render('Employees/Edit/ContactDetails/Index', [
+            'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id)
         ]);
     }
 

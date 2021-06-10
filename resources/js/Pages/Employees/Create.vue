@@ -244,7 +244,7 @@
 
 <script>
 import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import TopBar from "./Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,

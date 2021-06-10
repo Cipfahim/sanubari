@@ -91,37 +91,37 @@ export default {
                 {
                     id: 'B',
                     name: 'Identification Details',
-                    href: route('employees.identification.index', this.employee),
+                    href: route('employees.edit.identification.index', this.employee),
                     status: true
                 },
                 {
                     id: 'C',
                     name: 'Contact Details',
-                    href: route('employees.contact-details.index', this.employee),
+                    href: route('employees.edit.contact-details.index', this.employee),
                     status: true
                 },
                 {
                     id: 'D',
                     name: 'Contribution',
-                    href: route('employees.contributions.index', this.employee),
+                    href: route('employees.edit.contributions.index', this.employee),
                     status: true
                 },
                 {
                     id: 'E',
                     name: 'Bank Details',
-                    href: route('employees.bank-details.index', this.employee),
+                    href: route('employees.edit.bank-details.index', this.employee),
                     status: true
                 },
                 {
                     id: 'F',
                     name: 'Salary Details',
-                    href: route('employees.salary-details.index', this.employee),
+                    href: route('employees.edit.salary-details.index', this.employee),
                     status: true
                 },
                 {
                     id: 'G',
                     name: 'Annual Leave',
-                    href: route('employees.annual-leave.index', this.employee),
+                    href: route('employees.edit.annual-leave.index', this.employee),
                     status: true
                 },
             ]

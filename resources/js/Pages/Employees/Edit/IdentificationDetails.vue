@@ -2,7 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :employee="employee.id" :current="route('employees.identification.index', employee.id)"/>
+            <top-bar :employee="employee.id" :current="route('employees.edit.identification.index', employee.id)"/>
             <jet-form-section
                 @submitted="save"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
@@ -201,8 +201,8 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -220,7 +220,7 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {ref} from "vue";
 import {Switch} from "@headlessui/vue";
@@ -285,7 +285,7 @@ export default {
                     citizenship: this.form.citizenship ? 'Foreigner' : 'Malaysian',
                     sex: this.form.sex ? 'Female' : 'Male'
                 }))
-                .post(this.route("employees.identification.update", this.employee.id));
+                .post(this.route("employees.edit.identification.update", this.employee.id));
         },
 
         save() {

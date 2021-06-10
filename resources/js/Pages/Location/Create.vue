@@ -88,7 +88,6 @@ export default {
                     resetOnSuccess : true,
                 }
             ),
-            logoPreview: null
         };
     },
     methods:{
