@@ -20299,11 +20299,17 @@ __webpack_require__.r(__webpack_exports__);
         session: this.session
       });
     },
-    extraAccess: function extraAccess(id, employeeDetails) {
+    extraAccess: function extraAccess(id, employeeDetails, contactDetails, contribution, salaryDetails, documents, leave, payslips) {
       axios.get(this.route("auditor-access.extra-access"), {
         params: {
           'id': id,
-          'employee_details': employeeDetails
+          'employee_details': employeeDetails,
+          'contact_details': contactDetails,
+          'contribution': contribution,
+          'salary_details': salaryDetails,
+          'documents': documents,
+          'leave': leave,
+          'payslips': payslips
         }
       }).then(function (data) {
         console.log(data);
@@ -21157,13 +21163,9 @@ var _hoisted_21 = {
 var _hoisted_22 = {
   "class": "px-4 py-2 whitespace-nowrap text-sm text-gray-500"
 };
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_23 = {
   "class": "px-4 py-2 whitespace-nowrap text-sm text-gray-500"
-}, " After fahim update ", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_24 = {
   "class": "px-4 py-2 whitespace-nowrap flex"
 };
@@ -21174,45 +21176,72 @@ var _hoisted_25 = {
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "select-all",
   "class": "text-xs font-medium text-gray-500"
-}, "A", -1
+}, "Employee Details", -1
 /* HOISTED */
 );
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_27 = {
   "class": "flex items-center mr-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "checkbox",
-  name: "select-all",
-  "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+};
+
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "select-all",
   "class": "text-xs font-medium text-gray-500"
-}, "B")], -1
+}, "Contact Details", -1
 /* HOISTED */
 );
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_29 = {
   "class": "flex items-center mr-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "checkbox",
-  name: "select-all",
-  "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+};
+
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "class": "text-xs font-medium text-gray-500"
-}, "C")], -1
+}, "Contributions", -1
 /* HOISTED */
 );
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_31 = {
   "class": "flex items-center mr-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "checkbox",
-  name: "select-all",
-  "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+};
+
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "select-all",
   "class": "text-xs font-medium text-gray-500"
-}, "D")], -1
+}, "Documents", -1
+/* HOISTED */
+);
+
+var _hoisted_33 = {
+  "class": "flex items-center mr-2"
+};
+
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "select-all",
+  "class": "text-xs font-medium text-gray-500"
+}, "Salary Details", -1
+/* HOISTED */
+);
+
+var _hoisted_35 = {
+  "class": "flex items-center mr-2"
+};
+
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "select-all",
+  "class": "text-xs font-medium text-gray-500"
+}, "PaySlips", -1
+/* HOISTED */
+);
+
+var _hoisted_37 = {
+  "class": "flex items-center mr-2"
+};
+
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "select-all",
+  "class": "text-xs font-medium text-gray-500"
+}, "Leave", -1
 /* HOISTED */
 );
 
@@ -21263,18 +21292,92 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.ic_number), 1
         /* TEXT */
-        ), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_23, " After fahim update " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.employee_details), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          type: "checkbox",
           "onUpdate:modelValue": function onUpdateModelValue($event) {
             return item.employee_details = $event;
           },
-          type: "checkbox",
           onClick: function onClick($event) {
-            return $options.extraAccess(item.id);
+            return $options.extraAccess(item.id, !item.employee_details, null, null, null, null, null, null);
           },
           "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
         }, null, 8
         /* PROPS */
-        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.employee_details]]), _hoisted_26]), _hoisted_27, _hoisted_28, _hoisted_29])], 2
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.employee_details]]), _hoisted_26]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.contact_details = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, !item.contact_details, null, null, null, null, null);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.contact_details]]), _hoisted_28]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.contribution = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, null, !item.contribution, null, null, null, null);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.contribution]]), _hoisted_30]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.documents = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, null, null, !item.salary_details, null, null, null);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.documents]]), _hoisted_32]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.salary_details = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, null, null, null, !item.documents, null, null);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.salary_details]]), _hoisted_34]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.payslips = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, null, null, null, null, null, !item.payslips);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.payslips]]), _hoisted_36]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return item.leave = $event;
+          },
+          onClick: function onClick($event) {
+            return $options.extraAccess(item.id, null, null, null, null, null, !item.leave, null);
+          },
+          type: "checkbox",
+          name: "select-all",
+          "class": "h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+        }, null, 8
+        /* PROPS */
+        , ["onUpdate:modelValue", "onClick"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.leave]]), _hoisted_38])])], 2
         /* CLASS */
         );
       }), 128
