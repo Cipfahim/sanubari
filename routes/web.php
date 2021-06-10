@@ -65,6 +65,7 @@ Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
 Route::post('give-auditor-access', [AuditorPermissionController::class ,'giveAccess'])->name('auditor-access.give-access');
+Route::get('give-auditor-extra-access', [AuditorPermissionController::class ,'extraAccess'])->name('auditor-access.extra-access');
 Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class ,'employeeList'])->name('auditor-access.employee-list');
 Route::resource('countries', CountryController::class)->except('show');
 

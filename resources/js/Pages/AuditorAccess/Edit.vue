@@ -13,7 +13,7 @@
             Assigned to
           </label>
           <div class="relative w-36">
-            {{ auditor.name }}
+
 
             <ul
               v-if="selected"
@@ -98,6 +98,7 @@
           class="bg-gray-50 hover:bg-cyan-500 rounded py-1 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
           >Back</inertia-link
         >
+          <button @click="addMore()">Add More</button>
       </div>
       <!-- Employee Table -->
       <div class="flex flex-col">
@@ -170,7 +171,7 @@
 
                   <tr
                     :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
-                    v-for="(item, index) in accessedEmployee"
+                    v-for="(item, index) in accessedEmployees.data"
                     :key="index"
                   >
                     <td
@@ -185,52 +186,54 @@
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      34443
+                        {{item.employee_id}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      {{item.employee_id}}
+                        {{item.employee.official_name}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Jobbar
+                        {{item.employee.nick_name}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Malaysia
+                        {{item.employee.location.name}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      23
+                        {{item.ic_number}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap text-sm text-gray-500"
                     >
-                      Malay
+                        After fahim update
+                        {{item.employee_details}}
                     </td>
                     <td
                       class="px-4 py-2 whitespace-nowrap flex"
                     >
                       <span class="flex items-center mr-2">
                         <input
-                          id="select-all"
-                          type="checkbox"
-                          name="select-all"
-                          class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                            type="checkbox"
+                            v-model="item.employee_details"
+                            @click="extraAccess(item.id , !item.employee_details , null , null , null , null , null , null  )"
+                            class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                         />
                         <label
                           for="select-all"
                           class="text-xs font-medium text-gray-500"
-                          >A</label
+                          >Employee Details</label
                         >
                       </span>
                       <span class="flex items-center mr-2">
                         <input
-                          id="select-all"
+                          v-model="item.contact_details"
+                          @click="extraAccess(item.id , null , !item.contact_details , null , null , null , null , null  )"
                           type="checkbox"
                           name="select-all"
                           class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
@@ -238,25 +241,27 @@
                         <label
                           for="select-all"
                           class="text-xs font-medium text-gray-500"
-                          >B</label
+                          >Contact Details</label
                         >
                       </span>
                       <span class="flex items-center mr-2">
                         <input
-                          id="select-all"
+                            v-model="item.contribution"
+                            @click="extraAccess(item.id , null , null , !item.contribution , null , null , null , null  )"
                           type="checkbox"
                           name="select-all"
                           class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
                         />
                         <label
-                          for="select-all"
+
                           class="text-xs font-medium text-gray-500"
-                          >C</label
+                          >Contributions</label
                         >
                       </span>
                       <span class="flex items-center mr-2">
                         <input
-                          id="select-all"
+                            v-model="item.documents"
+                            @click="extraAccess(item.id , null , null , null , !item.salary_details , null , null , null  )"
                           type="checkbox"
                           name="select-all"
                           class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
@@ -264,7 +269,49 @@
                         <label
                           for="select-all"
                           class="text-xs font-medium text-gray-500"
-                          >D</label
+                          >Documents</label
+                        >
+                      </span>
+                      <span class="flex items-center mr-2">
+                        <input
+                            v-model="item.salary_details"
+                            @click="extraAccess(item.id , null , null , null , null , !item.documents , null , null  )"
+                            type="checkbox"
+                            name="select-all"
+                            class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                            for="select-all"
+                            class="text-xs font-medium text-gray-500"
+                        >Salary Details</label
+                        >
+                      </span>
+                      <span class="flex items-center mr-2">
+                        <input
+                            v-model="item.payslips"
+                            @click="extraAccess(item.id , null , null , null , null , null , null , !item.payslips  )"
+                            type="checkbox"
+                            name="select-all"
+                            class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                            for="select-all"
+                            class="text-xs font-medium text-gray-500"
+                        >PaySlips</label
+                        >
+                      </span>
+                        <span class="flex items-center mr-2">
+                        <input
+                            v-model="item.leave"
+                            @click="extraAccess(item.id , null , null , null , null , null , !item.leave , null  )"
+                            type="checkbox"
+                            name="select-all"
+                            class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded"
+                        />
+                        <label
+                            for="select-all"
+                            class="text-xs font-medium text-gray-500"
+                        >Leave</label
                         >
                       </span>
                     </td>
@@ -280,19 +327,56 @@
 </template>
 <script>
 import AppLayout from "../../Layouts/App";
+import Button from "../../Jetstream/Button";
 export default {
     props : {
-        "auditor": Object,
         "accessedEmployees": Object,
+        "session": Number,
     },
   components: {
+      Button,
     AppLayout,
   },
   data() {
     return {
       selected: false,
+
+
     };
   },
+    methods : {
+        addMore(){
+            this.$inertia.get(
+                this.route("auditor-access.create"),
+                {
+                    session : this.session,
+                },
+            )
+        },
+        extraAccess(id, employeeDetails , contactDetails , contribution , salaryDetails , documents , leave , payslips ){
+                axios.get(
+                    this.route("auditor-access.extra-access"),
+                    {
+                        params:{
+                            'id' : id,
+                            'employee_details' : employeeDetails,
+                            'contact_details': contactDetails,
+                            'contribution': contribution,
+                            'salary_details':salaryDetails,
+                            'documents':documents,
+                            'leave':leave,
+                            'payslips':payslips,
+
+
+                        }
+                    }
+                ).then(function (data){
+                    console.log(data);
+                });
+        }
+
+
+    },
     mounted() {
         console.log();
     }

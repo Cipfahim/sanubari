@@ -33,7 +33,17 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
                                         <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
                                             <sort-arrow :sort="queryForm.sort" field="name" />
-                                            Name
+                                            Auditor
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                            Start Date
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                            End Date
+                                        </th>
+
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                            Status
                                         </th>
 
                                         <th scope="col" class="relative px-6 py-3">
@@ -48,7 +58,16 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.name }}
+                                            {{ session.user.name }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ session.start_date }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ session.end_date }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ session.status }}
                                         </td>
 
                                         <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
@@ -81,8 +100,11 @@
                             <!-- Auditor Name field-->
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                                 <jet-label value="Audit Name *" />
-                                <jet-input type="text" />
-                                <!-- <jet-input-error :message="form.errors.official_name" class="mt-2" /> -->
+                                <select v-model="auditor" class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <option>Select one</option>
+                                    <option v-for="auditor in auditors" :value="auditor.id"   >{{ auditor.name }}</option>
+                                </select>
+
                             </div>
 
                             <!-- Location field-->
@@ -91,9 +113,9 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div class="max-w-lg flex justify-space-between">
-                                        <select name="location" autocomplete="location" class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <select v-model="locationId" class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             <option>Select one</option>
-                                            <option v-for="n in 5">{{ n }}</option>
+                                            <option v-for="location in locations"  :value="location.id" >{{ location.name }}</option>
                                         </select>
 
                                         <!-- <jet-input-error :message="form.errors.location" class="mt-2" /> -->
@@ -107,11 +129,11 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex justify-between items-center">
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" type="date" />
+                                        <jet-input id="date_of_join" v-model="startDate" type="date" />
                                     </div>
                                     <div>to</div>
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" type="date" />
+                                        <jet-input id="date_of_join" v-model="endDate" type="date" />
                                     </div>
                                 </div>
 
@@ -121,8 +143,8 @@
                             <!-- Actions -->
                             <div class="mt-5">
                                 <div class="flex justify-end focus-within:z-10">
-                                    <inertia-link href="/" class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"> Cancel </inertia-link>
-                                    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Save & Continue</button>
+                                    <inertia-link href="/auditor-access" class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"> Cancel </inertia-link>
+                                    <button @click="create()" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">Save & Continue</button>
                                 </div>
                             </div>
                         </div>
@@ -190,6 +212,8 @@ export default {
     props: {
         requests: Object,
         sessions: Object,
+        auditors : Object,
+        locations : Object,
     },
     data() {
         return {
@@ -204,7 +228,14 @@ export default {
             deleteCategory: null,
             checkAll: false,
             auditModal: false,
+            auditor : 0,
+            locationId : 0,
+            startDate : null,
+            endDate : null,
         }
+    },
+    mounted() {
+        console.log(this.auditors);
     },
     watch: {
         queryForm: {
@@ -237,6 +268,15 @@ export default {
                 })
                 this.bulkIds = ids
             }
+        },
+        create(){
+            this.$inertia.get(this.route("auditor-access.create"), {
+                auditor: this.auditor,
+                location: this.locationId,
+                startDate : this.startDate,
+                endDate : this.endDate,
+                // _token: this.$page.props.csrf_token,
+            });
         },
         // Sort data by field
         sort(field) {
@@ -271,25 +311,8 @@ export default {
             this.confirmingBulkDeletion = true
         },
 
-        // Send bulk delete request.
-        bulkDestroy() {
-            this.$inertia.post(
-                this.route("auditor-access.bulk-destroy"),
-                {
-                    _method: "DELETE",
-                    categories: this.bulkIds,
-                },
-                {
-                    preserveState: true,
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        this.bulkIds = []
-                        this.confirmingBulkDeletion = false
-                        this.checkAll = false
-                    },
-                }
-            )
-        },
+
+
     },
 }
 </script>
