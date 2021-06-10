@@ -16,7 +16,7 @@ class LeaveController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/AnnualLeave', [
+        return Inertia::render('Employees/Edit/AnnualLeave', [
             'employee' => Employee::with('user')->findOrFail($id)
         ]);
     }

@@ -256,8 +256,8 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -274,7 +274,7 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
 

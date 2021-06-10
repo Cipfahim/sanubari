@@ -6,6 +6,7 @@ use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LeaveController;
@@ -32,7 +33,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:system-admin|admin'])->name('dashboard');
 
-Route::prefix('employees/{id}')->name('employees.')->group(function () {
+Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function () {
     Route::get('identification-details', [IdentificationController::class, 'index'])->name('identification.index');
     Route::put('identification-details', [IdentificationController::class, 'update'])->name('identification.update');
 
@@ -40,7 +41,6 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::post('contact-details/number', [ContactDetailsController::class, 'storeNumber'])->name('contact-details.store.number');
     Route::post('contact-details/email', [ContactDetailsController::class, 'storeEmail'])->name('contact-details.store.email');
     Route::post('contact-details/address', [ContactDetailsController::class, 'storeAddress'])->name('contact-details.store.address');
-
 
     Route::delete('contact-details/{contactDetailsId}', [ContactDetailsController::class, 'destroyItem'])
         ->name('contact-details.item-destroy');
@@ -56,8 +56,12 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
 
     Route::get('annual-leave', [LeaveController::class, 'index'])->name('annual-leave.index');
     Route::put('annual-leave', [LeaveController::class, 'update'])->name('annual-leave.update');
-
 });
+
+Route::prefix('employees/{id}')->name('employees.')->group(function () {
+    Route::resource('documents', DocumentController::class)->except('destroy');
+});
+
 
 Route::resource('employees', EmployeeController::class)->except('destroy');
 

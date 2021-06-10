@@ -179,14 +179,6 @@
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
-
-                                        <!-- <button
-                                          type="button"
-                                          @click="confirmDeletion(employee)"
-                                          class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
-                                        >
-                                          Delete
-                                        </button> -->
                                     </td>
                                 </tr>
                                 </tbody>
@@ -204,28 +196,6 @@
             </div>
         </div>
 
-        <!-- Delete confirmation modal -->
-        <jet-confirmation-modal
-            :show="confirmingDeletion"
-            @close="confirmingDeletion = false"
-        >
-            <template #title> Delete Employee</template>
-
-            <template #content>
-                Are you sure you want to delete this employee? Once employee is deleted,
-                all of its resources and data will be permanently deleted.
-            </template>
-
-            <template #footer>
-                <jet-secondary-button @click.native="confirmingDeletion = false">
-                    Nevermind
-                </jet-secondary-button>
-
-                <jet-danger-button class="ml-2" @click="destroy">
-                    Delete
-                </jet-danger-button>
-            </template>
-        </jet-confirmation-modal>
     </app-layout>
 </template>
 
@@ -235,8 +205,6 @@ import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
 import SortArrow from "@/Components/SortArrow";
-import JetCheckbox from "@/Jetstream/Checkbox";
-import JetConfirmationModal from "@/Jetstream/ConfirmationModal.vue";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton.vue";
 import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import throttle from "lodash/throttle";
@@ -248,12 +216,10 @@ export default {
     components: {
         Button,
         AppLayout,
-        JetCheckbox,
         Breadcrumb,
         NoDataFound,
         Pagination,
         SortArrow,
-        JetConfirmationModal,
         JetSecondaryButton,
         JetDangerButton,
         SearchIcon,

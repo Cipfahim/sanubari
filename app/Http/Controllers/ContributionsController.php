@@ -16,7 +16,7 @@ class ContributionsController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/Contributions', [
+        return Inertia::render('Employees/Edit/Contributions', [
             'employee' => Employee::with('user', 'contribution')->findOrFail($id)
         ]);
     }

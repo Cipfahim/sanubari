@@ -84,6 +84,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         return Inertia::render('Employees/Show', [
+            'showTab' => request('showTab'),
             'employee' => Employee::with(['user', 'location', 'bankDetails', 'salaryDetails', 'contribution', 'contactNumbers', 'contactEmails', 'contactAddress'])
                 ->findOrfail($id)
         ]);
@@ -97,7 +98,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        return Inertia::render('Employees/Edit', [
+        return Inertia::render('Employees/Edit/EmployeeDetails', [
             'locations' => Location::all(),
             'employee' => Employee::with('user')->findOrFail($id)
         ]);

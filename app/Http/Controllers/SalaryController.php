@@ -17,7 +17,7 @@ class SalaryController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/SalaryDetails', [
+        return Inertia::render('Employees/Edit/SalaryDetails', [
             'employee' => Employee::with('user', 'salaryDetails')
                 ->findOrFail($id)
         ]);

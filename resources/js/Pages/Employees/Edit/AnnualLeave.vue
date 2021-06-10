@@ -2,7 +2,7 @@
     <app-layout>
         <!-- Start::Stepper -->
         <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <top-bar :employee="employee.id" :current="route('employees.annual-leave.index', employee.id)"/>
+            <top-bar :employee="employee.id" :current="route('employees.edit.annual-leave.index', employee.id)"/>
             <jet-form-section
                 @submitted="submit"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
@@ -52,7 +52,7 @@
                                                 class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                             >
                                                 <inertia-link
-                                                    :href="route('employees.salary-details.index',employee.id)"
+                                                    :href="route('employees.edit.salary-details.index',employee.id)"
                                                     class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                                 >
                                                     Previous
@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -97,7 +97,7 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
 
@@ -142,7 +142,7 @@ export default {
     methods: {
         submit() {
             this.form
-                .post(this.route("employees.annual-leave.update", this.employee.id));
+                .post(this.route("employees.edit.annual-leave.update", this.employee.id));
         },
     },
 };

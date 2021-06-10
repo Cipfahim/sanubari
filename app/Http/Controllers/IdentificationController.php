@@ -12,7 +12,7 @@ class IdentificationController extends Controller
 {
     public function index($id)
     {
-        return Inertia::render('Employees/IdentificationDetails', [
+        return Inertia::render('Employees/Edit/IdentificationDetails', [
             'employee' => Employee::with('user')->findOrFail($id)
         ]);
     }
