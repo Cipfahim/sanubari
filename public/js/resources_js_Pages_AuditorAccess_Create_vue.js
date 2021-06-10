@@ -20242,7 +20242,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       secondaryNavigation: [{
         name: 'Auditor Access',
-        href: route('auditor-access.create'),
+        href: route('auditor-access.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('auditor-access.*')
       }, {
@@ -20278,7 +20278,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    'auditors': Object
+    'session': Object,
+    'locations': Object,
+    'locationId': Number
   },
   components: {
     Pagination: _Components_Pagination__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -20288,7 +20290,7 @@ __webpack_require__.r(__webpack_exports__);
     giveAccess: function giveAccess(employee) {
       this.$inertia.post(this.route("auditor-access.give-access"), {
         _method: "POST",
-        auditor: this.auditor,
+        session: this.session.id,
         employee: employee,
         paginationLength: 0,
         links: Array
@@ -20301,7 +20303,8 @@ __webpack_require__.r(__webpack_exports__);
       var that = this;
       axios.get(this.route("auditor-access.employee-list"), {
         params: {
-          'auditor': this.auditor,
+          'session': this.session.id,
+          'location': this.locationId,
           'page': page
         }
       }).then(function (response) {
@@ -20314,9 +20317,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selected: false,
-      auditor: 0,
       employees: Object
     };
+  },
+  mounted: function mounted() {
+    this.employeeList();
   }
 });
 
@@ -21052,7 +21057,7 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   id: "listbox-label",
   "class": "block text-sm font-medium text-gray-700 mr-3 select-none"
-}, " Assigned to ", -1
+}, " Select Location ", -1
 /* HOISTED */
 );
 
@@ -21206,22 +21211,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $options.employeeList && $options.employeeList.apply($options, arguments);
         }),
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-          return $data.auditor = $event;
+          return $props.locationId = $event;
         }),
         "class": "relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.auditors, function (auditor) {
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.locations, function (location) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
-          key: auditor.id,
-          value: auditor.id
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(auditor.name), 9
+          key: location.id,
+          value: location.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(location.name), 9
         /* TEXT, PROPS */
         , ["value"]);
       }), 128
       /* KEYED_FRAGMENT */
       ))], 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.auditor]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Filter "), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
-        href: _ctx.route('auditor-access.edit', $data.auditor),
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $props.locationId]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Filter "), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+        href: _ctx.route('auditor-access.edit', $props.session.id),
         "class": "bg-gray-50 hover:bg-cyan-500 rounded py-2 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

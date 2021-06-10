@@ -10,14 +10,14 @@
             id="listbox-label"
             class="block text-sm font-medium text-gray-700 mr-3 select-none"
           >
-            Assigned to
+            Select Location
           </label>
           <div class="relative w-36">
 
-              <select @change="employeeList" v-model="auditor" class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" >
-                  <option v-for="auditor in auditors"
-                          :key="auditor.id" :value="auditor.id" >
-                      {{auditor.name}}
+              <select @change="employeeList" v-model="locationId" class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" >
+                  <option v-for="location in locations"
+                          :key="location.id" :value="location.id" >
+                      {{location.name}}
                   </option>
               </select>
 
@@ -57,7 +57,7 @@
         </div>
 
         <inertia-link
-          :href="route('auditor-access.edit', auditor)"
+          :href="route('auditor-access.edit', session.id)"
           class="bg-gray-50 hover:bg-cyan-500 rounded py-2 px-3 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none"
           >Grand Access</inertia-link
         >
@@ -230,8 +230,9 @@ import Pagination from "../../Components/Pagination";
 
 export default {
     props:{
-      'auditors': Object,
-
+      'session': Object,
+      'locations':Object,
+      'locationId': Number,
     },
   components: {
       Pagination,
@@ -243,7 +244,7 @@ export default {
               this.route("auditor-access.give-access"),
               {
                   _method: "POST",
-                  auditor: this.auditor,
+                  session : this.session.id,
                   employee: employee,
                   paginationLength : 0,
                   links : Array,
@@ -263,7 +264,8 @@ export default {
                 this.route("auditor-access.employee-list"),
                 {
                     params:{
-                        'auditor' : this.auditor,
+                        'session' : this.session.id,
+                        'location' : this.locationId,
                         'page' : page,
                     },
                 }
@@ -280,9 +282,11 @@ export default {
   data() {
     return {
         selected: false,
-        auditor : 0,
         employees : Object,
     };
   },
+    mounted() {
+        this.employeeList();
+    }
 };
 </script>

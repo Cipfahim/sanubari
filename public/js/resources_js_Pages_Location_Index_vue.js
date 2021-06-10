@@ -20304,13 +20304,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  emits: ['close'],
+  emits: ["close"],
   props: {
     show: {
       "default": false
     },
     maxWidth: {
-      "default": '2xl'
+      "default": "2xl"
     },
     closeable: {
       "default": true
@@ -20321,7 +20321,7 @@ __webpack_require__.r(__webpack_exports__);
       immediate: true,
       handler: function handler(show) {
         if (show) {
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = "hidden";
         } else {
           document.body.style.overflow = null;
         }
@@ -20333,21 +20333,21 @@ __webpack_require__.r(__webpack_exports__);
 
     var close = function close() {
       if (props.closeable) {
-        emit('close');
+        emit("close");
       }
     };
 
     var closeOnEscape = function closeOnEscape(e) {
-      if (e.key === 'Escape' && props.show) {
+      if (e.key === "Escape" && props.show) {
         close();
       }
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      return document.addEventListener('keydown', closeOnEscape);
+      return document.addEventListener("keydown", closeOnEscape);
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUnmounted)(function () {
-      return document.removeEventListener('keydown', closeOnEscape);
+      return document.removeEventListener("keydown", closeOnEscape);
     });
     return {
       close: close
@@ -20356,11 +20356,11 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     maxWidthClass: function maxWidthClass() {
       return {
-        'sm': 'sm:max-w-sm',
-        'md': 'sm:max-w-md',
-        'lg': 'sm:max-w-lg',
-        'xl': 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl'
+        sm: "sm:max-w-sm",
+        md: "sm:max-w-md",
+        lg: "sm:max-w-lg",
+        xl: "sm:max-w-xl",
+        "2xl": "sm:max-w-2xl"
       }[this.maxWidth];
     }
   }
@@ -20522,7 +20522,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       secondaryNavigation: [{
         name: 'Auditor Access',
-        href: route('auditor-access.create'),
+        href: route('auditor-access.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('auditor-access.*')
       }, {

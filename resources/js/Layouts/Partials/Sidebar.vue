@@ -158,7 +158,7 @@ export default {
             secondaryNavigation: [
                 {
                     name: 'Auditor Access',
-                    href: route('auditor-access.create'),
+                    href: route('auditor-access.index'),
                     icon: ClockIcon,
                     current: route().current('auditor-access.*')
                 },

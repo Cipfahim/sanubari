@@ -20423,7 +20423,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       secondaryNavigation: [{
         name: 'Auditor Access',
-        href: route('auditor-access.create'),
+        href: route('auditor-access.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('auditor-access.*')
       }, {
