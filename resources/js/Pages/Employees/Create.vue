@@ -119,12 +119,18 @@
 
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <div class="max-w-lg focus-within:z-10">
-                                                <jet-input
-                                                    id="date_of_join"
-                                                    type="date"
-                                                    v-model="form.date_of_join"
-                                                    :class="{ 'border-red-500': form.errors.date_of_join }"
-                                                />
+                                                <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
+                                                            :model-config="datePickerConfig.modelConfig">
+<!--                                                    <template #default="{ inputValue, inputEvents }">-->
+<!--                                                        <input class="px-3 py-1 border rounded w-full"-->
+<!--                                                               :class="{ 'border-red-500': form.errors.date_of_join }"-->
+<!--                                                               :value="inputValue"-->
+<!--                                                               v-on="inputEvents"/>-->
+<!--                                                    </template>-->
+                                                    <input class="px-3 py-1 border rounded w-full"
+                                                           :class="{ 'border-red-500': form.errors.date_of_join }"
+                                                           />
+                                                </DatePicker>
                                             </div>
                                         </div>
 
@@ -167,16 +173,36 @@
                                     <!-- Password field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="password" value="Password *"/>
-                                        <jet-input
-                                            id="password"
-                                            type="password"
-                                            v-model="form.password"
-                                            :class="{ 'border-red-500': form.errors.password }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.password"
-                                            class="mt-2"
-                                        />
+
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div class="max-w-lg flex justify-space-between">
+                                                <div class="relative w-full">
+                                                    <jet-input
+                                                        id="password"
+                                                        :type="showPassword ? 'text' : 'password'"
+                                                        v-model="generatedPassword"
+                                                        :class="{ 'border-red-500': form.errors.password }"
+                                                        class="pr-10"
+                                                    />
+                                                    <div @click="toggleShowPassword" class="absolute z-10 top-2 right-3 cursor-pointer">
+                                                        <EyeIcon v-if="showPassword && generatedPassword.length > 0" class="h-5 w-5 text-gray-600"/>
+                                                        <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    @click="generatePassword"
+                                                    class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center select-none"
+                                                >
+                                                    <ViewGridIcon class="h-5 w-5 text-cyan-400 mr-2 transform transition duration-1000" :class="generatePasswordIcon ? 'rotate-180' : '-rotate-180'"/>
+                                                    Generate
+                                                </button>
+                                                <jet-input-error
+                                                    :message="form.errors.password"
+                                                    class="mt-2"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Status field-->
@@ -254,6 +280,11 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
+import {
+    ViewGridIcon,
+    EyeOffIcon,
+    EyeIcon
+} from "@heroicons/vue/outline";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -264,6 +295,7 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
+import {DatePicker} from 'v-calendar';
 
 export default {
     props: {
@@ -280,6 +312,9 @@ export default {
         CheckIcon,
         CalendarIcon,
         PlusCircleIcon,
+        ViewGridIcon,
+        EyeOffIcon,
+        EyeIcon,
         JetFormSection,
         JetSecondaryButton,
         JetLabel,
@@ -293,7 +328,9 @@ export default {
     data() {
         return {
             photoPreview: null,
-
+            generatePasswordIcon : false,
+            showPassword: false,
+            generatedPassword: '',
             form: this.$inertia.form(
                 {
                     photo: null,
@@ -311,6 +348,15 @@ export default {
                     resetOnSuccess: true,
                 }
             ),
+            datePickerConfig: {
+                masks: {
+                    input: 'DD MMM YYYY',
+                },
+                modelConfig: {
+                    type: 'string',
+                    mask: 'YYYY-MM-DD', // Uses 'iso' if missing
+                },
+            },
         }
     },
     methods: {
@@ -339,6 +385,13 @@ export default {
 
             reader.readAsDataURL(this.$refs.photo.files[0]);
         },
+        generatePassword(){
+            this.generatePasswordIcon = !this.generatePasswordIcon;
+            this.generatedPassword = Math.random().toString(36).slice(-8);
+        },
+        toggleShowPassword(){
+            this.showPassword = !this.showPassword;
+        }
     }
 };
 </script>

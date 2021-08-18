@@ -135,7 +135,7 @@
                                     >
                                         <div class="flex items-center gap-2">
                                             <div class="h-8 w-8 rounded-full overflow-hidden">
-                                                <img class="h-full w-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                                <img class="h-full w-full" :src="employee.user.photo ? employee.user.photo : '/images/icon/avatar.png'" :alt="employee.official_name">
                                             </div>
                                             <inertia-link :href="route('employees.show',employee.id)"
                                                           title="Click to show details">
