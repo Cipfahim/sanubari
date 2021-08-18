@@ -7,8 +7,8 @@
         <div class="w-full flex justify-center">
             <img
                 class="h-12 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
+                src="/images/logo2.png"
+                alt="Sanubari"
             />
         </div>
         <div class="mt-4">
