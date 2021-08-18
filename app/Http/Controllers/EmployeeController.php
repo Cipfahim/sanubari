@@ -62,17 +62,17 @@ class EmployeeController extends Controller
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
             'password' => Hash::make($request->get('password')),
+            'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
+            'status' => $request->get('status')
         ]);
         $user->employee()->create([
             'official_name' => $request->get('official_name'),
             'nick_name' => $request->get('nick_name'),
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
-            'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
-            'status' => $request->get('status')
         ]);
 
-        return Redirect::route('employees.index', $user->employee->id);
+        return Redirect::route('employees.edit.identification.index', $user->employee->id);
     }
 
     /**

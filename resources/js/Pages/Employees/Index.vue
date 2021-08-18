@@ -9,20 +9,29 @@
           },
         ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex justify-between items-center h-10">
+                <div class="flex items-center w-full h-full max-w-xl mr-4">
                     <div
-                        class="flex items-center w-full bg-white shadow-sm rounded relative"
+                        class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
                     >
-                        <SearchIcon class="h-5 w-5 text-gray-300 mx-2"/>
+                        <select class="h-full border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
+                            <option value="Official name">Official name</option>
+                            <option value="Phone">Phone</option>
+                            <option value="Location">Location</option>
+                            <option value="Date of join">Date of join</option>
+                            <option value="Status">Status</option>
+                        </select>
                         <input
                             v-model="queryForm.filter"
                             autocomplete="off"
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                            class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
+                        <div class="mx-3">
+                            <SearchIcon class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
+                        </div>
                     </div>
                     <button
                         type="button"
