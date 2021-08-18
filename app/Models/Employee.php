@@ -60,7 +60,7 @@ class Employee extends Model
 
     public function contactAddress()
     {
-        return $this->hasMany(ContactDetails::class)
+        return $this->hasMany(ContactAddress::class)
             ->where('type', 'address');
     }
 

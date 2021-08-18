@@ -97,7 +97,7 @@
                     class="mt-4 h-full sm:h-96"
                     :class="{ hidden: openTab !== 3, block: openTab === 3 }"
                 >
-                    <contact-address :employee="employee"/>
+                    <contact-address :employee="employee" :address-types="addressTypes"/>
                 </div>
             </div>
         </div>
@@ -137,6 +137,7 @@ import ContactAddress from "./ContactAddress";
 export default {
     props: {
         employee: Object,
+        addressTypes: Array
     },
     components: {
         ContactNumber,

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ContactAddressType;
+use App\Models\ContactAddress;
 use App\Models\ContactDetails;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -18,7 +20,8 @@ class ContactDetailsController extends Controller
     public function index($id)
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
-            'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id)
+            'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
+            'addressTypes' => ContactAddressType::getValues()
         ]);
     }
 
@@ -49,7 +52,6 @@ class ContactDetailsController extends Controller
      */
     public function storeNumber(Request $request, $id)
     {
-
         $this->validate($request, [
             'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/']
         ]);
@@ -99,18 +101,23 @@ class ContactDetailsController extends Controller
 
     public function storeAddress(Request $request, $id)
     {
-        $this->validate($request, [
-            'items.*.address' => ['required', 'string', 'min:3', 'max:255']
-        ]);
+//        $this->validate($request, [
+//            'items.*.address' => ['required', 'string', 'min:3', 'max:255']
+//        ]);
 
         $employee = Employee::findOrFail($id);
 
         foreach ($request->get('items') as $item) {
-            $employee->contactEmails()->updateOrCreate([
+            $employee->contactAddress()->updateOrCreate([
                 'employee_id' => $employee->id,
-                'type' => 'address',
-                'value' => $item['address'],
-            ], []);
+                'type' => $item['addressType'],
+                'country' => $item['country'],
+                'address_line_one' => $item['address_line_one'],
+                'address_line_two' => $item['address_line_one'],
+                'address_line_three' => $item['address_line_three'],
+                'city' => $item['city'],
+                'state' => $item['state']
+            ]);
         }
         if ($request->get('continue') == true) {
             return Redirect::route('employees.contributions.index', $id)
