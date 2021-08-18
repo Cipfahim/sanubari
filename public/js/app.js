@@ -38990,61 +38990,13 @@ var map = {
 		"./resources/js/Pages/Dashboard.vue",
 		"resources_js_Pages_Dashboard_vue"
 	],
-	"./Employees/AnnualLeave": [
-		"./resources/js/Pages/Employees/AnnualLeave.vue",
-		"resources_js_Pages_Employees_AnnualLeave_vue"
+	"./Documents": [
+		"./resources/js/Pages/Documents.vue",
+		"resources_js_Pages_Documents_vue"
 	],
-	"./Employees/AnnualLeave.vue": [
-		"./resources/js/Pages/Employees/AnnualLeave.vue",
-		"resources_js_Pages_Employees_AnnualLeave_vue"
-	],
-	"./Employees/BankDetails": [
-		"./resources/js/Pages/Employees/BankDetails.vue",
-		"resources_js_Pages_Employees_BankDetails_vue"
-	],
-	"./Employees/BankDetails.vue": [
-		"./resources/js/Pages/Employees/BankDetails.vue",
-		"resources_js_Pages_Employees_BankDetails_vue"
-	],
-	"./Employees/ContactDetails/ContactAddress": [
-		"./resources/js/Pages/Employees/ContactDetails/ContactAddress.vue",
-		"resources_js_Pages_Employees_ContactDetails_ContactAddress_vue"
-	],
-	"./Employees/ContactDetails/ContactAddress.vue": [
-		"./resources/js/Pages/Employees/ContactDetails/ContactAddress.vue",
-		"resources_js_Pages_Employees_ContactDetails_ContactAddress_vue"
-	],
-	"./Employees/ContactDetails/ContactNumber": [
-		"./resources/js/Pages/Employees/ContactDetails/ContactNumber.vue",
-		"resources_js_Pages_Employees_ContactDetails_ContactNumber_vue"
-	],
-	"./Employees/ContactDetails/ContactNumber.vue": [
-		"./resources/js/Pages/Employees/ContactDetails/ContactNumber.vue",
-		"resources_js_Pages_Employees_ContactDetails_ContactNumber_vue"
-	],
-	"./Employees/ContactDetails/Index": [
-		"./resources/js/Pages/Employees/ContactDetails/Index.vue",
-		"resources_js_Pages_Employees_ContactDetails_Index_vue"
-	],
-	"./Employees/ContactDetails/Index.vue": [
-		"./resources/js/Pages/Employees/ContactDetails/Index.vue",
-		"resources_js_Pages_Employees_ContactDetails_Index_vue"
-	],
-	"./Employees/ContactDetails/PersonalEmail": [
-		"./resources/js/Pages/Employees/ContactDetails/PersonalEmail.vue",
-		"resources_js_Pages_Employees_ContactDetails_PersonalEmail_vue"
-	],
-	"./Employees/ContactDetails/PersonalEmail.vue": [
-		"./resources/js/Pages/Employees/ContactDetails/PersonalEmail.vue",
-		"resources_js_Pages_Employees_ContactDetails_PersonalEmail_vue"
-	],
-	"./Employees/Contributions": [
-		"./resources/js/Pages/Employees/Contributions.vue",
-		"resources_js_Pages_Employees_Contributions_vue"
-	],
-	"./Employees/Contributions.vue": [
-		"./resources/js/Pages/Employees/Contributions.vue",
-		"resources_js_Pages_Employees_Contributions_vue"
+	"./Documents.vue": [
+		"./resources/js/Pages/Documents.vue",
+		"resources_js_Pages_Documents_vue"
 	],
 	"./Employees/Create": [
 		"./resources/js/Pages/Employees/Create.vue",
@@ -39062,21 +39014,117 @@ var map = {
 		"./resources/js/Pages/Employees/Documents.vue",
 		"resources_js_Pages_Employees_Documents_vue"
 	],
-	"./Employees/Edit": [
-		"./resources/js/Pages/Employees/Edit.vue",
-		"resources_js_Pages_Employees_Edit_vue"
+	"./Employees/Documents/Create": [
+		"./resources/js/Pages/Employees/Documents/Create.vue",
+		"resources_js_Pages_Employees_Documents_Create_vue"
 	],
-	"./Employees/Edit.vue": [
-		"./resources/js/Pages/Employees/Edit.vue",
-		"resources_js_Pages_Employees_Edit_vue"
+	"./Employees/Documents/Create.vue": [
+		"./resources/js/Pages/Employees/Documents/Create.vue",
+		"resources_js_Pages_Employees_Documents_Create_vue"
 	],
-	"./Employees/IdentificationDetails": [
-		"./resources/js/Pages/Employees/IdentificationDetails.vue",
-		"resources_js_Pages_Employees_IdentificationDetails_vue"
+	"./Employees/Documents/Index": [
+		"./resources/js/Pages/Employees/Documents/Index.vue",
+		"resources_js_Pages_Employees_Documents_Index_vue"
 	],
-	"./Employees/IdentificationDetails.vue": [
-		"./resources/js/Pages/Employees/IdentificationDetails.vue",
-		"resources_js_Pages_Employees_IdentificationDetails_vue"
+	"./Employees/Documents/Index.vue": [
+		"./resources/js/Pages/Employees/Documents/Index.vue",
+		"resources_js_Pages_Employees_Documents_Index_vue"
+	],
+	"./Employees/Documents/TopBar": [
+		"./resources/js/Pages/Employees/Documents/TopBar.vue",
+		"resources_js_Pages_Employees_Documents_TopBar_vue"
+	],
+	"./Employees/Documents/TopBar.vue": [
+		"./resources/js/Pages/Employees/Documents/TopBar.vue",
+		"resources_js_Pages_Employees_Documents_TopBar_vue"
+	],
+	"./Employees/Edit/AnnualLeave": [
+		"./resources/js/Pages/Employees/Edit/AnnualLeave.vue",
+		"resources_js_Pages_Employees_Edit_AnnualLeave_vue"
+	],
+	"./Employees/Edit/AnnualLeave.vue": [
+		"./resources/js/Pages/Employees/Edit/AnnualLeave.vue",
+		"resources_js_Pages_Employees_Edit_AnnualLeave_vue"
+	],
+	"./Employees/Edit/BankDetails": [
+		"./resources/js/Pages/Employees/Edit/BankDetails.vue",
+		"resources_js_Pages_Employees_Edit_BankDetails_vue"
+	],
+	"./Employees/Edit/BankDetails.vue": [
+		"./resources/js/Pages/Employees/Edit/BankDetails.vue",
+		"resources_js_Pages_Employees_Edit_BankDetails_vue"
+	],
+	"./Employees/Edit/ContactDetails/ContactAddress": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/ContactAddress.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_ContactAddress_vue"
+	],
+	"./Employees/Edit/ContactDetails/ContactAddress.vue": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/ContactAddress.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_ContactAddress_vue"
+	],
+	"./Employees/Edit/ContactDetails/ContactNumber": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/ContactNumber.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_ContactNumber_vue"
+	],
+	"./Employees/Edit/ContactDetails/ContactNumber.vue": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/ContactNumber.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_ContactNumber_vue"
+	],
+	"./Employees/Edit/ContactDetails/Index": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/Index.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_Index_vue"
+	],
+	"./Employees/Edit/ContactDetails/Index.vue": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/Index.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_Index_vue"
+	],
+	"./Employees/Edit/ContactDetails/PersonalEmail": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/PersonalEmail.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_PersonalEmail_vue"
+	],
+	"./Employees/Edit/ContactDetails/PersonalEmail.vue": [
+		"./resources/js/Pages/Employees/Edit/ContactDetails/PersonalEmail.vue",
+		"resources_js_Pages_Employees_Edit_ContactDetails_PersonalEmail_vue"
+	],
+	"./Employees/Edit/Contributions": [
+		"./resources/js/Pages/Employees/Edit/Contributions.vue",
+		"resources_js_Pages_Employees_Edit_Contributions_vue"
+	],
+	"./Employees/Edit/Contributions.vue": [
+		"./resources/js/Pages/Employees/Edit/Contributions.vue",
+		"resources_js_Pages_Employees_Edit_Contributions_vue"
+	],
+	"./Employees/Edit/EmployeeDetails": [
+		"./resources/js/Pages/Employees/Edit/EmployeeDetails.vue",
+		"resources_js_Pages_Employees_Edit_EmployeeDetails_vue"
+	],
+	"./Employees/Edit/EmployeeDetails.vue": [
+		"./resources/js/Pages/Employees/Edit/EmployeeDetails.vue",
+		"resources_js_Pages_Employees_Edit_EmployeeDetails_vue"
+	],
+	"./Employees/Edit/IdentificationDetails": [
+		"./resources/js/Pages/Employees/Edit/IdentificationDetails.vue",
+		"resources_js_Pages_Employees_Edit_IdentificationDetails_vue"
+	],
+	"./Employees/Edit/IdentificationDetails.vue": [
+		"./resources/js/Pages/Employees/Edit/IdentificationDetails.vue",
+		"resources_js_Pages_Employees_Edit_IdentificationDetails_vue"
+	],
+	"./Employees/Edit/SalaryDetails": [
+		"./resources/js/Pages/Employees/Edit/SalaryDetails.vue",
+		"resources_js_Pages_Employees_Edit_SalaryDetails_vue"
+	],
+	"./Employees/Edit/SalaryDetails.vue": [
+		"./resources/js/Pages/Employees/Edit/SalaryDetails.vue",
+		"resources_js_Pages_Employees_Edit_SalaryDetails_vue"
+	],
+	"./Employees/Edit/TopBar": [
+		"./resources/js/Pages/Employees/Edit/TopBar.vue",
+		"resources_js_Pages_Employees_Edit_TopBar_vue"
+	],
+	"./Employees/Edit/TopBar.vue": [
+		"./resources/js/Pages/Employees/Edit/TopBar.vue",
+		"resources_js_Pages_Employees_Edit_TopBar_vue"
 	],
 	"./Employees/Index": [
 		"./resources/js/Pages/Employees/Index.vue",
@@ -39086,14 +39134,6 @@ var map = {
 		"./resources/js/Pages/Employees/Index.vue",
 		"resources_js_Pages_Employees_Index_vue"
 	],
-	"./Employees/SalaryDetails": [
-		"./resources/js/Pages/Employees/SalaryDetails.vue",
-		"resources_js_Pages_Employees_SalaryDetails_vue"
-	],
-	"./Employees/SalaryDetails.vue": [
-		"./resources/js/Pages/Employees/SalaryDetails.vue",
-		"resources_js_Pages_Employees_SalaryDetails_vue"
-	],
 	"./Employees/Show": [
 		"./resources/js/Pages/Employees/Show.vue",
 		"resources_js_Pages_Employees_Show_vue"
@@ -39101,14 +39141,6 @@ var map = {
 	"./Employees/Show.vue": [
 		"./resources/js/Pages/Employees/Show.vue",
 		"resources_js_Pages_Employees_Show_vue"
-	],
-	"./Employees/TopBar": [
-		"./resources/js/Pages/Employees/TopBar.vue",
-		"resources_js_Pages_Employees_TopBar_vue"
-	],
-	"./Employees/TopBar.vue": [
-		"./resources/js/Pages/Employees/TopBar.vue",
-		"resources_js_Pages_Employees_TopBar_vue"
 	],
 	"./HonorariumCategories/Create": [
 		"./resources/js/Pages/HonorariumCategories/Create.vue",
@@ -39343,7 +39375,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"589dcc7f6441068dfedc","resources_js_Pages_ActivityLogs_Show_vue":"f654c27d54ad0704462a","resources_js_Pages_AuditorAccess_Create_vue":"5c668bb3227e9d34f3ef","resources_js_Pages_AuditorAccess_Edit_vue":"8d26a491f18600729933","resources_js_Pages_AuditorAccess_Index_vue":"cbe7aa2d06e2892819b9","resources_js_Pages_Auth_ConfirmPassword_vue":"86a870be60b38f892b1b","resources_js_Pages_Auth_ForgotPassword_vue":"545e1da066bd9ebb2c31","resources_js_Pages_Auth_Login_vue":"c9d4a157ff9b66b7418f","resources_js_Pages_Auth_Register_vue":"df98697015e0045dc674","resources_js_Pages_Auth_ResetPassword_vue":"10cb0ca9dc3c6e1fe0af","resources_js_Pages_Auth_VerifyEmail_vue":"b19c9851c672d183ba14","resources_js_Pages_Bank_Create_vue":"b5b0b21655825e2cfd73","resources_js_Pages_Bank_Edit_vue":"8da845562232564837f9","resources_js_Pages_Bank_Index_vue":"5e80cc522f6edbdfe476","resources_js_Pages_ContactDetails_Create_vue":"f1c398a89f100f4eb4e9","resources_js_Pages_Contribution_Create_vue":"02f417d881bf8cc3c7ec","resources_js_Pages_Country_Create_vue":"e596842fd5d4c27107a7","resources_js_Pages_Country_Edit_vue":"8e35b0349652fa0fd6c5","resources_js_Pages_Country_Index_vue":"1d82595896af50bbc667","resources_js_Pages_Dashboard_vue":"fdfb698abb467dd5d671","resources_js_Pages_Employees_AnnualLeave_vue":"74d9c4a2ce08d760e20d","resources_js_Pages_Employees_BankDetails_vue":"1640f198acbd46273a91","resources_js_Pages_Employees_ContactDetails_ContactAddress_vue":"7408482e10188e78fa19","resources_js_Pages_Employees_ContactDetails_ContactNumber_vue":"64b0135dba35d6ef0e59","resources_js_Pages_Employees_ContactDetails_Index_vue":"13b4d9a87419de584315","resources_js_Pages_Employees_ContactDetails_PersonalEmail_vue":"05a1447269468e437ed5","resources_js_Pages_Employees_Contributions_vue":"8dc5c016343b8ece6c56","resources_js_Pages_Employees_Create_vue":"803efc60e0b8ee416428","resources_js_Pages_Employees_Documents_vue":"c6518dbfc3815c1e4df7","resources_js_Pages_Employees_Edit_vue":"84fa7084153e0a863648","resources_js_Pages_Employees_IdentificationDetails_vue":"dcfcc57261d0243546b1","resources_js_Pages_Employees_Index_vue":"e1eb1ea87398ae1dee43","resources_js_Pages_Employees_SalaryDetails_vue":"9c4474addfc4b76a7f4a","resources_js_Pages_Employees_Show_vue":"39f9e4016cd74abb503c","resources_js_Pages_Employees_TopBar_vue":"a82928407008dedb45a8","resources_js_Pages_HonorariumCategories_Create_vue":"568f06ee438f73c624f2","resources_js_Pages_HonorariumCategories_Edit_vue":"21a247f68449109a56ec","resources_js_Pages_HonorariumCategories_Index_vue":"852ae546216bd1c94bf4","resources_js_Pages_Location_Create_vue":"a24e3ba5911e365f93a9","resources_js_Pages_Location_Edit_vue":"0cc2919d88ec051ed827","resources_js_Pages_Location_Index_vue":"a8bfc13573799d82f607","resources_js_Pages_Salary_Create_vue":"33ef60bf0642c3fa65f6","resources_js_Pages_Users_Create_vue":"5bf442f5e52cb165e05b","resources_js_Pages_Users_Edit_vue":"1e2f59230a67c2a6ead5","resources_js_Pages_Users_Index_vue":"d187b26f1baea56e9c27","resources_js_Pages_Users_Show_vue":"56113c0a658e3f9bba7f","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_ActivityLogs_Index_vue":"589dcc7f6441068dfedc","resources_js_Pages_ActivityLogs_Show_vue":"f654c27d54ad0704462a","resources_js_Pages_AuditorAccess_Create_vue":"935b8fbe7c9216d597f9","resources_js_Pages_AuditorAccess_Edit_vue":"0434c1ef5eca5e57d081","resources_js_Pages_AuditorAccess_Index_vue":"1c0902c53b2656656386","resources_js_Pages_Auth_ConfirmPassword_vue":"86a870be60b38f892b1b","resources_js_Pages_Auth_ForgotPassword_vue":"545e1da066bd9ebb2c31","resources_js_Pages_Auth_Login_vue":"f9066fb6e280e95aef48","resources_js_Pages_Auth_Register_vue":"df98697015e0045dc674","resources_js_Pages_Auth_ResetPassword_vue":"10cb0ca9dc3c6e1fe0af","resources_js_Pages_Auth_VerifyEmail_vue":"b19c9851c672d183ba14","resources_js_Pages_Bank_Create_vue":"b5b0b21655825e2cfd73","resources_js_Pages_Bank_Edit_vue":"8da845562232564837f9","resources_js_Pages_Bank_Index_vue":"5e80cc522f6edbdfe476","resources_js_Pages_ContactDetails_Create_vue":"61f97962aaa8ece15547","resources_js_Pages_Contribution_Create_vue":"02f417d881bf8cc3c7ec","resources_js_Pages_Country_Create_vue":"e596842fd5d4c27107a7","resources_js_Pages_Country_Edit_vue":"8e35b0349652fa0fd6c5","resources_js_Pages_Country_Index_vue":"1d82595896af50bbc667","resources_js_Pages_Dashboard_vue":"fdfb698abb467dd5d671","resources_js_Pages_Documents_vue":"4ced030667d9d3fecd8e","resources_js_Pages_Employees_Create_vue":"26ba11befb79cd4a2518","resources_js_Pages_Employees_Documents_vue":"a3df5694eecd08709f39","resources_js_Pages_Employees_Documents_Create_vue":"649a08259ce6946a47be","resources_js_Pages_Employees_Documents_Index_vue":"4ec8d0a9dfdef84d04db","resources_js_Pages_Employees_Documents_TopBar_vue":"5ab52374fde45ed27b04","resources_js_Pages_Employees_Edit_AnnualLeave_vue":"4a8240a853e23a6dbe3e","resources_js_Pages_Employees_Edit_BankDetails_vue":"5f39455eb11e9e386b13","resources_js_Pages_Employees_Edit_ContactDetails_ContactAddress_vue":"05f61538b677bc305c3a","resources_js_Pages_Employees_Edit_ContactDetails_ContactNumber_vue":"68753bdc86de832ca8a8","resources_js_Pages_Employees_Edit_ContactDetails_Index_vue":"0c1eeb83ed6056306acc","resources_js_Pages_Employees_Edit_ContactDetails_PersonalEmail_vue":"095d339cab55f41040c7","resources_js_Pages_Employees_Edit_Contributions_vue":"265f5b7d47f240623549","resources_js_Pages_Employees_Edit_EmployeeDetails_vue":"86b8adcad4b35f5dd41f","resources_js_Pages_Employees_Edit_IdentificationDetails_vue":"cdf2dc54eff52681ed11","resources_js_Pages_Employees_Edit_SalaryDetails_vue":"0f34158113f2f5dd0703","resources_js_Pages_Employees_Edit_TopBar_vue":"552f374b70822011d7a7","resources_js_Pages_Employees_Index_vue":"ce81805b49bf10b6c5b3","resources_js_Pages_Employees_Show_vue":"a7ee67fd9b85aba0d995","resources_js_Pages_HonorariumCategories_Create_vue":"568f06ee438f73c624f2","resources_js_Pages_HonorariumCategories_Edit_vue":"21a247f68449109a56ec","resources_js_Pages_HonorariumCategories_Index_vue":"852ae546216bd1c94bf4","resources_js_Pages_Location_Create_vue":"60afe0d584b212232976","resources_js_Pages_Location_Edit_vue":"0cc2919d88ec051ed827","resources_js_Pages_Location_Index_vue":"a8bfc13573799d82f607","resources_js_Pages_Salary_Create_vue":"33ef60bf0642c3fa65f6","resources_js_Pages_Users_Create_vue":"5bf442f5e52cb165e05b","resources_js_Pages_Users_Edit_vue":"1e2f59230a67c2a6ead5","resources_js_Pages_Users_Index_vue":"d187b26f1baea56e9c27","resources_js_Pages_Users_Show_vue":"56113c0a658e3f9bba7f","resources_js_Pages_Welcome_vue":"f3ddb218bc3351fc7989"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

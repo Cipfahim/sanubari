@@ -20428,8 +20428,7 @@ __webpack_require__.r(__webpack_exports__);
         name: null
       }, {
         resetOnSuccess: true
-      }),
-      logoPreview: null
+      })
     };
   },
   methods: {

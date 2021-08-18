@@ -21,23 +21,179 @@
             <template #form class=" md:col-span-12">
                 <div class="mt-1 sm:mt-0">
                     <div class="relative" v-for="(item, index) in form.items">
-                        <jet-input
-                            id="address"
-                            type="text"
-                            v-model="item.address"
-                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                            :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address',form) }"
-                        />
-                        <jet-input-error
-                            :message="getNestedErrors('items.'+index+'.address',form)"
-                            class="mt-2"
-                        />
-                        <button
-                            v-if="index !== 0"
-                            @click.prevent="removeItem(index, item)"
-                            class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
-                            <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
-                        </button>
+                        <div>
+                            <div class="grid grid-cols-2 gap-4 py-4">
+                                <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                    Country/Territory<span class="text-blue-600"> *</span>
+                                </label>
+                                <div>
+                                    <label for="type" class="block text-sm font-medium text-gray-700">Address
+                                        Type</label>
+                                    <select v-model="item.addressType" id="type" name="type"
+                                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                        <option v-for="aType in addressTypes" :value="aType">{{ aType }}</option>
+                                    </select>
+                                </div>
+
+                                <jet-input
+                                    id="country"
+                                    type="text"
+                                    v-model="item.country"
+                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"
+                                />
+<!--                                <jet-input-error-->
+<!--                                    :message="getNestedErrors('items.'+index+'.country',form)"-->
+<!--                                    class="mt-2"-->
+<!--                                />-->
+                                <button
+                                    v-if="index !== 0"
+                                    @click.prevent="removeItem(index, item)"
+                                    class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                    <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                Address<span class="text-blue-600"> *</span>
+                            </label>
+                            <jet-input
+                                id="address_line_one"
+                                type="text"
+                                v-model="item.address_line_one"
+                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_one',form) }"
+                            />
+<!--                            <jet-input-error-->
+<!--                                :message="getNestedErrors('items.'+index+'.address_line_one',form)"-->
+<!--                                class="mt-2"-->
+<!--                            />-->
+                            <button
+                                v-if="index !== 0"
+                                @click.prevent="removeItem(index, item)"
+                                class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                            </button>
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                Address 2
+                            </label>
+                            <jet-input
+                                id="address_line_two"
+                                type="text"
+                                v-model="item.address_line_two"
+                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_two',form) }"
+                            />
+<!--                            <jet-input-error-->
+<!--                                :message="getNestedErrors('items.'+index+'.address_line_two',form)"-->
+<!--                                class="mt-2"-->
+<!--                            />-->
+                            <button
+                                v-if="index !== 0"
+                                @click.prevent="removeItem(index, item)"
+                                class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                            </button>
+                        </div>
+
+                        <div>
+                            <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                Address 3
+                            </label>
+                            <jet-input
+                                id="address_line_three"
+                                type="text"
+                                v-model="item.address_line_three"
+                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_three',form) }"
+                            />
+<!--                            <jet-input-error-->
+<!--                                :message="getNestedErrors('items.'+index+'.address_line_three',form)"-->
+<!--                                class="mt-2"-->
+<!--                            />-->
+                            <button
+                                v-if="index !== 0"
+                                @click.prevent="removeItem(index, item)"
+                                class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                    Postal Code
+                                </label>
+                                <jet-input
+                                    id="postal_code"
+                                    type="text"
+                                    v-model="item.postal_code"
+                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.postal_code',form) }"
+                                />
+<!--                                <jet-input-error-->
+<!--                                    :message="getNestedErrors('items.'+index+'.postal_code',form)"-->
+<!--                                    class="mt-2"-->
+<!--                                />-->
+                                <button
+                                    v-if="index !== 0"
+                                    @click.prevent="removeItem(index, item)"
+                                    class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                    <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                                </button>
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                    City *
+                                </label>
+                                <jet-input
+                                    id="city"
+                                    type="text"
+                                    v-model="item.city"
+                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.city',form) }"
+                                />
+<!--                                <jet-input-error-->
+<!--                                    :message="getNestedErrors('items.'+index+'.city',form)"-->
+<!--                                    class="mt-2"-->
+<!--                                />-->
+                                <button
+                                    v-if="index !== 0"
+                                    @click.prevent="removeItem(index, item)"
+                                    class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                    <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                                </button>
+                            </div>
+
+                            <div>
+                                <label class="text-sm text-gray-700 sm:mt-px sm:pt-2">
+                                    State *
+                                </label>
+                                <jet-input
+                                    id="state"
+                                    type="text"
+                                    v-model="item.state"
+                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.state',form) }"
+                                />
+<!--                                <jet-input-error-->
+<!--                                    :message="getNestedErrors('items.'+index+'.state',form)"-->
+<!--                                    class="mt-2"-->
+<!--                                />-->
+                                <button
+                                    v-if="index !== 0"
+                                    @click.prevent="removeItem(index, item)"
+                                    class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                    <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -98,7 +254,8 @@ export default {
         JetInput,
     },
     props: {
-        employee: Object
+        employee: Object,
+        addressTypes: Array
     },
     data() {
         return {
@@ -133,7 +290,14 @@ export default {
 
         addNewItem() {
             this.form.items.push({
-                address: null,
+                addressType: null,
+                country: null,
+                address_line_one: null,
+                address_line_two: null,
+                address_line_three: null,
+                postal_code: null,
+                city: null,
+                state: null
             })
         },
         removeItem(index, item) {
