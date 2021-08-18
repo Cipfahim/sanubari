@@ -76,6 +76,4 @@ Route::resource('countries', CountryController::class)->except('show');
 Route::resource('users', UserController::class)->except('destroy');
 
 
-Route::get('/documents', function () {
-    return inertia('Employees/Documents');
-});
+Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');

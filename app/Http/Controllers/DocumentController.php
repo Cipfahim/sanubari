@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -40,10 +41,17 @@ class DocumentController extends Controller
      */
     public function create($id)
     {
-        $employee = Employee::with('user')
-            ->findOrfail($id);
+        $employee = Employee::where('user_id', $id)->with('user')->first();
+
         return Inertia::render('Employees/Documents/Create', [
             'employee' => $employee,
+        ]);
+    }
+
+    public function documents()
+    {
+        return inertia('Employees/Documents', [
+            'user' => Auth::user()
         ]);
     }
 
@@ -55,7 +63,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

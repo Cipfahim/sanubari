@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\EmployeeStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Employee extends Model
@@ -20,17 +22,26 @@ class Employee extends Model
         'status' => EmployeeStatusEnum::class,
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function location()
+    /**
+     * @return BelongsTo
+     */
+    public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function contactDetails()
+    /**
+     * @return HasMany
+     */
+    public function contactDetails(): HasMany
     {
         return $this->hasMany(ContactDetails::class);
     }

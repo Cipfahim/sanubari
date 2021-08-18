@@ -5,7 +5,9 @@
             <div class="w-full flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold text-gray-800">KUDDUS</h1>
                 <inertia-link
-                    href="#"
+                    :href="route('employees.documents.create', {
+                        'id': this.user.id
+                    })"
                     class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
                 >
                     Add Document
@@ -118,6 +120,7 @@ import {Switch} from "@headlessui/vue";
 export default {
     props: {
         employee: Object,
+        user: Object
     },
     components: {
         Input,

@@ -72,7 +72,7 @@ class EmployeeController extends Controller
             'status' => $request->get('status')
         ]);
 
-        return Redirect::route('employees.identification.index', $user->employee->id);
+        return Redirect::route('employees.index', $user->employee->id);
     }
 
     /**
