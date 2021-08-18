@@ -125,12 +125,16 @@
 
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <div class="max-w-lg focus-within:z-10">
-                                                <jet-input
-                                                    id="date_of_join"
-                                                    type="date"
-                                                    v-model="form.date_of_join"
-                                                    :class="{ 'border-red-500': form.errors.date_of_join }"
-                                                />
+                                                <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
+                                                            :model-config="datePickerConfig.modelConfig">
+                                                    <template #default="{ inputValue, inputEvents }">
+                                                        <input class="px-3 py-1 border rounded w-full"
+                                                               :class="{ 'border-red-500': form.errors.date_of_join }"
+                                                               :value="inputValue"
+                                                               v-on="inputEvents"/>
+                                                    </template>
+                                                </DatePicker>
+
                                             </div>
                                         </div>
 
@@ -277,6 +281,8 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
+import {DatePicker} from 'v-calendar';
+
 
 export default {
     props: {
@@ -302,10 +308,20 @@ export default {
         JetActionMessage,
         JetButton,
         JetCheckbox,
-        Switch
+        Switch,
+        DatePicker
     },
     data() {
         return {
+            datePickerConfig: {
+                masks: {
+                    input: 'DD MMM YYYY',
+                },
+                modelConfig: {
+                    type: 'string',
+                    mask: 'YYYY-MM-DD', // Uses 'iso' if missing
+                },
+            },
             photoPreview: null,
 
             form: this.$inertia.form(
