@@ -56,6 +56,7 @@
                                         <jet-input
                                             id="identity"
                                             type="text"
+                                            v-mask="'######-##-####'"
                                             v-model="form.identity_card_number"
                                             :class="{ 'border-red-500': form.errors.identity_card_number }"
                                         />
@@ -87,28 +88,36 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="dob" value="Date of Birth *"/>
-                                        <jet-input
-                                            id="dob"
-                                            type="date"
-                                            v-model="form.date_of_birth"
-                                            :class="{ 'border-red-500': form.errors.date_of_birth }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.date_of_birth"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <div class="max-w-lg focus-within:z-10">
+                                                <DatePicker v-model="form.date_of_birth" :masks="datePickerConfig.masks"
+                                                            :model-config="datePickerConfig.modelConfig">
+                                                    <template #default="{ inputValue, inputEvents }">
+                                                        <input class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                               :class="{ 'border-red-500': form.errors.date_of_join }"
+                                                               :value="inputValue"
+                                                               v-on="inputEvents"/>
+                                                    </template>
+                                                </DatePicker>
+                                            </div>
+                                            <jet-input-error
+                                                :message="form.errors.date_of_birth"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                     <!-- Country of birth field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="cob" value="Country of Birth *"/>
-                                        <jet-input
-                                            id="cob"
-                                            type="text"
-                                            v-model="form.country_of_birth"
-                                            :class="{ 'border-red-500': form.errors.country_of_birth }"
-                                        />
+<!--                                        <jet-input-->
+<!--                                            id="cob"-->
+<!--                                            type="text"-->
+<!--                                            v-model="form.country_of_birth"-->
+<!--                                            :class="{ 'border-red-500': form.errors.country_of_birth }"-->
+<!--                                        />-->
+                                        <vue-tel-input v-model="phone" mode="international"></vue-tel-input>
                                         <jet-input-error
                                             :message="form.errors.country_of_birth"
                                             class="mt-2"
@@ -224,6 +233,9 @@ import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {ref} from "vue";
 import {Switch} from "@headlessui/vue";
+import {DatePicker} from 'v-calendar';
+import { VueTelInput } from 'vue-tel-input';
+import 'vue-tel-input/dist/vue-tel-input.css';
 
 export default {
     props: {
@@ -249,6 +261,8 @@ export default {
         JetButton,
         JetCheckbox,
         Switch,
+        DatePicker,
+        VueTelInput
     },
     directives: {mask},
 
@@ -275,6 +289,16 @@ export default {
                     resetOnSuccess: true,
                 }
             ),
+            datePickerConfig: {
+                masks: {
+                    input: 'DD MMM YYYY',
+                },
+                modelConfig: {
+                    type: 'string',
+                    mask: 'YYYY-MM-DD', // Uses 'iso' if missing
+                },
+            },
+            phone: '',
         };
     },
     methods: {

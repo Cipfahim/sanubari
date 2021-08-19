@@ -34,8 +34,8 @@
                                         <div class="block">
                                             <!-- New Profile Photo Preview -->
                                             <div class="mt-2">
-                                                <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat"
-                                                      :style="'background-position: center center; background-image: url(\'' + (photoPreview ? photoPreview : '/images/icon/avatar.png') + '\');'">
+                                                <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                                                      :style="'background-image: url(\'' + (photoPreview ? photoPreview : '/images/icon/avatar.png') + '\');'">
                                                 </span>
                                             </div>
 
@@ -125,7 +125,7 @@
                                                 <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
-                                                        <input class="px-3 py-1 border rounded w-full"
+                                                        <input class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
                                                                :class="{ 'border-red-500': form.errors.date_of_join }"
                                                                :value="inputValue"
                                                                v-on="inputEvents"/>
@@ -186,7 +186,7 @@
                                                         class="pr-10"
                                                     />
                                                     <div @click="toggleShowPassword" class="absolute z-10 top-2 right-3 cursor-pointer">
-                                                        <EyeIcon v-if="showPassword && form.password.length > 0" class="h-5 w-5 text-gray-600"/>
+                                                        <EyeIcon v-if="showPassword" class="h-5 w-5 text-gray-600"/>
                                                         <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
                                                     </div>
                                                 </div>
@@ -211,24 +211,26 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="status" value="Status *"/>
-                                        <Switch
-                                            v-model="form.status"
-                                            :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
-                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                        >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.status ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.status" class="text-cyan-900">Active</span>
-                                            <span v-else class="text-cyan-900">Inactive</span>
-                                          </span>
-                                        </Switch>
-                                        <jet-input-error
-                                            :message="form.errors.status"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <Switch
+                                                v-model="form.status"
+                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                            >
+                                              <span
+                                                  aria-hidden="true"
+                                                  :class="form.status ? 'translate-x-20' : 'translate-x-0'"
+                                                  class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200 select-none"
+                                              >
+                                                <span v-if="form.status" class="text-cyan-900">Active</span>
+                                                <span v-else class="text-cyan-900">Inactive</span>
+                                              </span>
+                                            </Switch>
+                                            <jet-input-error
+                                                :message="form.errors.status"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -331,7 +333,7 @@ export default {
         return {
             photoPreview: null,
             generatePasswordIcon : false,
-            showPassword: false,
+            showPassword: true,
             form: this.$inertia.form(
                 {
                     photo: null,
@@ -389,6 +391,7 @@ export default {
         generatePassword(){
             this.generatePasswordIcon = !this.generatePasswordIcon;
             this.form.password = Math.random().toString(36).slice(-8);
+            this.showPassword = true;
         },
         toggleShowPassword(){
             this.showPassword = !this.showPassword;

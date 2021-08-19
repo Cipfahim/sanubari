@@ -33,10 +33,13 @@
 
                                         <div class="block">
                                             <!-- Current Profile Photo -->
-                                            <div class="mt-2" v-show="! photoPreview">
-                                                <img :src="getFileUrl(employee.user.photo)" :alt="employee.user.name"
+                                            <div class="mt-2" v-show="!photoPreview">
+                                                <img v-if="employee.user.photo" :src="getFileUrl(employee.user.photo)" :alt="employee.user.name"
+                                                     class="rounded-full h-20 w-20 object-cover">
+                                                <img v-else src="/images/icon/avatar.png" :alt="employee.user.name"
                                                      class="rounded-full h-20 w-20 object-cover">
                                             </div>
+
 
                                             <!-- New Profile Photo Preview -->
                                             <div class="mt-2" v-show="photoPreview">
@@ -57,31 +60,35 @@
                                     <!-- Official Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="official_name" value="Official Name *"/>
-                                        <jet-input
-                                            id="official_name"
-                                            type="text"
-                                            v-model="form.official_name"
-                                            :class="{ 'border-red-500': form.errors.official_name }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.official_name"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <jet-input
+                                                id="official_name"
+                                                type="text"
+                                                v-model="form.official_name"
+                                                :class="{ 'border-red-500': form.errors.official_name }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.official_name"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Nick Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="nick_name" value="Nick Name *"/>
-                                        <jet-input
-                                            id="nick_name"
-                                            type="text"
-                                            v-model="form.nick_name"
-                                            :class="{ 'border-red-500': form.errors.nick_name }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.nick_name"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <jet-input
+                                                id="nick_name"
+                                                type="text"
+                                                v-model="form.nick_name"
+                                                :class="{ 'border-red-500': form.errors.nick_name }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.nick_name"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Location field-->
@@ -111,11 +118,11 @@
                                                     Add
                                                 </button>
 
-                                                <jet-input-error
-                                                    :message="form.errors.location"
-                                                    class="mt-2"
-                                                />
                                             </div>
+                                            <jet-input-error
+                                                :message="form.errors.location"
+                                                class="mt-2"
+                                            />
                                         </div>
                                     </div>
 
@@ -128,7 +135,7 @@
                                                 <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
-                                                        <input class="px-3 py-1 border rounded w-full"
+                                                        <input class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
                                                                :class="{ 'border-red-500': form.errors.date_of_join }"
                                                                :value="inputValue"
                                                                v-on="inputEvents"/>
@@ -136,12 +143,11 @@
                                                 </DatePicker>
 
                                             </div>
+                                            <jet-input-error
+                                                :message="form.errors.date_of_join"
+                                                class="mt-2"
+                                            />
                                         </div>
-
-                                        <jet-input-error
-                                            :message="form.errors.date_of_join"
-                                            class="mt-2"
-                                        />
                                     </div>
                                 </div>
                             </div>
@@ -161,31 +167,53 @@
                                     <!-- Phone field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="phone" value="Phone *"/>
-                                        <jet-input
-                                            id="phone"
-                                            type="text"
-                                            v-model="form.phone"
-                                            :class="{ 'border-red-500': form.errors.phone }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.phone"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <jet-input
+                                                id="phone"
+                                                type="text"
+                                                v-model="form.phone"
+                                                :class="{ 'border-red-500': form.errors.phone }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.phone"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Password field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="password" value="Password *"/>
-                                        <jet-input
-                                            id="password"
-                                            type="password"
-                                            v-model="form.password"
-                                            :class="{ 'border-red-500': form.errors.password }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.password"
-                                            class="mt-2"
-                                        />
+
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div class="max-w-lg flex justify-space-between">
+                                                <div class="relative w-full">
+                                                    <jet-input
+                                                        id="password"
+                                                        :type="showPassword ? 'text' : 'password'"
+                                                        v-model="form.password"
+                                                        :class="{ 'border-red-500': form.errors.password }"
+                                                        class="pr-10"
+                                                    />
+                                                    <div @click="toggleShowPassword" class="absolute z-10 top-2 right-3 cursor-pointer">
+                                                        <EyeIcon v-if="showPassword" class="h-5 w-5 text-gray-600"/>
+                                                        <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    @click="generatePassword"
+                                                    class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center select-none"
+                                                >
+                                                    <ViewGridIcon class="h-5 w-5 text-cyan-400 mr-2 transform transition duration-1000" :class="generatePasswordIcon ? 'rotate-180' : '-rotate-180'"/>
+                                                    Generate
+                                                </button>
+                                            </div>
+                                            <jet-input-error
+                                                :message="form.errors.password"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Status field-->
@@ -193,24 +221,26 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="status" value="Status *"/>
-                                        <Switch
-                                            v-model="form.status"
-                                            :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
-                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                        >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.status ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.status" class="text-cyan-900">Active</span>
-                                            <span v-else class="text-cyan-900">Inactive</span>
-                                          </span>
-                                        </Switch>
-                                        <jet-input-error
-                                            :message="form.errors.status"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2">
+                                            <Switch
+                                                v-model="form.status"
+                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                            >
+                                              <span
+                                                  aria-hidden="true"
+                                                  :class="form.status ? 'translate-x-20' : 'translate-x-0'"
+                                                  class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                              >
+                                                <span v-if="form.status" class="text-cyan-900">Active</span>
+                                                <span v-else class="text-cyan-900">Inactive</span>
+                                              </span>
+                                            </Switch>
+                                            <jet-input-error
+                                                :message="form.errors.status"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -271,6 +301,11 @@ import {
     OfficeBuildingIcon,
     PlusCircleIcon,
 } from "@heroicons/vue/solid";
+import {
+    ViewGridIcon,
+    EyeOffIcon,
+    EyeIcon
+} from "@heroicons/vue/outline";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -309,7 +344,10 @@ export default {
         JetButton,
         JetCheckbox,
         Switch,
-        DatePicker
+        DatePicker,
+        ViewGridIcon,
+        EyeOffIcon,
+        EyeIcon
     },
     data() {
         return {
@@ -323,7 +361,8 @@ export default {
                 },
             },
             photoPreview: null,
-
+            generatePasswordIcon : false,
+            showPassword: true,
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
@@ -375,6 +414,14 @@ export default {
 
             reader.readAsDataURL(this.$refs.photo.files[0]);
         },
+        generatePassword(){
+            this.generatePasswordIcon = !this.generatePasswordIcon;
+            this.form.password = Math.random().toString(36).slice(-8);
+            this.showPassword = true;
+        },
+        toggleShowPassword(){
+            this.showPassword = !this.showPassword;
+        }
     }
 };
 </script>
