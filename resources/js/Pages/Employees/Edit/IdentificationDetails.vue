@@ -27,7 +27,7 @@
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <jet-label for="citizenship" value="Citizenship *"/>
+                                        <jet-label for="nationality" value="Nationality *"/>
                                         <Switch
                                             v-model="form.citizenship"
                                             :class="form.citizenship ? 'bg-cyan-900' : 'bg-cyan-700'"

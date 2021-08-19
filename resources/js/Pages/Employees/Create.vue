@@ -181,12 +181,12 @@
                                                     <jet-input
                                                         id="password"
                                                         :type="showPassword ? 'text' : 'password'"
-                                                        v-model="generatedPassword"
+                                                        v-model="form.password"
                                                         :class="{ 'border-red-500': form.errors.password }"
                                                         class="pr-10"
                                                     />
                                                     <div @click="toggleShowPassword" class="absolute z-10 top-2 right-3 cursor-pointer">
-                                                        <EyeIcon v-if="showPassword && generatedPassword.length > 0" class="h-5 w-5 text-gray-600"/>
+                                                        <EyeIcon v-if="showPassword && form.password.length > 0" class="h-5 w-5 text-gray-600"/>
                                                         <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
                                                     </div>
                                                 </div>
@@ -332,7 +332,6 @@ export default {
             photoPreview: null,
             generatePasswordIcon : false,
             showPassword: false,
-            generatedPassword: '',
             form: this.$inertia.form(
                 {
                     photo: null,
@@ -388,9 +387,8 @@ export default {
             reader.readAsDataURL(this.$refs.photo.files[0]);
         },
         generatePassword(){
-            this.generatedPassword = '';
             this.generatePasswordIcon = !this.generatePasswordIcon;
-            this.generatedPassword = Math.random().toString(36).slice(-8);
+            this.form.password = Math.random().toString(36).slice(-8);
         },
         toggleShowPassword(){
             this.showPassword = !this.showPassword;
