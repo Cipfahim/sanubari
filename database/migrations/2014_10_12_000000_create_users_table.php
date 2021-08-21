@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('phone')->unique();
             $table->string('password');
-            $table->enum('status', ['Active', 'Inactive', 'Draft'])->default('Draft');
+            $table->enum('a', ['Active', 'Inactive', 'Draft'])->default('Draft');
             $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
