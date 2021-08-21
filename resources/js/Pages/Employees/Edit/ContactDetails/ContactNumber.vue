@@ -23,14 +23,15 @@
                     <div class="relative" v-for="(item, index) in form.items">
                         <jet-input
                             id="phone"
-                            type="text"
+                            type="number"
                             v-model="item.contact_number"
                             class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                             :class="{ 'border-red-500': form.errors.phone }"
+                            placeholder="Enter your phone number"
                         />
                         <jet-input-error
                             :message="getNestedErrors('items.'+index+'.contact_number',form)"
-                            class="mt-2"
+                            class="mb-2"
                         />
                         <button
                             v-if="index !== 0"

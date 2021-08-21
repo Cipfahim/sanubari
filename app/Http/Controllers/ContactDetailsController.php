@@ -71,7 +71,7 @@ class ContactDetailsController extends Controller
             }
         }
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.contributions.index', $id)
+            return Redirect::route('employees.edit.contributions.index', $id)
                 ->with('success', 'Contact Details Saved.');
         }
         return Redirect::back()->with('success', 'Contact Details Saved.');
@@ -93,7 +93,7 @@ class ContactDetailsController extends Controller
             ], []);
         }
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.contributions.index', $id)
+            return Redirect::route('employees.edit.contributions.index', $id)
                 ->with('success', 'Contact Details Saved.');
         }
         return Redirect::back()->with('success', 'Contact Details Saved.');
@@ -120,7 +120,7 @@ class ContactDetailsController extends Controller
             ]);
         }
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.contributions.index', $id)
+            return Redirect::route('employees.edit.contributions.index', $id)
                 ->with('success', 'Contact Details Saved.');
         }
         return Redirect::back()->with('success', 'Contact Details Saved.');

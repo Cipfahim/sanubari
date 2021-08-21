@@ -30,7 +30,7 @@ class IdentificationController extends Controller
             'sex' => $request->get('sex'),
         ]);
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.contact-details.index', $id)
+            return Redirect::route('employees.edit.contact-details.index', $id)
                 ->with('success', 'Identification Details Saved.');
         }
         return Redirect::back()->with('success', 'Identification Details Saved.');

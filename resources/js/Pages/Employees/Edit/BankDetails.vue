@@ -27,7 +27,7 @@
 
                                     <!-- Location field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="location" value="Location *"/>
+                                        <jet-label for="location" value="Bank Name *"/>
 
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <div class="max-w-lg flex justify-space-between">
@@ -57,10 +57,11 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="account_number" value="Account Number *"/>
-                                        <div class="block">
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <jet-input
                                                 id="account_number"
-                                                type="text"
+                                                type="tel"
+                                                v-mask="'#-# # # # # # # # # # #'"
                                                 v-model="form.account_number"
                                                 :class="{ 'border-red-500': form.errors.account_number }"
                                             />
@@ -70,6 +71,7 @@
                                             />
                                         </div>
                                     </div>
+                                    <FormattedInput />
 
                                 </div>
 
@@ -139,12 +141,15 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
+import {mask} from 'vue-the-mask'
+import FormattedInput from "../../../Components/FormattedInput";
 
 export default {
     props: {
         banks: Array,
         employee: Object,
     },
+    directives: {mask},
     components: {
         Input,
         TopBar,
@@ -163,7 +168,8 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
-        JetCheckbox
+        JetCheckbox,
+        FormattedInput
     },
     data() {
         return {

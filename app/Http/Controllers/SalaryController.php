@@ -42,7 +42,7 @@ class SalaryController extends Controller
             'in_charge_allowance' => $request->get('in_charge_allowance'),
         ]);
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.annual-leave.index', $id)
+            return Redirect::route('employees.edit.annual-leave.index', $id)
                 ->with('success', 'Salary Details Saved.');
         }
         return Redirect::back()->with('success', 'Salary Details Saved.');

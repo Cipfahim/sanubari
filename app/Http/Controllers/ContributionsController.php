@@ -38,7 +38,7 @@ class ContributionsController extends Controller
             'epf_no' => $request->get('epf_no'),
         ]);
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.salary-details.index', $id)
+            return Redirect::route('employees.edit.salary-details.index', $id)
                 ->with('success', 'Contribution Details Saved.');
         }
         return Redirect::back()->with('success', 'Contribution Details Saved.');

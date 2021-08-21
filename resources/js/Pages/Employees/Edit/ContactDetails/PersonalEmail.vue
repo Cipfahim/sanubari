@@ -27,10 +27,11 @@
                             v-model="item.email"
                             class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                             :class="{ 'border-red-500': getNestedErrors('items.'+index+'.email',form) }"
+                            placeholder="Enter your email"
                         />
                         <jet-input-error
                             :message="getNestedErrors('items.'+index+'.email',form)"
-                            class="mt-2"
+                            class="mb-2"
                         />
                         <button
                             v-if="index !== 0"
