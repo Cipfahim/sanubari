@@ -111,13 +111,12 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="cob" value="Country of Birth *"/>
-<!--                                        <jet-input-->
-<!--                                            id="cob"-->
-<!--                                            type="text"-->
-<!--                                            v-model="form.country_of_birth"-->
-<!--                                            :class="{ 'border-red-500': form.errors.country_of_birth }"-->
-<!--                                        />-->
-                                        <vue-tel-input v-model="phone" mode="international"></vue-tel-input>
+                                        <jet-input
+                                            id="cob"
+                                            type="text"
+                                            v-model="form.country_of_birth"
+                                            :class="{ 'border-red-500': form.errors.country_of_birth }"
+                                        />
                                         <jet-input-error
                                             :message="form.errors.country_of_birth"
                                             class="mt-2"
@@ -234,8 +233,6 @@ import JetCheckbox from "@/Jetstream/Checkbox";
 import {ref} from "vue";
 import {Switch} from "@headlessui/vue";
 import {DatePicker} from 'v-calendar';
-import { VueTelInput } from 'vue-tel-input';
-import 'vue-tel-input/dist/vue-tel-input.css';
 
 export default {
     props: {
@@ -262,7 +259,6 @@ export default {
         JetCheckbox,
         Switch,
         DatePicker,
-        VueTelInput
     },
     directives: {mask},
 
@@ -298,7 +294,6 @@ export default {
                     mask: 'YYYY-MM-DD', // Uses 'iso' if missing
                 },
             },
-            phone: '',
         };
     },
     methods: {

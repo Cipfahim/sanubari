@@ -1126,17 +1126,6 @@
     estree-walker "^2.0.1"
     source-map "^0.6.1"
 
-"@vue/compiler-core@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.4.tgz#a98d295771998c1e8dccc4ee3d52feb14b02aea9"
-  integrity sha512-c8NuQq7mUXXxA4iqD5VUKpyVeklK53+DMbojYMyZ0VPPrb0BUWrZWFiqSDT+MFDv0f6Hv3QuLiHWb1BWMXBbrw==
-  dependencies:
-    "@babel/parser" "^7.12.0"
-    "@babel/types" "^7.12.0"
-    "@vue/shared" "3.2.4"
-    estree-walker "^2.0.1"
-    source-map "^0.6.1"
-
 "@vue/compiler-dom@3.0.11":
   version "3.0.11"
   resolved "https://registry.npmjs.org/@vue/compiler-dom/-/compiler-dom-3.0.11.tgz"
@@ -1144,14 +1133,6 @@
   dependencies:
     "@vue/compiler-core" "3.0.11"
     "@vue/shared" "3.0.11"
-
-"@vue/compiler-dom@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.2.4.tgz#3a43de243eba127abbe57e796a0b969d2df78c08"
-  integrity sha512-uj1nwO4794fw2YsYas5QT+FU/YGrXbS0Qk+1c7Kp1kV7idhZIghWLTjyvYibpGoseFbYLPd+sW2/noJG5H04EQ==
-  dependencies:
-    "@vue/compiler-core" "3.2.4"
-    "@vue/shared" "3.2.4"
 
 "@vue/compiler-sfc@^3.0.5":
   version "3.0.11"
@@ -1190,13 +1171,6 @@
   dependencies:
     "@vue/shared" "3.0.11"
 
-"@vue/reactivity@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.2.4.tgz#a020ad7e50f674219a07764b105b5922e61597ea"
-  integrity sha512-ljWTR0hr8Tn09hM2tlmWxZzCBPlgGLnq/k8K8X6EcJhtV+C8OzFySnbWqMWataojbrQOocThwsC8awKthSl2uQ==
-  dependencies:
-    "@vue/shared" "3.2.4"
-
 "@vue/runtime-core@3.0.11":
   version "3.0.11"
   resolved "https://registry.npmjs.org/@vue/runtime-core/-/runtime-core-3.0.11.tgz"
@@ -1204,14 +1178,6 @@
   dependencies:
     "@vue/reactivity" "3.0.11"
     "@vue/shared" "3.0.11"
-
-"@vue/runtime-core@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/runtime-core/-/runtime-core-3.2.4.tgz#da5dde3dc1e48df99dd31ea9a972f5c02acdc3f5"
-  integrity sha512-W6PtEOs8P8jKYPo3JwaMAozZQivxInUleGfNwI2pK1t8ZLZIxn4kAf7p4VF4jJdQB8SZBzpfWdLUc06j7IOmpQ==
-  dependencies:
-    "@vue/reactivity" "3.2.4"
-    "@vue/shared" "3.2.4"
 
 "@vue/runtime-dom@3.0.11":
   version "3.0.11"
@@ -1222,24 +1188,10 @@
     "@vue/shared" "3.0.11"
     csstype "^2.6.8"
 
-"@vue/runtime-dom@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/runtime-dom/-/runtime-dom-3.2.4.tgz#1025595f2ae99a12fe0e1e6bce8df6761efec24b"
-  integrity sha512-HcVtLyn2SGwsf6BFPwkvDPDOhOqkOKcfHDpBp5R1coX+qMsOFrY8lJnGXIY+JnxqFjND00E9+u+lq5cs/W7ooA==
-  dependencies:
-    "@vue/runtime-core" "3.2.4"
-    "@vue/shared" "3.2.4"
-    csstype "^2.6.8"
-
 "@vue/shared@3.0.11":
   version "3.0.11"
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.0.11.tgz"
   integrity sha512-b+zB8A2so8eCE0JsxjL24J7vdGl8rzPQ09hZNhystm+KqSbKcAej1A+Hbva1rCMmTTqA+hFnUSDc5kouEo0JzA==
-
-"@vue/shared@3.2.4":
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.4.tgz#ba2a09527afff27b28d08f921b4a597e9504ca7a"
-  integrity sha512-j2j1MRmjalVKr3YBTxl/BClSIc8UQ8NnPpLYclxerK65JIowI4O7n8O8lElveEtEoHxy1d7BelPUDI0Q4bumqg==
 
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
@@ -7445,15 +7397,6 @@ vue-tailwind@^2.2.1:
     tailwindcss "npm:@tailwindcss/postcss7-compat"
     vue "^2.6"
 
-vue-tel-input@^6.0.0-beta.4:
-  version "6.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/vue-tel-input/-/vue-tel-input-6.0.0-beta.4.tgz#f8e8287510a5dc0a30dd69983e64d3d8eed5b663"
-  integrity sha512-9icHDTqwB0mlr8myvMgXBaTo0V/IW5NoHUkeUq8AtHr0z2VntDdYHwYQjurpRX15knm3SH1bicZw+ioOcsrEWQ==
-  dependencies:
-    core-js "^3.6.5"
-    libphonenumber-js "^1.9.6"
-    vue "^3.1.1"
-
 vue-the-mask@^0.11.1:
   version "0.11.1"
   resolved "https://registry.npmjs.org/vue-the-mask/-/vue-the-mask-0.11.1.tgz"
@@ -7489,15 +7432,6 @@ vue@^3.0.0-beta.1, vue@^3.0.5:
     "@vue/compiler-dom" "3.0.11"
     "@vue/runtime-dom" "3.0.11"
     "@vue/shared" "3.0.11"
-
-vue@^3.1.1:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.4.tgz#d94d88675e41c050d3a722d0848a7063b5e87a60"
-  integrity sha512-rNCFmoewm8IwmTK0nj3ysKq53iRpNEFKoBJ4inar6tIh7Oj7juubS39RI8UI+VE7x+Cs2z6PBsadtZu7z2qppg==
-  dependencies:
-    "@vue/compiler-dom" "3.2.4"
-    "@vue/runtime-dom" "3.2.4"
-    "@vue/shared" "3.2.4"
 
 watchpack@^2.0.0:
   version "2.1.1"
