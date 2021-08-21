@@ -89,8 +89,8 @@ class Employee extends Model
         return $this->hasMany(Payslip::class);
     }
 
-    public function leave()
+    public function leaveQuota()
     {
-        return $this->belongsTo(Leave::class);
+        return $this->hasOne(LeaveQuota::class);
     }
 }
