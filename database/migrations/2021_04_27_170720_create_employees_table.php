@@ -33,7 +33,6 @@ class CreateEmployeesTable extends Migration
             $table->tinyInteger('leave_quota')->nullable();
             $table->foreignId('bank_id')->nullable()->constrained();
             $table->string('accounts', 25)->nullable();
-            $table->integer('annual_leave_quota')->nullable();
             $table->timestamps();
         });
     }

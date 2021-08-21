@@ -6,6 +6,7 @@ use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IdentificationController;
@@ -72,6 +73,8 @@ Route::post('give-auditor-access', [AuditorPermissionController::class ,'giveAcc
 Route::get('give-auditor-extra-access', [AuditorPermissionController::class ,'extraAccess'])->name('auditor-access.extra-access');
 Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class ,'employeeList'])->name('auditor-access.employee-list');
 Route::resource('countries', CountryController::class)->except('show');
+
+Route::resource('cities', CityController::class)->except('show');
 
 Route::resource('users', UserController::class)->except('destroy');
 

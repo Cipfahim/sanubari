@@ -15,7 +15,7 @@
                             <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Annual Leave
+                                        Annual Leave Quota
                                     </h3>
                                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                                         This section contains sensitive information.
@@ -23,25 +23,101 @@
                                 </div>
 
                                 <div class="space-y-6 sm:space-y-5">
-                                    <!-- Quota field-->
+                                    <!-- Annual Leave-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
-                                        <jet-label for="annual_leave_quota" value="Leave Quota *"/>
+                                        <jet-label for="annual_leave_quota" value="Annual Leave *"/>
                                         <jet-input
-                                            id="leave_quota"
+                                            id="annual_leave"
                                             type="number"
-                                            v-model="form.leave_quota"
-                                            :class="{ 'border-red-500': form.errors.leave_quota }"
+                                            v-model="form.annual_leave"
+                                            :class="{ 'border-red-500': form.errors.annual_leave }"
                                         />
                                         <jet-input-error
-                                            :message="form.errors.leave_quota"
+                                            :message="form.errors.annual_leave"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6 sm:space-y-5">
+                                    <!-- Annual Leave-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="medical_leave_quota" value="Medical Leave *"/>
+                                        <jet-input
+                                            id="medical_leave"
+                                            type="number"
+                                            v-model="form.medical_leave"
+                                            :class="{ 'border-red-500': form.errors.medical_leave }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.medical_leave"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6 sm:space-y-5">
+                                    <!-- Annual Leave-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="bereavement_leave_quota" value="Bereavement Leave *"/>
+                                        <jet-input
+                                            id="bereavement_leave"
+                                            type="number"
+                                            v-model="form.bereavement_leave"
+                                            :class="{ 'border-red-500': form.errors.bereavement_leave }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.bereavement_leave"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6 sm:space-y-5">
+                                    <!-- Leave field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="hospital_leave_quota" value="Hospital Leave *"/>
+                                        <jet-input
+                                            id="hospital_leave"
+                                            type="number"
+                                            v-model="form.hospital_leave"
+                                            :class="{ 'border-red-500': form.errors.hospital_leave }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.hospital_leave"
+                                            class="mt-2"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="space-y-6 sm:space-y-5">
+                                    <!-- Leave field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="peternity_maternity_leave_quota"
+                                                   value="Paternity/Maternity Leave *"/>
+                                        <jet-input
+                                            id="paternity_maternity_leave"
+                                            type="number"
+                                            v-model="form.paternity_maternity_leave"
+                                            :class="{ 'border-red-500': form.errors.paternity_maternity_leave }"
+                                        />
+                                        <jet-input-error
+                                            :message="form.errors.maternity_paternity_leave"
                                             class="mt-2"
                                         />
                                     </div>
                                 </div>
                             </div>
-
                             <div class="pt-5">
                                 <div class="space-y-6 sm:space-y-5">
                                     <div
@@ -131,7 +207,11 @@ export default {
             form: this.$inertia.form(
                 {
                     _method: "PUT",
-                    leave_quota: this.employee.annual_leave_quota
+                    annual_leave: this.employee.leave_quota ? this.employee.leave_quota.annual_leave : null,
+                    medical_leave: this.employee.leave_quota ? this.employee.leave_quota.medical_leave : null,
+                    bereavement_leave: this.employee.leave_quota ? this.employee.leave_quota.bereavement_leave : null,
+                    hospital_leave: this.employee.leave_quota ? this.employee.leave_quota.hospital_leave: null,
+                    paternity_maternity_leave: this.employee.leave_quota ? this.employee.leave_quota.paternity_maternity_leave : null
                 },
                 {
                     resetOnSuccess: true,

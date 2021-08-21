@@ -28,7 +28,7 @@ class EmployeeController extends Controller
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
                 ->with(['user', 'location'])
-                ->allowedFilters(['official_name'])
+                ->allowedFilters(['official_name', 'date_of_join', 'user.phone', 'user.status', 'location.name'])
                 ->allowedSorts(['official_name', 'status'])
                 ->latest('id')
                 ->paginate()

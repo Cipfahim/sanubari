@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 
 
+use App\Models\LeaveQuota;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CountrySeeder::class,
             LocationSeeder::class,
-
         ]);
     }
 }

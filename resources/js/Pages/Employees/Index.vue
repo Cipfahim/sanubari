@@ -14,12 +14,13 @@
                     <div
                         class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
                     >
-                        <select class="h-full border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
-                            <option value="Official name">Official name</option>
-                            <option value="Phone">Phone</option>
-                            <option value="Location">Location</option>
-                            <option value="Date of join">Date of join</option>
-                            <option value="Status">Status</option>
+                        <select v-model="queryForm.field"
+                                class="h-full border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
+                            <option value="official_name">Official name</option>
+                            <option value="user.phone">Phone</option>
+                            <option value="location.name">Location</option>
+                            <option value="date_of_join">Date of join</option>
+                            <option value="user.status">Status</option>
                         </select>
                         <input
                             v-model="queryForm.filter"
@@ -75,7 +76,7 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <sort-arrow :sort="queryForm.sort" field="official_name"/>
-                                        Official_name
+                                        Official name
                                     </th>
 
                                     <th
@@ -135,7 +136,9 @@
                                     >
                                         <div class="flex items-center gap-2">
                                             <div class="h-8 w-8 rounded-full overflow-hidden">
-                                                <img class="h-full w-full" :src="employee.user.photo ? employee.user.photo : '/images/icon/avatar.png'" :alt="employee.official_name">
+                                                <img class="h-full w-full"
+                                                     :src="employee.user.photo ? employee.user.photo : '/images/icon/avatar.png'"
+                                                     :alt="employee.official_name">
                                             </div>
                                             <inertia-link :href="route('employees.show',employee.id)"
                                                           title="Click to show details">
@@ -175,7 +178,7 @@
                                             v-else
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
                                         >
-                                        Inactive
+                                        {{ employee.user.status }}
                                       </span>
                                     </td>
 

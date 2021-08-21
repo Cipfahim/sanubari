@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class LeaveQuota extends Model
 {
     use HasFactory;
 
-    protected static $logAttributes = ['*'];
-
     protected $guarded = ['id'];
 
-    public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function employee()
     {
-        return $this->hasMany(City::class);
+        return $this->belongsTo(Employee::class);
     }
-
 }

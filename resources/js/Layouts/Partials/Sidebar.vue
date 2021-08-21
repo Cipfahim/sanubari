@@ -137,6 +137,18 @@ export default {
                     current: route().current('locations.*')
                 },
                 {
+                    name: 'Country',
+                    href: route('countries.index'),
+                    icon: ClockIcon,
+                    current: route().current('countries.*')
+                },
+                {
+                    name: 'City',
+                    href: route('cities.index'),
+                    icon: ClockIcon,
+                    current: route().current('cities.*')
+                },
+                {
                     name: 'Bank List',
                     href: route('banks.index'),
                     icon: ClockIcon,

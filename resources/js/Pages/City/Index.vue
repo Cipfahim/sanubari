@@ -4,7 +4,7 @@
             <breadcrumb
                 :links="[
           {
-            title: 'Countries',
+            title: 'Cities',
             active: true,
           },
         ]"
@@ -35,10 +35,10 @@
 
                 <div class="flex justify-between">
                     <inertia-link
-                        :href="route('countries.create')"
+                        :href="route('cities.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
                     >
-                        Add Country
+                        Add City
                     </inertia-link>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
                     >
                         <div
-                            v-if="countries.data.length"
+                            v-if="cities.data.length"
                             class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
                         >
                             <table class="min-w-full divide-y divide-gray-200">
@@ -68,14 +68,6 @@
                                         <sort-arrow :sort="queryForm.sort" field="name"/>
                                         Name
                                     </th>
-                                    <th
-                                        scope="col"
-                                        @click="sort('country_code')"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                                    >
-                                        <sort-arrow :sort="queryForm.sort" field="country_code"/>
-                                        Country Code
-                                    </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -83,7 +75,7 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                 <tr
-                                    v-for="(country, index) in countries.data"
+                                    v-for="(city, index) in cities.data"
                                     :key="index"
                                 >
                                     <td
@@ -94,21 +86,13 @@
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 grid grid-cols gap-1"
                                     >
-                                        <div>{{ country.name }}</div>
-                                        <div v-if="country.flag_path">
-                                            <img class="w-12 h-12 rounded-full" :src="country.flag_path" :alt="country.name">
-                                        </div>
-                                    </td>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                    >
-                                        + {{ country.country_code }}
+                                        <div>{{ city.name }}</div>
                                     </td>
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('countries.edit', country.id)"
+                                            :href="route('cities.edit', city.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
@@ -124,13 +108,13 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <pagination class="m-2" :links="countries.links"/>
+                            <pagination class="m-2" :links="cities.links"/>
                         </div>
                         <no-data-found
                             v-else
                             resource="categories"
-                            action-text="Add Country"
-                            :action-link="route('countries.create')"
+                            action-text="Add City"
+                            :action-link="route('cities.create')"
                         />
                     </div>
                 </div>
@@ -193,7 +177,7 @@ export default {
     },
     props: {
         requests: Object,
-        countries: Object,
+        cities: Object,
     },
     data() {
         return {
@@ -223,7 +207,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "countries.index",
+                        "cities.index",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
