@@ -68,8 +68,14 @@
                                         <sort-arrow :sort="queryForm.sort" field="name"/>
                                         Name
                                     </th>
-
-
+                                    <th
+                                        scope="col"
+                                        @click="sort('country_code')"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                    >
+                                        <sort-arrow :sort="queryForm.sort" field="country_code"/>
+                                        Country Code
+                                    </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -85,14 +91,19 @@
                                     >
                                         {{ index + 1 }}
                                     </td>
-
+                                    <td
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 grid grid-cols gap-1"
+                                    >
+                                        <div>{{ country.name }}</div>
+                                        <div v-if="country.flag_path">
+                                            <img class="w-12 h-12 rounded-full" :src="country.flag_path" :alt="country.name">
+                                        </div>
+                                    </td>
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ country.name }}
+                                        + {{ country.country_code }}
                                     </td>
-
-
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >

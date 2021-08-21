@@ -20348,6 +20348,11 @@ __webpack_require__.r(__webpack_exports__);
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
         current: route().current('locations.*')
       }, {
+        name: 'Country',
+        href: route('countries.index'),
+        icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
+        current: route().current('countries.*')
+      }, {
         name: 'Bank List',
         href: route('banks.index'),
         icon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__.ClockIcon,
@@ -20425,18 +20430,37 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
-        name: null
+        name: null,
+        flag: null
       }, {
         resetOnSuccess: true
       }),
-      logoPreview: null
+      flagPreview: null
     };
   },
   methods: {
     submit: function submit() {
+      if (this.$refs.photo) {
+        this.form.flag = this.$refs.photo.files[0];
+      }
+
       this.form.post(route('countries.store'), {
         preserveScroll: true
       });
+    },
+    selectNewFlag: function selectNewFlag() {
+      this.$refs.photo.click();
+    },
+    updateFlagPreview: function updateFlagPreview() {
+      var _this = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this.flagPreview = e.target.result;
+      };
+
+      reader.readAsDataURL(this.$refs.photo.files[0]);
     }
   }
 });
@@ -21426,10 +21450,40 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_5 = {
   "class": "col-span-6 sm:col-span-12"
 };
+var _hoisted_6 = {
+  "class": "col-span-3 my-2"
+};
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Created. ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "flag",
+  "class": "block text-sm font-medium text-gray-700"
+}, " Flag ", -1
+/* HOISTED */
+);
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
+var _hoisted_8 = {
+  "class": "mt-1 flex items-center"
+};
+var _hoisted_9 = {
+  key: 0,
+  "class": "h-12 w-12 rounded-full overflow-hidden bg-gray-100"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+  "class": "h-full w-full text-gray-300",
+  fill: "currentColor",
+  viewBox: "0 0 24 24"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
+  "class": "mt-2"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Created. ");
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breadcrumb = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breadcrumb");
@@ -21439,6 +21493,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-input");
 
   var _component_JetInputError = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("JetInputError");
+
+  var _component_jet_input_error = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-input-error");
 
   var _component_jet_action_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-action-message");
 
@@ -21494,6 +21550,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
+          , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("flag"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [$data.flagPreview == null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_9, [_hoisted_10])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+            "class": "block rounded-full w-12 h-12",
+            style: 'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + $data.flagPreview + '\');'
+          }, null, 4
+          /* STYLE */
+          )], 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.flagPreview]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+            type: "file",
+            "class": "hidden",
+            ref: "photo",
+            onChange: _cache[2] || (_cache[2] = function () {
+              return $options.updateFlagPreview && $options.updateFlagPreview.apply($options, arguments);
+            })
+          }, null, 544
+          /* HYDRATE_EVENTS, NEED_PATCH */
+          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+            type: "button",
+            onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+              return $options.selectNewFlag && $options.selectNewFlag.apply($options, arguments);
+            }, ["prevent"])),
+            "class": ["ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", {
+              'border-red-500': $data.form.errors.flag
+            }]
+          }, " Change ", 2
+          /* CLASS */
+          )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+            message: $data.form.errors.photo,
+            "class": "mt-2"
+          }, null, 8
+          /* PROPS */
           , ["message"])])];
         }),
         actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21502,7 +21589,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mr-3"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_6];
+              return [_hoisted_12];
             }),
             _: 1
             /* STABLE */
@@ -21516,7 +21603,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             disabled: $data.form.processing
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_7];
+              return [_hoisted_13];
             }),
             _: 1
             /* STABLE */
