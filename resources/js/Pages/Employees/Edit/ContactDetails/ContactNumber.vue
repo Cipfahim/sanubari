@@ -20,25 +20,31 @@
         >
             <template #form class="md:col-span-12">
                 <div class="mt-1 sm:mt-0">
-                    <div class="relative" v-for="(item, index) in form.items">
-                        <jet-input
-                            id="phone"
-                            type="number"
-                            v-model="item.contact_number"
-                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                            :class="{ 'border-red-500': form.errors.phone }"
-                            placeholder="Enter your phone number"
-                        />
-                        <jet-input-error
-                            :message="getNestedErrors('items.'+index+'.contact_number',form)"
-                            class="mb-2"
-                        />
-                        <button
-                            v-if="index !== 0"
-                            @click.prevent="removeItem(index, item)"
-                            class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
-                            <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
-                        </button>
+                    <div class="flex gap-2" v-for="(item, index) in form.items">
+                        <select name="type"
+                                class="block h-10 w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">
+                            <option value="Home">Home</option>
+                        </select>
+                        <div class="w-full relative">
+                            <jet-input
+                                id="phone"
+                                type="number"
+                                v-model="item.contact_number"
+                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                :class="{ 'border-red-500': form.errors.phone }"
+                                placeholder="Enter your phone number"
+                            />
+                            <jet-input-error
+                                :message="getNestedErrors('items.'+index+'.contact_number',form)"
+                                class="mb-2"
+                            />
+                            <button
+                                v-if="index !== 0"
+                                @click.prevent="removeItem(index, item)"
+                                class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

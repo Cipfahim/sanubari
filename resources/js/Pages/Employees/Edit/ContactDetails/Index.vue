@@ -79,14 +79,14 @@
                 </div>
                 <!-- Personal Phone -->
                 <div
-                    class="mt-4 h-full sm:h-96"
+                    class="mt-4 pb-10 h-full"
                     :class="{ hidden: openTab !== 1, block: openTab === 1 }"
                 >
                     <contact-number :employee="employee"/>
                 </div>
                 <!-- Personal Email -->
                 <div
-                    class="mt-4 h-full sm:h-96"
+                    class="mt-4 pb-10 h-full"
                     :class="{ hidden: openTab !== 2, block: openTab === 2 }"
                 >
                     <personal-email :employee="employee"/>
@@ -94,7 +94,7 @@
                 </div>
                 <!-- Address -->
                 <div
-                    class="h-full"
+                    class="pb-10 h-full"
                     :class="{ hidden: openTab !== 3, block: openTab === 3 }"
                 >
                     <contact-address :employee="employee" :address-types="addressTypes"/>

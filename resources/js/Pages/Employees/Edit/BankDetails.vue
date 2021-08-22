@@ -71,8 +71,6 @@
                                             />
                                         </div>
                                     </div>
-                                    <FormattedInput />
-
                                 </div>
 
                                 <div class="pt-5">
