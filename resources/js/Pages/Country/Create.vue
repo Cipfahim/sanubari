@@ -25,7 +25,7 @@
                     </template>
                     <template #form class="md:col-span-12" >
                         <!--                        Name-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="name" value="Country Name *" />
                             <jet-input
                                 type="text"
@@ -40,7 +40,7 @@
                             <JetInputError :message="form.errors.name" class="mt-2" />
                         </div>
                         <!--Country Code-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="country_code" value="Country Code *" />
                             <jet-input
                                 type="number"
@@ -61,9 +61,8 @@
                             </label>
                             <div class="mt-1 flex items-center">
                                 <span v-if="flagPreview == null"
-                                      class="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                  <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                  </svg>
+                                      class="h-12 w-12 p-3 rounded-full overflow-hidden bg-gray-100">
+                                  <img class="w-full h-full" src="/images/icon/country.png" alt="Country Placeholder">
                                 </span>
                                 <div class="mt-2" v-show="flagPreview">
                                     <span class="block rounded-full w-12 h-12"
@@ -75,7 +74,7 @@
                                        @change="updateFlagPreview">
                                 <button type="button"
                                         @click.native.prevent="selectNewFlag"
-                                        class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                         :class="{ 'border-red-500' : form.errors.flag }">
                                     Change
                                 </button>

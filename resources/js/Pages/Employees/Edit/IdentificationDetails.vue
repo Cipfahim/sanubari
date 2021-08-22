@@ -53,17 +53,20 @@
                                         v-if="!form.citizenship"
                                     >
                                         <jet-label for="identity" value="Identity Card (IC) Number *"/>
-                                        <jet-input
-                                            id="identity"
-                                            type="text"
-                                            v-mask="'######-##-####'"
-                                            v-model="form.identity_card_number"
-                                            :class="{ 'border-red-500': form.errors.identity_card_number }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.identity_card_number"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="identity"
+                                                type="text"
+                                                v-mask="'######-##-####'"
+                                                v-model="form.identity_card_number"
+                                                :class="{ 'border-red-500': form.errors.identity_card_number }"
+                                                placeholder="###### ## ####"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.identity_card_number"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Passport Numbrt field-->
@@ -71,16 +74,18 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="passport" value="Passport Number *"/>
-                                        <jet-input
-                                            id="passport"
-                                            type="text"
-                                            v-model="form.passport_number"
-                                            :class="{ 'border-red-500': form.errors.passport_number }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.passport_number"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="passport"
+                                                type="text"
+                                                v-model="form.passport_number"
+                                                :class="{ 'border-red-500': form.errors.passport_number }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.passport_number"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Date of birth field-->
@@ -88,7 +93,7 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="dob" value="Date of Birth *"/>
-                                        <div class="col-span-2">
+                                        <div class="col-span-2 max-w-lg">
                                             <div class="max-w-lg focus-within:z-10">
                                                 <DatePicker v-model="form.date_of_birth" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
@@ -96,7 +101,9 @@
                                                         <input class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
                                                                :class="{ 'border-red-500': form.errors.date_of_join }"
                                                                :value="inputValue"
-                                                               v-on="inputEvents"/>
+                                                               v-on="inputEvents"
+                                                               placeholder="dd/mm/yyyy"
+                                                        />
                                                     </template>
                                                 </DatePicker>
                                             </div>
@@ -111,52 +118,58 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="cob" value="Country of Birth *"/>
-                                        <jet-input
-                                            id="cob"
-                                            type="text"
-                                            v-model="form.country_of_birth"
-                                            :class="{ 'border-red-500': form.errors.country_of_birth }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.country_of_birth"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="cob"
+                                                type="text"
+                                                v-model="form.country_of_birth"
+                                                :class="{ 'border-red-500': form.errors.country_of_birth }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.country_of_birth"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                     <!-- State of birth field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="sob" value="State of Birth *"/>
-                                        <jet-input
-                                            id="sob"
-                                            type="text"
-                                            v-model="form.state_of_birth"
-                                            :class="{ 'border-red-500': form.errors.state_of_birth }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.state_of_birth"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="sob"
+                                                type="text"
+                                                v-model="form.state_of_birth"
+                                                :class="{ 'border-red-500': form.errors.state_of_birth }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.state_of_birth"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                     <!-- Citizenship field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="citizenship" value="Sex *"/>
-                                        <Switch
-                                            v-model="form.sex"
-                                            :class="form.sex ? 'bg-cyan-900' : 'bg-cyan-700'"
-                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                        >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.sex ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.sex" class="text-cyan-900">Female</span>
-                                            <span v-else class="text-cyan-900">Male</span>
-                                          </span>
-                                        </Switch>
+                                        <div class="col-span-2 max-w-lg">
+                                            <Switch
+                                                v-model="form.sex"
+                                                :class="form.sex ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                            >
+                                              <span
+                                                  aria-hidden="true"
+                                                  :class="form.sex ? 'translate-x-20' : 'translate-x-0'"
+                                                  class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                              >
+                                                <span v-if="form.sex" class="text-cyan-900">Female</span>
+                                                <span v-else class="text-cyan-900">Male</span>
+                                              </span>
+                                            </Switch>
+                                        </div>
                                         <jet-input-error
                                             :message="form.errors.sex"
                                             class="mt-2"

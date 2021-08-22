@@ -120,7 +120,7 @@ export default {
                 },
                 {
                     id: 'G',
-                    name: 'Annual Leave',
+                    name: 'Leave Quota',
                     href: route('employees.edit.annual-leave.index', this.employee),
                     status: true
                 },

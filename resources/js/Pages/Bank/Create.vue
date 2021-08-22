@@ -25,11 +25,10 @@
                     </template>
                     <template #form class="md:col-span-12" >
                         <!--Name-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2 mb-2" >
                             <jet-label for="name" value="Bank Name *" />
                             <jet-input
                                 type="text"
-                                id="name"
                                 v-model="form.name"
                                 class="mt-1 block w-full focus:ring-cyan-100"
                                 :class="{ 'border-red-500': form.errors.name }"
@@ -40,11 +39,10 @@
                             <JetInputError :message="form.errors.name" class="mt-2" />
                         </div>
                         <!--Swift Code-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="name" value="Swift Code *" />
                             <jet-input
                                 type="text"
-                                id="name"
                                 v-model="form.swift_code"
                                 class="mt-1 block w-full focus:ring-cyan-100"
                                 :class="{ 'border-red-500': form.errors.swift_code }"

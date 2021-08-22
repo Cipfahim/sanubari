@@ -60,7 +60,7 @@
                                     <!-- Official Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="official_name" value="Official Name *"/>
-                                        <div class="col-span-2">
+                                        <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="official_name"
                                                 type="text"
@@ -77,7 +77,7 @@
                                     <!-- Nick Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="nick_name" value="Nick Name *"/>
-                                        <div class="col-span-2">
+                                        <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="nick_name"
                                                 type="text"
@@ -95,8 +95,8 @@
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="location" value="Location *"/>
 
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
+                                        <div class="col-span-2 max-w-lg">
+                                            <div class="w-full flex justify-space-between">
                                                 <select
                                                     v-model="form.location"
                                                     id="location"
@@ -130,8 +130,8 @@
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="date_of_join" value="Date of Join *"/>
 
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg focus-within:z-10">
+                                        <div class="col-span-2 max-w-lg">
+                                            <div class="w-full focus-within:z-10">
                                                 <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
@@ -141,7 +141,6 @@
                                                                v-on="inputEvents"/>
                                                     </template>
                                                 </DatePicker>
-
                                             </div>
                                             <jet-input-error
                                                 :message="form.errors.date_of_join"
@@ -167,7 +166,7 @@
                                     <!-- Phone field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="phone" value="Phone *"/>
-                                        <div class="col-span-2">
+                                        <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="phone"
                                                 type="text"
@@ -185,8 +184,8 @@
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="password" value="Password *"/>
 
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
+                                        <div class="col-span-2 max-w-lg">
+                                            <div class="w-full flex justify-space-between">
                                                 <div class="relative w-full">
                                                     <jet-input
                                                         id="password"
@@ -221,7 +220,7 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="status" value="Status *"/>
-                                        <div class="col-span-2">
+                                        <div class="col-span-2 max-w-lg">
                                             <Switch
                                                 v-model="form.status"
                                                 :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"

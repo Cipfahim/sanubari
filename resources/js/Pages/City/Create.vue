@@ -25,7 +25,7 @@
                     </template>
                     <template #form class="md:col-span-12" >
                         <!--                        Name-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="name" value="City Name *" />
                             <jet-input
                                 type="text"
@@ -40,10 +40,10 @@
                             <JetInputError :message="form.errors.name" class="mt-2" />
                         </div>
                         <!--Country-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="country" value="Country Name *" />
                             <select name="country" v-model="form.country"
-                                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
+                                    class="border-gray-300 focus:border-cyan-300 focus:ring focus:ring-cyan-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
                                 <option value="" disabled>Select Country</option>
                                 <option v-for="(country, index) in countries" :key="index" :value="country.id">
                                     {{ country.name }}

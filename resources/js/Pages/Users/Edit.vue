@@ -56,90 +56,95 @@
                                     <!-- Name field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="name" value="Name *"/>
-                                        <jet-input
-                                            id="name"
-                                            type="text"
-                                            v-model="form.name"
-                                            :class="{ 'border-red-500': form.errors.name }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.name"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="name"
+                                                type="text"
+                                                v-model="form.name"
+                                                :class="{ 'border-red-500': form.errors.name }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.name"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Email field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="email" value="Email"/>
-                                        <jet-input
-                                            id="email"
-                                            type="text"
-                                            v-model="form.email"
-                                            :class="{ 'border-red-500': form.errors.email }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.email"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="email"
+                                                type="text"
+                                                v-model="form.email"
+                                                :class="{ 'border-red-500': form.errors.email }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.email"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
 
                                     <!-- Role field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="role" value="Role *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <select
+                                                v-model="form.role"
+                                                id="role"
+                                                name="role"
+                                                autocomplete="role"
+                                                class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                            >
+                                                <option>Select one</option>
+                                                <option v-for="(role) in roles"
+                                                        :value="role.id">{{ role.name }}
+                                                </option>
+                                            </select>
 
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
-                                                <select
-                                                    v-model="form.role"
-                                                    id="role"
-                                                    name="role"
-                                                    autocomplete="role"
-                                                    class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                >
-                                                    <option>Select one</option>
-                                                    <option v-for="(role) in roles"
-                                                            :value="role.id">{{ role.name }}
-                                                    </option>
-                                                </select>
-
-                                                <jet-input-error
-                                                    :message="form.errors.role"
-                                                    class="mt-2"
-                                                />
-                                            </div>
+                                            <jet-input-error
+                                                :message="form.errors.role"
+                                                class="mt-2"
+                                            />
                                         </div>
                                     </div>
 
                                     <!-- Phone field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="phone" value="Phone *"/>
-                                        <jet-input
-                                            id="phone"
-                                            type="text"
-                                            v-model="form.phone"
-                                            :class="{ 'border-red-500': form.errors.phone }"
-                                            required
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.phone"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="phone"
+                                                type="text"
+                                                v-model="form.phone"
+                                                :class="{ 'border-red-500': form.errors.phone }"
+                                                required
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.phone"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Password field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="password" value="Password *"/>
-                                        <jet-input
-                                            id="password"
-                                            type="password"
-                                            v-model="form.password"
-                                            :class="{ 'border-red-500': form.errors.password }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.password"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="password"
+                                                type="password"
+                                                v-model="form.password"
+                                                :class="{ 'border-red-500': form.errors.password }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.password"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- Status field-->
@@ -147,24 +152,26 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="status" value="Status *"/>
-                                        <Switch
-                                            v-model="form.status"
-                                            :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
-                                            class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                        >
-                                          <span
-                                              aria-hidden="true"
-                                              :class="form.status ? 'translate-x-20' : 'translate-x-0'"
-                                              class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                          >
-                                            <span v-if="form.status" class="text-cyan-900">Active</span>
-                                            <span v-else class="text-cyan-900">Inactive</span>
-                                          </span>
-                                        </Switch>
-                                        <jet-input-error
-                                            :message="form.errors.status"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <Switch
+                                                v-model="form.status"
+                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                            >
+                                              <span
+                                                  aria-hidden="true"
+                                                  :class="form.status ? 'translate-x-20' : 'translate-x-0'"
+                                                  class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
+                                              >
+                                                <span v-if="form.status" class="text-cyan-900">Active</span>
+                                                <span v-else class="text-cyan-900">Inactive</span>
+                                              </span>
+                                            </Switch>
+                                            <jet-input-error
+                                                :message="form.errors.status"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -29,16 +29,18 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="epf_employee" value="EPF Employee * (%)"/>
-                                        <jet-input
-                                            id="epf_employee"
-                                            type="text"
-                                            v-model="form.epf_employee"
-                                            :class="{ 'border-red-500': form.errors.epf_employee }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.epf_employee"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="epf_employee"
+                                                type="text"
+                                                v-model="form.epf_employee"
+                                                :class="{ 'border-red-500': form.errors.epf_employee }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.epf_employee"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- epf_employee field-->
@@ -46,24 +48,26 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="epf_employer" value="EPF Employer * (%)"/>
-                                        <jet-input
-                                            id="epf_employer"
-                                            type="text"
-                                            v-model="form.epf_employer"
-                                            :class="{ 'border-red-500': form.errors.epf_employer }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.epf_employer"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="epf_employer"
+                                                type="text"
+                                                v-model="form.epf_employer"
+                                                :class="{ 'border-red-500': form.errors.epf_employer }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.epf_employer"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="epf_no" value="SOCSO Group"/>
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
+                                        <div class="col-span-2 max-w-lg">
+                                            <div class="w-full flex justify-space-between">
                                                 <select
                                                     v-model="form.socso_group"
                                                     class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -74,30 +78,30 @@
                                                     <option value="Group-2">Group - 2</option>
                                                 </select>
                                             </div>
+                                            <jet-input-error
+                                                :message="form.errors.socso_group"
+                                                class="mt-2"
+                                            />
                                         </div>
-
-                                        <jet-input-error
-                                            :message="form.errors.socso_group"
-                                            class="mt-2"
-                                        />
                                     </div>
-
 
                                     <!-- epf_employee field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="epf_no" value="EPF No * (%)"/>
-                                        <jet-input
-                                            id="epf_no"
-                                            type="text"
-                                            v-model="form.epf_no"
-                                            :class="{ 'border-red-500': form.errors.epf_no }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.epf_no"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="epf_no"
+                                                type="text"
+                                                v-model="form.epf_no"
+                                                :class="{ 'border-red-500': form.errors.epf_no }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.epf_no"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@
 
                     <template #form>
                         <!-- Name -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 mb-2">
                             <jet-label for="name" value="Bank Name *" />
                             <jet-input
                                 id="name"
@@ -36,7 +36,7 @@
                             <jet-input-error :message="form.errors.name" class="mt-2" />
                         </div>
                         <!-- SwiftCode -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 mb-2">
                             <jet-label for="name" value="Swift Code *" />
                             <jet-input
                                 id="name"

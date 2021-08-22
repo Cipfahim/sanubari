@@ -21,7 +21,7 @@
 
                     <template #form>
                         <!-- Name -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 mb-2">
                             <jet-label for="name" value="Name *" />
                             <jet-input
                                 id="name"
@@ -36,7 +36,7 @@
                             <jet-input-error :message="form.errors.name" class="mt-2" />
                         </div>
                         <!-- Country Code -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 mb-2">
                             <jet-label for="country_code" value="Country Code *" />
                             <jet-input
                                 id="country_code"
@@ -62,9 +62,9 @@
                                           :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + flagPreview + '\');'">
                                     </span>
                                     </div>
-                                    <div class="mt-2" v-show="!flagPreview">
-                                        <img :src="country.flag_path" alt="Current Profile Photo"
-                                             class="rounded-full h-12 w-12 object-cover">
+                                    <div class="mt-2 p-3 h-12 w-12 overflow-hidden rounded-full bg-gray-100" v-show="!flagPreview">
+                                        <img :src="country.flag_path ? country.flag_path : '/images/icon/country.png'" alt="Current Country Photo"
+                                             class="h-full w-full">
                                     </div>
                                     <input type="file" class="hidden"
                                            ref="photo"
