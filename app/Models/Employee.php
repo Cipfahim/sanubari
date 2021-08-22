@@ -46,13 +46,13 @@ class Employee extends Model
         return $this->hasMany(ContactDetails::class);
     }
 
-    public function contactNumbers()
+    public function contactNumbers(): HasMany
     {
-        return $this->hasMany(ContactDetails::class)
+        return $this->hasMany(ContactNumber::class)
             ->where('type', 'number');
     }
 
-    public function contactEmails()
+    public function contactEmails(): HasMany
     {
         return $this->hasMany(ContactDetails::class)
             ->where('type', 'email');

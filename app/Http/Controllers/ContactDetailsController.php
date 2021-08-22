@@ -3,29 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ContactAddressType;
-use App\Models\ContactAddress;
+use App\Enums\ContactNumberType;
 use App\Models\ContactDetails;
 use App\Models\Employee;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ContactDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @param $id
+     * @return Response
      */
-    public function index($id)
+    public function index($id): Response
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
             'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
-            'addressTypes' => ContactAddressType::getValues()
+            'addressTypes' => ContactAddressType::getValues(),
+            'numberTypes' => ContactNumberType::getValues()
         ]);
     }
 
-    public function destroyItem($employeeId, $contactDetailsId)
+    /**
+     * @param $employeeId
+     * @param $contactDetailsId
+     * @return RedirectResponse
+     */
+    public function destroyItem($employeeId, $contactDetailsId): RedirectResponse
     {
         Employee::findOrFail($employeeId)
             ->contactDetails()
@@ -37,7 +47,7 @@ class ContactDetailsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -47,13 +57,16 @@ class ContactDetailsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function storeNumber(Request $request, $id)
+    public function storeNumber(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/']
+            'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/'],
+            'items.*.type' => ['required']
         ]);
 
         $employee = Employee::findOrFail($id);
@@ -61,11 +74,12 @@ class ContactDetailsController extends Controller
         foreach ($request->get('items') as $item) {
             if (isset($item['id'])) {
                 $employee->contactNumbers()->find($item['id'])->update([
-                    'value' => $item['contact_number'],
+                    'number' => $item['contact_number'],
+                    'type' => $item['type']
                 ]);
             } else {
                 $employee->contactNumbers()->create([
-                    'type' => 'number',
+                    'type' => $item['type'],
                     'value' => $item['contact_number'],
                 ]);
             }
@@ -77,7 +91,13 @@ class ContactDetailsController extends Controller
         return Redirect::back()->with('success', 'Contact Details Saved.');
     }
 
-    public function storeEmail(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     * @throws ValidationException
+     */
+    public function storeEmail(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
             'items.*.email' => ['required', 'string', 'min:3', 'max:255', 'email']
@@ -99,7 +119,12 @@ class ContactDetailsController extends Controller
         return Redirect::back()->with('success', 'Contact Details Saved.');
     }
 
-    public function storeAddress(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function storeAddress(Request $request, $id): RedirectResponse
     {
 //        $this->validate($request, [
 //            'items.*.address' => ['required', 'string', 'min:3', 'max:255']
@@ -129,7 +154,7 @@ class ContactDetailsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\ContactDetails $contactDetails
+     * @param ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
     public function show(ContactDetails $contactDetails)
@@ -140,10 +165,10 @@ class ContactDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\ContactDetails $contactDetails
+     * @param ContactDetails $contactDetails
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactDetails $contactDetails)
+    public function edit(ContactDetails $contactDetails): \Illuminate\Http\Response
     {
         //
     }
@@ -151,9 +176,9 @@ class ContactDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ContactDetails $contactDetails
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param ContactDetails $contactDetails
+     * @return void
      */
     public function update(Request $request, ContactDetails $contactDetails)
     {
@@ -163,8 +188,8 @@ class ContactDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\ContactDetails $contactDetails
-     * @return \Illuminate\Http\Response
+     * @param ContactDetails $contactDetails
+     * @return void
      */
     public function destroy(ContactDetails $contactDetails)
     {

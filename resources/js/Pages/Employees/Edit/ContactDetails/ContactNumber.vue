@@ -21,9 +21,10 @@
             <template #form class="md:col-span-12">
                 <div class="mt-1 sm:mt-0">
                     <div class="flex gap-2" v-for="(item, index) in form.items">
-                        <select name="type"
+                        <select name="type" v-model="item.type"
                                 class="block h-10 w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">
-                            <option value="Home">Home</option>
+                            <option disabled>Select Number Type</option>
+                            <option v-for="(type,index) in numberTypes" :key="index" :value="type">{{ type }}</option>
                         </select>
                         <div class="w-full relative">
                             <jet-input
@@ -105,7 +106,8 @@ export default {
         JetInput,
     },
     props: {
-        employee: Object
+        employee: Object,
+        numberTypes: Array
     },
     data() {
         return {

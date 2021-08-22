@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class DocumentController extends Controller
@@ -15,9 +17,10 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @param $id
+     * @return Response
      */
-    public function index($id)
+    public function index($id): Response
     {
         $employee = Employee::with('user')
             ->findOrfail($id);
@@ -37,9 +40,10 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Inertia\Response
+     * @param $id
+     * @return Response
      */
-    public function create($id)
+    public function create($id): Response
     {
         $employee = Employee::where('user_id', $id)->with('user')->first();
 
@@ -48,6 +52,9 @@ class DocumentController extends Controller
         ]);
     }
 
+    /**
+     * @return Response|ResponseFactory
+     */
     public function documents()
     {
         return inertia('Employees/Documents', [
@@ -58,8 +65,8 @@ class DocumentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function store(Request $request)
     {
@@ -70,7 +77,7 @@ class DocumentController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function show($id)
     {
@@ -81,7 +88,7 @@ class DocumentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit($id)
     {
@@ -91,9 +98,9 @@ class DocumentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function update(Request $request, $id)
     {

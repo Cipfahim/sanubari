@@ -82,7 +82,7 @@
                     class="mt-4 pb-10 h-full"
                     :class="{ hidden: openTab !== 1, block: openTab === 1 }"
                 >
-                    <contact-number :employee="employee"/>
+                    <contact-number :employee="employee" :number-types="numberTypes"/>
                 </div>
                 <!-- Personal Email -->
                 <div
@@ -137,7 +137,8 @@ import ContactAddress from "./ContactAddress";
 export default {
     props: {
         employee: Object,
-        addressTypes: Array
+        addressTypes: Array,
+        numberTypes: Array
     },
     components: {
         ContactNumber,
