@@ -14,72 +14,74 @@
                             <div class="space-y-6 sm:space-y-5">
                                 <div class="sm:border-b sm:border-gray-200 py-5">
                                     <h3 class="text-2xl leading-6 font-semibold text-gray-900">
-                                        User Profile
+                                        Change Password
                                     </h3>
                                 </div>
 
                                 <div class="space-y-6 sm:space-y-5">
-                                    <!-- Profile Photo -->
+                                    <!-- Current Password field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <!-- Profile Photo File Input -->
-                                        <input type="file" class="hidden"
-                                               ref="photo"
-                                               @change="updatePhotoPreview">
-
-                                        <jet-label for="photo" value="Photo"/>
-
-                                        <div class="block">
-                                            <!-- Current Profile Photo -->
-                                            <div class="mt-2" v-show="!photoPreview">
-                                                <img src="/images/icon/avatar.png" alt="User"
-                                                     class="rounded-full h-20 w-20 object-cover" />
-                                            </div>
-
-                                            <!-- New Profile Photo Preview -->
-                                            <div class="mt-2" v-show="photoPreview">
-                                                <span class="block rounded-full w-20 h-20"
-                                                      :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                                                </span>
-                                            </div>
-
-                                            <jet-secondary-button class="mt-2 mr-2" type="button"
-                                                                  @click.prevent="selectNewPhoto">
-                                                Select A New Photo
-                                            </jet-secondary-button>
-
-                                            <jet-input-error :message="form.errors.photo" class="mt-2"/>
-                                        </div>
-                                    </div>
-
-                                    <!-- Name field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="name" value="Name *"/>
+                                        <jet-label for="password" value="Current Password *"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="name"
-                                                type="text"
-                                                v-model="form.name"
-                                                :class="{ 'border-red-500': form.errors.name }"
-                                            />
+                                            <div class="relative w-full">
+                                                <jet-input
+                                                    :type="showCurrPassword ? 'text' : 'password'"
+                                                    v-model="form.current_password"
+                                                    :class="{ 'border-red-500': form.errors.current_password }"
+                                                    class="pr-10"
+                                                />
+                                                <div @click="toggleShowPassword('current')" class="absolute z-10 top-2.5 right-3 cursor-pointer">
+                                                    <EyeIcon v-if="showCurrPassword" class="h-5 w-5 text-gray-600"/>
+                                                    <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
+                                                </div>
+                                            </div>
                                             <jet-input-error
-                                                :message="form.errors.name"
+                                                :message="form.errors.current_password"
                                                 class="mt-2"
                                             />
                                         </div>
                                     </div>
 
-                                    <!-- Email field-->
+                                    <!-- New Password field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="email" value="Email"/>
+                                        <jet-label for="password" value="New Password *"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="email"
-                                                type="text"
-                                                v-model="form.email"
-                                                :class="{ 'border-red-500': form.errors.email }"
-                                            />
+                                            <div class="relative w-full">
+                                                <jet-input
+                                                    :type="showNewPassword ? 'text' : 'password'"
+                                                    v-model="form.password"
+                                                    :class="{ 'border-red-500': form.errors.password }"
+                                                    class="pr-10"
+                                                />
+                                                <div @click="toggleShowPassword('new')" class="absolute z-10 top-2.5 right-3 cursor-pointer">
+                                                    <EyeIcon v-if="showNewPassword" class="h-5 w-5 text-gray-600"/>
+                                                    <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
+                                                </div>
+                                            </div>
                                             <jet-input-error
-                                                :message="form.errors.email"
+                                                :message="form.errors.password"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+                                    <!-- Confirm Password field-->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <jet-label for="password" value="Confirm Password *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <div class="relative w-full">
+                                                <jet-input
+                                                    :type="showConfPassword ? 'text' : 'password'"
+                                                    v-model="form.confirm_password"
+                                                    :class="{ 'border-red-500': form.errors.confirm_password }"
+                                                    class="pr-10"
+                                                />
+                                                <div @click="toggleShowPassword('confirm')" class="absolute z-10 top-2.5 right-3 cursor-pointer">
+                                                    <EyeIcon v-if="showConfPassword" class="h-5 w-5 text-gray-600"/>
+                                                    <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
+                                                </div>
+                                            </div>
+                                            <jet-input-error
+                                                :message="form.errors.confirm_password"
                                                 class="mt-2"
                                             />
                                         </div>
@@ -124,7 +126,11 @@
 </template>
 
 <script>
-import AppLayout from "../Layouts/App";
+import AppLayout from "../../Layouts/App";
+import {
+    EyeOffIcon,
+    EyeIcon
+} from "@heroicons/vue/outline";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -132,14 +138,12 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../Components/Input";
 
 export default {
     props: {
         roles: Array
     },
     components: {
-        Input,
         AppLayout,
         JetFormSection,
         JetSecondaryButton,
@@ -148,20 +152,20 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
+        EyeOffIcon,
+        EyeIcon
     },
     data() {
         return {
-            photoPreview: null,
-
+            showCurrPassword: true,
+            showNewPassword: true,
+            showConfPassword: true,
             form: this.$inertia.form(
                 {
-                    photo: null,
-                    name: null,
-                    email: null,
-                    role: null,
-                    phone: '+60',
+                    _method: 'PUT',
+                    current_password: null,
                     password: null,
-                    status: null
+                    confirm_password: null,
                 },
                 {
                     resetOnSuccess: true,
@@ -171,30 +175,23 @@ export default {
     },
     methods: {
         submit() {
-            if (this.$refs.photo) {
-                this.form.photo = this.$refs.photo.files[0]
+            this.form.post(this.route('users.update.password', {
+                'user': this.$page.props.auth.user
+            }));
+        },
+        toggleShowPassword(type){
+            if (type === 'current'){
+                this.showCurrPassword = !this.showCurrPassword;
             }
 
-            this.form
-                .transform(data => ({
-                    ...data,
-                    status: this.form.status ? 'Active' : 'Inactive'
-                }))
-                .post(this.route('users.store'))
-        },
-        selectNewPhoto() {
-            this.$refs.photo.click();
-        },
+            if(type == 'new'){
+                this.showNewPassword = !this.showNewPassword;
+            }
 
-        updatePhotoPreview() {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-                this.photoPreview = e.target.result;
-            };
-
-            reader.readAsDataURL(this.$refs.photo.files[0]);
-        },
+            if(type == 'confirm'){
+                this.showConfPassword = !this.showConfPassword;
+            }
+        }
     }
 };
 </script>
