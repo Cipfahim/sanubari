@@ -80,3 +80,11 @@ Route::resource('users', UserController::class)->except('destroy');
 
 
 Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
+
+Route::get('/profile',function (){
+    return inertia('Profile');
+});
+
+Route::get('/password',function (){
+    return inertia('Password');
+});

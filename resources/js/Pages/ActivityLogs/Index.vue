@@ -95,6 +95,7 @@
                                 <tr
                                     v-for="(activityLog, index) in activityLogs.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
