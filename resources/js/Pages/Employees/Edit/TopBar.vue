@@ -24,22 +24,17 @@
                 <inertia-link
                     v-else
                     :href="step.href"
-                    class="px-4 py-3 flex items-center text-sm font-medium"
+                    class="px-4 py-3 flex items-center text-sm font-medium group"
                     aria-current="step"
                 >
                       <span
-                          class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full"
+                          class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-cyan-600 group-hover:text-white"
                           :class="{
-                          'bg-cyan-600 group-hover:bg-green-800': step.href === current,
-                          'border-2 border-cyan-600': step.current !== current,
+                          'bg-cyan-600 !text-white': step.href === current,
+                          'border-2 border-cyan-600 text-cyan-600': step.current !== current,
                         }"
                       >
-                        <span
-                            :class="{
-                            'text-white': step.current === current,
-                            'text-cyan-600': step.current !== current,
-                          }"
-                        >{{ step.id }}</span>
+                          {{ step.id }}
                     </span>
                     <span class="ml-4 text-sm font-medium text-cyan-600">{{ step.name }}</span>
                 </inertia-link>

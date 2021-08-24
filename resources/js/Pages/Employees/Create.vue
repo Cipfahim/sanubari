@@ -142,7 +142,7 @@
                             </div>
 
                             <!-- Login details-->
-                            <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
+                            <div class="space-y-6 pt-5 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                                         Login Details
