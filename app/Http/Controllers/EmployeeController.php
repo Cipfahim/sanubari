@@ -133,7 +133,7 @@ class EmployeeController extends Controller
         ]);
 
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.identification.index', $id)
+            return Redirect::route('employees.edit.identification.index', $id)
                 ->with('success', 'Employee info Saved.');
         }
         return Redirect::back()->with('success', 'Employee info Saved.');

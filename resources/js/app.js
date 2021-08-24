@@ -5,6 +5,8 @@ import {createApp, h} from 'vue';
 import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue3';
 import {InertiaProgress} from '@inertiajs/progress';
 import globalMixins from './mixins'
+import PrimeVue from 'primevue/config';
+
 const el = document.getElementById('app');
 
 createApp({
@@ -15,7 +17,7 @@ createApp({
         }),
 })
     .mixin(globalMixins)
-    .use(InertiaPlugin)
+    .use(InertiaPlugin, PrimeVue)
     .mount(el);
 
 InertiaProgress.init({delay: 0, color: '#45ff00', showSpinner: true});

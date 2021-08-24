@@ -13,6 +13,7 @@ use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,8 @@ use Inertia\Inertia;
 */
 
 Route::redirect('/', 'login');
+
+Route::post('/upload', UploadController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -69,9 +72,9 @@ Route::resource('employees', EmployeeController::class)->except('destroy');
 Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
-Route::post('give-auditor-access', [AuditorPermissionController::class ,'giveAccess'])->name('auditor-access.give-access');
-Route::get('give-auditor-extra-access', [AuditorPermissionController::class ,'extraAccess'])->name('auditor-access.extra-access');
-Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class ,'employeeList'])->name('auditor-access.employee-list');
+Route::post('give-auditor-access', [AuditorPermissionController::class, 'giveAccess'])->name('auditor-access.give-access');
+Route::get('give-auditor-extra-access', [AuditorPermissionController::class, 'extraAccess'])->name('auditor-access.extra-access');
+Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class, 'employeeList'])->name('auditor-access.employee-list');
 Route::resource('countries', CountryController::class)->except('show');
 
 Route::resource('cities', CityController::class)->except('show');
