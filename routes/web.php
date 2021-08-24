@@ -83,3 +83,11 @@ Route::resource('users', UserController::class)->except('destroy');
 
 
 Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
+
+Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
+Route::put('/profile/update/{user}', [UserController::class, 'updateProfile'])->name('users.profile.update');
+
+Route::get('/password',function (){
+    return inertia('Users/Password');
+});
+Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');

@@ -113,6 +113,7 @@
                                 <tr
                                     v-for="(user, index) in users.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"

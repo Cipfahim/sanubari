@@ -11,17 +11,15 @@
                     <div class="bg-gray-50 p-4 rounded-md">
                         <div class="space-y-8 divide-y divide-gray-200">
                             <!-- User details-->
-                            <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
-                                <div class="sm:border-b sm:border-gray-200 pb-2">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        User Details
+                            <div class="space-y-6 sm:space-y-5">
+                                <div class="sm:border-b sm:border-gray-200 py-5">
+                                    <h3 class="text-2xl leading-6 font-semibold text-gray-900">
+                                        User Profile
                                     </h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                        This section contains sensitive information.
-                                    </p>
                                 </div>
 
                                 <div class="space-y-6 sm:space-y-5">
+                                    <!-- Profile Photo -->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <!-- Profile Photo File Input -->
                                         <input type="file" class="hidden"
@@ -32,16 +30,17 @@
 
                                         <div class="block">
                                             <!-- Current Profile Photo -->
-                                            <div class="mt-2" v-show="! photoPreview">
-                                                <img :src="user.photo ? getFileUrl(user.photo) : '/images/icon/avatar.png'" :alt="user.name"
-                                                     class="rounded-full h-20 w-20 object-cover">
+                                            <div class="mt-2" v-show="!photoPreview">
+                                                <img v-if="this.form.photo === null" src="/images/icon/avatar.png" alt="User"
+                                                     class="rounded-full h-20 w-20 object-cover" />
+                                                <img v-else :src="this.user.photo" :alt="this.user.name" class="rounded-full h-20 w-20 object-cover" >
                                             </div>
 
                                             <!-- New Profile Photo Preview -->
                                             <div class="mt-2" v-show="photoPreview">
-                                            <span class="block rounded-full w-20 h-20"
-                                                  :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                                            </span>
+                                                <span class="block rounded-full w-20 h-20"
+                                                      :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                                                </span>
                                             </div>
 
                                             <jet-secondary-button class="mt-2 mr-2" type="button"
@@ -70,6 +69,23 @@
                                         </div>
                                     </div>
 
+                                    <!-- Phone field-->
+                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+                                        <jet-label for="phone" value="Phone *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="phone"
+                                                type="text"
+                                                v-model="form.phone"
+                                                :class="{ 'border-red-500': form.errors.phone }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.phone"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
                                     <!-- Email field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="email" value="Email"/>
@@ -82,93 +98,6 @@
                                             />
                                             <jet-input-error
                                                 :message="form.errors.email"
-                                                class="mt-2"
-                                            />
-                                        </div>
-                                    </div>
-
-
-                                    <!-- Role field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="role" value="Role *"/>
-                                        <div class="col-span-2 max-w-lg">
-                                            <select
-                                                v-model="form.role"
-                                                id="role"
-                                                name="role"
-                                                autocomplete="role"
-                                                class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            >
-                                                <option>Select one</option>
-                                                <option v-for="(role) in roles"
-                                                        :value="role.id">{{ role.name }}
-                                                </option>
-                                            </select>
-
-                                            <jet-input-error
-                                                :message="form.errors.role"
-                                                class="mt-2"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <!-- Phone field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="phone" value="Phone *"/>
-                                        <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="phone"
-                                                type="text"
-                                                v-model="form.phone"
-                                                :class="{ 'border-red-500': form.errors.phone }"
-                                                required
-                                            />
-                                            <jet-input-error
-                                                :message="form.errors.phone"
-                                                class="mt-2"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <!-- Password field-->
-                                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="password" value="Password *"/>
-                                        <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="password"
-                                                type="password"
-                                                v-model="form.password"
-                                                :class="{ 'border-red-500': form.errors.password }"
-                                            />
-                                            <jet-input-error
-                                                :message="form.errors.password"
-                                                class="mt-2"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <!-- Status field-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="status" value="Status *"/>
-                                        <div class="col-span-2 max-w-lg">
-                                            <Switch
-                                                v-model="form.status"
-                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
-                                                class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                            >
-                                              <span
-                                                  aria-hidden="true"
-                                                  :class="form.status ? 'translate-x-20' : 'translate-x-0'"
-                                                  class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
-                                              >
-                                                <span v-if="form.status" class="text-cyan-900">Active</span>
-                                                <span v-else class="text-cyan-900">Inactive</span>
-                                              </span>
-                                            </Switch>
-                                            <jet-input-error
-                                                :message="form.errors.status"
                                                 class="mt-2"
                                             />
                                         </div>
@@ -214,15 +143,6 @@
 
 <script>
 import AppLayout from "../../Layouts/App";
-import {
-    CalendarIcon,
-    CashIcon,
-    CheckCircleIcon,
-    CheckIcon,
-    ChevronRightIcon,
-    OfficeBuildingIcon,
-    PlusCircleIcon,
-} from "@heroicons/vue/solid";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -231,24 +151,14 @@ import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "../../Components/Input";
-import JetCheckbox from "@/Jetstream/Checkbox";
-import {Switch} from "@headlessui/vue";
 
 export default {
     props: {
-        roles: Array,
         user: Object
     },
     components: {
         Input,
         AppLayout,
-        OfficeBuildingIcon,
-        CheckCircleIcon,
-        CashIcon,
-        ChevronRightIcon,
-        CheckIcon,
-        CalendarIcon,
-        PlusCircleIcon,
         JetFormSection,
         JetSecondaryButton,
         JetLabel,
@@ -256,8 +166,6 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
-        JetCheckbox,
-        Switch
     },
     data() {
         return {
@@ -266,13 +174,10 @@ export default {
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
-                    photo: null,
+                    photo: this.user.photo,
                     name: this.user.name,
                     email: this.user.email,
-                    role: this.user.role_id,
-                    phone: this.user.phone ? this.user.phone : '+60',
-                    password: null,
-                    status: this.user.status === 'Active' ? true : false,
+                    phone: this.user.phone
                 },
                 {
                     resetOnSuccess: true,
@@ -286,12 +191,9 @@ export default {
                 this.form.photo = this.$refs.photo.files[0]
             }
 
-            this.form
-                .transform(data => ({
-                    ...data,
-                    status: this.form.status ? 'Active' : 'Inactive'
-                }))
-                .post(this.route('users.update', this.user.id))
+            this.form.post(this.route('users.profile.update', {
+                'user':this.user.id
+            }))
         },
         selectNewPhoto() {
             this.$refs.photo.click();
