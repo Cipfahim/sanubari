@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Employee;
+use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 use Inertia\ResponseFactory;
@@ -45,10 +48,8 @@ class DocumentController extends Controller
      */
     public function create($id): Response
     {
-        $employee = Employee::where('user_id', $id)->with('user')->first();
-
         return Inertia::render('Employees/Documents/Create', [
-            'employee' => $employee,
+            'employee' => Employee::with('user')->findOrFail($id),
         ]);
     }
 
@@ -66,11 +67,32 @@ class DocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'description' => ['required', 'string'],
+            'year' => ['required', 'string'],
+            'document' => ['required', 'string'],
+        ]);
+        $employee = Employee::findOrFail($id);
+
+        $tempFile = TemporaryFile::where('folder', $request->get('document'))->first();
+        if (!isset($tempFile)) {
+            return Redirect::back()->with('error', 'Document was not uploaded');
+        }
+
+        $documentPath = Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/documents/' . $tempFile->filename);
+
+        $employee->documents()->create([
+            'description' => $request->get('description'),
+            'year' => $request->get('year'),
+            'file_path' => $documentPath,
+        ]);
+
+        $tempFile->delete();
+        return Redirect::route('employees.documents.index', $id);
     }
 
     /**

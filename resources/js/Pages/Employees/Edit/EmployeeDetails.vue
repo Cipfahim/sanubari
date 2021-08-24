@@ -34,7 +34,8 @@
                                         <div class="block">
                                             <!-- Current Profile Photo -->
                                             <div class="mt-2" v-show="!photoPreview">
-                                                <img v-if="employee.user.photo" :src="getFileUrl(employee.user.photo)" :alt="employee.user.name"
+                                                <img v-if="employee.user.photo" :src="getFileUrl(employee.user.photo)"
+                                                     :alt="employee.user.name"
                                                      class="rounded-full h-20 w-20 object-cover">
                                                 <img v-else src="/images/icon/avatar.png" :alt="employee.user.name"
                                                      class="rounded-full h-20 w-20 object-cover">
@@ -97,18 +98,17 @@
 
                                         <div class="col-span-2 max-w-lg">
                                             <div class="w-full flex justify-space-between">
-                                                <select
+                                                <Multiselect
+                                                    searchable
                                                     v-model="form.location"
-                                                    id="location"
-                                                    name="location"
-                                                    autocomplete="location"
-                                                    class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                >
-                                                    <option>Select one</option>
-                                                    <option v-for="(location,index) in locations"
-                                                            :value="location.id">{{ location.name }}
-                                                    </option>
-                                                </select>
+                                                    :options="locations"
+                                                    valueProp="id"
+                                                    trackBy="name"
+                                                    label="name"
+                                                    placeholder="Choose a location"
+                                                    class="mt-1 block w-full"
+                                                    :class="{ 'border-red-500' : form.errors.location }"
+                                                />
 
                                                 <inertia-link
                                                     :href="route('locations.create')"
@@ -135,10 +135,11 @@
                                                 <DatePicker v-model="form.date_of_join" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
-                                                        <input class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                               :class="{ 'border-red-500': form.errors.date_of_join }"
-                                                               :value="inputValue"
-                                                               v-on="inputEvents"/>
+                                                        <input
+                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                            :class="{ 'border-red-500': form.errors.date_of_join }"
+                                                            :value="inputValue"
+                                                            v-on="inputEvents"/>
                                                     </template>
                                                 </DatePicker>
                                             </div>
@@ -194,7 +195,8 @@
                                                         :class="{ 'border-red-500': form.errors.password }"
                                                         class="pr-10"
                                                     />
-                                                    <div @click="toggleShowPassword" class="absolute z-10 top-2 right-3 cursor-pointer">
+                                                    <div @click="toggleShowPassword"
+                                                         class="absolute z-10 top-2 right-3 cursor-pointer">
                                                         <EyeIcon v-if="showPassword" class="h-5 w-5 text-gray-600"/>
                                                         <EyeOffIcon v-else class="h-5 w-5 text-gray-400"/>
                                                     </div>
@@ -204,7 +206,9 @@
                                                     @click="generatePassword"
                                                     class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center select-none"
                                                 >
-                                                    <ViewGridIcon class="h-5 w-5 text-cyan-400 mr-2 transform transition duration-1000" :class="generatePasswordIcon ? 'rotate-180' : '-rotate-180'"/>
+                                                    <ViewGridIcon
+                                                        class="h-5 w-5 text-cyan-400 mr-2 transform transition duration-1000"
+                                                        :class="generatePasswordIcon ? 'rotate-180' : '-rotate-180'"/>
                                                     Generate
                                                 </button>
                                             </div>
@@ -316,7 +320,8 @@ import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
 import {DatePicker} from 'v-calendar';
-
+import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 
 export default {
     props: {
@@ -346,7 +351,8 @@ export default {
         DatePicker,
         ViewGridIcon,
         EyeOffIcon,
-        EyeIcon
+        EyeIcon,
+        Multiselect
     },
     data() {
         return {
@@ -360,7 +366,7 @@ export default {
                 },
             },
             photoPreview: null,
-            generatePasswordIcon : false,
+            generatePasswordIcon: false,
             showPassword: true,
             form: this.$inertia.form(
                 {
@@ -413,12 +419,12 @@ export default {
 
             reader.readAsDataURL(this.$refs.photo.files[0]);
         },
-        generatePassword(){
+        generatePassword() {
             this.generatePasswordIcon = !this.generatePasswordIcon;
             this.form.password = Math.random().toString(36).slice(-8);
             this.showPassword = true;
         },
-        toggleShowPassword(){
+        toggleShowPassword() {
             this.showPassword = !this.showPassword;
         }
     }
