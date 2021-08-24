@@ -181,6 +181,12 @@ export default {
                     current: ''
                 },
                 {
+                    name: 'Pay Slip',
+                    href: '/payslips',
+                    icon: CogIcon,
+                    current: ''
+                },
+                {
                     name: 'Settings',
                     href: '#',
                     icon: CogIcon,

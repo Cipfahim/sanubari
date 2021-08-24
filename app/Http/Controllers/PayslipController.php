@@ -2,19 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
+use App\Models\Employee;
 use App\Models\Payslip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as QueryRequest;
+use Inertia\Inertia;
+use Inertia\Response;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PayslipController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return Response
      */
-    public function index()
+        public function index($id): Response
     {
-        //
+        $employee = Employee::with('user')->findOrfail($id);
+
+        return Inertia::render('Employees/Payslips/Index', [
+            'employee' => $employee,
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'payslips' => QueryBuilder::for(Payslip::class)
+                ->where('employee', $employee->id)
+                ->allowedFilters(['description'])
+                ->allowedSorts(['description', 'year'])
+                ->latest('id')
+                ->paginate()
+                ->appends(\request()->query()),
+        ]);
     }
 
     /**
