@@ -19,7 +19,7 @@
                                         </template>
                                         <template #form class="md:col-span-12">
                                             <!--                        description-->
-                                            <div class="col-span-6 sm:col-span-12">
+                                            <div class="col-span-6 sm:col-span-12 mb-2">
                                                 <jet-label for="description" value="Description *"/>
                                                 <jet-input
                                                     type="text"
@@ -34,7 +34,7 @@
                                                 <JetInputError :message="form.errors.description" class="mt-2"/>
                                             </div>
 
-                                            <div class="col-span-6 sm:col-span-12">
+                                            <div class="col-span-6 sm:col-span-12 mb-5">
                                                 <jet-label for="year" value="Year *"/>
                                                 <jet-input
                                                     type="text"
@@ -50,7 +50,7 @@
                                             </div>
 
                                             <div
-                                                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                                                class="col-span-6 sm:col-span-12 sm:border-t sm:border-gray-200 sm:pt-5">
                                                 <jet-label for="document" value="Document *"/>
                                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                     <file-pond

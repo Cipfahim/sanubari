@@ -11,8 +11,8 @@
                 <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                     <div class="flex">
                         <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                             :src="getFileUrl(employee.user.photo)"
-                             alt="">
+                             :src="employee.user.photo  ? getFileUrl(employee.user.photo) : '/images/icon/avatar.png'"
+                             :alt="employee.official_name">
                     </div>
                     <div
                         class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">

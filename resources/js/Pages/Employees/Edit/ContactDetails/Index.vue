@@ -18,7 +18,7 @@
                     openTab !== 1,
                   'border-cyan-500 text-cyan-600': openTab === 1,
                 }"
-                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-medium text-xs sm:text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                             >
                                 Contact Number
 
@@ -40,7 +40,7 @@
                     openTab !== 2,
                   'border-cyan-500 text-cyan-600': openTab === 2,
                 }"
-                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-medium text-xs sm:text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                             >
                                 Personal Email
 
@@ -61,7 +61,7 @@
                     openTab !== 3,
                   'border-cyan-500 text-cyan-600': openTab === 3,
                 }"
-                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-medium text-xs sm:text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                                 aria-current="page"
                             >
                                 Contact Address

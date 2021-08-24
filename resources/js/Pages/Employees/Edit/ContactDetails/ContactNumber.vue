@@ -33,7 +33,7 @@
                                 v-model="item.contact_number"
                                 class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                 :class="{ 'border-red-500': form.errors.phone }"
-                                placeholder="Enter your phone number"
+                                placeholder="Enter phone number"
                             />
                             <jet-input-error
                                 :message="getNestedErrors('items.'+index+'.contact_number',form)"
@@ -42,7 +42,7 @@
                             <button
                                 v-if="index !== 0"
                                 @click.prevent="removeItem(index, item)"
-                                class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                class="absolute right-1 sm:right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
                                 <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
                             </button>
                         </div>
