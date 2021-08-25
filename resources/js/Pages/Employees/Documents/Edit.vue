@@ -53,6 +53,7 @@
                                                 <jet-label for="document" value="Document *"/>
                                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                     <file-pond
+                                                        :files="documentFiles"
                                                         name="file"
                                                         ref="pond"
                                                         :allowMultiple="false"
@@ -76,7 +77,7 @@
                                                 :class="{'opacity-25':form.processing || loading}"
                                                 :disabled="form.processing || loading"
                                             >
-                                                Create
+                                                Update
                                             </jet-button>
                                         </template>
                                     </jet-form-section>
@@ -128,6 +129,7 @@ const FilePond = vueFilePond(
 export default {
     props: {
         employee: Object,
+        document: Object,
     },
     components: {
         AppLayout,
@@ -144,10 +146,11 @@ export default {
     data() {
         return {
             loading: false,
+            documentFiles: this.getFileUrl(this.document.file_path),
             form: this.$inertia.form(
                 {
-                    description: null,
-                    year: null,
+                    description: this.document.description,
+                    year: this.document.year,
                     document: null,
                 },
                 {
@@ -168,7 +171,10 @@ export default {
             this.form.document = null;
         },
         submit() {
-            this.form.post(route('employees.documents.store', this.employee.id), {
+            this.form.put(route('employees.documents.update', {
+                'id': this.employee.id,
+                'document': this.document.id
+            }), {
                 preserveScroll: true,
             });
         },

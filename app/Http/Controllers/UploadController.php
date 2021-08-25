@@ -28,6 +28,5 @@ class UploadController extends Controller
 
             return $folder;
         }
-        return null;
     }
 }

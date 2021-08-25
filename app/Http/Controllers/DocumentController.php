@@ -73,7 +73,7 @@ class DocumentController extends Controller
     {
         $this->validate($request, [
             'description' => ['required', 'string'],
-            'year' => ['required', 'string'],
+            'year' => ['required'],
             'document' => ['required', 'string'],
         ]);
         $employee = Employee::findOrFail($id);
@@ -83,7 +83,8 @@ class DocumentController extends Controller
             return Redirect::back()->with('error', 'Document was not uploaded');
         }
 
-        $documentPath = Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/documents/' . $tempFile->filename);
+        $documentPath = 'documents/' . $employee->id . '/' . now()->toDateString() . '-' . now()->timestamp . '/' . $tempFile->filename;
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/' . $documentPath);
 
         $employee->documents()->create([
             'description' => $request->get('description'),
@@ -110,11 +111,14 @@ class DocumentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return void
+     * @return Response
      */
-    public function edit($id)
+    public function edit($id, Document $document)
     {
-        //
+        return Inertia::render('Employees/Documents/Edit', [
+            'employee' => Employee::with('user')->findOrFail($id),
+            'document' => $document
+        ]);
     }
 
     /**
@@ -122,11 +126,37 @@ class DocumentController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $documentId)
     {
-        //
+        $this->validate($request, [
+            'description' => ['required', 'string'],
+            'year' => ['required'],
+            'document' => ['required', 'string'],
+        ]);
+        $employee = Employee::findOrFail($id);
+
+        $tempFile = TemporaryFile::where('folder', $request->get('document'))->first();
+        if (!isset($tempFile)) {
+            return Redirect::back()->with('error', 'Document was not uploaded');
+        }
+
+        $documentPath = 'documents/' . $employee->id .
+            '/' . now()->toDateString() . '-' . now()->timestamp .
+            '/' . $tempFile->filename;
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename,
+            'public/' . $documentPath);
+
+        $employee->documents()->findOrFail($documentId)->update([
+            'description' => $request->get('description'),
+            'year' => $request->get('year'),
+            'file_path' => $documentPath,
+        ]);
+
+        $tempFile->delete();
+        return Redirect::route('employees.documents.index', $id)
+            ->with('success', 'Document Updated.');
     }
 
     /**

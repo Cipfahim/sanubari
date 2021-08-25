@@ -11,8 +11,10 @@
                             <!-- Tab-1 -->
                             <div class="my-6 block max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                                 <dl class="gap-x-4 gap-y-8 sm:grid-cols-2">
-                                    <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
-                                        <div class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
+                                    <div
+                                        class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
+                                        <div
+                                            class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
                                             <div
                                                 class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden border border-gray-200"
                                             >
@@ -25,7 +27,8 @@
                                                     class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                                                 />
                                                 <div class="mx-2 sm:mx-3">
-                                                    <SearchIcon class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
+                                                    <SearchIcon
+                                                        class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
                                                 </div>
                                             </div>
                                             <button
@@ -71,7 +74,8 @@
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
                                                                 <div class="flex gap-2 items-center">
-                                                                    <sort-arrow :sort="queryForm.sort" field="description"/>
+                                                                    <sort-arrow :sort="queryForm.sort"
+                                                                                field="description"/>
                                                                     Description
                                                                 </div>
                                                             </th>
@@ -95,7 +99,8 @@
                                                                 <span class="text-xs">(pop-up on click)</span>
                                                             </th>
 
-                                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                                 <span>Actions</span>
                                                             </th>
                                                         </tr>
@@ -127,7 +132,9 @@
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                                             >
-                                                                View
+                                                                <a :href="getFileUrl(document.file_path)" target="_blank">
+                                                                    View
+                                                                </a>
                                                             </td>
 
 
@@ -139,11 +146,13 @@
                                                                     class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md h-10"
                                                                 >Edit
                                                                 </inertia-link>
-                                                                <inertia-link
-                                                                    :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"
+
+                                                                <a
+                                                                    :href="getFileUrl(document.file_path)"
                                                                     class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                                                    download
                                                                 >Download
-                                                                </inertia-link>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                         </tbody>
