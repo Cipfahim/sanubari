@@ -188,7 +188,7 @@ export default {
                 },
                 {
                     name: 'Settings',
-                    href: '#',
+                    href: '/settings',
                     icon: CogIcon,
                 },
             ]

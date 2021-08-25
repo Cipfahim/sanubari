@@ -91,3 +91,7 @@ Route::get('/password',function (){
     return inertia('Users/Password');
 });
 Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
+
+Route::get('/settings', function (){
+    return inertia('Settings');
+});
