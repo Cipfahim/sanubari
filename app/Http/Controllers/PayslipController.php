@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\Employee;
 use App\Models\Payslip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,15 +20,15 @@ class PayslipController extends Controller
      * @param $id
      * @return Response
      */
-        public function index($id): Response
+        public function index(): Response
     {
-        $employee = Employee::with('user')->findOrfail($id);
+        $employee = Auth::user()->id;
 
         return Inertia::render('Employees/Payslips/Index', [
             'employee' => $employee,
             'requests' => QueryRequest::all(['filter', 'sort']),
             'payslips' => QueryBuilder::for(Payslip::class)
-                ->where('employee', $employee->id)
+                ->where('employee', $employee)
                 ->allowedFilters(['description'])
                 ->allowedSorts(['description', 'year'])
                 ->latest('id')
