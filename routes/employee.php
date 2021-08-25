@@ -18,7 +18,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Employee/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('payslips', PayslipController::class)
-    ->middleware(['auth', 'verified', 'role:system-admin|admin|employee'])->except('destroy');
+//Route::resource('payslips', PayslipController::class)
+//    ->middleware(['auth', 'verified', 'role:system-admin|admin|employee'])->except('destroy');
 
 
