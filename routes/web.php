@@ -95,3 +95,11 @@ Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])
 Route::get('/settings', function (){
     return inertia('Settings');
 });
+
+Route::get('/token', function (){
+    return inertia('Token/Index');
+});
+
+Route::get('/token/inbox', function (){
+    return inertia('Token/Inbox');
+});
