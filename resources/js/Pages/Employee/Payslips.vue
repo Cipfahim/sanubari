@@ -6,8 +6,6 @@
                 <div class="flex-1 relative z-0 flex overflow-hidden">
                     <div class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
                         <article>
-                            <TopBar :employee="employee"/>
-
                             <!-- Tab-1 -->
                             <div class="my-6 block max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                                 <dl class="gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -41,12 +39,7 @@
                                         </div>
 
                                         <div class="flex justify-between order-1 sm:order-2 ml-auto">
-                                            <inertia-link
-                                                :href="route('employees.payslips.create',employee.id)"
-                                                class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
-                                            >
-                                                Upload
-                                            </inertia-link>
+
                                         </div>
                                     </div>
 
@@ -148,12 +141,6 @@
                                                                     View
                                                                 </a>
 
-                                                                <inertia-link
-                                                                    :href="route('employees.payslips.edit', {'id':employee.id,'payslip':payslip.id})"
-                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
-                                                                >Edit
-                                                                </inertia-link>
-
                                                                 <a
                                                                     :href="getFileUrl(payslip.file_path)"
                                                                     class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
@@ -213,7 +200,6 @@ import pickBy from "lodash/pickBy";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
 import SortArrow from "@/Components/SortArrow";
-import TopBar from "./TopBar";
 
 
 export default {
@@ -223,7 +209,6 @@ export default {
         payslips: Object,
     },
     components: {
-        TopBar,
         NoDataFound,
         SortArrow,
         Pagination,

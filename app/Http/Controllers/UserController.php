@@ -150,7 +150,7 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function updateProfile(Request  $request, User $user): RedirectResponse
+    public function updateProfile(Request $request, User $user): RedirectResponse
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'min:3', 'max:255'],
@@ -188,11 +188,11 @@ class UserController extends Controller
             'confirm_password' => 'required'
         ]);
 
-        if($user->getAuthPassword() === Hash::make($request->current_passsword)) {
-                $user->update([
-                    'password' => Hash::make($request->get('new_password'))
-                ]);
-            }   else {
+        if ($user->getAuthPassword() === Hash::make($request->current_passsword)) {
+            $user->update([
+                'password' => Hash::make($request->get('new_password'))
+            ]);
+        } else {
             return Redirect::back()->with('error', 'Current Password doesn\'t match');
         }
     }
