@@ -138,7 +138,6 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {mask} from 'vue-the-mask'
-import FormattedInput from "../../../Components/FormattedInput";
 
 export default {
     props: {
@@ -165,7 +164,6 @@ export default {
         JetActionMessage,
         JetButton,
         JetCheckbox,
-        FormattedInput
     },
     data() {
         return {

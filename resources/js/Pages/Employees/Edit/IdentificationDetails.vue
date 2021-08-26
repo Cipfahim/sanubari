@@ -327,7 +327,7 @@ export default {
         saveAndContinue() {
             this.form.continue = true
             this.submit()
-        }
+        },
     },
 };
 </script>

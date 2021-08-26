@@ -31,39 +31,40 @@
                     </div>
                     <nav class="mt-5 flex-shrink-0 h-full divide-y divide-cyan-800 overflow-y-auto"
                          aria-label="Sidebar">
-                        <div class="px-2 space-y-1">
-                            <inertia-link v-if="$page.props.auth.user.role.slug === 'employee'"
-                                          v-for="item in employeeNavigation" :key="item.name" :href="item.href"
-                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
-                                          :aria-current="item.current ? 'page' : undefined">
-                                <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
-                                {{ item.name }}
-                            </inertia-link>
 
-                            <inertia-link v-else v-for="item in navigation" :key="item.name" :href="item.href"
-                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
-                                          :aria-current="item.current ? 'page' : undefined">
-                                <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
-                                {{ item.name }}
-                            </inertia-link>
-                        </div>
-                        <!--                        <div class="px-2 space-y-1">-->
-                        <!--                            <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"-->
-                        <!--                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"-->
-                        <!--                                          :aria-current="item.current ? 'page' : undefined">-->
-                        <!--                                <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>-->
-                        <!--                                {{ item.name }}-->
-                        <!--                            </inertia-link>-->
-                        <!--                        </div>-->
-                        <div class="mt-6 pt-6">
+                        <template v-if="$page.props.auth.user.role.slug === 'employee'">
                             <div class="px-2 space-y-1">
-                                <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
-                                              class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                <inertia-link v-for="item in employeeNavigation" :key="item.name" :href="item.href"
+                                              :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
+                                              :aria-current="item.current ? 'page' : undefined">
                                     <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                                     {{ item.name }}
                                 </inertia-link>
                             </div>
-                        </div>
+                        </template>
+
+                        <template v-else>
+                            <div class="px-2 space-y-1">
+                                <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"
+                                              :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
+                                              :aria-current="item.current ? 'page' : undefined">
+                                    <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
+                                    {{ item.name }}
+                                </inertia-link>
+                            </div>
+
+                            <div class="mt-6 pt-6">
+                                <div class="px-2 space-y-1">
+                                    <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
+                                                  class="group flex items-center px-2 py-2 text-base font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                        <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200"
+                                                   aria-hidden="true"/>
+                                        {{ item.name }}
+                                    </inertia-link>
+                                </div>
+                            </div>
+                        </template>
+
                     </nav>
                 </div>
             </TransitionChild>
@@ -84,23 +85,36 @@
                          alt="Easywire logo"/>
                 </div>
                 <nav class="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
-                    <div class="px-2 space-y-1">
-                        <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"
-                                      :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
-                                      :aria-current="item.current ? 'page' : undefined">
-                            <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
-                            {{ item.name }}
-                        </inertia-link>
-                    </div>
-                    <div class="mt-6 pt-6">
+                    <template v-if="$page.props.auth.user.role.slug === 'employee'">
                         <div class="px-2 space-y-1">
-                            <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
-                                          class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                            <inertia-link v-for="item in employeeNavigation" :key="item.name" :href="item.href"
+                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
+                                          :aria-current="item.current ? 'page' : undefined">
                                 <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                                 {{ item.name }}
                             </inertia-link>
                         </div>
-                    </div>
+                    </template>
+
+                    <template v-else>
+                        <div class="px-2 space-y-1">
+                            <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"
+                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
+                                          :aria-current="item.current ? 'page' : undefined">
+                                <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
+                                {{ item.name }}
+                            </inertia-link>
+                        </div>
+                        <div class="mt-6 pt-6">
+                            <div class="px-2 space-y-1">
+                                <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
+                                              class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                    <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
+                                    {{ item.name }}
+                                </inertia-link>
+                            </div>
+                        </div>
+                    </template>
                 </nav>
             </div>
         </div>
@@ -130,18 +144,27 @@ export default {
     },
     data() {
         return {
-            navigation: [
+            employeeNavigation: [
                 {
                     name: 'Dashboard',
-                    href: route('dashboard'),
+                    href: route('employee.dashboard'),
                     icon: HomeIcon,
-                    current: route().current('dashboard')
+                    current: route().current('employee.dashboard')
                 },
+                {
+                    name: 'Payslips',
+                    href: route('employee.payslips'),
+                    icon: HomeIcon,
+                    current: route().current('employee.payslips')
+                },
+            ],
+            navigation: [
+                {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
                 {
                     name: 'Employees',
                     href: route('employees.index'),
                     icon: ClockIcon,
-                    current: route().current('employees.*'),
+                    current: route().current('employees.*')
                 },
                 {
                     name: 'Locations',
@@ -201,32 +224,7 @@ export default {
                 },
                 {
                     name: 'Settings',
-                    href: '#',
-                    icon: CogIcon,
-                },
-            ],
-            employeeNavigation: [
-                {
-                    name: 'Auditor Access',
-                    href: route('auditor-access.index'),
-                    icon: ClockIcon,
-                    current: route().current('auditor-access.*')
-                },
-                {
-                    name: 'Documents',
-                    href: '/documents',
-                    icon: CogIcon,
-                    current: route().current('auditor-access.*')
-                },
-                {
-                    name: 'Pay Slip',
-                    href: route('payslips.index'),
-                    icon: CogIcon,
-                    current: route().current('payslips.*')
-                },
-                {
-                    name: 'Settings',
-                    href: '#',
+                    href: '/settings',
                     icon: CogIcon,
                 },
             ]

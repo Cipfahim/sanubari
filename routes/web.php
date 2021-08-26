@@ -12,6 +12,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PayslipController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,7 @@ Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function ()
 
 Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::resource('documents', DocumentController::class)->except('destroy');
+    Route::resource('payslips', PayslipController::class)->except('destroy');
 });
 
 
@@ -82,13 +84,25 @@ Route::resource('cities', CityController::class)->except('show');
 
 Route::resource('users', UserController::class)->except('destroy');
 
-
-Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
-
+// User profile
 Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
-Route::put('/profile/update/{user}', [UserController::class, 'updateProfile'])->name('users.profile.update');
+Route::put('/profile/update/{user}', [UserController::class, 'updateProfile'])
+    ->name('users.profile.update');
 
 Route::get('/password',function (){
     return inertia('Users/Password');
 });
 Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
+
+Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
+Route::get('/settings', function (){
+    return inertia('Settings');
+});
+
+Route::get('/token', function (){
+    return inertia('Token/Index');
+});
+
+Route::get('/token/inbox', function (){
+    return inertia('Token/Inbox');
+});
