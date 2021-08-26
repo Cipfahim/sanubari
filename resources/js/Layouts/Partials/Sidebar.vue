@@ -151,6 +151,12 @@ export default {
                     icon: HomeIcon,
                     current: route().current('employee.dashboard')
                 },
+                {
+                    name: 'Payslips',
+                    href: route('employee.payslips'),
+                    icon: HomeIcon,
+                    current: route().current('employee.payslips')
+                },
             ],
             navigation: [
                 {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
