@@ -12,6 +12,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IdentificationController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PayslipController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
@@ -64,6 +65,7 @@ Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function ()
 
 Route::prefix('employees/{id}')->name('employees.')->group(function () {
     Route::resource('documents', DocumentController::class)->except('destroy');
+    Route::resource('payslips', PayslipController::class)->except('destroy');
 });
 
 
