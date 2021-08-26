@@ -16,7 +16,6 @@ use App\Http\Controllers\PayslipController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PayslipController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
