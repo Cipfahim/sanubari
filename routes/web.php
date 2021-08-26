@@ -15,6 +15,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PayslipController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -68,7 +69,7 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
 
 
 Route::resource('employees', EmployeeController::class)->except('destroy');
-
+Route::resource('payslips', PayslipController::class)->except('destroy');
 Route::resource('locations', LocationController::class)->except('show');
 Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');

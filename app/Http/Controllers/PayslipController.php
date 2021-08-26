@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Document;
 use App\Models\Employee;
 use App\Models\Payslip;
 use Illuminate\Http\Request;
@@ -17,12 +16,11 @@ class PayslipController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $id
      * @return Response
      */
-        public function index(): Response
+    public function index(): Response
     {
-        $employee = Auth::user()->id;
+        $employee = Employee::with('user')->findOrFail(Auth::user()->id);
 
         return Inertia::render('Employees/Payslips/Index', [
             'employee' => $employee,
@@ -50,7 +48,7 @@ class PayslipController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -61,7 +59,7 @@ class PayslipController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Payslip  $payslip
+     * @param \App\Models\Payslip $payslip
      * @return \Illuminate\Http\Response
      */
     public function show(Payslip $payslip)
@@ -72,7 +70,7 @@ class PayslipController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Payslip  $payslip
+     * @param \App\Models\Payslip $payslip
      * @return \Illuminate\Http\Response
      */
     public function edit(Payslip $payslip)
@@ -83,8 +81,8 @@ class PayslipController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Payslip  $payslip
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Payslip $payslip
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Payslip $payslip)
@@ -95,7 +93,7 @@ class PayslipController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Payslip  $payslip
+     * @param \App\Models\Payslip $payslip
      * @return \Illuminate\Http\Response
      */
     public function destroy(Payslip $payslip)
