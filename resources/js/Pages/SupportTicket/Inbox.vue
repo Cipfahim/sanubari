@@ -28,7 +28,7 @@
                                         <div class="px-2">
                                             <jet-dropdown-link :href="1">
                                                 <div class="group flex items-center gap-1">
-<!--                                                    <XIcon class="h-3 w-3 group-hover:text-red-600 text-red-500"/>-->
+                                                    <!--                                                    <XIcon class="h-3 w-3 group-hover:text-red-600 text-red-500"/>-->
                                                     <span class="group-hover:text-red-600 text-red-500">Mark as Spam</span>
                                                 </div>
                                             </jet-dropdown-link>

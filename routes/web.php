@@ -17,6 +17,7 @@ use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SupportTicketController;
 use Inertia\Inertia;
 
 /*
@@ -78,7 +79,6 @@ Route::post('give-auditor-access', [AuditorPermissionController::class, 'giveAcc
 Route::get('give-auditor-extra-access', [AuditorPermissionController::class, 'extraAccess'])->name('auditor-access.extra-access');
 Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class, 'employeeList'])->name('auditor-access.employee-list');
 Route::resource('countries', CountryController::class)->except('show');
-
 Route::resource('cities', CityController::class)->except('show');
 
 Route::resource('users', UserController::class)->except('destroy');
@@ -98,10 +98,10 @@ Route::get('/settings', function (){
     return inertia('Settings');
 });
 
-Route::get('/token', function (){
-    return inertia('Token/Index');
-});
+Route::resource('supportTickets',SupportTicketController::class)
+    ->except('destroy')
+    ->middleware(['auth', 'verified', 'role:system-admin|admin']);
 
 Route::get('/token/inbox', function (){
-    return inertia('Token/Inbox');
+//    return inertia('Token/Inbox');
 });

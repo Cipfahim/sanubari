@@ -7683,7 +7683,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("input", {
-    "class": "col-span-2 sm:max-w-lg focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-md focus:z-10 sm:text-sm border-gray-300",
+    "class": "h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full rounded-md focus:z-10 sm:text-sm border-gray-300",
     value: $props.modelValue,
     onInput: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
@@ -7736,7 +7736,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "block font-medium text-sm text-gray-700 select-none"
+  "class": "mb-1 block font-medium text-sm text-gray-700 select-none"
 };
 var _hoisted_2 = {
   key: 0
@@ -7839,7 +7839,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
   type: "submit",
-  "class": "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+  "class": "ml-2 sm:ml-3 inline-flex justify-center py-2 px-2 sm:px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
 }, " Save ", -1
 /* HOISTED */
 );
@@ -7880,12 +7880,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           },
           "class": ["focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3", {
             'border-red-500': _ctx.getNestedErrors('items.' + index + '.email', $data.form)
-          }]
+          }],
+          placeholder: "Enter your email"
         }, null, 8
         /* PROPS */
         , ["modelValue", "onUpdate:modelValue", "class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
           message: _ctx.getNestedErrors('items.' + index + '.email', $data.form),
-          "class": "mt-2"
+          "class": "mb-2"
         }, null, 8
         /* PROPS */
         , ["message"]), index !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
@@ -7903,7 +7904,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* UNKEYED_FRAGMENT */
       ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
         href: _ctx.route('employees.edit.identification.index', $props.employee.id),
-        "class": "py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+        "class": "py-2 px-2 sm:px-4 border border-transparent rounded-md ml-2 sm:ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_12];
@@ -7918,7 +7919,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = function ($event) {
           return $options.saveAndContinue();
         }),
-        "class": "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+        "class": "ml-2 sm:ml-3 inline-flex justify-center py-2 px-2 sm:px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
       }, " Save & Continue ")])])])])])];
     }),
     _: 1

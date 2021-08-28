@@ -4,7 +4,7 @@
             <breadcrumb
                 :links="[
           {
-            title: 'All Tokens',
+            title: 'All Support Tickets',
             active: true,
           },
         ]"
@@ -44,7 +44,7 @@
 
                 <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        href="route('employees.create')"
+                        :href="route('supportTickets.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add Token
@@ -155,7 +155,8 @@
                                     <td
                                         class="pl-6 pr-2 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        <div class="max-w-xs truncate" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, provident!">
+                                        <div class="max-w-xs truncate"
+                                             title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, provident!">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, provident!
                                         </div>
                                     </td>
@@ -171,8 +172,8 @@
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
                                         <span
-                                          v-if="index === 1"
-                                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                                            v-if="index === 1"
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                                         >
                                             Open
                                         </span>
@@ -236,6 +237,10 @@ export default {
         JetSecondaryButton,
         JetDangerButton,
         SearchIcon,
+    },
+    props: {
+        tickets: Object,
+        requests: Object
     },
     data() {
         return {

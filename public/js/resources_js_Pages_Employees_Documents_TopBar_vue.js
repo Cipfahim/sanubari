@@ -112,16 +112,18 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Documents ");
 
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Payslips ");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Profile header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
     "class": "h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32",
-    src: _ctx.getFileUrl($props.employee.user.photo),
-    alt: ""
+    src: $props.employee.user.photo ? _ctx.getFileUrl($props.employee.user.photo) : '/images/icon/avatar.png',
+    alt: $props.employee.official_name
   }, null, 8
   /* PROPS */
-  , ["src"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.employee.official_name), 1
+  , ["src", "alt"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.employee.official_name), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
     href: _ctx.route('employees.index'),
@@ -227,6 +229,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_22];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href", "class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+    href: _ctx.route('employees.payslips.index', $props.employee.id),
+    "class": [{
+      'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': !_ctx.route().current('employees.payslips.index', $props.employee.id),
+      'border-cyan-500 text-gray-900': _ctx.route().current('employees.payslips.index', $props.employee.id)
+    }, "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"],
+    "aria-current": "page"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_23];
     }),
     _: 1
     /* STABLE */

@@ -191,6 +191,12 @@ export default {
                     current: route().current('banks.*')
                 },
                 {
+                    name: 'Support Ticket',
+                    href: route('supportTickets.index'),
+                    icon: ClockIcon,
+                    current: route().current('supportTickets.*')
+                },
+                {
                     name: 'Activity Logs',
                     href: route('activityLogs.index'),
                     icon: CogIcon,

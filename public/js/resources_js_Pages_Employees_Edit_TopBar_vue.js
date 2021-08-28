@@ -53,7 +53,7 @@ __webpack_require__.r(__webpack_exports__);
         status: true
       }, {
         id: 'G',
-        name: 'Annual Leave',
+        name: 'Leave Quota',
         href: route('employees.edit.annual-leave.index', this.employee),
         status: true
       }]
@@ -135,24 +135,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
       key: 1,
       href: step.href,
-      "class": "px-4 py-3 flex items-center text-sm font-medium",
+      "class": "px-4 py-3 flex items-center text-sm font-medium group",
       "aria-current": "step"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
-          "class": ["flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full", {
-            'bg-cyan-600 group-hover:bg-green-800': step.href === $props.current,
-            'border-2 border-cyan-600': step.current !== $props.current
+          "class": ["flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-cyan-600 group-hover:text-white", {
+            'bg-cyan-600 !text-white': step.href === $props.current,
+            'border-2 border-cyan-600 text-cyan-600': step.current !== $props.current
           }]
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
-          "class": {
-            'text-white': step.current === $props.current,
-            'text-cyan-600': step.current !== $props.current
-          }
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.id), 3
         /* TEXT, CLASS */
-        )], 2
-        /* CLASS */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(step.name), 1
         /* TEXT */
         )];
