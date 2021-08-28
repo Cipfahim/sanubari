@@ -18,7 +18,7 @@ class CreateCountriesTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('flag_path')->nullable();
-            $table->string('country_code')->nullable()->unique();
+            $table->string('country_code')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,9 @@ use App\Http\Controllers\PayslipController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 /*
@@ -29,6 +31,26 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    $countries = Http::get('https://restcountries.eu/rest/v2/all?fields=name;callingCodes;flag');
+
+    foreach ($countries->json() as $country) {
+        $flagName = substr($country['flag'], strrpos($country['flag'], '/') + 1);
+        ob_start();
+        echo Http::get($country['flag']);
+        $flagContent = ob_get_clean();
+
+        file_put_contents("images/flags/" . $flagName, $flagContent);
+
+        \App\Models\Country::create([
+            'name' => $country['name'],
+            'slug' => \Illuminate\Support\Str::slug($country['name']),
+            'flag_path' => "flags/" . $flagName,
+            'country_code' => $country['callingCodes'][0]
+        ]);
+    }
+    return 'Done';
+});
 
 Route::redirect('/', 'login');
 
@@ -88,20 +110,20 @@ Route::get('/profile', [UserController::class, 'profile'])->name('users.profile'
 Route::put('/profile/update/{user}', [UserController::class, 'updateProfile'])
     ->name('users.profile.update');
 
-Route::get('/password',function (){
+Route::get('/password', function () {
     return inertia('Users/Password');
 });
 Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
 
 Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
-Route::get('/settings', function (){
+Route::get('/settings', function () {
     return inertia('Settings');
 });
 
-Route::get('/token', function (){
+Route::get('/token', function () {
     return inertia('Token/Index');
 });
 
-Route::get('/token/inbox', function (){
+Route::get('/token/inbox', function () {
     return inertia('Token/Inbox');
 });
