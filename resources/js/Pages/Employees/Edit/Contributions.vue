@@ -33,6 +33,8 @@
                                             <jet-input
                                                 id="epf_employee"
                                                 type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                maxlength="5"
                                                 v-model="form.epf_employee"
                                                 :class="{ 'border-red-500': form.errors.epf_employee }"
                                             />
@@ -52,6 +54,8 @@
                                             <jet-input
                                                 id="epf_employer"
                                                 type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                maxlength="5"
                                                 v-model="form.epf_employer"
                                                 :class="{ 'border-red-500': form.errors.epf_employer }"
                                             />
@@ -94,6 +98,8 @@
                                             <jet-input
                                                 id="epf_no"
                                                 type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                maxlength="8"
                                                 v-model="form.epf_no"
                                                 :class="{ 'border-red-500': form.errors.epf_no }"
                                             />

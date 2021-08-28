@@ -58,8 +58,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="account_number"
-                                                type="tel"
-                                                v-mask="'#-# # # # # # # # # # #'"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/\B(?=(\d{4})+(?!\d))/g, ' ');"
                                                 v-model="form.account_number"
                                                 :class="{ 'border-red-500': form.errors.account_number }"
                                             />

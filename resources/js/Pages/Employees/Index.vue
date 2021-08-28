@@ -53,13 +53,13 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <div class="overflow-x-auto shadow rounded sm:rounded-lg">
+                <div class="overflow-x-auto rounded sm:rounded-lg">
                     <div
                         class="align-middle inline-block min-w-full"
                     >
                         <div
                             v-if="employees.data.length"
-                            class="overflow-hidden rounded sm:rounded-lg"
+                            class="overflow-hidden shadow rounded sm:rounded-lg"
                         >
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">

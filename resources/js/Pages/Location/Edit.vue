@@ -46,6 +46,7 @@
                         <jet-button
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
+                            class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                         >
                             Save
                         </jet-button>

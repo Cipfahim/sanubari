@@ -33,7 +33,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="basic_salary"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
                                                 v-model="form.basic_salary"
                                                 :class="{ 'border-red-500': form.errors.basic_salary }"
                                             />
@@ -52,7 +53,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="living_allowance"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
                                                 v-model="form.living_allowance"
                                                 :class="{ 'border-red-500': form.errors.living_allowance }"
                                             />
@@ -71,7 +73,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="attendance_allowance"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
                                                 v-model="form.attendance_allowance"
                                                 :class="{ 'border-red-500': form.errors.attendance_allowance }"
                                             />
@@ -90,7 +93,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="levy"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
                                                 v-model="form.levy"
                                                 :class="{ 'border-red-500': form.errors.levy }"
                                             />
@@ -110,7 +114,8 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="in_charge_allowance"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
                                                 v-model="form.in_charge_allowance"
                                                 :class="{ 'border-red-500': form.errors.in_charge_allowance }"
                                             />
