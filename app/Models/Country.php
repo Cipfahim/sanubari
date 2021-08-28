@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
@@ -13,9 +14,8 @@ class Country extends Model
 
     protected $guarded = ['id'];
 
-    public function cities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function cities(): HasMany
     {
         return $this->hasMany(City::class);
     }
-
 }
