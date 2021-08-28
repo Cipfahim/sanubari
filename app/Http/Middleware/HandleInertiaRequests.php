@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
                 'url' => fn() => Config::get('app.url'),
             ],
             'auth' => [
-                'user' => User::with('role')->findOrFail(Auth::id()),
+                'user' => User::with('role')->find(Auth::id()),
             ],
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),
