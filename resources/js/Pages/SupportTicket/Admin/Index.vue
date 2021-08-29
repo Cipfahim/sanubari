@@ -9,16 +9,6 @@
           },
         ]"
             />
-            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
-                <div class="flex justify-between order-1 sm:order-2 ml-auto">
-                    <inertia-link
-                        :href="route('employee.supportTickets.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
-                    >
-                        Add Message
-                    </inertia-link>
-                </div>
-            </div>
             <div class="flex flex-col">
                 <div class="overflow-x-auto shadow rounded sm:rounded-lg">
                     <div
@@ -96,12 +86,12 @@
                                         <div class="flex items-center gap-2">
                                             <div class="h-8 w-8 rounded-full overflow-hidden">
                                                 <img class="h-full w-full"
-                                                     :src="ticket.user.photo ? getFileUrl(ticket.user.photo) : '/images/icon/avatar.png'"
+                                                     :src="false ? '' : '/images/icon/avatar.png'"
                                                      alt="">
                                             </div>
                                             <div class="flex-1 w-32 truncate">
-                                                <inertia-link :href="route('employee.supportTickets.show', {
-                                                    'id': ticket.id
+                                                <inertia-link :href="route('supportTickets.admin.show', {
+                                                    'supportTicket': ticket.id
                                                 })"
                                                               class="w-full"
                                                               title="Click to show details">
@@ -195,7 +185,7 @@ export default {
     props: {
         tickets: Object,
         last_message: Object,
-        requests: Object,
+        requests: Object
     },
     data() {
         return {
@@ -211,31 +201,6 @@ export default {
             checkAll: false,
         };
     },
-    watch: {
-        queryForm: {
-            handler: throttle(function () {
-                let customQuery = {
-                    ["filter[" + this.queryForm.field + "]"]: this.queryForm.filter,
-                    sort: this.queryForm.sort,
-                };
-                let queryString = pickBy(customQuery);
-                this.$inertia.get(
-                    this.route(
-                        "supportTickets.index",
-                        Object.keys(queryString).length
-                            ? queryString
-                            : {remember: "forget"}
-                    ),
-                    {},
-                    {
-                        preserveState: true,
-                        preserveScroll: true,
-                    }
-                );
-            }, 150),
-            deep: true,
-        },
-    },
     methods: {
         sort(field) {
             this.queryForm.sort === field
@@ -243,10 +208,6 @@ export default {
                 : (this.queryForm.sort = field);
         },
 
-        // Reset all filters
-        reset() {
-            this.$inertia.visit(this.route("employees.index"));
-        },
     },
 };
 </script>

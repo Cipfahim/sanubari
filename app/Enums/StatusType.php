@@ -14,4 +14,5 @@ final class StatusType extends Enum
     const Open = "Open";
     const Pending = "Pending";
     const Closed = "Closed";
+    const Spam = "Spam";
 }

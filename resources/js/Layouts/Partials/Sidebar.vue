@@ -157,6 +157,12 @@ export default {
                     icon: HomeIcon,
                     current: route().current('employee.payslips')
                 },
+                {
+                    name: 'Support Ticket',
+                    href: route('employee.supportTickets.index'),
+                    icon: ClockIcon,
+                    current: route().current('supportTickets.*')
+                },
             ],
             navigation: [
                 {
