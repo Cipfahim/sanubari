@@ -113,9 +113,9 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton.vue";
 import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import JetButton from "@/Jetstream/Button";
 import {ChevronLeftIcon , DotsHorizontalIcon , XIcon , CheckIcon, PaperAirplaneIcon} from "@heroicons/vue/solid";
-import JetDropdown from "../../Jetstream/Dropdown";
-import JetDropdownLink from "../../Jetstream/DropdownLink";
-import JetInput from "../../Jetstream/Input";
+import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdownLink from "@/Jetstream/DropdownLink";
+import JetInput from "@/Jetstream/Input";
 
 export default {
     components: {

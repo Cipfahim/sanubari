@@ -56,28 +56,34 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Sl.
+                                        <p class="w-12">
+                                            Sl.
+                                        </p>
                                     </th>
                                     <th
                                         scope="col"
                                         @click="sort('name')"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                        class="px-6 py-3 w-44 sm:w-auto text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name"/>
-                                        Name
+                                        <div class="flex items-center gap-2">
+                                            <sort-arrow :sort="queryForm.sort" field="name"/>
+                                            <span>Country Name</span>
+                                        </div>
                                     </th>
                                     <th
                                         scope="col"
                                         @click="sort('country_code')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="country_code"/>
-                                        Country Code
+                                        <div class="flex items-center gap-2">
+                                            <sort-arrow :sort="queryForm.sort" field="country_code"/>
+                                            <span class="flex-1 w-44 sm:w-auto">Country Code</span>
+                                        </div>
                                     </th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
                                     </th>
                                 </tr>
                                 </thead>
@@ -85,24 +91,29 @@
                                 <tr
                                     v-for="(country, index) in countries.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ index + 1 }}
-                                    </td>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 grid grid-cols gap-1"
-                                    >
-                                        <div>{{ country.name }}</div>
-                                        <div v-if="country.flag_path">
-                                            <img class="w-12 h-12 rounded-full" :src="country.flag_path" :alt="country.name">
+                                        <div class="w-12">
+                                            {{ index + 1 }}
                                         </div>
                                     </td>
                                     <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        class="px-6 py-4 w-44 sm:w-auto whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        + {{ country.country_code }}
+                                        <div class="flex gap-3 items-center">
+                                            <div class="w-12 h-12 rounded-full">
+                                                <img class="w-full h-full rounded-full" :src="country.flag_path ? country.flag_path : '/images/icon/country.png'" :alt="country.name">
+                                            </div>
+                                            <div class="flex-1">{{ country.name }}</div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="px-6 py-4 w-44 sm:w-auto whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        <p>+ {{ country.country_code }}</p>
                                     </td>
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"

@@ -30,8 +30,8 @@
                 </div>
 
                 <div class="flex">
-                    <inertia-link href="/" class="bg-gray-50 hover:bg-cyan-500 rounded py-2 px-4 text-cyan-900 hover:text-white transition duration-500 border border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 select-none">Back</inertia-link>
-                    <button @click="addMore()" class="py-2 px-4 ml-2 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">Add More</button>
+                    <inertia-link href="/" class="bg-red-600 hover:bg-red-500 text-white focus:outline-none rounded py-2 px-4 text-white transition duration-500 focus:outline-none focus:ring select-none">Back</inertia-link>
+                    <button @click="addMore()" class="py-2 px-4 ml-2 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none">Add More</button>
                 </div>
             </div>
             <!-- Employee Table -->

@@ -158,13 +158,22 @@
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="phone" value="Phone *"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="phone"
-                                                type="text"
-                                                v-model="form.phone"
-                                                :class="{ 'border-red-500': form.errors.phone }"
-                                                required
-                                            />
+                                            <div class="relative flex">
+                                                <div class="h-full w-12 absolute top-0 left-0 p-1 z-[1]">
+                                                    <div class="bg-gray-100 rounded w-full h-full p-2">
+                                                        <img class="w-full h-full rounded" src="/images/icon/country.png" alt="Flag">
+                                                    </div>
+                                                </div>
+                                                <jet-input
+                                                    id="phone"
+                                                    type="text"
+                                                    v-model="form.phone"
+                                                    :class="{ 'border-red-500': form.errors.phone }"
+                                                    required
+                                                    class="pl-14"
+                                                />
+                                            </div>
+
                                             <jet-input-error
                                                 :message="form.errors.phone"
                                                 class="mt-2"

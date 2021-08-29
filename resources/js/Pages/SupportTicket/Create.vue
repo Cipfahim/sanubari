@@ -24,6 +24,22 @@
                         Provide Information
                     </template>
                     <template #form class="md:col-span-12" >
+<<<<<<< HEAD
+=======
+                        <!--Employee-->
+                        <div class="col-span-6 sm:col-span-12 mb-2 mb-2">
+                            <select
+                                v-model="form.employee"
+                                class="block h-10 w-full py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"
+                                name="employee"
+                                id="employee"
+                                :class="{ 'border-red-500': form.errors.employee }"
+                            >
+                                <option  v-for="employee in employees" :key="employee.id" :value="employee.id">{{ employee.user.name }}</option>
+                            </select>
+                        </div>
+
+>>>>>>> 503a49aac6a694c48f69d02395d3d3c3373497f2
                         <!--Subject-->
                         <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="subject" value="Subject *" />
@@ -46,6 +62,7 @@
                         <jet-button
                             :class="{'opacity-25':form.processing}"
                             :disabled="form.processing"
+                            class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                         >
                             Create
                         </jet-button>
