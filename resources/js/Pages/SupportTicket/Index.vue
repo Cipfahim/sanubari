@@ -46,7 +46,7 @@
                         :href="route('employee.supportTickets.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
-                        Add Ticket
+                        Add Message
                     </inertia-link>
                 </div>
             </div>
@@ -127,7 +127,7 @@
                                         <div class="flex items-center gap-2">
                                             <div class="h-8 w-8 rounded-full overflow-hidden">
                                                 <img class="h-full w-full"
-                                                     :src="false ? '' : '/images/icon/avatar.png'"
+                                                     :src="ticket.user.photo ? getFileUrl(ticket.user.photo) : '/images/icon/avatar.png'"
                                                      alt="">
                                             </div>
                                             <div class="flex-1 w-32 truncate">
@@ -177,7 +177,7 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        30 seconds ago
+                                        {{ last_message }}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -225,7 +225,8 @@ export default {
     },
     props: {
         tickets: Object,
-        requests: Object
+        last_message: Object,
+        requests: Object,
     },
     data() {
         return {

@@ -168,7 +168,7 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        30 seconds ago
+                                        {{ last_message }}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -216,6 +216,7 @@ export default {
     },
     props: {
         tickets: Object,
+        last_message: Object,
         requests: Object
     },
     data() {

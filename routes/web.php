@@ -38,7 +38,7 @@ Route::post('/upload', UploadController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'role:system-admin|admin'])->name('dashboard');
+})->middleware(['auth', 'verified', 'role:system-admin|admin|employee'])->name('dashboard');
 
 Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function () {
     Route::get('identification-details', [IdentificationController::class, 'index'])->name('identification.index');
@@ -103,3 +103,5 @@ Route::get('/settings', function () {
 // Support Ticket
 Route::get('/support-ticket/index', [SupportTicketController::class, 'adminIndex'])->name('supportTickets.admin.index');
 Route::get('/support-ticket/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('supportTickets.admin.show');
+Route::post('/support-ticket/store/chat/{id}', [SupportTicketController::class, 'storeChat'])->name('supportTickets.store.chat');
+Route::post('/support-ticket/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('supportTickets.update.status');
