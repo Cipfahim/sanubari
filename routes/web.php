@@ -101,7 +101,7 @@ Route::get('/settings', function () {
 });
 
 // Support Ticket
-Route::get('/support-ticket/index', [SupportTicketController::class, 'adminIndex'])->name('supportTickets.admin.index');
-Route::get('/support-ticket/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('supportTickets.admin.show');
+Route::get('/support-ticket/index', [SupportTicketController::class, 'adminIndex'])->name('supportTickets.index');
+Route::get('/support-ticket/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('supportTickets.show');
 Route::post('/support-ticket/store/chat/{id}', [SupportTicketController::class, 'storeChat'])->name('supportTickets.store.chat');
 Route::post('/support-ticket/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('supportTickets.update.status');
