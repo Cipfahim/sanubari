@@ -18,7 +18,6 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\SupportTicketController;
 use Inertia\Inertia;
 
@@ -121,10 +120,6 @@ Route::get('/settings', function () {
     return inertia('Settings');
 });
 
-Route::get('/token', function () {
-    return inertia('Token/Index');
-});
-Route::resource('supportTickets',SupportTicketController::class)
-    ->except('destroy')
-    ->middleware(['auth', 'verified', 'role:system-admin|admin']);
-
+// Support Ticket
+Route::get('/support-ticket/index', [SupportTicketController::class, 'adminIndex'])->name('supportTickets.admin.index');
+Route::get('/support-ticket/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('supportTickets.admin.show');

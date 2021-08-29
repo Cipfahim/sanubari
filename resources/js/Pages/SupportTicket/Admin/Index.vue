@@ -40,15 +40,6 @@
                         Reset
                     </button>
                 </div>
-
-                <div class="flex justify-between order-1 sm:order-2 ml-auto">
-                    <inertia-link
-                        :href="route('employee.supportTickets.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
-                    >
-                        Add Token
-                    </inertia-link>
-                </div>
             </div>
             <div class="flex flex-col">
                 <div class="overflow-x-auto shadow rounded sm:rounded-lg">
@@ -131,8 +122,8 @@
                                                      alt="">
                                             </div>
                                             <div class="flex-1 w-32 truncate">
-                                                <inertia-link :href="route('employee.supportTickets.show', {
-                                                    'id': ticket.id
+                                                <inertia-link :href="route('supportTickets.admin.show', {
+                                                    'supportTicket': ticket.id
                                                 })"
                                                               class="w-full"
                                                               title="Click to show details">

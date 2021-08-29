@@ -28,9 +28,10 @@ class SupportTicketController extends Controller
         return Inertia::render('SupportTicket/Index', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'tickets' => QueryBuilder::for(SupportTicket::class)
-                ->with(['requester.user', 'assigned.user', 'chat'])
-                ->allowedFilters(['requester.user', 'assigned.user', 'subject', 'status'])
-                ->allowedSorts(['requester.user', 'subject', 'assigned.user'])
+                ->with(['user', 'chats'])
+                ->where('user_id', Auth::id())
+                ->allowedFilters(['user'])
+                ->allowedSorts(['user', 'subject'])
                 ->latest('id')
                 ->paginate()
                 ->appends(request()->query()),
@@ -44,11 +45,7 @@ class SupportTicketController extends Controller
      */
     public function create(): Response
     {
-        $employees = Employee::with('user')->get();
-
-        return Inertia::render('SupportTicket/Create', [
-            'employees' => $employees
-        ]);
+        return Inertia::render('SupportTicket/Create');
     }
 
     /**
@@ -61,37 +58,36 @@ class SupportTicketController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request , [
-            'employee' => ['required'],
-            'subject' => ['required'],
+            'subject' => ['required']
         ]);
-
-        $chat = Chat::create();
 
         SupportTicket::create([
-            'requester' => Auth::id(),
-            'assigned' => $request->get('employee'),
+            'user_id' => Auth::user()->id,
             'subject' => $request->get('subject'),
-            'chat_id' => $chat->id,
         ]);
 
-        return Redirect::route('supportTickets.index')->with('success', 'Support Ticket is Created');
+        return Redirect::route('employee.supportTickets.index')->with('success', 'Support Ticket is Created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SupportTicket  $supportTicket
-     * @return \Illuminate\Http\Response
      */
     public function show(SupportTicket $supportTicket)
     {
-        //
+        if($supportTicket->status === "Pending") {
+            return Redirect::back()->with('error', 'Your Status is Pending');
+        }   else {
+            return Inertia::render('SupportTicket/Show', [
+                'ticket' => $supportTicket->load('chats')
+            ]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SupportTicket  $supportTicket
+     * @param SupportTicket $supportTicket
      * @return \Illuminate\Http\Response
      */
     public function edit(SupportTicket $supportTicket)
@@ -103,7 +99,7 @@ class SupportTicketController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \App\Models\SupportTicket  $supportTicket
+     * @param SupportTicket $supportTicket
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, SupportTicket $supportTicket)
@@ -114,11 +110,43 @@ class SupportTicketController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SupportTicket  $supportTicket
+     * @param SupportTicket $supportTicket
      * @return \Illuminate\Http\Response
      */
     public function destroy(SupportTicket $supportTicket)
     {
         //
+    }
+
+    /**
+     * @return Response
+     */
+    public function adminIndex(): Response
+    {
+        return Inertia::render('SupportTicket/Admin/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
+            'tickets' => QueryBuilder::for(SupportTicket::class)
+                ->with(['user', 'chats'])
+                ->allowedFilters(['user'])
+                ->allowedSorts(['user', 'subject'])
+                ->latest('id')
+                ->paginate()
+                ->appends(request()->query()),
+        ]);
+    }
+
+    public function adminShow(SupportTicket $supportTicket)
+    {
+        if($supportTicket->status === 'Pending') {
+            $supportTicket->update([
+                'status' => 'Open'
+            ]);
+        }
+
+        dd($supportTicket->load('chats'));
+
+        return Inertia::render('SupportTicket/Admin/Show', [
+           'ticket' => $supportTicket->load('chats')
+        ]);
     }
 }

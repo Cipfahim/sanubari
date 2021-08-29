@@ -16,9 +16,7 @@ class CreateSupportTicketsTable extends Migration
     {
         Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('requester')->references('id')->on('employees');
-            $table->foreignId('assigned')->references('id')->on('employees');
-            $table->foreignId('chat_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('subject');
             $table->enum('status', StatusType::getValues())->default(StatusType::getValue('Pending'));
             $table->timestamps();
