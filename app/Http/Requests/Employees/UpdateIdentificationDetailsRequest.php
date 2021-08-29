@@ -24,7 +24,7 @@ class UpdateIdentificationDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'citizenship' => ['required'],
+            'nationality' => ['required'],
             'identity_card_number' => ['required_if:citizenship,Malaysian'],
             'passport_number' => ['required'],
             'date_of_birth' => ['required'],

@@ -31,26 +31,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function () {
-    $countries = Http::get('https://restcountries.eu/rest/v2/all?fields=name;callingCodes;flag');
-
-    foreach ($countries->json() as $country) {
-        $flagName = substr($country['flag'], strrpos($country['flag'], '/') + 1);
-        ob_start();
-        echo Http::get($country['flag']);
-        $flagContent = ob_get_clean();
-
-        file_put_contents("images/flags/" . $flagName, $flagContent);
-
-        \App\Models\Country::create([
-            'name' => $country['name'],
-            'slug' => \Illuminate\Support\Str::slug($country['name']),
-            'flag_path' => "flags/" . $flagName,
-            'country_code' => $country['callingCodes'][0]
-        ]);
-    }
-    return 'Done';
-});
 
 Route::redirect('/', 'login');
 
