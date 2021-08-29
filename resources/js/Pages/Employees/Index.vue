@@ -198,19 +198,25 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        <jet-dropdown style="position: inherit;">
+                                        <jet-dropdown style="position: inherit;" align="right-16">
                                             <template v-slot:trigger>
                                                 <div class="bg-cyan-50 hover:bg-cyan-100 h-10 w-10 rounded-full flex items-center justify-center cursor-pointer">
                                                     <DotsVerticalIcon class="h-5 w-5 text-cyan-600"/>
                                                 </div>
                                             </template>
-                                            <template v-slot:content alignmentClasses="right-16">
+                                            <template v-slot:content>
                                                 <div class="px-2">
                                                     <jet-dropdown-link :href="route('employees.show', employee.id)" class="rounded-md hover:bg-cyan-100 text-cyan-700">
                                                         Show
                                                     </jet-dropdown-link>
                                                     <jet-dropdown-link :href="route('employees.edit', employee.id)" class="rounded-md hover:bg-green-100 text-green-700">
                                                         Edit
+                                                    </jet-dropdown-link>
+                                                    <jet-dropdown-link :href="route('employees.documents.index',employee.id)" class="rounded-md hover:bg-orange-100 text-orange-500">
+                                                        Documents
+                                                    </jet-dropdown-link>
+                                                    <jet-dropdown-link :href="route('employees.payslips.index',employee.id)" class="rounded-md hover:bg-teal-100 text-teal-700">
+                                                        Payslips
                                                     </jet-dropdown-link>
                                                 </div>
                                             </template>

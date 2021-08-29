@@ -98,6 +98,12 @@
                                                           aria-current="page">
                                                 Documents
                                             </inertia-link>
+                                            <inertia-link :href="route('employees.payslips.index',employee.id)"
+                                                          :class="{'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': !route().current('employees.payslips.index',employee.id), 'border-cyan-500 text-gray-900' : route().current('employees.payslips.index',employee.id)}"
+                                                          class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                                          aria-current="page">
+                                                Payslips
+                                            </inertia-link>
                                         </nav>
                                     </div>
                                 </div>

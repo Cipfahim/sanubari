@@ -124,7 +124,7 @@
 <script>
 import {ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot,} from '@headlessui/vue'
-import {ClockIcon, CogIcon, HomeIcon, UsersIcon, XIcon,} from '@heroicons/vue/outline'
+import {ClockIcon, CogIcon, HomeIcon, UsersIcon, XIcon, UserGroupIcon, FingerPrintIcon, DatabaseIcon, ChatAlt2Icon} from '@heroicons/vue/outline'
 
 export default {
     components: {
@@ -159,11 +159,16 @@ export default {
                 },
             ],
             navigation: [
-                {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
+                {
+                    name: 'Dashboard',
+                    href: route('dashboard'),
+                    icon: HomeIcon,
+                    current: route().current('dashboard')
+                },
                 {
                     name: 'Employees',
                     href: route('employees.index'),
-                    icon: ClockIcon,
+                    icon: UserGroupIcon,
                     current: route().current('employees.*')
                 },
                 {
@@ -193,13 +198,13 @@ export default {
                 {
                     name: 'Support Ticket',
                     href: route('supportTickets.index'),
-                    icon: ClockIcon,
+                    icon: ChatAlt2Icon,
                     current: route().current('supportTickets.*')
                 },
                 {
                     name: 'Activity Logs',
                     href: route('activityLogs.index'),
-                    icon: CogIcon,
+                    icon: DatabaseIcon,
                     current: route().current('activityLogs.*')
                 },
                 {
@@ -213,7 +218,7 @@ export default {
                 {
                     name: 'Auditor Access',
                     href: route('auditor-access.index'),
-                    icon: ClockIcon,
+                    icon: FingerPrintIcon,
                     current: route().current('auditor-access.*')
                 },
                 {
