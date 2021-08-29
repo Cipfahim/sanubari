@@ -10,37 +10,6 @@
         ]"
             />
             <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
-                <div class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
-                    <div
-                        class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
-                    >
-                        <select
-                            class="h-full w-24 sm:w-40 truncate border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
-                            <option value="user.name">Requester</option>
-                            <option value="subject">Subject</option>
-                            <option value="status">Status</option>
-                        </select>
-                        <input
-
-                            autocomplete="off"
-                            type="text"
-                            name="search"
-                            placeholder="Search…"
-                            class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
-                        />
-                        <div class="mx-2 sm:mx-3">
-                            <SearchIcon class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
-                        </div>
-                    </div>
-                    <button
-                        type="button"
-                        @click="reset"
-                        class="py-2 px-2 sm:px-4 rounded-md font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
-                    >
-                        Reset
-                    </button>
-                </div>
-
                 <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
                         :href="route('employee.supportTickets.create')"
