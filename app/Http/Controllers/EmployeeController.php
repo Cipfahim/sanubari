@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Http\Requests\Employees\UpdateEmployeeRequest;
+use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Role;
@@ -44,7 +45,8 @@ class EmployeeController extends Controller
     public function create()
     {
         return Inertia::render('Employees/Create', [
-            'locations' => Location::all()
+            'locations' => Location::all(),
+            'countries' => Country::select('id', 'name', 'flag_path', 'country_code')->get()
         ]);
     }
 

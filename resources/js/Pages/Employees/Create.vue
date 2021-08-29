@@ -159,19 +159,8 @@
                                         <jet-label for="phone" value="Phone *"/>
                                         <div class="col-span-2 max-w-lg">
                                             <div class="relative flex">
-                                                <div class="h-full w-12 absolute top-0 left-0 p-1 z-[1]">
-                                                    <div class="bg-gray-100 rounded w-full h-full p-2">
-                                                        <img class="w-full h-full rounded" src="/images/icon/country.png" alt="Flag">
-                                                    </div>
-                                                </div>
-                                                <jet-input
-                                                    id="phone"
-                                                    type="text"
-                                                    v-model="form.phone"
-                                                    :class="{ 'border-red-500': form.errors.phone }"
-                                                    required
-                                                    class="pl-14"
-                                                />
+                                                <vue-tel-input ref="telPhone"
+                                                               mode="international"></vue-tel-input>
                                             </div>
 
                                             <jet-input-error
@@ -315,9 +304,13 @@ import {DatePicker} from 'v-calendar';
 import Multiselect from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css'
 
+import {VueTelInput} from 'vue3-tel-input'
+import 'vue3-tel-input/dist/vue3-tel-input.css'
+
 export default {
     props: {
-        locations: Array
+        locations: Array,
+        countries: Array,
     },
     components: {
         Input,
@@ -343,10 +336,13 @@ export default {
         JetCheckbox,
         Switch,
         DatePicker,
-        Multiselect
+        Multiselect,
+        VueTelInput,
     },
     data() {
         return {
+            countryFlagPath: '/images/icon/country.png',
+
             photoPreview: null,
             generatePasswordIcon: false,
             showPassword: true,
@@ -359,7 +355,7 @@ export default {
                     date_of_join: null,
                     name: null,
                     email: null,
-                    phone: '+60',
+                    phone: '',
                     password: null,
                     status: null
                 },
@@ -379,14 +375,19 @@ export default {
         }
     },
     methods: {
+        getFlagPath(event) {
+            const matchCountry = this.countries.find(country => country.country_code === event.target.value);
+            return this.countryFlagPath = matchCountry ? this.getFileUrl(matchCountry.flag_path)
+                : '/images/icon/country.png';
+        },
         submit() {
             if (this.$refs.photo) {
                 this.form.photo = this.$refs.photo.files[0]
             }
-
             this.form
                 .transform(data => ({
                     ...data,
+                    phone: this.$refs.telPhone.phoneObject.number,
                     status: this.form.status ? 'Active' : 'Inactive'
                 }))
                 .post(this.route('employees.store'))
