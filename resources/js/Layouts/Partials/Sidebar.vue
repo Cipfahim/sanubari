@@ -157,6 +157,12 @@ export default {
                     icon: HomeIcon,
                     current: route().current('employee.payslips')
                 },
+                {
+                    name: 'Support Ticket',
+                    href: route('employee.supportTickets.index'),
+                    icon: ClockIcon,
+                    current: route().current('supportTickets.*')
+                },
             ],
             navigation: [
                 {name: 'Dashboard', href: route('dashboard'), icon: HomeIcon, current: route().current('dashboard')},
@@ -192,7 +198,7 @@ export default {
                 },
                 {
                     name: 'Support Ticket',
-                    href: route('supportTickets.index'),
+                    href: route('supportTickets.admin.index'),
                     icon: ClockIcon,
                     current: route().current('supportTickets.*')
                 },
