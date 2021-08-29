@@ -47,7 +47,7 @@
                         :href="route('supportTickets.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
-                        Add Token
+                        Add Ticket
                     </inertia-link>
                 </div>
             </div>

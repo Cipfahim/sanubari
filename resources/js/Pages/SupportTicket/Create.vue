@@ -28,13 +28,12 @@
                         <div class="col-span-6 sm:col-span-12 mb-2 mb-2">
                             <select
                                 v-model="form.employee"
-                                class="mt-1 block w-full focus:ring-cyan-100"
-                                v-for="employee in employees" :key="employee.id"
+                                class="block h-10 w-full py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"
                                 name="employee"
                                 id="employee"
                                 :class="{ 'border-red-500': form.errors.employee }"
                             >
-                                <option  :value="employee.id">{{ employee.user.name }}</option>
+                                <option  v-for="employee in employees" :key="employee.id" :value="employee.id">{{ employee.user.name }}</option>
                             </select>
                         </div>
 
@@ -60,6 +59,7 @@
                         <jet-button
                             :class="{'opacity-25':form.processing}"
                             :disabled="form.processing"
+                            class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                         >
                             Create
                         </jet-button>

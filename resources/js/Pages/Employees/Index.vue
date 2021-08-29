@@ -52,14 +52,14 @@
                     </inertia-link>
                 </div>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col relative">
                 <div class="overflow-x-auto rounded sm:rounded-lg">
                     <div
                         class="align-middle inline-block min-w-full"
                     >
                         <div
                             v-if="employees.data.length"
-                            class="overflow-hidden shadow rounded sm:rounded-lg"
+                            class="shadow rounded sm:rounded-lg"
                         >
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
@@ -198,17 +198,23 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        <inertia-link
-                                            :href="route('employees.show', employee.id)"
-                                            class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md h-10"
-                                        >Show
-                                        </inertia-link>
-
-                                        <inertia-link
-                                            :href="route('employees.edit', employee.id)"
-                                            class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md h-10"
-                                        >Edit
-                                        </inertia-link>
+                                        <jet-dropdown style="position: inherit;">
+                                            <template v-slot:trigger>
+                                                <div class="bg-cyan-50 hover:bg-cyan-100 h-10 w-10 rounded-full flex items-center justify-center cursor-pointer">
+                                                    <DotsVerticalIcon class="h-5 w-5 text-cyan-600"/>
+                                                </div>
+                                            </template>
+                                            <template v-slot:content alignmentClasses="right-16">
+                                                <div class="px-2">
+                                                    <jet-dropdown-link :href="route('employees.show', employee.id)" class="rounded-md hover:bg-cyan-100 text-cyan-700">
+                                                        Show
+                                                    </jet-dropdown-link>
+                                                    <jet-dropdown-link :href="route('employees.edit', employee.id)" class="rounded-md hover:bg-green-100 text-green-700">
+                                                        Edit
+                                                    </jet-dropdown-link>
+                                                </div>
+                                            </template>
+                                        </jet-dropdown>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -240,7 +246,9 @@ import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import Button from "@/Jetstream/Button";
-import {SearchIcon} from "@heroicons/vue/solid";
+import {SearchIcon, DotsVerticalIcon} from "@heroicons/vue/solid";
+import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdownLink from "@/Jetstream/DropdownLink";
 
 export default {
     components: {
@@ -253,6 +261,9 @@ export default {
         JetSecondaryButton,
         JetDangerButton,
         SearchIcon,
+        JetDropdown,
+        JetDropdownLink,
+        DotsVerticalIcon
     },
     props: {
         requests: Object,

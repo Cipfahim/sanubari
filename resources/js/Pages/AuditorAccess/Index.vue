@@ -20,7 +20,7 @@
 
                 <div class="flex justify-between">
                     <!-- <inertia-link :href="route('auditor-access.create')" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"> Add </inertia-link> -->
-                    <button @click="auditModal = true" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">Add</button>
+                    <button @click="auditModal = true" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none">Add</button>
                 </div>
             </div>
             <div class="flex flex-col">
@@ -87,9 +87,9 @@
         </div>
         <!-- Add Audit Modal -->
         <modal :show="auditModal">
-            <jet-form-section class="md:gap-y-0">
+            <jet-form-section class="md:gap-y-0 min-h-[35rem]">
                 <template #form class="md:col-span-12">
-                    <div class="bg-gray-50 p-4 rounded-md">
+                    <div class="bg-gray-50 p-4 rounded-md h-full">
                         <div class="sm:my-3 space-y-6 sm:space-y-5">
                             <!-- Auditor Name field-->
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
@@ -105,11 +105,29 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex justify-between items-center">
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" v-model="startDate" type="date" />
+<!--                                        <jet-input id="date_of_join" v-model="startDate" type="date" />-->
+                                        <DatePicker v-model="startDate" :masks="datePickerConfig.masks"
+                                                    :model-config="datePickerConfig.modelConfig">
+                                            <template #default="{ inputValue, inputEvents }">
+                                                <input
+                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                    :value="inputValue"
+                                                    v-on="inputEvents"/>
+                                            </template>
+                                        </DatePicker>
                                     </div>
                                     <div>to</div>
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" v-model="endDate" type="date" />
+<!--                                        <jet-input id="date_of_join" v-model="" type="date" />-->
+                                        <DatePicker v-model="endDate" :masks="datePickerConfig.masks"
+                                                    :model-config="datePickerConfig.modelConfig">
+                                            <template #default="{ inputValue, inputEvents }">
+                                                <input
+                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                    :value="inputValue"
+                                                    v-on="inputEvents"/>
+                                            </template>
+                                        </DatePicker>
                                     </div>
                                 </div>
 
@@ -180,6 +198,7 @@ import JetFormSection from "@/Jetstream/FormSection"
 import JetLabel from "@/Jetstream/Label"
 import JetInputError from "@/Jetstream/InputError"
 import JetInput from "@/Jetstream/Input"
+import {DatePicker} from 'v-calendar';
 
 export default {
     components: {
@@ -199,6 +218,7 @@ export default {
         JetLabel,
         JetInputError,
         JetInput,
+        DatePicker
     },
     props: {
         requests: Object,
@@ -223,6 +243,15 @@ export default {
             locationId: 0,
             startDate: null,
             endDate: null,
+            datePickerConfig: {
+                masks: {
+                    input: 'DD MMM YYYY',
+                },
+                modelConfig: {
+                    type: 'string',
+                    mask: 'YYYY-MM-DD', // Uses 'iso' if missing
+                },
+            },
         }
     },
     mounted() {
