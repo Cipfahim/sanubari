@@ -108,7 +108,9 @@
                         <div class="mt-6 pt-6">
                             <div class="px-2 space-y-1">
                                 <inertia-link v-for="item in secondaryNavigation" :key="item.name" :href="item.href"
-                                              class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
+                                              :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
+                                              :aria-current="item.current ? 'page' : undefined"
+                                >
                                     <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
                                     {{ item.name }}
                                 </inertia-link>
@@ -241,8 +243,9 @@ export default {
                 },
                 {
                     name: 'Settings',
-                    href: '/settings',
+                    href: route('users.index'),
                     icon: CogIcon,
+                    current: route().current('users.*')
                 },
             ]
         }

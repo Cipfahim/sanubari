@@ -1,19 +1,7 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-                :links="[
-          {
-            title: 'Locations',
-            url: route('locations.index'),
-          },
-          {
-            title: 'Edit',
-            active: true,
-          },
-        ]"
-            />
-            <div class="mt-10 sm:mt-0">
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit">
                     <template #title> Update Location </template>
 
@@ -21,7 +9,7 @@
 
                     <template #form>
                         <!-- Name -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 -mx-4">
                             <jet-label for="name" value="Name *" />
                             <jet-input
                                 id="name"
@@ -58,7 +46,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";

@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";

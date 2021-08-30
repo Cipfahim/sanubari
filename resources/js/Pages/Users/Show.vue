@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <!-- Start::Stepper -->
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="p-4">
             <div class="flex flex-col min-w-0 flex-1 overflow-hidden bg-white rounded-md">
                 <div class="flex-1 relative z-0 flex overflow-hidden">
                     <div class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
@@ -17,8 +17,8 @@
                                     <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                                         <div class="flex">
                                             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                                                 :src="getFileUrl(user.photo)"
-                                                 alt="">
+                                                 :src="user.photo ? getFileUrl(user.photo) : '/images/icon/avatar.png'"
+                                                 :alt="user.name">
                                         </div>
                                         <div
                                             class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
@@ -30,7 +30,7 @@
                                             <div
                                                 class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                                                 <inertia-link :href="route('users.index')"
-                                                              class="inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md bg-red-600 hover:bg-red-500 text-white focus:outline-none focus:ring">
+                                                              class="inline-flex justify-center items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md bg-red-600 text-white focus:outline-none focus:ring">
                                                     <!-- Heroicon name: solid/mail -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-4 w-4"
                                                          viewBox="0 0 20 20" fill="currentColor">
@@ -139,7 +139,7 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import {
     CalendarIcon,
     CashIcon,

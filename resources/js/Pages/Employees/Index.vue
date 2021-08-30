@@ -166,7 +166,7 @@
                                     </td>
 
                                     <td
-                                        class="px-6 py-4 w-44 block truncate whitespace-nowrap text-sm text-gray-500"
+                                        class="px-6 py-4 w-44 truncate whitespace-nowrap text-sm text-gray-500"
                                         :title="employee.location.name"
                                     >
                                         {{ employee.location.name }}

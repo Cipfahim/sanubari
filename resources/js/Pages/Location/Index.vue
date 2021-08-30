@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="p-4">
             <breadcrumb
                 :links="[
           {
@@ -9,8 +9,8 @@
           },
         ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
                         class="flex items-center w-full bg-white shadow-sm rounded relative"
                     >
@@ -33,7 +33,7 @@
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
                         :href="route('locations.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
@@ -70,8 +70,8 @@
                                     </th>
 
 
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <span>Actions</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";

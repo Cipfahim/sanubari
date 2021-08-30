@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 p-4">
             <breadcrumb
                 :links="[
                   {
@@ -9,19 +9,21 @@
                   },
                 ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
                         class="flex items-center w-full bg-white shadow-sm rounded relative"
                     >
-                        <SearchIcon class="h-5 w-5 text-gray-300 mx-2"/>
+                        <div class="mx-2 sm:mx-3">
+                            <SearchIcon class="h-5 w-5 text-gray-300"/>
+                        </div>
                         <input
                             v-model="queryForm.filter"
                             autocomplete="off"
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                            class="block w-full h-full pl-2 sm:pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
                     </div>
                     <button
@@ -33,7 +35,7 @@
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
                         :href="route('users.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
@@ -199,7 +201,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";

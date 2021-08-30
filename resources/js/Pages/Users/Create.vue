@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <!-- Start::Stepper -->
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div>
             <jet-form-section
                 @submitted="submit"
                 class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
@@ -11,7 +11,7 @@
                     <div class="bg-gray-50 p-4 rounded-md">
                         <div class="space-y-8 divide-y divide-gray-200">
                             <!-- User details-->
-                            <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
+                            <div class="space-y-6 sm:space-y-5 mt-5 sm:mt-0">
                                 <div class="sm:border-b sm:border-gray-200 pb-2">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                                         User Details
@@ -214,7 +214,7 @@
 </template>
 
 <script>
-import AppLayout from "../../Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import {
     CalendarIcon,
     CashIcon,
@@ -231,7 +231,7 @@ import JetInput from "@/Jetstream/Input";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
-import Input from "../../Components/Input";
+import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
 import {Switch} from "@headlessui/vue";
 
