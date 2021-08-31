@@ -107,3 +107,14 @@ Route::prefix('support-tickets')->name('supportTickets.')->group(function () {
     Route::post('/store/chat/{id}', [SupportTicketController::class, 'storeChat'])->name('store.chat');
     Route::post('/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('update.status');
 });
+
+
+Route::prefix('all-payslips')->name('allpayslips.')->group(function (){
+    Route::get('/', function (){
+        return Inertia('AllPaySlips/Index');
+    });
+
+    Route::get('/upload-all-payslips', function (){
+        return Inertia('AllPaySlips/UploadAll');
+    });
+});
