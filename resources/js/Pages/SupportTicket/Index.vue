@@ -141,7 +141,7 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        {{ last_message }}
+                                        {{ ticket.chats[ticket.chats.length-1].created_at }}
                                     </td>
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
@@ -213,7 +213,7 @@ export default {
                     : "subject",
                 filter: this.requests.filter
                     ? Object.values(this.requests.filter)[1]
-                    : "subject",
+                    : "",
                 sort: this.requests.sort,
             },
             checkAll: false,
