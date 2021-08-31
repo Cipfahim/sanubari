@@ -1,19 +1,7 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-                :links="[
-                {
-                    title: 'Countries',
-                    url:route('countries.index'),
-                },
-                {
-                    title : 'Create',
-                    active: true
-                }
-            ]"
-            />
-            <div class="mt-10 sm:mt-0">
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit"
                                   class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
                 >
@@ -25,7 +13,7 @@
                     </template>
                     <template #form class="md:col-span-12" >
                         <!--                        Name-->
-                        <div class="col-span-6 sm:col-span-12 mb-2" >
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4" >
                             <jet-label for="name" value="Country Name *" />
                             <jet-input
                                 type="text"
@@ -40,7 +28,7 @@
                             <JetInputError :message="form.errors.name" class="mt-2" />
                         </div>
                         <!--Country Code-->
-                        <div class="col-span-6 sm:col-span-12 mb-2" >
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4" >
                             <jet-label for="country_code" value="Country Code *" />
                             <jet-input
                                 type="number"
@@ -55,7 +43,7 @@
                             <JetInputError :message="form.errors.country_code" class="mt-2" />
                         </div>
                         <!--flag-->
-                        <div class="col-span-3 my-2">
+                        <div class="col-span-3 my-2 -mx-4">
                             <label for="flag" class="block text-sm font-medium text-gray-700">
                                 Flag
                             </label>
@@ -102,8 +90,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
-import Breadcrumb from "@/Components/Breadcrumb";
+import AppLayout from "@/Layouts/SettingLayout";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
@@ -112,7 +99,6 @@ import JetButton from "@/Jetstream/Button";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 export default {
     components : {
-        Breadcrumb,
         AppLayout,
         JetFormSection,
         JetLabel,
