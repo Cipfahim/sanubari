@@ -15,7 +15,6 @@
                             <file-pond
                                 name="file"
                                 ref="pond"
-                                :allowMultiple="false"
                                 label-idle='Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
                                 accepted-file-types="application/pdf"
                                 server="/upload"
