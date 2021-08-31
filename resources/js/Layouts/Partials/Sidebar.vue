@@ -191,16 +191,16 @@ export default {
                     current: route().current('employees.*')
                 },
                 {
+                    name: 'Pay Slips',
+                    href: route('payslips.index'),
+                    icon: CurrencyDollarIcon,
+                    current: route().current('payslips.*')
+                },
+                {
                     name: 'Support Ticket',
                     href: route('supportTickets.index'),
                     icon: ChatAlt2Icon,
                     current: route().current('supportTickets.*')
-                },
-                {
-                    name: 'Activity Logs',
-                    href: route('activityLogs.index'),
-                    icon: DatabaseIcon,
-                    current: route().current('activityLogs.*')
                 },
             ],
             secondaryNavigation: [
@@ -211,16 +211,10 @@ export default {
                     current: route().current('auditor-access.*')
                 },
                 {
-                    name: 'All Pay Slip',
-                    href: '/all-payslips',
-                    icon: CurrencyDollarIcon,
-                    current: ''
-                },
-                {
-                    name: 'Pay Slip',
-                    href: '/payslips',
-                    icon: CurrencyDollarIcon,
-                    current: ''
+                    name: 'Activity Logs',
+                    href: route('activityLogs.index'),
+                    icon: DatabaseIcon,
+                    current: route().current('activityLogs.*')
                 },
                 {
                     name: 'Settings',

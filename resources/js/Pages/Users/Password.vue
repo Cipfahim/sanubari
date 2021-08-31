@@ -99,7 +99,7 @@
                                                 class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
                                             >
                                                 <inertia-link
-                                                    :href="route('users.index')"
+                                                    :href="route('settings.users.index')"
                                                     class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                                 >
                                                     Cancel
@@ -175,7 +175,7 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(this.route('users.update.password', {
+            this.form.post(this.route('settings.users.update.password', {
                 'user': this.$page.props.auth.user
             }));
         },
