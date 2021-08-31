@@ -11,22 +11,22 @@
             <div class="flex-1 flex">
                 <form class="w-full flex items-center md:ml-0" action="#" method="GET">
                     <label for="search_field" class="sr-only">Search</label>
-                    <div class="relative w-full text-gray-400 focus-within:text-gray-600 bg-gray-100 rounded-md">
-                        <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none" aria-hidden="true">
-                            <SearchIcon class="h-5 w-5" aria-hidden="true"/>
-                        </div>
-                        <input id="search_field" name="search_field"
-                               class="block bg-transparent w-full h-full pl-8 pr-1 sm:pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent text-sm"
-                               placeholder="Search transactions" type="search"/>
-                    </div>
+<!--                    <div class="relative w-full text-gray-400 focus-within:text-gray-600 bg-gray-100 rounded-md">-->
+<!--                        <div class="absolute inset-y-0 left-2 flex items-center pointer-events-none" aria-hidden="true">-->
+<!--                            <SearchIcon class="h-5 w-5" aria-hidden="true"/>-->
+<!--                        </div>-->
+<!--                        <input id="search_field" name="search_field"-->
+<!--                               class="block bg-transparent w-full h-full pl-8 pr-1 sm:pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent text-sm"-->
+<!--                               placeholder="Search transactions" type="search"/>-->
+<!--                    </div>-->
                 </form>
             </div>
             <div class="ml-4 flex items-center md:ml-6">
-                <button
-                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-                    <span class="sr-only">View notifications</span>
-                    <BellIcon class="h-6 w-6" aria-hidden="true"/>
-                </button>
+<!--                <button-->
+<!--                    class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">-->
+<!--                    <span class="sr-only">View notifications</span>-->
+<!--                    <BellIcon class="h-6 w-6" aria-hidden="true"/>-->
+<!--                </button>-->
 
                 <!-- Profile dropdown -->
                 <Menu as="div" class="ml-3 relative">

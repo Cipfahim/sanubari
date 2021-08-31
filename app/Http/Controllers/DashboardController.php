@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\SupportTicket;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -21,8 +22,8 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'totalEmployee' => Employee::count(),
             'totalLocations' => Location::count(),
+            'totalUsers' => User::count(),
             'openSupportTickets' => SupportTicket::where('status', 'Open')->count(),
-            'pendingSupportTickets' => SupportTicket::where('status', 'Pending')->count(),
             'recentSupportTickets' => SupportTicket::with(['user', 'chats'])
                 ->latest('id')
                 ->where('status', 'Pending')

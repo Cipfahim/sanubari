@@ -64,7 +64,7 @@
                                                         <tr>
                                                             <th
                                                                 scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                                class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                             >
                                                                 Sl.
                                                             </th>
@@ -104,7 +104,7 @@
                                                             </th>
 
                                                             <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                                 <span>Actions</span>
                                                             </th>
                                                         </tr>
@@ -140,7 +140,7 @@
                                                             </td>
 
                                                             <td
-                                                                class="px-6 whitespace-nowrap text-left text-sm font-medium"
+                                                                class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                                             >
                                                                 <a :href="getFileUrl(payslip.file_path)"
                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md h-10"

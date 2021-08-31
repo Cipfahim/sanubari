@@ -64,7 +64,7 @@
                                                         <tr>
                                                             <th
                                                                 scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                                class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                             >
                                                                 Sl.
                                                             </th>
@@ -100,7 +100,7 @@
                                                             </th>
 
                                                             <th scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                                 <span>Actions</span>
                                                             </th>
                                                         </tr>
@@ -139,7 +139,7 @@
 
 
                                                             <td
-                                                                class="px-6 whitespace-nowrap text-left text-sm font-medium"
+                                                                class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                                             >
                                                                 <inertia-link
                                                                     :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"

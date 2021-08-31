@@ -18,7 +18,7 @@
                                         </template>
                                         <template #form class="md:col-span-12">
                                             <!--                        description-->
-                                            <div class="col-span-6 sm:col-span-12 mb-2">
+                                            <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
                                                 <jet-label for="description" value="Description *"/>
                                                 <jet-input
                                                     type="text"
@@ -33,7 +33,7 @@
                                                 <JetInputError :message="form.errors.description" class="mt-2"/>
                                             </div>
 
-                                            <div class="col-span-6 sm:col-span-12 mb-5">
+                                            <div class="col-span-6 sm:col-span-12 mb-5 -mx-4">
                                                 <jet-label for="year" value="Year *"/>
                                                 <jet-input
                                                     type="text"
@@ -49,7 +49,7 @@
                                             </div>
 
                                             <div
-                                                class="col-span-6 sm:col-span-12 sm:border-t sm:border-gray-200 sm:pt-5">
+                                                class="col-span-6 sm:col-span-12 sm:border-t sm:border-gray-200 sm:pt-5 -mx-4">
                                                 <jet-label for="document" value="Document *"/>
                                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                     <file-pond
@@ -75,6 +75,7 @@
                                             <jet-button
                                                 :class="{'opacity-25':form.processing || loading}"
                                                 :disabled="form.processing || loading"
+                                                class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                                             >
                                                 Create
                                             </jet-button>

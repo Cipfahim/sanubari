@@ -18,7 +18,7 @@
                                         </template>
                                         <template #form class="md:col-span-12">
                                             <!--  date_from-->
-                                            <div class="col-span-6 sm:col-span-12 mb-2">
+                                            <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
                                                 <jet-label for="date_from" value="Date From *"/>
                                                 <DatePicker v-model="form.date_from" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
@@ -34,7 +34,7 @@
                                             </div>
 
                                             <!--  date_to-->
-                                            <div class="col-span-6 sm:col-span-12 mb-2">
+                                            <div class="col-span-6 sm:col-span-12 mb-6 -mx-4">
                                                 <jet-label for="date_to" value="Date To *"/>
                                                 <DatePicker v-model="form.date_to" :masks="datePickerConfig.masks"
                                                             :model-config="datePickerConfig.modelConfig">
@@ -50,7 +50,7 @@
                                             </div>
 
                                             <div
-                                                class="col-span-6 sm:col-span-12 sm:border-t sm:border-gray-200 sm:pt-5">
+                                                class="col-span-6 sm:col-span-12 sm:border-t sm:border-gray-200 sm:pt-5 -mx-4">
                                                 <jet-label for="payslip" value="Payslip *"/>
                                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                                     <file-pond
@@ -76,6 +76,7 @@
                                             <jet-button
                                                 :class="{'opacity-25':form.processing || loading}"
                                                 :disabled="form.processing || loading"
+                                                class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                                             >
                                                 Upload
                                             </jet-button>

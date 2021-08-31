@@ -165,6 +165,7 @@
                             resource="support tickets"
                             action-text="Add Support Ticket"
                             :action-link="route('employee.supportTickets.create')"
+                            class="mb-6"
                         />
                     </div>
                 </div>
