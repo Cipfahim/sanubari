@@ -98,7 +98,7 @@
             <h2
                 class="mt-8 text-lg leading-6 font-medium text-gray-900 px-4 sm:px-6 lg:px-8"
             >
-                Recent message
+                Recent pending message
             </h2>
 
             <!-- Activity list (smallest breakpoint only) -->
@@ -339,8 +339,8 @@ export default {
     props: {
         totalEmployee: Number,
         totalLocations: Number,
+        totalUsers: Number,
         openSupportTickets: Number,
-        pendingSupportTickets: Number,
         recentSupportTickets: Array,
     },
     components: {
@@ -366,10 +366,10 @@ export default {
                     amount: this.totalEmployee
                 },
                 {
-                    name: "Pending Support Tickets",
-                    href: this.route('supportTickets.index'),
+                    name: "Users",
+                    href: this.route('settings.users.index'),
                     icon: ScaleIcon,
-                    amount: this.pendingSupportTickets
+                    amount: this.totalUsers
                 },
                 {
                     name: "Open Support Tickets",
