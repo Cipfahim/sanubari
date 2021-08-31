@@ -14,6 +14,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PayslipController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Http;
@@ -83,25 +84,27 @@ Route::resource('countries', CountryController::class)->except('show');
 
 Route::resource('cities', CityController::class)->except('show');
 
-Route::resource('users', UserController::class)->except('destroy');
-
 // User profile
 Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
 Route::put('/profile/update/{user}', [UserController::class, 'updateProfile'])
     ->name('users.profile.update');
+
+// Settings
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::get('/', [SettingController::class, 'index'])->name('index');
+
+    Route::resource('users', UserController::class)->except('destroy');
+});
 
 Route::get('/password', function () {
     return inertia('Users/Password');
 });
 Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
 
-Route::get('/documents', [DocumentController::class, 'documents'])->name('documents.index');
-Route::get('/settings', function () {
-    return inertia('Settings');
-});
-
 // Support Ticket
-Route::get('/support-ticket/index', [SupportTicketController::class, 'adminIndex'])->name('supportTickets.index');
-Route::get('/support-ticket/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('supportTickets.show');
-Route::post('/support-ticket/store/chat/{id}', [SupportTicketController::class, 'storeChat'])->name('supportTickets.store.chat');
-Route::post('/support-ticket/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('supportTickets.update.status');
+Route::prefix('support-tickets')->name('supportTickets.')->group(function () {
+    Route::get('/index', [SupportTicketController::class, 'adminIndex'])->name('index');
+    Route::get('/show/{supportTicket}', [SupportTicketController::class, 'adminShow'])->name('show');
+    Route::post('/store/chat/{id}', [SupportTicketController::class, 'storeChat'])->name('store.chat');
+    Route::post('/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('update.status');
+});

@@ -37,7 +37,7 @@
 
                 <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        :href="route('users.create')"
+                        :href="route('settings.users.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add User
@@ -171,13 +171,13 @@
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('users.show', user.id)"
+                                            :href="route('settings.users.show', user.id)"
                                             class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Show
                                         </inertia-link>
 
                                         <inertia-link
-                                            :href="route('users.edit', user.id)"
+                                            :href="route('settings.users.edit', user.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
@@ -191,7 +191,7 @@
                             v-else
                             resource="users"
                             action-text="Add Employee"
-                            :action-link="route('users.create')"
+                            :action-link="route('settings.users.create')"
                         />
                     </div>
                 </div>
@@ -275,7 +275,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("users.index"));
+            this.$inertia.visit(this.route("settings.users.index"));
         },
     },
 };

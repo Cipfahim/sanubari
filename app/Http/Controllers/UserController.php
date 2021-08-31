@@ -71,7 +71,7 @@ class UserController extends Controller
             'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
         ]);
 
-        return Redirect::route('users.index');
+        return Redirect::route('settings.users.index');
     }
 
     /**

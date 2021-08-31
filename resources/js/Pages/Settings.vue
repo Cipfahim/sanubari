@@ -1,14 +1,14 @@
 <template>
-    <app-layout></app-layout>
+    <SettingLayout></SettingLayout>
 </template>
 
 <script>
-import AppLayout from "@/Layouts/SettingLayout";
+import SettingLayout from "@/Layouts/SettingLayout";
 
 export default {
     name: "Settings",
     components: {
-        AppLayout,
+        SettingLayout,
     },
 }
 </script>

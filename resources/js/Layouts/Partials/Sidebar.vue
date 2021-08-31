@@ -126,7 +126,17 @@
 <script>
 import {ref} from 'vue'
 import {Dialog, DialogOverlay, TransitionChild, TransitionRoot,} from '@headlessui/vue'
-import {ClockIcon, CogIcon, HomeIcon, UsersIcon, XIcon, UserGroupIcon, FingerPrintIcon, DatabaseIcon, ChatAlt2Icon} from '@heroicons/vue/outline'
+import {
+    ClockIcon,
+    CogIcon,
+    HomeIcon,
+    UsersIcon,
+    XIcon,
+    UserGroupIcon,
+    FingerPrintIcon,
+    DatabaseIcon,
+    ChatAlt2Icon
+} from '@heroicons/vue/outline'
 
 export default {
     components: {
@@ -180,30 +190,6 @@ export default {
                     current: route().current('employees.*')
                 },
                 {
-                    name: 'Locations',
-                    href: route('locations.index'),
-                    icon: ClockIcon,
-                    current: route().current('locations.*')
-                },
-                {
-                    name: 'Country',
-                    href: route('countries.index'),
-                    icon: ClockIcon,
-                    current: route().current('countries.*')
-                },
-                {
-                    name: 'City',
-                    href: route('cities.index'),
-                    icon: ClockIcon,
-                    current: route().current('cities.*')
-                },
-                {
-                    name: 'Bank List',
-                    href: route('banks.index'),
-                    icon: ClockIcon,
-                    current: route().current('banks.*')
-                },
-                {
                     name: 'Support Ticket',
                     href: route('supportTickets.index'),
                     icon: ChatAlt2Icon,
@@ -215,12 +201,6 @@ export default {
                     icon: DatabaseIcon,
                     current: route().current('activityLogs.*')
                 },
-                {
-                    name: 'Users',
-                    href: route('users.index'),
-                    icon: UsersIcon,
-                    current: route().current('users.*')
-                },
             ],
             secondaryNavigation: [
                 {
@@ -230,12 +210,6 @@ export default {
                     current: route().current('auditor-access.*')
                 },
                 {
-                    name: 'Documents',
-                    href: '/documents',
-                    icon: CogIcon,
-                    current: ''
-                },
-                {
                     name: 'Pay Slip',
                     href: '/payslips',
                     icon: CogIcon,
@@ -243,9 +217,9 @@ export default {
                 },
                 {
                     name: 'Settings',
-                    href: route('users.index'),
+                    href: route('settings.index'),
                     icon: CogIcon,
-                    current: route().current('users.*')
+                    current: route().current('settings.*')
                 },
             ]
         }
