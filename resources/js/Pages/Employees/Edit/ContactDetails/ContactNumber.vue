@@ -128,10 +128,11 @@ export default {
             this.form.items = []
             if (this.employee.contact_numbers.length) {
                 this.employee.contact_numbers.forEach((value, index) => {
+                    console.log(value);
                     let data = {
                         id: value.id,
                         type: value.type,
-                        contact_number: value.value
+                        contact_number: value.number
                     }
                     this.form.items.push(data)
                 })

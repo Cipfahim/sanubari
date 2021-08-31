@@ -141,7 +141,7 @@
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
-                                        {{ ticket.chats[ticket.chats.length-1].created_at }}
+                                        {{ ticket.chats[ticket.chats.length-1].created_at ? ticket.chats[ticket.chats.length-1].created_at : '' }}
                                     </td>
                                     <td
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"

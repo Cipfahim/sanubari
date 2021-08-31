@@ -21,7 +21,7 @@ class ContactDetailsController extends Controller
      * @param $id
      * @return Response
      */
-    public function index($id): Response
+    public function index($id)
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
             'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
@@ -65,7 +65,7 @@ class ContactDetailsController extends Controller
     public function storeNumber(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255', 'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/'],
+            'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255'],
             'items.*.type' => ['required']
         ]);
 
@@ -80,7 +80,7 @@ class ContactDetailsController extends Controller
             } else {
                 $employee->contactNumbers()->create([
                     'type' => $item['type'],
-                    'value' => $item['contact_number'],
+                    'number' => $item['contact_number'],
                 ]);
             }
         }

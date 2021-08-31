@@ -48,8 +48,7 @@ class Employee extends Model
 
     public function contactNumbers(): HasMany
     {
-        return $this->hasMany(ContactNumber::class)
-            ->where('type', 'number');
+        return $this->hasMany(ContactNumber::class);
     }
 
     public function contactEmails(): HasMany
