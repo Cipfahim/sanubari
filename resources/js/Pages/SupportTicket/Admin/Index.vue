@@ -96,6 +96,9 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <span>Last Message</span>
                                     </th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -169,6 +172,18 @@
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2"
                                     >
                                         {{ last_message }}
+                                    </td>
+                                    <td
+                                        class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
+                                    >
+                                        <inertia-link
+                                            :href="route('employee.supportTickets.show', {
+                                               'id': ticket.id
+                                            })"
+                                            class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
+                                        >
+                                            View
+                                        </inertia-link>
                                     </td>
                                 </tr>
                                 </tbody>

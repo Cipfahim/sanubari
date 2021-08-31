@@ -167,14 +167,14 @@ export default {
                 {
                     name: 'Payslips',
                     href: route('employee.payslips'),
-                    icon: HomeIcon,
+                    icon: CurrencyDollarIcon,
                     current: route().current('employee.payslips')
                 },
                 {
                     name: 'Support Ticket',
                     href: route('employee.supportTickets.index'),
-                    icon: ClockIcon,
-                    current: route().current('supportTickets.*')
+                    icon: ChatAlt2Icon,
+                    current: route().current('employee.supportTickets.*')
                 },
             ],
             navigation: [
