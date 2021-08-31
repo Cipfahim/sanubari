@@ -59,12 +59,20 @@ class SupportTicketController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'subject' => ['required']
+            'subject' => ['required'],
+            'description' => ['required']
         ]);
 
-        SupportTicket::create([
+        $ticket = SupportTicket::create([
             'user_id' => Auth::user()->id,
             'subject' => $request->get('subject'),
+            'description' => $request->get('description')
+        ]);
+
+        Chat::create([
+            'support_ticket_id' => $ticket->id,
+            'user_id' => Auth::id(),
+            'chat' => $request->get('description')
         ]);
 
         return Redirect::route('employee.supportTickets.index')->with('success', 'Support Ticket is Created');
@@ -183,6 +191,6 @@ class SupportTicketController extends Controller
            'status' => $status
         ]);
 
-        return Redirect::route('supportTickets.admin.index')->with('success', 'Support Ticket Updated');
+        return Redirect::route('supportTickets.index')->with('success', 'Support Ticket Updated');
     }
 }

@@ -177,7 +177,7 @@
                                         class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
                                     >
                                         <inertia-link
-                                            :href="route('employee.supportTickets.show', {
+                                            :href="route('supportTickets.show', {
                                                'id': ticket.id
                                             })"
                                             class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
@@ -192,9 +192,7 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="employees"
-                            action-text="Add Employee"
-                            :action-link="route('employees.create')"
+                            resource="support tickets"
                         />
                     </div>
                 </div>

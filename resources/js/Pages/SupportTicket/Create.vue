@@ -24,22 +24,6 @@
                         Provide Information
                     </template>
                     <template #form class="md:col-span-12" >
-<!--<<<<<<< HEAD-->
-<!--=======-->
-<!--                        &lt;!&ndash;Employee&ndash;&gt;-->
-<!--                        <div class="col-span-6 sm:col-span-12 mb-2 mb-2">-->
-<!--                            <select-->
-<!--                                v-model="form.employee"-->
-<!--                                class="block h-10 w-full py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"-->
-<!--                                name="employee"-->
-<!--                                id="employee"-->
-<!--                                :class="{ 'border-red-500': form.errors.employee }"-->
-<!--                            >-->
-<!--                                <option  v-for="employee in employees" :key="employee.id" :value="employee.id">{{ employee.user.name }}</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-
-<!--&gt;>>>>>> 503a49aac6a694c48f69d02395d3d3c3373497f2-->
                         <!--Subject-->
                         <div class="col-span-6 sm:col-span-12 mb-2" >
                             <jet-label for="subject" value="Subject *" />
@@ -53,6 +37,20 @@
                                 autofocus
                             />
                             <JetInputError :message="form.errors.subject" class="mt-2" />
+                        </div>
+                        <!--Description-->
+                        <div class="col-span-6 sm:col-span-12 mb-2" >
+                            <jet-label for="description" value="Description *" />
+                            <jet-input
+                                type="text"
+                                v-model="form.description"
+                                class="mt-1 block w-full focus:ring-cyan-100"
+                                :class="{ 'border-red-500': form.errors.description }"
+                                autocomplete="name"
+                                required
+                                autofocus
+                            />
+                            <JetInputError :message="form.errors.description" class="mt-2" />
                         </div>
                     </template>
                     <template #actions >
@@ -103,6 +101,7 @@ export default {
             form:this.$inertia.form(
                 {
                     subject : null,
+                    description: null
                 },
                 {
                     resetOnSuccess : true,

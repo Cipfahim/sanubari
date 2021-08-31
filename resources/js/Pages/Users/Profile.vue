@@ -191,7 +191,7 @@ export default {
                 this.form.photo = this.$refs.photo.files[0]
             }
 
-            this.form.post(this.route('users.profile.update', {
+            this.form.post(this.route('settings.users.profile.update', {
                 'user':this.user.id
             }))
         },

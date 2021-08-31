@@ -126,7 +126,7 @@
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
                                                         <input
-                                                            class="px-3 py-2 text-sm border rounded-md w-full shadow-sm border-gray-300 focus:ring-cyan-500 !focus:border-cyan-500"
+                                                            class="px-3 py-2 text-sm border rounded-md w-full shadow-sm border-gray-300 focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none"
                                                             :class="{ 'border-red-500': form.errors.date_of_join }"
                                                             :value="inputValue"
                                                             v-on="inputEvents"/>

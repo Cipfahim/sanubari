@@ -173,27 +173,4 @@ class UserController extends Controller
 
         return Redirect::back()->with('success', "Your profile Updated");
     }
-
-    /**
-     * @param Request $request
-     * @param User $user
-     * @return RedirectResponse
-     * @throws ValidationException
-     */
-    public function updatePassword(Request $request, User $user): RedirectResponse
-    {
-        $this->validate($request, [
-            'current_password' => 'required',
-            'password' => 'required|confirmed',
-            'confirm_password' => 'required'
-        ]);
-
-        if ($user->getAuthPassword() === Hash::make($request->current_passsword)) {
-            $user->update([
-                'password' => Hash::make($request->get('new_password'))
-            ]);
-        } else {
-            return Redirect::back()->with('error', 'Current Password doesn\'t match');
-        }
-    }
 }
