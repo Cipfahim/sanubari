@@ -9,13 +9,45 @@
           },
         ]"
             />
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
+                <div class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
+                    <div
+                        class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
+                    >
+                        <select v-model="queryForm.field"
+                                class="h-full w-24 sm:w-40 truncate border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
+                            <option value="user.name">Requester</option>
+                            <option value="subject">Subject</option>
+                        </select>
+                        <input
+                            v-model="queryForm.filter"
+                            autocomplete="off"
+                            type="text"
+                            name="search"
+                            placeholder="Search…"
+                            class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                        />
+                        <div class="mx-2 sm:mx-3">
+                            <SearchIcon class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        @click="reset"
+                        class="py-2 px-2 sm:px-4 rounded-md font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                    >
+                        Reset
+                    </button>
+                </div>
+            </div>
             <div class="flex flex-col">
                 <div class="overflow-x-auto shadow rounded sm:rounded-lg">
+
                     <div
                         class="align-middle inline-block min-w-full"
                     >
                         <div
-                            v-if="true"
+                            v-if="tickets.data.length"
                             class="overflow-hidden rounded sm:rounded-lg"
                         >
                             <table class="min-w-full divide-y divide-gray-200">
@@ -63,6 +95,9 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <span>Last Message</span>
+                                    </th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     </th>
                                 </tr>
                                 </thead>
@@ -138,6 +173,18 @@
                                     >
                                         {{ last_message }}
                                     </td>
+                                    <td
+                                        class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
+                                    >
+                                        <inertia-link
+                                            :href="route('employee.supportTickets.show', {
+                                               'id': ticket.id
+                                            })"
+                                            class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
+                                        >
+                                            View
+                                        </inertia-link>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -194,12 +241,37 @@ export default {
                     ? Object.keys(this.requests.filter)[0]
                     : "user.name",
                 filter: this.requests.filter
-                    ? Object.values(this.requests.filter)[1]
-                    : "subject",
+                    ? Object.values(this.requests.filter)[0]
+                    : "",
                 sort: this.requests.sort,
             },
             checkAll: false,
         };
+    },
+    watch: {
+        queryForm: {
+            handler: throttle(function () {
+                let customQuery = {
+                    ["filter[" + this.queryForm.field + "]"]: this.queryForm.filter,
+                    sort: this.queryForm.sort,
+                };
+                let queryString = pickBy(customQuery);
+                this.$inertia.get(
+                    this.route(
+                        "supportTickets.index",
+                        Object.keys(queryString).length
+                            ? queryString
+                            : {remember: "forget"}
+                    ),
+                    {},
+                    {
+                        preserveState: true,
+                        preserveScroll: true,
+                    }
+                );
+            }, 150),
+            deep: true,
+        },
     },
     methods: {
         sort(field) {
@@ -207,7 +279,9 @@ export default {
                 ? (this.queryForm.sort = "-" + field)
                 : (this.queryForm.sort = field);
         },
-
+        reset() {
+            this.$inertia.visit(this.route("supportTickets.index"));
+        },
     },
 };
 </script>

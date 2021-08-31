@@ -4,18 +4,42 @@
             <breadcrumb
                 :links="[
           {
-            title: 'All Support Tickets',
+            title: 'Support Tickets',
             active: true,
           },
         ]"
             />
             <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
+                <div class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
+                    <div
+                        class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
+                    >
+                        <input
+                            v-model="queryForm.filter"
+                            autocomplete="off"
+                            type="text"
+                            name="search"
+                            placeholder="Search…"
+                            class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                        />
+                        <div class="mx-2 sm:mx-3">
+                            <SearchIcon class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        @click="reset"
+                        class="py-2 px-2 sm:px-4 rounded-md font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                    >
+                        Reset
+                    </button>
+                </div>
                 <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
                         :href="route('employee.supportTickets.create')"
                         class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
-                        Add Message
+                        Compose Message
                     </inertia-link>
                 </div>
             </div>
@@ -25,7 +49,7 @@
                         class="align-middle inline-block min-w-full"
                     >
                         <div
-                            v-if="true"
+                            v-if="tickets.data.length"
                             class="overflow-hidden rounded sm:rounded-lg"
                         >
                             <table class="min-w-full divide-y divide-gray-200">
@@ -37,17 +61,6 @@
                                     >
                                         Sl.
                                     </th>
-                                    <th
-                                        scope="col"
-                                        @click="sort('official_name')"
-                                        class="pl-6 pr-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                                    >
-                                        <div class="flex gap-2 items-center">
-                                            <sort-arrow :sort="true" field="official_name"/>
-                                            Requester
-                                        </div>
-                                    </th>
-
                                     <th
                                         scope="col"
                                         @click="sort('phone')"
@@ -74,6 +87,10 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <span>Last Message</span>
                                     </th>
+
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -89,28 +106,6 @@
                                             {{ index + 1 }}
                                         </div>
                                     </td>
-
-                                    <td
-                                        class="pl-6 pr-2 py-4 whitespace-nowrap text-sm text-gray-500"
-                                    >
-                                        <div class="flex items-center gap-2">
-                                            <div class="h-8 w-8 rounded-full overflow-hidden">
-                                                <img class="h-full w-full"
-                                                     :src="ticket.user.photo ? getFileUrl(ticket.user.photo) : '/images/icon/avatar.png'"
-                                                     alt="">
-                                            </div>
-                                            <div class="flex-1 w-32 truncate">
-                                                <inertia-link :href="route('employee.supportTickets.show', {
-                                                    'id': ticket.id
-                                                })"
-                                                              class="w-full"
-                                                              title="Click to show details">
-                                                    {{ ticket.user.name }}
-                                                </inertia-link>
-                                            </div>
-                                        </div>
-                                    </td>
-
                                     <td
                                         class="pl-6 pr-2 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
@@ -148,6 +143,18 @@
                                     >
                                         {{ last_message }}
                                     </td>
+                                    <td
+                                        class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
+                                    >
+                                        <inertia-link
+                                            :href="route('employee.supportTickets.show', {
+                                               'id': ticket.id
+                                            })"
+                                            class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
+                                        >
+                                            View
+                                        </inertia-link>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -176,7 +183,7 @@ import SortArrow from "@/Components/SortArrow";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton.vue";
 import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import Button from "@/Jetstream/Button";
-import {SearchIcon} from "@heroicons/vue/solid";
+import {SearchIcon, EyeIcon} from "@heroicons/vue/solid";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 
@@ -202,7 +209,7 @@ export default {
             queryForm: {
                 field: this.requests.filter
                     ? Object.keys(this.requests.filter)[0]
-                    : "user.name",
+                    : "subject",
                 filter: this.requests.filter
                     ? Object.values(this.requests.filter)[1]
                     : "subject",
@@ -221,7 +228,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "supportTickets.index",
+                        "employee.supportTickets.index",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
@@ -245,7 +252,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("employees.index"));
+            this.$inertia.visit(this.route("employee.supportTickets.index"));
         },
     },
 };
