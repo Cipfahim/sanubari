@@ -1,27 +1,15 @@
 <template>
-    <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-                :links="[
-          {
-            title: 'Banks',
-            url: route('banks.index'),
-          },
-          {
-            title: 'Edit',
-            active: true,
-          },
-        ]"
-            />
-            <div class="mt-10 sm:mt-0">
+    <SettingLayout>
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit">
-                    <template #title> Bank Location </template>
+                    <template #title>Update Bank Name </template>
 
                     <template #description> Provide Bank details. </template>
 
                     <template #form>
                         <!-- Name -->
-                        <div class="col-span-6 sm:col-span-12 mb-2">
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
                             <jet-label for="name" value="Bank Name *" />
                             <jet-input
                                 id="name"
@@ -36,7 +24,7 @@
                             <jet-input-error :message="form.errors.name" class="mt-2" />
                         </div>
                         <!-- SwiftCode -->
-                        <div class="col-span-6 sm:col-span-12 mb-2">
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
                             <jet-label for="name" value="Swift Code *" />
                             <jet-input
                                 id="name"
@@ -69,11 +57,11 @@
                 </jet-form-section>
             </div>
         </div>
-    </app-layout>
+    </SettingLayout>
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import SettingLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
@@ -88,7 +76,7 @@ export default {
         banks: Object,
     },
     components: {
-        AppLayout,
+        SettingLayout,
         Breadcrumb,
         JetFormSection,
         JetSecondaryButton,
@@ -118,7 +106,7 @@ export default {
     methods: {
         submit() {
             this.form.post(
-                route("banks.update", this.banks.id),
+                route("settings.banks.update", this.banks.id),
                 {
                     preserveScroll: true,
                 }

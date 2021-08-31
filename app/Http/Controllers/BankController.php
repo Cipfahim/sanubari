@@ -63,7 +63,7 @@ class BankController extends Controller
             'swift_code' => $request->get('swift_code'),
             'slug' => Str::of($request->get('name'))->slug('-'),
         ]);
-        return Redirect::route('banks.index')->with('success',"Bank Added");
+        return Redirect::route('settings.banks.index')->with('success',"Bank Added");
     }
 
     /**

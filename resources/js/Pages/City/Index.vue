@@ -1,6 +1,6 @@
 <template>
-    <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+    <SettingLayout>
+        <div class="p-4">
             <breadcrumb
                 :links="[
           {
@@ -9,10 +9,10 @@
           },
         ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
-                        class="flex items-center w-full bg-white shadow-sm rounded relative"
+                        class="h-10 flex items-center w-full bg-white shadow-sm border border-gray-200 overflow-hidden rounded-md relative"
                     >
                         <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
                         <input
@@ -21,22 +21,22 @@
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
+                            class="block w-full h-full pl-0 sm:pl-2 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
                     </div>
                     <button
                         type="button"
                         @click="reset"
-                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                        class="h-10 py-2 px-4 rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                     >
                         Reset
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        :href="route('cities.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
+                        :href="route('settings.cities.create')"
+                        class="h-10 py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add City
                     </inertia-link>
@@ -56,7 +56,7 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
                                         Sl.
                                     </th>
@@ -68,8 +68,8 @@
                                         <sort-arrow :sort="queryForm.sort" field="name"/>
                                         Name
                                     </th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <span>Actions</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -93,18 +93,10 @@
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('cities.edit', city.id)"
+                                            :href="route('settings.cities.edit', city.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
-
-                                        <!-- <button
-                                          type="button"
-                                          @click="confirmDeletion(category)"
-                                          class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
-                                        >
-                                          Delete
-                                        </button> -->
                                     </td>
                                 </tr>
                                 </tbody>
@@ -115,7 +107,7 @@
                             v-else
                             resource="categories"
                             action-text="Add City"
-                            :action-link="route('cities.create')"
+                            :action-link="route('settings.cities.create')"
                         />
                     </div>
                 </div>
@@ -144,12 +136,11 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
-    </app-layout>
+    </SettingLayout>
 </template>
 
 <script>
-import AppLayout from "@/Layouts/SettingLayout";
-import Breadcrumb from "@/Components/Breadcrumb";
+import SettingLayout from "@/Layouts/SettingLayout";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
 import SortArrow from "@/Components/SortArrow";
@@ -165,9 +156,8 @@ import {SearchIcon} from "@heroicons/vue/solid";
 export default {
     components: {
         Button,
-        AppLayout,
+        SettingLayout,
         JetCheckbox,
-        Breadcrumb,
         NoDataFound,
         Pagination,
         SortArrow,
@@ -208,7 +198,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "cities.index",
+                        "settings.cities.index",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
@@ -244,7 +234,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("countries.index"));
+            this.$inertia.visit(this.route("settings.cities.index"));
         },
 
         // Confirm deletion.
@@ -256,7 +246,7 @@ export default {
         // Send delete request.
         destroy() {
             this.$inertia.delete(
-                this.route("countries.destroy", this.deleteCategory),
+                this.route("settings.countries.destroy", this.deleteCategory),
                 {
                     preserveState: true,
                     preserveScroll: true,
@@ -276,7 +266,7 @@ export default {
         // Send bulk delete request.
         bulkDestroy() {
             this.$inertia.post(
-                this.route("countries.bulk-destroy"),
+                this.route("settings.countries.bulk-destroy"),
                 {
                     _method: "DELETE",
                     categories: this.bulkIds,

@@ -45,13 +45,17 @@
                                     Flag
                                 </label>
                                 <div class="mt-1 flex items-center">
-                                    <div class="mt-2" v-show="flagPreview">
-                                    <span class="block rounded-full w-12 h-12"
-                                          :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + flagPreview + '\');'">
-                                    </span>
-                                    </div>
+<!--                                    <span v-if="flagPreview == null"-->
+<!--                                          class="h-12 w-12 p-3 rounded-full overflow-hidden bg-gray-100">-->
+<!--                                      <img class="w-full h-full" src="/images/icon/country.png" alt="Country Placeholder">-->
+<!--                                    </span>-->
+<!--                                    <div class="mt-2" v-show="flagPreview">-->
+<!--                                        <span class="block rounded-full w-12 h-12"-->
+<!--                                              :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + flagPreview + '\');'">-->
+<!--                                        </span>-->
+<!--                                    </div>-->
                                     <div class="mt-2 p-3 h-12 w-12 overflow-hidden rounded-full bg-gray-100" v-show="!flagPreview">
-                                        <img :src="country.flag_path ? country.flag_path : '/images/icon/country.png'" alt="Current Country Photo"
+                                        <img :src="country.flag_path ? getFileUrl(country.flag_path) : '/images/icon/country.png'" alt="Current Country Photo"
                                              class="h-full w-full">
                                     </div>
                                     <input type="file" class="hidden"
@@ -137,7 +141,7 @@ export default {
                 this.form.flag = this.$refs.photo.files[0]
             }
             this.form.post(
-                route("countries.update", this.country.id),
+                route("settings.countries.update", this.country.id),
                 {
                     preserveScroll: true,
                 }

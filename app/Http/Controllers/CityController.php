@@ -67,7 +67,7 @@ class CityController extends Controller
             'country_id' => $request->get('country')
         ]);
 
-        return Redirect::route('cities.index')->with('success', "City Added");
+        return Redirect::route('settings.cities.index')->with('success', "City Added");
     }
 
     /**

@@ -1,19 +1,7 @@
 <template>
-    <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-                :links="[
-                {
-                    title: 'Cities',
-                    url:route('cities.index'),
-                },
-                {
-                    title : 'Create',
-                    active: true
-                }
-            ]"
-            />
-            <div class="mt-10 sm:mt-0">
+    <SettingLayout>
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit"
                                   class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
                 >
@@ -25,7 +13,7 @@
                     </template>
                     <template #form class="md:col-span-12" >
                         <!--                        Name-->
-                        <div class="col-span-6 sm:col-span-12 mb-2" >
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4" >
                             <jet-label for="name" value="City Name *" />
                             <jet-input
                                 type="text"
@@ -40,7 +28,7 @@
                             <JetInputError :message="form.errors.name" class="mt-2" />
                         </div>
                         <!--Country-->
-                        <div class="col-span-6 sm:col-span-12 mb-2" >
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4" >
                             <jet-label for="country" value="Country Name *" />
                             <select name="country" v-model="form.country"
                                     class="border-gray-300 focus:border-cyan-300 focus:ring focus:ring-cyan-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
@@ -67,12 +55,12 @@
                 </jet-form-section>
             </div>
         </div>
-    </app-layout>
+    </SettingLayout>
 
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import SettingLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
@@ -83,7 +71,7 @@ import JetActionMessage from "@/Jetstream/ActionMessage";
 export default {
     components : {
         Breadcrumb,
-        AppLayout,
+        SettingLayout,
         JetFormSection,
         JetLabel,
         JetInput,
@@ -110,7 +98,7 @@ export default {
     },
     methods:{
         submit(){
-            this.form.post(route('cities.store'),{
+            this.form.post(route('settings.cities.store'),{
                 preserveScroll: true,
             });
         },

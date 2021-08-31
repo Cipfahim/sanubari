@@ -128,7 +128,7 @@ export default {
             if (this.$refs.photo) {
                 this.form.flag = this.$refs.photo.files[0]
             }
-            this.form.post(route('countries.store'),{
+            this.form.post(route('settings.countries.store'),{
                 preserveScroll: true,
             });
         },

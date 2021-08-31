@@ -75,14 +75,10 @@ Route::prefix('employees/{id}')->name('employees.')->group(function () {
 Route::resource('employees', EmployeeController::class)->except('destroy');
 Route::resource('payslips', PayslipController::class)->except('destroy');
 Route::resource('locations', LocationController::class)->except('show');
-Route::resource('banks', BankController::class)->except('show');
 Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
 Route::post('give-auditor-access', [AuditorPermissionController::class, 'giveAccess'])->name('auditor-access.give-access');
 Route::get('give-auditor-extra-access', [AuditorPermissionController::class, 'extraAccess'])->name('auditor-access.extra-access');
 Route::get('get-employee-list-auditor-access', [AuditorPermissionController::class, 'employeeList'])->name('auditor-access.employee-list');
-Route::resource('countries', CountryController::class)->except('show');
-
-Route::resource('cities', CityController::class)->except('show');
 
 // User profile
 Route::get('/profile', [UserController::class, 'profile'])->name('users.profile');
@@ -94,6 +90,9 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::get('/', [SettingController::class, 'index'])->name('index');
 
     Route::resource('users', UserController::class)->except('destroy');
+    Route::resource('countries', CountryController::class)->except('show');
+    Route::resource('cities', CityController::class)->except('show');
+    Route::resource('banks', BankController::class)->except('show');
 });
 
 Route::get('/password', function () {
