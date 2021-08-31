@@ -16,11 +16,11 @@ class CreateSalaryDetailsTable extends Migration
         Schema::create('salary_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained();
-            $table->integer('basic_salary')->nullable();
-            $table->integer('living_allowance')->nullable();
-            $table->integer('attendance_allowance')->nullable();
-            $table->integer('levy')->nullable();
-            $table->integer('in_charge_allowance')->nullable();
+            $table->decimal('basic_salary')->nullable();
+            $table->decimal('living_allowance')->nullable();
+            $table->decimal('attendance_allowance')->nullable();
+            $table->decimal('levy')->nullable();
+            $table->decimal('in_charge_allowance')->nullable();
             $table->timestamps();
         });
     }
