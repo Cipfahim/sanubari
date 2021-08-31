@@ -34,7 +34,7 @@
                         <MenuButton
                             class="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
                             <img class="h-8 w-8 rounded-full"
-                                 src="/images/icon/avatar.png"
+                                 :src="$page.props.auth.user.photo ? $page.props.auth.user.photo : '/images/icon/avatar.png'"
                                  alt="Profile"/>
                             <span class="hidden ml-3 text-gray-700 text-sm font-medium lg:block"><span class="sr-only">Open user menu for </span>{{
                                     $page.props.auth.user.name
