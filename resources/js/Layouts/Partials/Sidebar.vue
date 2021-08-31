@@ -135,7 +135,8 @@ import {
     UserGroupIcon,
     FingerPrintIcon,
     DatabaseIcon,
-    ChatAlt2Icon
+    ChatAlt2Icon,
+    CurrencyDollarIcon
 } from '@heroicons/vue/outline'
 
 export default {
@@ -210,9 +211,15 @@ export default {
                     current: route().current('auditor-access.*')
                 },
                 {
+                    name: 'All Pay Slip',
+                    href: '/all-payslips',
+                    icon: CurrencyDollarIcon,
+                    current: ''
+                },
+                {
                     name: 'Pay Slip',
                     href: '/payslips',
-                    icon: CogIcon,
+                    icon: CurrencyDollarIcon,
                     current: ''
                 },
                 {

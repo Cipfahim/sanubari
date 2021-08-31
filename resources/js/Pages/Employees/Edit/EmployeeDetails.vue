@@ -168,12 +168,15 @@
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
                                         <jet-label for="phone" value="Phone *"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="phone"
-                                                type="text"
-                                                v-model="form.phone"
-                                                :class="{ 'border-red-500': form.errors.phone }"
-                                            />
+                                            <div class="relative flex">
+                                                <vue-tel-input ref="telPhone"
+                                                               v-model="form.phone"
+                                                               :class="{ 'border-red-500': form.errors.phone }"
+                                                               mode="international"
+                                                               class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
+                                                >
+                                                </vue-tel-input>
+                                            </div>
                                             <jet-input-error
                                                 :message="form.errors.phone"
                                                 class="mt-2"
@@ -322,6 +325,7 @@ import {Switch} from "@headlessui/vue";
 import {DatePicker} from 'v-calendar';
 import Multiselect from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css'
+import {VueTelInput} from 'vue3-tel-input'
 
 export default {
     props: {
@@ -352,7 +356,8 @@ export default {
         ViewGridIcon,
         EyeOffIcon,
         EyeIcon,
-        Multiselect
+        Multiselect,
+        VueTelInput
     },
     data() {
         return {

@@ -6,6 +6,7 @@ import {App as InertiaApp, plugin as InertiaPlugin} from '@inertiajs/inertia-vue
 import {InertiaProgress} from '@inertiajs/progress';
 import globalMixins from './mixins'
 import PrimeVue from 'primevue/config';
+import 'vue3-tel-input/dist/vue3-tel-input.css'
 
 const el = document.getElementById('app');
 

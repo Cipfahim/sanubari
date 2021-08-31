@@ -97,7 +97,7 @@
                                                     trackBy="name"
                                                     label="name"
                                                     placeholder="Choose a location"
-                                                    class="mt-1 block w-full"
+                                                    class="mt-1 block w-full !rounded-md focus:ring-cyan-500 focus:border-cyan-500"
                                                     :class="{ 'border-red-500' : form.errors.location }"
                                                 />
 
@@ -126,7 +126,7 @@
                                                             :model-config="datePickerConfig.modelConfig">
                                                     <template #default="{ inputValue, inputEvents }">
                                                         <input
-                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                            class="px-3 py-2 text-sm border rounded-md w-full shadow-sm border-gray-300 focus:ring-cyan-500 !focus:border-cyan-500"
                                                             :class="{ 'border-red-500': form.errors.date_of_join }"
                                                             :value="inputValue"
                                                             v-on="inputEvents"/>
@@ -160,7 +160,10 @@
                                         <div class="col-span-2 max-w-lg">
                                             <div class="relative flex">
                                                 <vue-tel-input ref="telPhone"
-                                                               mode="international"></vue-tel-input>
+                                                               mode="international"
+                                                               class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
+                                                >
+                                                </vue-tel-input>
                                             </div>
 
                                             <jet-input-error
@@ -305,7 +308,6 @@ import Multiselect from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css'
 
 import {VueTelInput} from 'vue3-tel-input'
-import 'vue3-tel-input/dist/vue3-tel-input.css'
 
 export default {
     props: {

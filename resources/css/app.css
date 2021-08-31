@@ -33,3 +33,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.vue-tel-input:focus-within{
+    box-shadow: none !important;
+}
+.vue-tel-input:focus{
+    border-color: var(--cyan-500)!important;
+}
+.multiselect-search:focus{
+    border: var(--cyan-500) !important;
+}
