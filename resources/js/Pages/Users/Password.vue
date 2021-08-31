@@ -175,7 +175,7 @@ export default {
     },
     methods: {
         submit() {
-            this.form.post(this.route('settings.users.update.password', {
+            this.form.post(this.route('update.password', {
                 'user': this.$page.props.auth.user
             }));
         },

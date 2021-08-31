@@ -20,6 +20,7 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\ProfileController;
 use Inertia\Inertia;
 
 /*
@@ -100,7 +101,7 @@ Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function 
     Route::get('/password', function () {
         return inertia('Users/Password');
     });
-    Route::put('/update/password/{user}', [UserController::class, 'updatePassword'])->name('users.update.password');
+    Route::put('/update/password/{user}', [ProfileController::class, 'updatePassword'])->name('update.password');
 
     // Support Ticket
     Route::prefix('support-tickets')->name('supportTickets.')->group(function () {
