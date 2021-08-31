@@ -31,7 +31,7 @@ class SupportTicketController extends Controller
             'tickets' => QueryBuilder::for(SupportTicket::class)
                 ->with(['user', 'chats'])
                 ->where('user_id', Auth::id())
-                ->allowedFilters(['user'])
+                ->allowedFilters(['subject'])
                 ->allowedSorts(['user', 'subject'])
                 ->latest('id')
                 ->paginate()
