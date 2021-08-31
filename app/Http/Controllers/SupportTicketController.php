@@ -129,7 +129,7 @@ class SupportTicketController extends Controller
             'last_message' => Chat::latest()->first() ? Chat::latest()->first()->created_at : '',
             'tickets' => QueryBuilder::for(SupportTicket::class)
                 ->with(['user', 'chats'])
-                ->allowedFilters(['user'])
+                ->allowedFilters(['user.name', 'subject'])
                 ->allowedSorts(['user', 'subject'])
                 ->latest('id')
                 ->paginate()
@@ -171,9 +171,8 @@ class SupportTicketController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param $status
      * @param $id
+     * @param $status
      * @return RedirectResponse
      */
     public function updateStatus($id, $status): RedirectResponse
