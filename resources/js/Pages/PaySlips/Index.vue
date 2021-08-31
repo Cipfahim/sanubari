@@ -81,7 +81,7 @@
                                     </td>
 
                                     <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
-                                        <inertia-link href="route('auditor-access.edit', session.id)"
+                                        <inertia-link :href="route('payslips.upload')"
                                                       class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">
                                             Edit
                                         </inertia-link>
