@@ -21,7 +21,7 @@ class ContactDetailsController extends Controller
      * @param $id
      * @return Response
      */
-    public function index($id): Response
+    public function index($id)
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
             'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
