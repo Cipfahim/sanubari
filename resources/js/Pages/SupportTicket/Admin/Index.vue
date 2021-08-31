@@ -193,6 +193,7 @@
                         <no-data-found
                             v-else
                             resource="support tickets"
+                            class="mb-16"
                         />
                     </div>
                 </div>
