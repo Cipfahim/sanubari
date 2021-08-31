@@ -4,27 +4,27 @@
         <div class="bg-white shadow sticky top-0">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div
-                    class="py-6 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200"
+                    class="py-3 md:flex md:items-center md:justify-between lg:border-t lg:border-gray-200"
                 >
                     <div class="flex-1 min-w-0">
                         <!-- Profile -->
                         <div class="flex items-center">
                             <img
-                                class="hidden h-16 w-16 rounded-full sm:block"
+                                class="hidden h-12 w-12 rounded-full sm:block"
                                 :src="$page.props.auth.user.photo ? $page.props.auth.user.photo : '/images/icon/avatar.png'"
                                 alt="Profile"
                             />
                             <div>
                                 <div class="flex items-center">
                                     <img
-                                        class="h-16 w-16 rounded-full sm:hidden"
+                                        class="h-12 w-12 rounded-full sm:hidden"
                                         :src="$page.props.auth.user.photo ? $page.props.auth.user.photo : '/images/icon/avatar.png'"
                                         alt="Profile"
                                     />
                                     <h1
                                         class="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate"
                                     >
-                                        Good morning, {{ $page.props.auth.user.name }}
+                                        Welcome, {{ $page.props.auth.user.name }}
                                     </h1>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
         <div class="mt-8">
             <div class="px-4 sm:px-6 lg:px-8">
                 <h2 class="text-lg leading-6 font-medium text-gray-900">Overview</h2>
-                <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-4">
                     <!-- Card -->
                     <div
                         v-for="card in cards"
@@ -63,7 +63,7 @@
                                 <div class="flex-shrink-0">
                                     <component
                                         :is="card.icon"
-                                        class="h-6 w-6 text-gray-400"
+                                        class="h-8 w-8 text-gray-400"
                                         aria-hidden="true"
                                     />
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="text-sm">
                                 <inertia-link
                                     :href="card.href"
-                                    class="font-medium text-cyan-700 hover:text-cyan-900"
+                                    class="font-medium text-cyan-700 hover:text-cyan-800"
                                 >
                                     View all
                                 </inertia-link>
@@ -102,7 +102,7 @@
             </h2>
 
             <!-- Activity list (smallest breakpoint only) -->
-            <div class="shadow sm:hidden">
+            <div class="shadow sm:hidden px-4 sm:px-8">
                 <ul
                     class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden"
                 >
@@ -111,30 +111,26 @@
                             :href="transaction.href"
                             class="block px-4 py-4 bg-white hover:bg-gray-50"
                         >
-              <span class="flex items-center space-x-4">
-                <span class="flex-1 flex space-x-2 truncate">
-                  <CashIcon
-                      class="flex-shrink-0 h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                  />
-                  <span class="flex flex-col text-gray-500 text-sm truncate">
-                    <span class="truncate">{{ transaction.name }}</span>
-                    <span
-                    ><span class="text-gray-900 font-medium">{{
-                            transaction.amount
-                        }}</span>
-                      {{ transaction.currency }}</span
-                    >
-                    <time :datetime="transaction.datetime">{{
-                            transaction.date
-                        }}</time>
-                  </span>
-                </span>
-                <ChevronRightIcon
-                    class="flex-shrink-0 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                />
-              </span>
+                          <span class="flex items-center space-x-4">
+                            <span class="flex-1 flex space-x-2 truncate">
+                              <CashIcon
+                                  class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                  aria-hidden="true"
+                              />
+                              <span class="flex flex-col text-gray-500 text-sm truncate">
+                                <span class="truncate">{{ transaction.name }}</span>
+                                <span>
+                                    <span class="text-gray-900 font-medium">{{transaction.amount}}</span>
+                                    <span>{{ transaction.currency }}</span>
+                                    <time :datetime="transaction.datetime">{{transaction.date}}</time>
+                                </span>
+                              </span>
+                            </span>
+                            <ChevronRightIcon
+                                class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                aria-hidden="true"
+                            />
+                          </span>
                         </a>
                     </li>
                 </ul>
@@ -161,7 +157,7 @@
             </div>
 
             <!-- Activity table (small breakpoint and up) -->
-            <div class="hidden sm:block">
+            <div class="hidden sm:block" v-if="recentSupportTickets.length > 0">
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col mt-2">
                         <div
@@ -303,6 +299,15 @@
                     </div>
                 </div>
             </div>
+
+            <div v-else class="px-4 sm:px-6 lg:px-8">
+                <div class="bg-white h-96 rounded-md">
+                    <div class="h-60 w-60 mx-auto my-6">
+                        <img class="w-full h-full rounded-md p-5" src="/images/icon/empty-message.svg" alt="Empty Message">
+                        <p class="text-gray-800 font-semibold text-center my-5">No pending message to show</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </app-layout>
 </template>
@@ -314,6 +319,10 @@ import {
     OfficeBuildingIcon,
     CashIcon,
     ChevronRightIcon,
+    LocationMarkerIcon,
+    UserGroupIcon,
+    UsersIcon,
+    ChatAlt2Icon
 } from "@heroicons/vue/solid";
 import {ScaleIcon} from "@heroicons/vue/outline/esm";
 
@@ -349,6 +358,10 @@ export default {
         CheckCircleIcon,
         CashIcon,
         ChevronRightIcon,
+        LocationMarkerIcon,
+        UserGroupIcon,
+        UsersIcon,
+        ChatAlt2Icon
     },
     data() {
         return {
@@ -356,25 +369,25 @@ export default {
                 {
                     name: "Locations",
                     href: this.route('locations.index'),
-                    icon: ScaleIcon,
+                    icon: LocationMarkerIcon,
                     amount: this.totalLocations
                 },
                 {
                     name: "Employee",
                     href: this.route('employees.index'),
-                    icon: ScaleIcon,
+                    icon: UserGroupIcon,
                     amount: this.totalEmployee
                 },
                 {
                     name: "Users",
                     href: this.route('settings.users.index'),
-                    icon: ScaleIcon,
+                    icon: UsersIcon,
                     amount: this.totalUsers
                 },
                 {
                     name: "Open Support Tickets",
                     href: this.route('supportTickets.index'),
-                    icon: ScaleIcon,
+                    icon: ChatAlt2Icon,
                     amount: this.openSupportTickets
                 },
             ]
