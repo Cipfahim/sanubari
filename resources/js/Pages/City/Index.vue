@@ -105,7 +105,7 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="categories"
+                            resource="cities"
                             action-text="Add City"
                             :action-link="route('settings.cities.create')"
                         />

@@ -139,7 +139,7 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="categories"
+                            resource="countries"
                             action-text="Add Country"
                             :action-link="route('settings.countries.create')"
                         />

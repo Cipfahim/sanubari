@@ -43,3 +43,6 @@ input[type=number] {
 .multiselect-search:focus{
     border: var(--cyan-500) !important;
 }
+ul.vti__dropdown-list.below{
+    display: none;
+}

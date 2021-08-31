@@ -87,7 +87,7 @@
                                 <textarea v-model="form.chat" placeholder="Type..."
                                           class="h-28 pr-16 text-sm text-gray-800 border border-cyan-400 rounded-md px-2 focus:outline-none focus:border-cyan-500 focus:ring-0 w-full resize-none"></textarea>
                                 <button @click="submit"
-                                        class="absolute top-2 right-3 z-10 group group-hover:bg-cyan-100 bg-cyan-50 h-16 w-16 rounded-full flex justify-center items-center p-2">
+                                        class="absolute top-2 right-3 z-10 group group-hover:bg-cyan-100 bg-cyan-50 h-16 w-16 rounded-full flex justify-center items-center p-2 focus:outline-none">
                                     <PaperAirplaneIcon
                                         class="h-8 w-8 text-cyan-500 group-hover:text-cyan-700 transform rotate-45 cursor-pointer"/>
                                 </button>

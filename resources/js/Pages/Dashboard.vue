@@ -204,7 +204,8 @@
                                         <span>Last Message</span>
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
                                     </th>
                                 </tr>
                                 </thead>
@@ -281,7 +282,7 @@
                                         {{ ticket.updated_at }}
                                     </td>
                                     <td
-                                        class="px-6 whitespace-nowrap text-left text-sm font-medium space-x-2 cyan-500"
+                                        class="px-6 whitespace-nowrap text-right text-sm font-medium space-x-2 cyan-500"
                                     >
                                         <inertia-link
                                             :href="route('employee.supportTickets.show', {
