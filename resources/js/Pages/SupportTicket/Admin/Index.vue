@@ -90,7 +90,7 @@
                                                      alt="">
                                             </div>
                                             <div class="flex-1 w-32 truncate">
-                                                <inertia-link :href="route('supportTickets.admin.show', {
+                                                <inertia-link :href="route('supportTickets.show', {
                                                     'supportTicket': ticket.id
                                                 })"
                                                               class="w-full"
