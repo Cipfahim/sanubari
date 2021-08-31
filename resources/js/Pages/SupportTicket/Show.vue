@@ -9,7 +9,7 @@
                             class="p-4 border-b border-gray-100 bg-transparent rounded py-5 flex justify-between gap-10">
                             <!--    Title     -->
                             <div class="flex-1 flex gap-4">
-                                <button
+                                <button @click="back"
                                     class="h-8 w-8 bg-gray-100 hover:bg-gray-200 rounded-full p-2 flex justify-center items-center cursor-pointer focus:outline-none">
                                     <ChevronLeftIcon class="h-6 w-6 text-cyan-600"/>
                                 </button>
@@ -163,6 +163,9 @@ export default {
             }), {
                 preserveScroll: true,
             });
+        },
+        back() {
+            this.$inertia.visit(this.route('supportTickets.index'));
         },
         submitStatus($status) {
             this.form.post(route('supportTickets.update.status', {
