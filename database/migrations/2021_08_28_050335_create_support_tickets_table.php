@@ -18,6 +18,7 @@ class CreateSupportTicketsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('subject');
+            $table->string('description');
             $table->enum('status', StatusType::getValues())->default(StatusType::getValue('Pending'));
             $table->timestamps();
         });

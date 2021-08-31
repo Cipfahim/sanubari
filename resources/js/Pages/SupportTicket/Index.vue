@@ -162,9 +162,9 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="employees"
-                            action-text="Add Employee"
-                            :action-link="route('employees.create')"
+                            resource="support tickets"
+                            action-text="Add Support Ticket"
+                            :action-link="route('employee.supportTickets.create')"
                         />
                     </div>
                 </div>
