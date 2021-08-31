@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\IdentificationController;
@@ -38,9 +39,7 @@ Route::redirect('/', 'login');
 Route::post('/upload', UploadController::class);
 
 Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 
     Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function () {
