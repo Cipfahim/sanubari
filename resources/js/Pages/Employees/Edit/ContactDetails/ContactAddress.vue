@@ -214,7 +214,7 @@ export default {
                     let data = {
                         id: value.id,
                         type: value.type,
-                        address: value.value
+                        contact_address: value.address
                     }
                     this.form.items.push(data)
                 })

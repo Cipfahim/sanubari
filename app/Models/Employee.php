@@ -59,8 +59,7 @@ class Employee extends Model
 
     public function contactAddress()
     {
-        return $this->hasMany(ContactAddress::class)
-            ->where('type', 'address');
+        return $this->hasMany(ContactAddress::class);
     }
 
     public function contribution()
