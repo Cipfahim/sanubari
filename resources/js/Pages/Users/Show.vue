@@ -29,7 +29,7 @@
                                             </div>
                                             <div
                                                 class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                                                <inertia-link :href="route('users.index')"
+                                                <inertia-link :href="route('settings.users.index')"
                                                               class="inline-flex justify-center items-center px-4 py-2 shadow-sm text-sm font-medium rounded-md bg-red-600 text-white focus:outline-none focus:ring">
                                                     <!-- Heroicon name: solid/mail -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-4 w-4"
