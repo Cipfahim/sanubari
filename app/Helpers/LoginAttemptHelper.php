@@ -1,4 +1,5 @@
 <?php
+
 use bulk360\client;
 
 if (!function_exists('sendOtp')) {
@@ -13,10 +14,12 @@ if (!function_exists('sendOtp')) {
     {
         $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
 
+        $appUrl = config('app.url');
+
         $smsClient->send([
             'from' => '68068',
             'to' => $phone,
-            'text' => $otp_code
+            'text' => "Your $appUrl login otp is: $otp_code. Please don't share your opt with anyone. Thanks"
         ]);
     }
 }
