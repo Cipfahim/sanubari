@@ -1,42 +1,34 @@
 <template>
-    <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
-            <breadcrumb
-                :links="[
-          {
-            title: 'Banks',
-            active: true,
-          },
-        ]"
-            />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+    <SettingLayout>
+        <div class="p-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
-                        class="flex items-center w-full bg-white shadow-sm rounded relative"
+                        class="h-10 flex items-center w-full bg-white shadow-sm border border-gray-200 overflow-hidden rounded-md relative"
                     >
-                        <SearchIcon class="h-7 w-7 text-gray-300 mx-2" />
+                        <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
                         <input
                             v-model="queryForm.filter"
                             autocomplete="off"
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
+                            class="block w-full h-full pl-0 sm:pl-2 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
                     </div>
                     <button
                         type="button"
                         @click="reset"
-                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                        class="h-10 py-2 px-4 rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                     >
                         Reset
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        :href="route('banks.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                        :href="route('settings.banks.create')"
+                        class="h-10 py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add Bank
                     </inertia-link>
@@ -56,7 +48,7 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
                                         Sl.
                                     </th>
@@ -65,23 +57,22 @@
                                         @click="sort('name')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name" />
-                                        Bank Name
+                                        <div class="w-40 flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="name"/>
+                                            Bank Name
+                                        </div>
                                     </th>
                                     <th
-
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="swift_code" />
-                                        Swift Code
+                                        <div class="w-40 flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="swift_code"/>
+                                            Swift Code
+                                        </div>
                                     </th>
-
-
-
-
-
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <span>Actions</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -89,6 +80,7 @@
                                 <tr
                                     v-for="(bank, index) in banks.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
@@ -109,34 +101,25 @@
                                     </td>
 
 
-
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('banks.edit', bank.id)"
+                                            :href="route('settings.banks.edit', bank.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
-
-                                        <!-- <button
-                                          type="button"
-                                          @click="confirmDeletion(category)"
-                                          class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
-                                        >
-                                          Delete
-                                        </button> -->
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <pagination class="m-2" :links="banks.links" />
+                            <pagination class="m-2" :links="banks.links"/>
                         </div>
                         <no-data-found
                             v-else
                             resource="banks"
                             action-text="Add Bank"
-                            :action-link="route('banks.create')"
+                            :action-link="route('settings.banks.create')"
                         />
                     </div>
                 </div>
@@ -148,7 +131,7 @@
             :show="confirmingDeletion"
             @close="confirmingDeletion = false"
         >
-            <template #title> Delete Category </template>
+            <template #title> Delete Category</template>
 
             <template #content>
                 Are you sure you want to delete this category? Once category is deleted,
@@ -165,11 +148,11 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
-    </app-layout>
+    </SettingLayout>
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import SettingLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
@@ -181,12 +164,12 @@ import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import throttle from "lodash/throttle";
 import pickBy from "lodash/pickBy";
 import Button from "@/Jetstream/Button";
-import { SearchIcon } from "@heroicons/vue/solid";
+import {SearchIcon} from "@heroicons/vue/solid";
 
 export default {
     components: {
         Button,
-        AppLayout,
+        SettingLayout,
         JetCheckbox,
         Breadcrumb,
         NoDataFound,
@@ -229,10 +212,10 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "banks.index",
+                        "settings.banks.index",
                         Object.keys(queryString).length
                             ? queryString
-                            : { remember: "forget" }
+                            : {remember: "forget"}
                     ),
                     {},
                     {
@@ -265,7 +248,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("banks.index"));
+            this.$inertia.visit(this.route("settings.banks.index"));
         },
 
         // Confirm deletion.
@@ -277,7 +260,7 @@ export default {
         // Send delete request.
         destroy() {
             this.$inertia.delete(
-                this.route("banks.destroy", this.deleteCategory),
+                this.route("settings.banks.destroy", this.deleteCategory),
                 {
                     preserveState: true,
                     preserveScroll: true,
@@ -297,7 +280,7 @@ export default {
         // Send bulk delete request.
         bulkDestroy() {
             this.$inertia.post(
-                this.route("banks.bulk-destroy"),
+                this.route("settings.banks.bulk-destroy"),
                 {
                     _method: "DELETE",
                     categories: this.bulkIds,

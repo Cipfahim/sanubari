@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use App\Models\Location;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -16,12 +19,12 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
-        return Inertia::render('Country/Index',[
-            'requests' => QueryRequest::all(['filter','sort']),
+        return Inertia::render('Country/Index', [
+            'requests' => QueryRequest::all(['filter', 'sort']),
             'countries' => QueryBuilder::for(Country::class)
                 ->allowedFilters(['name'])
                 ->allowedSorts(['name'])
@@ -34,9 +37,9 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function create()
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Country/Create');
     }
@@ -44,26 +47,35 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $this->validate($request , [
-            "name" => ['required','string','max:90','unique:locations'],
+        $this->validate($request, [
+            "name" => ['required', 'string', 'max:90', 'unique:countries'],
+            "country_code" => ['required', 'integer', 'unique:countries'],
+            "flag" => ['required', 'image']
         ]);
+
         Country::create([
             'name' => $request->get('name'),
+            'country_code' => $request->get('country_code'),
             'slug' => Str::of($request->get('name'))->slug('-'),
+            'flag_path' => upload(file: $request->file('flag'),
+                folder: 'country',
+                disk: 'public')
         ]);
-        return Redirect::route('countries.index')->with('success',"Country Added");
+        return Redirect::route('settings.countries.index')
+            ->with('success', "Country Added");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
     public function show(Country $country)
     {
@@ -73,33 +85,43 @@ class CountryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return \Inertia\Response
      */
-    public function edit(Country $country)
+    public function edit(Country $country): \Inertia\Response
     {
         return Inertia::render('Country/Edit', [
-            'countries' => $country
+            'country' => $country
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Country $country
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Country $country): RedirectResponse
     {
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:50', 'unique:locations,name,' . $country->id]
+            'name' => ['required', 'string', 'max:50', 'unique:countries,name,' . $country->id],
+            'country_code' => ['required', 'integer', 'min:4', 'unique:countries,country_code,' . $country->id],
+            'flag' => ['required', 'image']
         ]);
 
-        // Create new category.
+        if ($country->file_path) {
+            Storage::disk('public')->delete($country->flag_path);
+        }
+
         $country->update([
             'name' => $request->get('name'),
-
+            'country_code' => $request->get('country_code'),
+            'slug' => Str::of($request->get('name'))->slug('-'),
+            'flag_path' => upload(file: $request->file('flag'),
+                folder: 'country',
+                disk: 'public')
         ]);
         return Redirect::back()
             ->with('success', 'Country Saved');
@@ -108,8 +130,8 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
     public function destroy(Country $country)
     {

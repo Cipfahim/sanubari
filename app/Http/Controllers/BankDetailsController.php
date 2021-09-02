@@ -17,7 +17,7 @@ class BankDetailsController extends Controller
      */
     public function index($id)
     {
-        return Inertia::render('Employees/BankDetails', [
+        return Inertia::render('Employees/Edit/BankDetails', [
             'banks' => Bank::select('id', 'name')->get(),
             'employee' => Employee::with('user', 'bankDetails')
                 ->findOrFail($id)

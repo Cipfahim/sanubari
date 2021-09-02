@@ -17,8 +17,8 @@
                                     <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                                         <div class="flex">
                                             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                                                 :src="getFileUrl(employee.user.photo)"
-                                                 alt="">
+                                                 :src="employee.user.photo ? getFileUrl(employee.user.photo) : '/images/icon/avatar.png'"
+                                                 :alt="employee.official_name">
                                         </div>
                                         <div
                                             class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
@@ -91,6 +91,19 @@
                                                     aria-current="page">
                                                 Annual Leave
                                             </button>
+
+                                            <inertia-link :href="route('employees.documents.index',employee.id)"
+                                                          :class="{'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': route().current('employees.documents.index',employee.id) !== 5 , 'border-cyan-500 text-gray-900' : route().current('employees.documents.index',employee.id) === 5}"
+                                                          class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                                          aria-current="page">
+                                                Documents
+                                            </inertia-link>
+                                            <inertia-link :href="route('employees.payslips.index',employee.id)"
+                                                          :class="{'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': !route().current('employees.payslips.index',employee.id), 'border-cyan-500 text-gray-900' : route().current('employees.payslips.index',employee.id)}"
+                                                          class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                                          aria-current="page">
+                                                Payslips
+                                            </inertia-link>
                                         </nav>
                                     </div>
                                 </div>
@@ -377,7 +390,7 @@
 
 <script>
 import AppLayout from "../../Layouts/App";
-import TopBar from "./TopBar";
+import TopBar from "./Edit/TopBar";
 import {
     CalendarIcon,
     CashIcon,
@@ -401,6 +414,7 @@ import {Switch} from "@headlessui/vue";
 export default {
     props: {
         employee: Object,
+        showTab: Number
     },
     components: {
         Input,
@@ -425,7 +439,9 @@ export default {
     },
     data() {
         return {
-            openTab: 1
+            openTab: this.showTab
+                ? Number(this.showTab)
+                : 1
         }
     },
     methods: {

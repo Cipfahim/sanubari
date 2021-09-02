@@ -73,7 +73,10 @@ export default {
                 return 'origin-top-left left-0'
             } else if (this.align === 'right') {
                 return 'origin-top-right right-0'
-            } else {
+            } else if (this.align === 'right-16') {
+                return 'origin-top-right right-16'
+            }
+            else {
                 return 'origin-top'
             }
         },

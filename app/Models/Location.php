@@ -19,4 +19,9 @@ class Location extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public static function name($location_id)
+    {
+        return Location::where('id', $location_id)->first()->name;
+    }
 }

@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id()->from(200);
+            $table->id()->from(2000);
             $table->string('employee_number')->unique()->nullable();
             $table->foreignId('user_id')
                 ->constrained()
@@ -25,15 +25,17 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('location_id')->constrained();
             $table->date('date_of_join');
             $table->date('date_of_birth')->nullable();
-            $table->enum('citizenship', ['Malaysian', 'Foreigner'])->nullable();
+            $table->foreignId('country_id')->nullable(); //nationality
             $table->string('ic_number', 31)->nullable();
             $table->string('passport_number', 100)->nullable();
-            $table->string('country_of_birth', 20)->nullable();
-            $table->string('state_of_birth', 20)->nullable();
+            $table->date('passport_issue_date')->nullable();
+            $table->date('passport_expiry_date')->nullable();
+            $table->string('passport_issuing_authority')->nullable();
+            $table->foreignId('birth_country_id')->nullable();
+            $table->foreignId('birth_city_id')->nullable(); // Birth state or city
             $table->tinyInteger('leave_quota')->nullable();
             $table->foreignId('bank_id')->nullable()->constrained();
             $table->string('accounts', 25)->nullable();
-            $table->integer('annual_leave_quota')->nullable();
             $table->timestamps();
         });
     }

@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Country;
+
+use App\Models\LeaveQuota;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // Call Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
-            CountrySeeder::class,
+            LocationSeeder::class,
         ]);
     }
 }

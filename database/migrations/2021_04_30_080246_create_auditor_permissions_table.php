@@ -15,14 +15,15 @@ class CreateAuditorPermissionsTable extends Migration
     {
         Schema::create('auditor_permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('employee_id')->constrained();
-            $table->boolean('basic_info')->default(1);
-            $table->boolean('salary_info')->default(0);
-            $table->boolean('contribution_info')->default(0);
+            $table->foreignId('audit_session_id')->constrained();
+            $table->boolean('employee_details')->default(1);
+            $table->boolean('contact_details')->default(0);
+            $table->boolean('contribution')->default(0);
+            $table->boolean('salary_details')->default(0);
             $table->boolean('documents')->default(0);
+            $table->boolean('leave')->default(0);
             $table->boolean('payslips')->default(0);
-            $table->boolean('log')->default(0);
             $table->timestamps();
         });
     }

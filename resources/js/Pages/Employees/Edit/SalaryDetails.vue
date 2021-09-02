@@ -1,0 +1,261 @@
+<template>
+    <app-layout>
+        <!-- Start::Stepper -->
+        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+            <top-bar :employee="employee.id" :current="route('employees.edit.salary-details.index', employee.id)"/>
+
+            <jet-form-section
+                @submitted="submit"
+                class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
+            >
+                <template #form class=" md:col-span-12">
+                    <!-- Strat::Stepper Contents -->
+                    <div class="bg-gray-50 p-4 rounded-md">
+                        <div class="space-y-8 divide-y divide-gray-200">
+                            <!-- Login details-->
+                            <div class="space-y-6 sm:pt-10 sm:space-y-5 mt-5 sm:mt-0">
+                                <div class="sm:border-b sm:border-gray-200 pb-2">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                        Salary Details
+                                    </h3>
+                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                        This section contains sensitive information.
+                                    </p>
+                                </div>
+
+                                <div class="mt-4 sm:mt-3 space-y-6 sm:space-y-5">
+
+                                    <!-- Basic salary-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="basic_salary" value="Basic Salary *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="basic_salary"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.basic_salary"
+                                                :class="{ 'border-red-500': form.errors.basic_salary }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.basic_salary"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- living_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="living_allowance" value="Cost of Living Allowance *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="living_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.living_allowance"
+                                                :class="{ 'border-red-500': form.errors.living_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.living_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- attendance_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="attendance_allowance" value="Attendance Allowance *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="attendance_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.attendance_allowance"
+                                                :class="{ 'border-red-500': form.errors.attendance_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.attendance_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- levy-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="levy" value="Levy *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="levy"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.levy"
+                                                :class="{ 'border-red-500': form.errors.levy }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.levy"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+
+                                    <!-- in_charge_allowance-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
+                                        <jet-label for="in_charge_allowance" value="In Charge Allowance *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="in_charge_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.in_charge_allowance"
+                                                :class="{ 'border-red-500': form.errors.in_charge_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.in_charge_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="pt-5">
+                                    <div class="space-y-6 sm:space-y-5">
+                                        <div
+                                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                        >
+                                            <div class="mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2">
+                                                <div
+                                                    class="max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
+                                                >
+                                                    <inertia-link
+                                                        :href="route('employees.edit.bank-details.index',employee.id)"
+                                                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                                    >
+                                                        Previous
+                                                    </inertia-link>
+                                                    <button
+                                                        type="submit"
+                                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                    >
+                                                        Save
+                                                    </button>
+
+                                                    <button
+                                                        @click.prevent="saveAndContinue"
+                                                        type="button"
+                                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                                    >
+                                                        Save & Continue
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End::Stepper Contents -->
+                    </div>
+                </template>
+            </jet-form-section>
+        </div>
+        <!-- End::Stepper -->
+    </app-layout>
+</template>
+
+<script>
+import AppLayout from "@/Layouts/App";
+import TopBar from "@/Pages/Employees/Edit/TopBar";
+import {
+    CalendarIcon,
+    CashIcon,
+    CheckCircleIcon,
+    CheckIcon,
+    ChevronRightIcon,
+    OfficeBuildingIcon,
+    PlusCircleIcon,
+} from "@heroicons/vue/solid";
+import JetFormSection from "@/Jetstream/FormSection";
+import JetLabel from "@/Jetstream/Label";
+import JetInputError from "@/Jetstream/InputError";
+import JetInput from "@/Jetstream/Input";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetButton from "@/Jetstream/Button";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import Input from "@/Components/Input";
+import JetCheckbox from "@/Jetstream/Checkbox";
+
+export default {
+    props: {
+        employee: Object,
+    },
+    components: {
+        Input,
+        TopBar,
+        AppLayout,
+        OfficeBuildingIcon,
+        CheckCircleIcon,
+        CashIcon,
+        ChevronRightIcon,
+        CheckIcon,
+        CalendarIcon,
+        PlusCircleIcon,
+        JetFormSection,
+        JetSecondaryButton,
+        JetLabel,
+        JetInput,
+        JetInputError,
+        JetActionMessage,
+        JetButton,
+        JetCheckbox
+    },
+    data() {
+        return {
+            form: this.$inertia.form(
+                {
+                    _method: 'PUT',
+                    basic_salary: null,
+                    living_allowance: null,
+                    attendance_allowance: null,
+                    levy: null,
+                    in_charge_allowance: null,
+                    continue: false
+                },
+                {
+                    resetOnSuccess: true,
+                }
+            ),
+        }
+    },
+    mounted() {
+        const salary_details = this.employee.salary_details;
+        if (salary_details) {
+            this.form.basic_salary = salary_details.basic_salary
+            this.form.living_allowance = salary_details.living_allowance
+            this.form.attendance_allowance = salary_details.attendance_allowance
+            this.form.levy = salary_details.levy
+            this.form.in_charge_allowance = salary_details.in_charge_allowance
+        }
+    },
+    methods: {
+        submit() {
+            this.form.post(this.route('employees.edit.salary-details.update', this.employee.id))
+        },
+
+        saveAndContinue() {
+            this.form.continue = true
+            this.submit()
+        }
+    }
+};
+</script>
