@@ -22,6 +22,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OtpLoginController;
 use Inertia\Inertia;
 
 /*
@@ -38,6 +39,12 @@ use Inertia\Inertia;
 Route::redirect('/', 'login');
 
 Route::post('/upload', UploadController::class);
+
+Route::group(['middleware' => ['guest'], 'as' => 'otp.', 'prefix' => 'admin/'], function () {
+    Route::get('login', [OtpLoginController::class, 'index'])->name('index');
+    Route::post('login', [OtpLoginController::class, 'login'])->name('login');
+    Route::post('check', [OtpLoginController::class, 'check'])->name('check');
+});
 
 Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ca43df5d91c06b648dc43fcac4c8a2d",
+    "content-hash": "90dbc49d27338807c9a8f4a7bba93476",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -271,6 +271,47 @@
                 "source": "https://github.com/browner12/helpers/tree/v3.3.0"
             },
             "time": "2020-12-08T15:46:07+00:00"
+        },
+        {
+            "name": "bulk360/client",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bulk360/client.git",
+                "reference": "229faa3bfbd25a9b2a121c4515b6709bbac4bfe7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bulk360/client/zipball/229faa3bfbd25a9b2a121c4515b6709bbac4bfe7",
+                "reference": "229faa3bfbd25a9b2a121c4515b6709bbac4bfe7",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": ">2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "bulk360\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "360 Interactive",
+                    "email": "mark@360.my"
+                }
+            ],
+            "description": "PHP Client for using bulk360's API",
+            "homepage": "https://sms.360.my",
+            "support": {
+                "issues": "https://github.com/bulk360/client/issues",
+                "source": "https://github.com/bulk360/client/tree/2.0.4"
+            },
+            "time": "2021-08-30T10:04:46+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
