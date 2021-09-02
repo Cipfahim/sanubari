@@ -11,7 +11,7 @@ if (!function_exists('sendOtp')) {
      */
     function sendOtp($phone, $otp_code)
     {
-        $smsClient = new Client('JX7axGreyv', 'COERq7zZC9EtKWvxrXvUCr18HxIOd3oMKWTEUuHd');
+        $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
 
         $smsClient->send([
             'from' => '68068',

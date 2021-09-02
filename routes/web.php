@@ -40,8 +40,10 @@ Route::redirect('/', 'login');
 
 Route::post('/upload', UploadController::class);
 
+Route::redirect('admin', 'admin/login');
+
 Route::group(['middleware' => ['guest'], 'as' => 'otp.', 'prefix' => 'admin/'], function () {
-    Route::get('login', [OtpLoginController::class, 'index'])->name('index');
+    Route::get('login', [OtpLoginController::class, 'show'])->name('index');
     Route::post('login', [OtpLoginController::class, 'login'])->name('login');
     Route::post('check', [OtpLoginController::class, 'check'])->name('check');
 });
