@@ -67,4 +67,20 @@ class OtpLoginController extends Controller
             return Redirect::to(RouteServiceProvider::HOME);
         }
     }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function changePassword(Request $request)
+    {
+        $loginAttempt = LoginAttempt::where('otp_code', $request->get('otp'))->first();
+
+        if (!isset($loginAttempt)) {
+            return Redirect::back()->with('error', 'Invalid Otp');
+        } else {
+            $loginAttempt->delete();
+            return Inertia::render('Auth/ResetPassword');
+        }
+    }
 }

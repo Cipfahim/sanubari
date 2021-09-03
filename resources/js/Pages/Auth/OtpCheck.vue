@@ -86,7 +86,6 @@ export default {
         errors: Object,
         status: String,
     },
-
     data() {
         return {
             form: this.$inertia.form({
@@ -97,7 +96,11 @@ export default {
 
     methods: {
         submit() {
-            this.form.post(this.route('otp.check'));
+            if(this.$page.url === '/forgot-password') {
+                this.form.post(this.route('otp.change.password'));
+            }   else {
+                this.form.post(this.route('otp.check'));
+            }
         }
     }
 }
