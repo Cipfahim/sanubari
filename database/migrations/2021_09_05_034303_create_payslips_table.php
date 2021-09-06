@@ -15,11 +15,11 @@ class CreatePayslipsTable extends Migration
     {
         Schema::create('payslips', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained();
-            $table->string('description')->nullable();
-            $table->date('date_from');
-            $table->date('date_to');
-            $table->string('file_path');
+            $table->foreignId('payslip_session_id')->nullable()->constrained();
+            $table->foreignId('employee_id')->nullable()->constrained();
+            $table->string('file_name')->nullable();
+            $table->string('file_path')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

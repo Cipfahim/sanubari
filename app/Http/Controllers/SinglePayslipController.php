@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\Employee;
 use App\Models\Payslip;
+use App\Models\PayslipSession;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,11 @@ class SinglePayslipController extends Controller
             'employee' => $employee,
             'requests' => QueryRequest::all(['filter', 'sort']),
             'payslips' => QueryBuilder::for(Payslip::class)
+                ->with('payslipSession')
                 ->where('employee_id', $employee->id)
-                ->allowedFilters(['description'])
-                ->allowedSorts(['description', 'date_from', 'date_to'])
+                ->success()
+                ->allowedFilters(['file_name'])
+                ->allowedSorts(['file_name'])
                 ->latest('id')
                 ->paginate()
                 ->appends(\request()->query()),
@@ -48,7 +51,9 @@ class SinglePayslipController extends Controller
     public function create($employeeId)
     {
         return Inertia::render('Employees/Payslips/Create', [
-            'employee' => Employee::with('user')->findOrFail($employeeId),
+            'employee' => Employee::with('user')
+                ->findOrFail($employeeId),
+            'payslipSessions' => PayslipSession::all()
         ]);
     }
 
@@ -62,26 +67,28 @@ class SinglePayslipController extends Controller
     public function store(Request $request, $employeeId)
     {
         $this->validate($request, [
-            'date_from' => ['required', 'string'],
-            'date_to' => ['required', 'string'],
+            'payslip_session' => ['required'],
             'payslip' => ['required', 'string'],
         ]);
 
         $employee = Employee::findOrFail($employeeId);
+        $payslipSession = PayslipSession::findOrFail($request->get('payslip_session'));
 
         $tempFile = TemporaryFile::where('folder', $request->get('payslip'))->first();
         if (!isset($tempFile)) {
             return Redirect::back()->with('error', 'Payslip was not uploaded');
         }
 
-        $payslipPath = 'payslips/' . $employee->id . '/' . now()->toDateString() . '-' . now()->timestamp . '/' . $tempFile->filename;
+        $payslipPath = 'payslips/payslip-session-' . $payslipSession->id .
+            '/' . uniqid() . '-' . now()->timestamp . '/' . $tempFile->filename;
+
         Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/' . $payslipPath);
 
         $employee->payslips()->create([
-            'description' => Payslip::generateDescription($request->get('date_from')),
-            'date_from' => $request->get('date_from'),
-            'date_to' => $request->get('date_to'),
+            'payslip_session_id' => $payslipSession->id,
+            'file_name' => $tempFile->filename,
             'file_path' => $payslipPath,
+            'note' => 'Employee found.'
         ]);
 
         $tempFile->delete();
@@ -110,7 +117,8 @@ class SinglePayslipController extends Controller
         $employee = Employee::with('user')->findOrFail($employeeId);
         return Inertia::render('Employees/Payslips/Edit', [
             'employee' => $employee,
-            'payslip' => $employee->payslips()->findOrFail($payslipId)
+            'payslip' => $employee->payslips()->findOrFail($payslipId),
+            'payslipSessions' => PayslipSession::all()
         ]);
     }
 
@@ -124,8 +132,7 @@ class SinglePayslipController extends Controller
     public function update(Request $request, $employeeId, $payslipId)
     {
         $this->validate($request, [
-            'date_from' => ['required', 'string'],
-            'date_to' => ['required', 'string'],
+            'payslip_session' => ['required'],
             'payslip' => ['required', 'string'],
         ]);
 
@@ -135,18 +142,18 @@ class SinglePayslipController extends Controller
         if (!isset($tempFile)) {
             return Redirect::back()->with('error', 'Payslip was not uploaded');
         }
+        $payslipSession = PayslipSession::findOrFail($request->get('payslip_session'));
 
-        $payslipPath = 'payslips/' . $employee->id .
-            '/' . now()->toDateString() . '-' . now()->timestamp .
-            '/' . $tempFile->filename;
+        $payslipPath = 'payslips/payslip-session-' . $payslipSession->id .
+            '/' . uniqid() . '-' . now()->timestamp . '/' . $tempFile->filename;
         Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename,
             'public/' . $payslipPath);
 
         $employee->payslips()->findOrFail($payslipId)->update([
-            'description' => Payslip::generateDescription($request->get('date_from')),
-            'date_from' => $request->get('date_from'),
-            'date_to' => $request->get('date_to'),
+            'payslip_session_id' => $payslipSession->id,
+            'file_name' => $tempFile->filename,
             'file_path' => $payslipPath,
+            'note' => 'Employee found.'
         ]);
 
         $tempFile->delete();

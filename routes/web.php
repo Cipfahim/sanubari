@@ -121,6 +121,8 @@ Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function 
 
     Route::prefix('payslips')->name('payslips.')->group(function () {
         Route::get('/', [PayslipController::class, 'index'])->name('index');
-        Route::get('/upload', [PayslipController::class, 'upload'])->name('upload');
+        Route::post('/store', [PayslipController::class, 'store'])->name('store');
+        Route::get('/{id}/upload', [PayslipController::class, 'show'])->name('show');
+        Route::post('/{id}/upload', [PayslipController::class, 'upload'])->name('upload');
     });
 });

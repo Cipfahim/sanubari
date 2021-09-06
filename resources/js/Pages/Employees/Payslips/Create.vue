@@ -19,34 +19,19 @@
                                         <template #form class="md:col-span-12">
                                             <!--  date_from-->
                                             <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
-                                                <jet-label for="date_from" value="Date From *"/>
-                                                <DatePicker v-model="form.date_from" :masks="datePickerConfig.masks"
-                                                            :model-config="datePickerConfig.modelConfig">
-                                                    <template #default="{ inputValue, inputEvents }">
-                                                        <input
-                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                            :class="{ 'border-red-500': form.errors.date_from }"
-                                                            :value="inputValue"
-                                                            v-on="inputEvents"/>
-                                                    </template>
-                                                </DatePicker>
-                                                <JetInputError :message="form.errors.date_from" class="mt-2"/>
-                                            </div>
-
-                                            <!--  date_to-->
-                                            <div class="col-span-6 sm:col-span-12 mb-6 -mx-4">
-                                                <jet-label for="date_to" value="Date To *"/>
-                                                <DatePicker v-model="form.date_to" :masks="datePickerConfig.masks"
-                                                            :model-config="datePickerConfig.modelConfig">
-                                                    <template #default="{ inputValue, inputEvents }">
-                                                        <input
-                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                            :class="{ 'border-red-500': form.errors.date_to }"
-                                                            :value="inputValue"
-                                                            v-on="inputEvents"/>
-                                                    </template>
-                                                </DatePicker>
-                                                <JetInputError :message="form.errors.date_to" class="mt-2"/>
+                                                <jet-label for="payslip_sessions" value="Payslip Sessions *"/>
+                                                <Multiselect
+                                                    searchable
+                                                    v-model="form.payslip_session"
+                                                    :options="payslipSessions"
+                                                    valueProp="id"
+                                                    trackBy="label"
+                                                    label="label"
+                                                    placeholder="Choose a session"
+                                                    class="mt-1 block w-full !rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+                                                    :class="{ 'border-red-500' : form.errors.payslip_session }"
+                                                />
+                                                <JetInputError :message="form.errors.payslip_session" class="mt-2"/>
                                             </div>
 
                                             <div
@@ -120,6 +105,8 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css
 // Import image preview and file type validation plugins
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 
 
 // Create component
@@ -132,6 +119,7 @@ const FilePond = vueFilePond(
 export default {
     props: {
         employee: Object,
+        payslipSessions: Array,
     },
     components: {
         AppLayout,
@@ -144,15 +132,15 @@ export default {
         JetActionMessage,
         JetButton,
         FilePond,
-        DatePicker
+        DatePicker,
+        Multiselect,
     },
     data() {
         return {
             loading: false,
             form: this.$inertia.form(
                 {
-                    date_from: null,
-                    date_to: null,
+                    payslip_session: null,
                     payslip: null,
                 },
                 {
