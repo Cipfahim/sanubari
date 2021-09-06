@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OtpLoginController;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,11 +45,11 @@ Route::group(['middleware' => ['guest'], 'as' => 'otp.', 'prefix' => 'admin/'], 
     Route::get('login', [OtpLoginController::class, 'show'])->name('index');
     Route::post('login', [OtpLoginController::class, 'login'])->name('login');
     Route::post('check', [OtpLoginController::class, 'check'])->name('check');
+    Route::post('change/password', [OtpLoginController::class, 'changePassword'])->name('change.password');
 });
 
 Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
-
 
     Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function () {
         Route::get('identification-details', [IdentificationController::class, 'index'])->name('identification.index');
@@ -119,9 +118,10 @@ Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function 
         Route::post('/update/status/{id}/{status}', [SupportTicketController::class, 'updateStatus'])->name('update.status');
     });
 
-
     Route::prefix('payslips')->name('payslips.')->group(function () {
         Route::get('/', [PayslipController::class, 'index'])->name('index');
-        Route::get('/upload', [PayslipController::class, 'upload'])->name('upload');
+        Route::post('/store', [PayslipController::class, 'store'])->name('store');
+        Route::get('/{id}/upload', [PayslipController::class, 'show'])->name('show');
+        Route::post('/{id}/upload', [PayslipController::class, 'upload'])->name('upload');
     });
 });

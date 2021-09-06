@@ -70,36 +70,45 @@
                                                             </th>
                                                             <th
                                                                 scope="col"
-                                                                @click="sort('description')"
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
                                                                 <div class="flex gap-2 items-center">
-                                                                    <sort-arrow :sort="queryForm.sort"
-                                                                                field="description"/>
+                                                                    <!--<sort-arrow :sort="queryForm.sort"-->
+                                                                    <!--            field="description"/>-->
                                                                     Description
                                                                 </div>
                                                             </th>
 
                                                             <th
                                                                 scope="col"
-                                                                @click="sort('date_from')"
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
                                                                 <div class="flex gap-2 items-center">
-                                                                    <sort-arrow :sort="queryForm.sort"
-                                                                                field="date_from"/>
+                                                                    <!--<sort-arrow :sort="queryForm.sort"-->
+                                                                    <!--            field="date_from"/>-->
                                                                     Date From
                                                                 </div>
                                                             </th>
 
                                                             <th
                                                                 scope="col"
-                                                                @click="sort('date_to')"
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
                                                                 <div class="flex gap-2 items-center">
-                                                                    <sort-arrow :sort="queryForm.sort" field="date_to"/>
+                                                                    <!--<sort-arrow :sort="queryForm.sort" field="date_to"/>-->
                                                                     Date To
+                                                                </div>
+                                                            </th>
+
+                                                            <th
+                                                                scope="col"
+                                                                @click="sort('file_name')"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                                            >
+                                                                <div class="flex gap-2 items-center">
+                                                                    <sort-arrow :sort="queryForm.sort"
+                                                                                field="file_name"/>
+                                                                    File Name
                                                                 </div>
                                                             </th>
 
@@ -124,19 +133,25 @@
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 max-w-sm truncate"
                                                                 :title="payslip.description"
                                                             >
-                                                                {{ payslip.description }}
+                                                                {{ payslip.payslip_session.description }}
                                                             </td>
 
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                                             >
-                                                                {{ payslip.date_from }}
+                                                                {{ payslip.payslip_session.date_from }}
                                                             </td>
 
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                                             >
-                                                                {{ payslip.date_to }}
+                                                                {{ payslip.payslip_session.date_to }}
+                                                            </td>
+
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                            >
+                                                                {{ payslip.file_name }}
                                                             </td>
 
                                                             <td

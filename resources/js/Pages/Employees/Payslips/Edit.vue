@@ -20,34 +20,19 @@
 
                                             <!--  date_from-->
                                             <div class="col-span-6 sm:col-span-12 mb-2">
-                                                <jet-label for="date_from" value="Date From *"/>
-                                                <DatePicker v-model="form.date_from" :masks="datePickerConfig.masks"
-                                                            :model-config="datePickerConfig.modelConfig">
-                                                    <template #default="{ inputValue, inputEvents }">
-                                                        <input
-                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                            :class="{ 'border-red-500': form.errors.date_from }"
-                                                            :value="inputValue"
-                                                            v-on="inputEvents"/>
-                                                    </template>
-                                                </DatePicker>
-                                                <JetInputError :message="form.errors.date_from" class="mt-2"/>
-                                            </div>
-
-                                            <!--  date_to-->
-                                            <div class="col-span-6 sm:col-span-12 mb-2">
-                                                <jet-label for="date_to" value="Date To *"/>
-                                                <DatePicker v-model="form.date_to" :masks="datePickerConfig.masks"
-                                                            :model-config="datePickerConfig.modelConfig">
-                                                    <template #default="{ inputValue, inputEvents }">
-                                                        <input
-                                                            class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                            :class="{ 'border-red-500': form.errors.date_to }"
-                                                            :value="inputValue"
-                                                            v-on="inputEvents"/>
-                                                    </template>
-                                                </DatePicker>
-                                                <JetInputError :message="form.errors.date_to" class="mt-2"/>
+                                                <jet-label for="payslip_sessions" value="Payslip Sessions *"/>
+                                                <Multiselect
+                                                    searchable
+                                                    v-model="form.payslip_session"
+                                                    :options="payslipSessions"
+                                                    valueProp="id"
+                                                    trackBy="label"
+                                                    label="label"
+                                                    placeholder="Choose a session"
+                                                    class="mt-1 block w-full !rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+                                                    :class="{ 'border-red-500' : form.errors.payslip_session }"
+                                                />
+                                                <JetInputError :message="form.errors.payslip_session" class="mt-2"/>
                                             </div>
 
                                             <div
@@ -105,6 +90,8 @@ import JetButton from "@/Jetstream/Button";
 import Input from "@/Components/Input";
 import TopBar from "./TopBar";
 import {DatePicker} from "v-calendar";
+import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 
 // Import Vue FilePond
 import vueFilePond from "vue-filepond";
@@ -133,6 +120,7 @@ export default {
     props: {
         employee: Object,
         payslip: Object,
+        payslipSessions: Array,
     },
     components: {
         AppLayout,
@@ -145,7 +133,8 @@ export default {
         JetActionMessage,
         JetButton,
         FilePond,
-        DatePicker
+        DatePicker,
+        Multiselect
     },
     data() {
         return {
@@ -153,8 +142,7 @@ export default {
             payslipFiles: this.getFileUrl(this.payslip.file_path),
             form: this.$inertia.form(
                 {
-                    date_from: this.payslip.date_from,
-                    date_to: this.payslip.date_to,
+                    payslip_session: this.payslip.payslip_session_id,
                     payslip: null,
                 },
                 {

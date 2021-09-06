@@ -34,7 +34,8 @@
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div v-if="true" class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <div v-if="payslips.data.length"
+                             class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                 <tr>
@@ -64,26 +65,26 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="(session, index) in 5" :key="index" class="hover:bg-gray-50">
+                                <tr v-for="(payslip, index) in payslips.data" :key="index" class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ index + 1 }}
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        Pay Slip 2021 Aug
+                                        {{ payslip.description }}
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        1{{ index + 1 }} Aug 2021
+                                        {{ payslip.date_from }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ index + 20 }} Aug 2021
+                                        {{ payslip.date_to }}
                                     </td>
 
                                     <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
-                                        <inertia-link :href="route('payslips.upload')"
+                                        <inertia-link :href="route('payslips.show',payslip.id)"
                                                       class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">
-                                            Edit
+                                            Show
                                         </inertia-link>
                                     </td>
                                 </tr>
@@ -91,8 +92,7 @@
                             </table>
                             <pagination class="m-2" :links="5"/>
                         </div>
-                        <no-data-found v-else resource="sessions" action-text="Add Session"
-                                       :action-link="route('auditor-access.create')"/>
+                        <no-data-found v-else resource="payslips" action-text="Add payslip session"/>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div class="max-w-lg focus-within:z-10">
-                                        <DatePicker v-model="startDate" :masks="datePickerConfig.masks"
+                                        <DatePicker v-model="form.date_from" :masks="datePickerConfig.masks"
                                                     :model-config="datePickerConfig.modelConfig">
                                             <template #default="{ inputValue, inputEvents }">
                                                 <input
@@ -127,7 +127,7 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2">
                                     <div class="max-w-lg focus-within:z-10">
-                                        <DatePicker v-model="endDate" :masks="datePickerConfig.masks"
+                                        <DatePicker v-model="form.date_to" :masks="datePickerConfig.masks"
                                                     :model-config="datePickerConfig.modelConfig">
                                             <template #default="{ inputValue, inputEvents }">
                                                 <input
@@ -138,7 +138,6 @@
                                         </DatePicker>
                                     </div>
                                 </div>
-
                             </div>
 
                             <!-- Actions -->
@@ -148,10 +147,10 @@
                                             class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none">
                                         Cancel
                                     </button>
-                                    <inertia-link :href="route('payslips.upload')"
-                                                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                                    <button @click.prevent="create"
+                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
                                         Save & Continue
-                                    </inertia-link>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -160,21 +159,6 @@
                 </template>
             </jet-form-section>
         </modal>
-
-        <!-- Delete confirmation modal -->
-        <jet-confirmation-modal :show="confirmingDeletion" @close="confirmingDeletion = false">
-            <template #title> Delete Category</template>
-
-            <template #content> Are you sure you want to delete this category? Once category is deleted, all of its
-                resources and data will be permanently deleted.
-            </template>
-
-            <template #footer>
-                <jet-secondary-button @click.native="confirmingDeletion = false"> Nevermind</jet-secondary-button>
-
-                <jet-danger-button class="ml-2" @click="destroy"> Delete</jet-danger-button>
-            </template>
-        </jet-confirmation-modal>
     </app-layout>
 </template>
 
@@ -218,31 +202,23 @@ export default {
         JetLabel,
         JetInputError,
         JetInput,
-        DatePicker
+        DatePicker,
     },
     props: {
         requests: Object,
-        sessions: Object,
+        payslips: Object,
         auditors: Object,
         locations: Object,
     },
     data() {
         return {
-            // queryForm: {
-            //     field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "name",
-            //     filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
-            //     sort: this.requests.sort,
-            // },
-            // bulkIds: [],
-            // confirmingBulkDeletion: false,
-            // confirmingDeletion: false,
-            // deleteCategory: null,
-            // checkAll: false,
+            queryForm: {
+                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "description",
+                filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
+                sort: this.requests.sort,
+            },
+
             payslipModal: false,
-            // auditor: 0,
-            // locationId: 0,
-            startDate: null,
-            endDate: null,
             datePickerConfig: {
                 masks: {
                     input: 'DD MMM YYYY',
@@ -252,10 +228,16 @@ export default {
                     mask: 'YYYY-MM-DD', // Uses 'iso' if missing
                 },
             },
+            form: this.$inertia.form(
+                {
+                    date_from: null,
+                    date_to: null,
+                },
+                {
+                    resetOnSuccess: true,
+                }
+            ),
         }
-    },
-    mounted() {
-        console.log(this.auditors)
     },
     watch: {
         queryForm: {
@@ -266,7 +248,7 @@ export default {
                 }
                 let queryString = pickBy(customQuery)
                 this.$inertia.get(
-                    this.route("auditor-access.index", Object.keys(queryString).length ? queryString : {remember: "forget"}),
+                    this.route("payslips.index", Object.keys(queryString).length ? queryString : {remember: "forget"}),
                     {},
                     {
                         preserveState: true,
@@ -278,26 +260,15 @@ export default {
         },
     },
     methods: {
-        toggleAll() {
-            if (!this.checkAll) {
-                this.bulkIds = []
+        create() {
+            if (this.form.date_from && this.form.date_to) {
+                this.form
+                    .post(this.route('payslips.store'));
             } else {
-                let ids = []
-                this.honorariumCategories.data.forEach(function (category) {
-                    ids.push(category.id)
-                })
-                this.bulkIds = ids
+                alert('Please select date.')
             }
         },
-        create() {
-            this.$inertia.get(this.route("auditor-access.create"), {
-                auditor: this.auditor,
-                location: this.locationId,
-                startDate: this.startDate,
-                endDate: this.endDate,
-                // _token: this.$page.props.csrf_token,
-            })
-        },
+
         // Sort data by field
         sort(field) {
             this.queryForm.sort === field ? (this.queryForm.sort = "-" + field) : (this.queryForm.sort = field)
@@ -305,30 +276,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("allpayslips.index"))
-        },
-
-        // Confirm deletion.
-        confirmDeletion(category) {
-            this.deleteCategory = category
-            this.confirmingDeletion = true
-        },
-
-        // Send delete request.
-        destroy() {
-            this.$inertia.delete(this.route("auditor-access.destroy", this.deleteCategory), {
-                preserveState: true,
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.deleteCategory = null
-                    this.confirmingDeletion = false
-                },
-            })
-        },
-
-        // Confirm bulk deletion.
-        confirmBulkDeletion() {
-            this.confirmingBulkDeletion = true
+            this.$inertia.visit(this.route("payslips.index"))
         },
     },
 }

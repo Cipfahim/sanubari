@@ -7,13 +7,13 @@ if (!function_exists('sendOtp')) {
     /**
      * description
      *
-     * @param
-     * @return
+     * @param $phone
+     * @param $otp_code
+     * @return void
      */
     function sendOtp($phone, $otp_code)
     {
         $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
-
         $appUrl = config('app.url');
 
         $smsClient->send([

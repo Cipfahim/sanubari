@@ -2,11 +2,6 @@
     <breeze-validation-errors class="mb-4" />
 
     <form @submit.prevent="submit">
-        <div>
-            <breeze-label for="email" value="Email" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-        </div>
-
         <div class="mt-4">
             <breeze-label for="password" value="Password" />
             <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
@@ -51,7 +46,6 @@
             return {
                 form: this.$inertia.form({
                     token: this.token,
-                    email: this.email,
                     password: '',
                     password_confirmation: '',
                 })
