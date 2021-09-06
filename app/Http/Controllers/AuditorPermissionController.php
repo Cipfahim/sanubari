@@ -6,31 +6,25 @@ use App\Models\AuditorPermission;
 use App\Models\AuditSession;
 use App\Models\Employee;
 use App\Models\Location;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Request as QueryRequest;
-use Illuminate\Support\Str;
 
 class AuditorPermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-
         return Inertia::render('AuditorAccess/Index',[
             'requests' => QueryRequest::all(['filter','sort']),
             'sessions' => QueryBuilder::for(AuditSession::class)
-                ->allowedFilters(['user_id'])
+                ->allowedFilters(['user.name'])
                 ->allowedSorts(['user_id'])
                 ->with(['user'])
                 ->latest('id')
@@ -86,7 +80,7 @@ class AuditorPermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AuditorPermission  $auditorPermission
+     * @param AuditorPermission $auditorPermission
      * @return \Illuminate\Http\Response
      */
     public function show(AuditorPermission $auditorPermission)
@@ -97,29 +91,29 @@ class AuditorPermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AuditorPermission  $auditorPermission
-     * @return \Illuminate\Http\Response
+     * @param $session
+     * @return Response
      */
-    public function edit($session)
+    public function edit($session): Response
     {
-//        $accessedEmployees = AuditorPermission::where(  )->paginate();
-
         return Inertia::render('AuditorAccess/Edit',[
+            'requests' => QueryRequest::all(['filter']),
+            'session' => $session,
+            'locations' => Location::all(),
             'accessedEmployees' => QueryBuilder::for(AuditorPermission::class)
                 ->where('audit_session_id',$session)
                 ->with(['employee.location',])
                 ->latest('id')
                 ->paginate()
                 ->appends(\request()->query()),
-            "session" => $session,
-            ]);
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AuditorPermission  $auditorPermission
+     * @param AuditorPermission $auditorPermission
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AuditorPermission $auditorPermission)
@@ -130,7 +124,7 @@ class AuditorPermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AuditorPermission  $auditorPermission
+     * @param AuditorPermission $auditorPermission
      * @return \Illuminate\Http\Response
      */
     public function destroy(AuditorPermission $auditorPermission)
@@ -150,11 +144,9 @@ class AuditorPermissionController extends Controller
             return AuditorPermission::where('audit_session_id',$session)->where('employee_id',$employee)->delete();
         }
     }
+
     public function extraAccess(Request $request){
-
-
-        $permissionId = $request->get('id');
-        $auditorPermission = AuditorPermission::find($permissionId);
+        $auditorPermission = AuditorPermission::where('employee_id', $request->get('id'))->first();
 
         if($request->get('employee_details') != null){
             return $auditorPermission->update([
@@ -180,14 +172,13 @@ class AuditorPermissionController extends Controller
             return $auditorPermission->update([
                 "leave" => $request->get('leave') == "true" ? 1 : 0 ,
             ]);
-        }else if($request->get('payslips') != null){
+        }else if($request->get('payslips') != null) {
             return $auditorPermission->update([
-                "payslips" => $request->get('payslips') == "true" ? 1 : 0 ,
+                "payslips" => $request->get('payslips') == "true" ? 1 : 0,
             ]);
         }
-
-
     }
+
     public function employeeList(Request $request){
 
         $session = $request->get('session');

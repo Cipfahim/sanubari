@@ -229,7 +229,7 @@ export default {
     data() {
         return {
             queryForm: {
-                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "name",
+                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "user.name",
                 filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
                 sort: this.requests.sort,
             },

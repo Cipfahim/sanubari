@@ -85,6 +85,7 @@ Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function 
     Route::resource('employees', EmployeeController::class)->except('destroy');
     //    Route::resource('payslips', SinglePayslipController::class)->except('destroy');
     Route::resource('locations', LocationController::class)->except('show');
+
     Route::resource('auditor-access', AuditorPermissionController::class)->except('show');
     Route::post('give-auditor-access', [AuditorPermissionController::class, 'giveAccess'])->name('auditor-access.give-access');
     Route::get('give-auditor-extra-access', [AuditorPermissionController::class, 'extraAccess'])->name('auditor-access.extra-access');

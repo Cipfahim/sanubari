@@ -41,79 +41,70 @@
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-bl sm:rounded-br">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avatar</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Id</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Offical Name</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nick Name</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location Id</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IC Number</th>
-                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Citizenship</th>
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Action</span>
-                                            <span class="flex items-center">
+                                <tr>
+                                    <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avatar</th>
+                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Id</th>
+                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Offical Name</th>
+                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nick Name</th>
+                                    <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location Id</th>
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Action</span>
+                                        <span class="flex items-center">
                                                 <label for="select-all" class="text-xs font-medium text-gray-500 uppercase">Access</label>
                                             </span>
-                                        </th>
-                                    </tr>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Odd row -->
+                                <!-- Odd row -->
 
-                                    <tr :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'" v-for="(item, index) in accessedEmployees.data" :key="index">
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <img class="h-8 w-8 mx-auto rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ item.employee_id }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ item.employee.official_name }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ item.employee.nick_name }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ item.employee.location.name }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ item.ic_number }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            After fahim update
-                                            {{ item.employee_details }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap block">
+                                <tr :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'" v-for="(item, index) in accessedEmployees.data" :key="index">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        <img class="h-8 w-8 mx-auto rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ item.employee_id }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ item.employee.official_name }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ item.employee.nick_name }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ item.employee.location.name }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap block">
                                             <span class="flex items-center mr-2">
                                                 <input type="checkbox" v-model="item.employee_details" @click="extraAccess(item.id, !item.employee_details, null, null, null, null, null, null)" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Employee Details</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.contact_details" @click="extraAccess(item.id, null, !item.contact_details, null, null, null, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Contact Details</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.contribution" @click="extraAccess(item.id, null, null, !item.contribution, null, null, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label class="text-xs font-medium text-gray-500">Contributions</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.documents" @click="extraAccess(item.id, null, null, null, !item.salary_details, null, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Documents</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.salary_details" @click="extraAccess(item.id, null, null, null, null, !item.documents, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Salary Details</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.payslips" @click="extraAccess(item.id, null, null, null, null, null, null, !item.payslips)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">PaySlips</label>
                                             </span>
-                                            <span class="flex items-center mr-2">
+                                        <span class="flex items-center mr-2">
                                                 <input v-model="item.leave" @click="extraAccess(item.id, null, null, null, null, null, !item.leave, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Leave</label>
                                             </span>
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -130,6 +121,8 @@ export default {
     props: {
         accessedEmployees: Object,
         session: Number,
+        requests: Object,
+        locations: Object
     },
     components: {
         Button,
