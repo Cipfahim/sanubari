@@ -61,6 +61,8 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware(['web', 'auth', 'role:auditor'])
                 ->namespace($this->namespace)
+                ->prefix('auditor')
+                ->name('auditor.')
                 ->group(base_path('routes/auditor.php'));
 
             Route::middleware(['web', 'auth', 'role:employee'])

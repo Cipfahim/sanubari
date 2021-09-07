@@ -38,9 +38,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $url = Auth::user()->role_id === Role::Employee
-            ? '/employee/dashboard'
-            : '/dashboard';
+        if(Auth::user()->role_id === Role::Employee) {
+            $url = '/employee/dashboard';
+        }   else if(Auth::user()->role_id === Role::Auditor) {
+            $url = '/auditor/dashboard';
+        }   else {
+            $url = '/dashboard';
+        }
 
         return redirect()->intended($url);
     }
