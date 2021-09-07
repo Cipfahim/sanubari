@@ -59,9 +59,9 @@ class AuditorPermissionController extends Controller
 
         $locations = Location::get();
         return Inertia::render('AuditorAccess/Create',[
-                'session' => $session,
-                'locationId' => $request->get('location'),
-                'locations' => $locations,
+            'session' => $session,
+            'locationId' => $request->get('location'),
+            'locations' => $locations,
 //                'employees' => $employees,
         ]);
     }
@@ -146,7 +146,7 @@ class AuditorPermissionController extends Controller
     }
 
     public function extraAccess(Request $request){
-        $auditorPermission = AuditorPermission::where('employee_id', $request->get('id'))->first();
+        $auditorPermission = AuditorPermission::where('id', $request->get('id'))->first();
 
         if($request->get('employee_details') != null){
             return $auditorPermission->update([

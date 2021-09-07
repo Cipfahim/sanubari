@@ -43,54 +43,54 @@
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-bl sm:rounded-br">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avatar</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Id</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Offical Name</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nick Name</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location Id</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IC Number</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Citizenship</th>
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Action</span>
-                                            <span class="flex items-center">
+                                <tr>
+                                    <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avatar</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Id</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Offical Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nick Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location Id</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IC Number</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Citizenship</th>
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Action</span>
+                                        <span class="flex items-center">
                                                 <input id="select-all" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500 uppercase">Access all</label>
                                             </span>
-                                        </th>
-                                    </tr>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Odd row -->
-                                    <tr :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'" v-for="(employee, index) in employees.data" :key="employee.id">
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <img class="h-8 w-8 mx-auto rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.id }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.official_name }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.nick_name }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.location }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.ic_number }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
-                                            {{ employee.citizenship }}
-                                        </td>
-                                        <td class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
+                                <!-- Odd row -->
+                                <tr :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'" v-for="(employee, index) in employees.data" :key="employee.id">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        <img class="h-8 w-8 mx-auto rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=GyX6XNR4mP&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.id }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.official_name }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.nick_name }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.location }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.ic_number }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500">
+                                        {{ employee.citizenship }}
+                                    </td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
                                             <span class="flex items-center">
                                                 <input @click="giveAccess(employee.id)" type="checkbox" name="select-all" v-model="employee.check" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Check</label>
                                             </span>
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 

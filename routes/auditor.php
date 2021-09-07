@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/dashboard', function () {
-    dd('ami ekhane');
+    return Inertia::render('Auditor/Dashboard');
 });

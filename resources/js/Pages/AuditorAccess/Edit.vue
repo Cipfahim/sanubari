@@ -88,7 +88,7 @@
                                                 <label class="text-xs font-medium text-gray-500">Contributions</label>
                                             </span>
                                         <span class="flex items-center mr-2">
-                                                <input v-model="item.documents" @click="extraAccess(item.id, null, null, null, !item.salary_details, null, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
+                                                <input v-model="item.documents" @click="extraAccess(item.id, null, null, null, null, !item.documents, null, null)" type="checkbox" name="select-all" class="h-3 w-3 mr-2 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded" />
                                                 <label for="select-all" class="text-xs font-medium text-gray-500">Documents</label>
                                             </span>
                                         <span class="flex items-center mr-2">
