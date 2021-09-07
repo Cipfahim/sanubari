@@ -15,4 +15,8 @@ use Inertia\Inertia;
 
 Route::get('/dashboard', function () {
     return Inertia::render('Auditor/Dashboard');
-});
+})->name('dashboard');
+
+Route::get('/employees', function() {
+    dd('ami ekhane');
+})->name('employees');

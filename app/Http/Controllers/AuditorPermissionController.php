@@ -47,6 +47,7 @@ class AuditorPermissionController extends Controller
         if($session == null){
             $session = AuditSession::create([
                 'user_id' => $request->get('auditor'),
+                'location' => $request->get('location'),
                 'start_date' => $request->get('startDate'),
                 'end_date' => $request->get('endDate'),
             ]);
@@ -190,5 +191,10 @@ class AuditorPermissionController extends Controller
             $employee->location = Location::name($employee->location_id);
         }
         return $employees;
+    }
+
+    public function employeeIndex()
+    {
+        return Inertia::render('Auditor/Employee/Index');
     }
 }

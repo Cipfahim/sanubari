@@ -18,6 +18,7 @@ class CreateAuditSessionsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('start_date');
             $table->date('end_date');
+            $table->foreignId('location')->constrained();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

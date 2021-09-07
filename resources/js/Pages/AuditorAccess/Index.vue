@@ -80,7 +80,7 @@
                             </table>
                             <pagination class="m-2" :links="sessions.links" />
                         </div>
-                        <no-data-found v-else resource="sessions" action-text="Add Session" :action-link="route('auditor-access.create')" />
+                        <no-data-found v-else resource="sessions"/>
                     </div>
                 </div>
             </div>

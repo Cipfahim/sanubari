@@ -48,7 +48,7 @@ Route::group(['middleware' => ['guest'], 'as' => 'otp.', 'prefix' => 'admin/'], 
     Route::post('change/password', [OtpLoginController::class, 'changePassword'])->name('change.password');
 });
 
-Route::middleware(['auth', 'role:system-admin|admin|employee'])->group(function () {
+Route::middleware(['auth', 'role:system-admin|admin'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::prefix('employees/{id}/edit')->name('employees.edit.')->group(function () {
