@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\EmployeeStatusEnum;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,7 +22,6 @@ class UserSeeder extends Seeder
         ], [
             "password" => Hash::make('password'),
             "role_id" => Role::SystemAdmin,
-            'status' => EmployeeStatusEnum::Active
         ]);
 
         User::updateOrCreate([
@@ -32,7 +30,6 @@ class UserSeeder extends Seeder
         ], [
             "password" => Hash::make('password'),
             "role_id" => Role::Admin,
-            'status' => EmployeeStatusEnum::Active
         ]);
 
         User::updateOrCreate([
@@ -41,15 +38,20 @@ class UserSeeder extends Seeder
         ], [
             "password" => Hash::make('password'),
             "role_id" => Role::Employee,
-            'status' => EmployeeStatusEnum::Active
         ]);
         User::updateOrCreate([
             'name' => "Auditor Person",
-            "phone" => "0170123456448",
+            "phone" => "01648633792",
         ], [
             "password" => Hash::make('password'),
             "role_id" => Role::Auditor,
-            'status' => EmployeeStatusEnum::Active
+        ]);
+        User::updateOrCreate([
+            'name' => "Employee",
+            "phone" => "01648633791",
+        ], [
+            "password" => Hash::make('password'),
+            "role_id" => Role::Employee,
         ]);
     }
 }

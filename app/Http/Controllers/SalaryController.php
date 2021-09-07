@@ -34,17 +34,21 @@ class SalaryController extends Controller
     {
         Employee::findOrFail($id)->salaryDetails()->updateOrCreate([
             'employee_id' => $id,
-            'basic_salary' => $request->get('basic_salary'),
+            'basic_salary' => $this->changeString($request->get('basic_salary'))
         ], [
-            'living_allowance' => $request->get('living_allowance'),
-            'attendance_allowance' => $request->get('attendance_allowance'),
-            'levy' => $request->get('levy'),
-            'in_charge_allowance' => $request->get('in_charge_allowance'),
+            'living_allowance' => $this->changeString($request->get('living_allowance')),
+            'attendance_allowance' => $this->changeString($request->get('attendance_allowance')),
+            'levy' => $this->changeString($request->get('levy')),
+            'in_charge_allowance' => $this->changeString($request->get('in_charge_allowance')),
         ]);
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.annual-leave.index', $id)
+            return Redirect::route('employees.edit.annual-leave.index', $id)
                 ->with('success', 'Salary Details Saved.');
         }
         return Redirect::back()->with('success', 'Salary Details Saved.');
+    }
+
+    public function changeString($string){
+        return str_replace(',', '',$string);
     }
 }

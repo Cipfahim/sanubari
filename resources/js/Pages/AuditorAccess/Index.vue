@@ -20,7 +20,7 @@
 
                 <div class="flex justify-between">
                     <!-- <inertia-link :href="route('auditor-access.create')" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"> Add </inertia-link> -->
-                    <button @click="auditModal = true" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none">Add</button>
+                    <button @click="auditModal = true" class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none">Add</button>
                 </div>
             </div>
             <div class="flex flex-col">
@@ -29,67 +29,67 @@
                         <div v-if="sessions.data.length" class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
-                                        <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                                            <sort-arrow :sort="queryForm.sort" field="name" />
-                                            Auditor
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Start Date</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">End Date</th>
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
+                                    <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="name" />
+                                        Auditor
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Start Date</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">End Date</th>
 
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Status</th>
 
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Actions</span>
-                                        </th>
-                                    </tr>
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Actions</span>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr v-for="(session, index) in sessions.data" :key="index">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ index + 1 }}
-                                        </td>
+                                <tr v-for="(session, index) in sessions.data" :key="index" class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ index + 1 }}
+                                    </td>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.user.name }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.start_date }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.end_date }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.status }}
-                                        </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.user.name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.start_date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.end_date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.status }}
+                                    </td>
 
-                                        <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
-                                            <inertia-link :href="route('auditor-access.edit', session.id)" class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">Edit </inertia-link>
+                                    <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
+                                        <inertia-link :href="route('auditor-access.edit', session.id)" class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">Edit </inertia-link>
 
-                                            <!-- <button
-                                          type="button"
-                                          @click="confirmDeletion(category)"
-                                          class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
-                                        >
-                                          Delete
-                                        </button> -->
-                                        </td>
-                                    </tr>
+                                        <!-- <button
+                                      type="button"
+                                      @click="confirmDeletion(category)"
+                                      class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
+                                    >
+                                      Delete
+                                    </button> -->
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <pagination class="m-2" :links="sessions.links" />
                         </div>
-                        <no-data-found v-else resource="sessions" action-text="Add Session" :action-link="route('auditor-access.create')" />
+                        <no-data-found v-else resource="sessions"/>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Add Audit Modal -->
         <modal :show="auditModal">
-            <jet-form-section class="md:gap-y-0">
+            <jet-form-section class="md:gap-y-0 min-h-[35rem]">
                 <template #form class="md:col-span-12">
-                    <div class="bg-gray-50 p-4 rounded-md">
+                    <div class="bg-gray-50 p-4 rounded-md h-full">
                         <div class="sm:my-3 space-y-6 sm:space-y-5">
                             <!-- Auditor Name field-->
                             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
@@ -105,11 +105,29 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex justify-between items-center">
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" v-model="startDate" type="date" />
+                                        <!--                                        <jet-input id="date_of_join" v-model="startDate" type="date" />-->
+                                        <DatePicker v-model="startDate" :masks="datePickerConfig.masks"
+                                                    :model-config="datePickerConfig.modelConfig">
+                                            <template #default="{ inputValue, inputEvents }">
+                                                <input
+                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                    :value="inputValue"
+                                                    v-on="inputEvents"/>
+                                            </template>
+                                        </DatePicker>
                                     </div>
                                     <div>to</div>
                                     <div class="max-w-lg focus-within:z-10">
-                                        <jet-input id="date_of_join" v-model="endDate" type="date" />
+                                        <!--                                        <jet-input id="date_of_join" v-model="" type="date" />-->
+                                        <DatePicker v-model="endDate" :masks="datePickerConfig.masks"
+                                                    :model-config="datePickerConfig.modelConfig">
+                                            <template #default="{ inputValue, inputEvents }">
+                                                <input
+                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                    :value="inputValue"
+                                                    v-on="inputEvents"/>
+                                            </template>
+                                        </DatePicker>
                                     </div>
                                 </div>
 
@@ -180,6 +198,7 @@ import JetFormSection from "@/Jetstream/FormSection"
 import JetLabel from "@/Jetstream/Label"
 import JetInputError from "@/Jetstream/InputError"
 import JetInput from "@/Jetstream/Input"
+import {DatePicker} from 'v-calendar';
 
 export default {
     components: {
@@ -199,6 +218,7 @@ export default {
         JetLabel,
         JetInputError,
         JetInput,
+        DatePicker
     },
     props: {
         requests: Object,
@@ -209,7 +229,7 @@ export default {
     data() {
         return {
             queryForm: {
-                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "name",
+                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "user.name",
                 filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
                 sort: this.requests.sort,
             },
@@ -223,6 +243,15 @@ export default {
             locationId: 0,
             startDate: null,
             endDate: null,
+            datePickerConfig: {
+                masks: {
+                    input: 'DD MMM YYYY',
+                },
+                modelConfig: {
+                    type: 'string',
+                    mask: 'YYYY-MM-DD', // Uses 'iso' if missing
+                },
+            },
         }
     },
     mounted() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Http\Requests\Employees\UpdateEmployeeRequest;
+use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Role;
@@ -28,7 +29,7 @@ class EmployeeController extends Controller
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
                 ->with(['user', 'location'])
-                ->allowedFilters(['official_name'])
+                ->allowedFilters(['official_name', 'date_of_join', 'user.phone', 'user.status', 'location.name'])
                 ->allowedSorts(['official_name', 'status'])
                 ->latest('id')
                 ->paginate()
@@ -44,7 +45,8 @@ class EmployeeController extends Controller
     public function create()
     {
         return Inertia::render('Employees/Create', [
-            'locations' => Location::all()
+            'locations' => Location::all(),
+            'countries' => Country::select('id', 'name', 'flag_path', 'country_code')->get()
         ]);
     }
 
@@ -62,17 +64,17 @@ class EmployeeController extends Controller
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
             'password' => Hash::make($request->get('password')),
+            'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
+            'status' => $request->get('status')
         ]);
         $user->employee()->create([
             'official_name' => $request->get('official_name'),
             'nick_name' => $request->get('nick_name'),
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
-            'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
-            'status' => $request->get('status')
         ]);
 
-        return Redirect::route('employees.identification.index', $user->employee->id);
+        return Redirect::route('employees.edit.identification.index', $user->employee->id);
     }
 
     /**
@@ -133,7 +135,7 @@ class EmployeeController extends Controller
         ]);
 
         if ($request->get('continue') == true) {
-            return Redirect::route('employees.identification.index', $id)
+            return Redirect::route('employees.edit.identification.index', $id)
                 ->with('success', 'Employee info Saved.');
         }
         return Redirect::back()->with('success', 'Employee info Saved.');

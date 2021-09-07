@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\StatusType;
 
-class CreatePayslipsTable extends Migration
+class CreateSupportTicketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +14,12 @@ class CreatePayslipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payslips', function (Blueprint $table) {
+        Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->string('original_file_name',200);
-            $table->string('file_name',200);
-            $table->string('link',300);
+            $table->string('subject');
+            $table->string('description');
+            $table->enum('status', StatusType::getValues())->default(StatusType::getValue('Pending'));
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePayslipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payslips');
+        Schema::dropIfExists('support_tickets');
     }
 }

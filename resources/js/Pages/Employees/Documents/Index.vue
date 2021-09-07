@@ -11,39 +11,45 @@
                             <!-- Tab-1 -->
                             <div class="my-6 block max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                                 <dl class="gap-x-4 gap-y-8 sm:grid-cols-2">
-                                    <div class="mb-6 flex justify-between items-center">
-                                        <div class="flex items-center w-full max-w-md mr-4">
+                                    <div
+                                        class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2 sm:h-10">
+                                        <div
+                                            class="flex items-center gap-1 sm:gap-2 w-full h-full max-w-xl sm:mr-4 order-2 sm:order-1">
                                             <div
-                                                class="flex items-center w-full bg-white shadow-sm rounded relative"
+                                                class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden border border-gray-200"
                                             >
-                                                <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
                                                 <input
                                                     v-model="queryForm.filter"
                                                     autocomplete="off"
                                                     type="text"
                                                     name="search"
                                                     placeholder="Search…"
-                                                    class="relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
+                                                    class="block w-full h-full px-2 py-2 border-none text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                                                 />
+                                                <div class="mx-2 sm:mx-3">
+                                                    <SearchIcon
+                                                        class="h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"/>
+                                                </div>
                                             </div>
                                             <button
                                                 type="button"
                                                 @click="reset"
-                                                class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                                class="py-2 px-2 sm:px-4 rounded-md font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                             >
                                                 Reset
                                             </button>
                                         </div>
 
-                                        <div class="flex justify-between">
+                                        <div class="flex justify-between order-1 sm:order-2 ml-auto">
                                             <inertia-link
                                                 :href="route('employees.documents.create',employee.id)"
-                                                class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                                                class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                                             >
                                                 Upload
                                             </inertia-link>
                                         </div>
                                     </div>
+
                                     <div class="flex flex-col">
                                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                             <div
@@ -58,7 +64,7 @@
                                                         <tr>
                                                             <th
                                                                 scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                                class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                             >
                                                                 Sl.
                                                             </th>
@@ -67,8 +73,11 @@
                                                                 @click="sort('description')"
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
-                                                                <sort-arrow :sort="queryForm.sort" field="description"/>
-                                                                Description
+                                                                <div class="flex gap-2 items-center">
+                                                                    <sort-arrow :sort="queryForm.sort"
+                                                                                field="description"/>
+                                                                    Description
+                                                                </div>
                                                             </th>
 
                                                             <th
@@ -76,20 +85,23 @@
                                                                 @click="sort('year')"
                                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                                             >
-                                                                <sort-arrow :sort="queryForm.sort" field="year"/>
-                                                                Year
+                                                                <div class="flex gap-2 items-center">
+                                                                    <sort-arrow :sort="queryForm.sort" field="year"/>
+                                                                    Year
+                                                                </div>
                                                             </th>
 
                                                             <th
                                                                 scope="col"
-                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                             >
-                                                                View
-                                                                (pop-up on click)
+                                                                <span>View</span>
+                                                                <span class="text-xs">(pop-up on click)</span>
                                                             </th>
 
-                                                            <th scope="col" class="relative px-6 py-3">
-                                                                <span class="sr-only">Actions</span>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                <span>Actions</span>
                                                             </th>
                                                         </tr>
                                                         </thead>
@@ -105,7 +117,8 @@
                                                             </td>
 
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 max-w-sm truncate"
+                                                                :title="document.description"
                                                             >
                                                                 {{ document.description }}
                                                             </td>
@@ -119,7 +132,9 @@
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                                             >
-                                                                View
+                                                                <a :href="getFileUrl(document.file_path)" target="_blank">
+                                                                    View
+                                                                </a>
                                                             </td>
 
 
@@ -128,14 +143,16 @@
                                                             >
                                                                 <inertia-link
                                                                     :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"
-                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                                                    class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md h-10"
                                                                 >Edit
                                                                 </inertia-link>
-                                                                <inertia-link
-                                                                    :href="route('employees.documents.edit', {'id':employee.id,'document':document.id})"
+
+                                                                <a
+                                                                    :href="getFileUrl(document.file_path)"
                                                                     class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
+                                                                    download
                                                                 >Download
-                                                                </inertia-link>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

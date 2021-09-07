@@ -1,19 +1,7 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-                :links="[
-          {
-            title: 'Countries',
-            url: route('countries.index'),
-          },
-          {
-            title: 'Edit',
-            active: true,
-          },
-        ]"
-            />
-            <div class="mt-10 sm:mt-0">
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit">
                     <template #title> Update Country </template>
 
@@ -21,7 +9,7 @@
 
                     <template #form>
                         <!-- Name -->
-                        <div class="col-span-6 sm:col-span-12">
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
                             <jet-label for="name" value="Name *" />
                             <jet-input
                                 id="name"
@@ -35,7 +23,54 @@
                             />
                             <jet-input-error :message="form.errors.name" class="mt-2" />
                         </div>
-
+                        <!-- Country Code -->
+                        <div class="col-span-6 sm:col-span-12 mb-2 -mx-4">
+                            <jet-label for="country_code" value="Country Code *" />
+                            <jet-input
+                                id="country_code"
+                                type="text"
+                                v-model="form.country_code"
+                                class="mt-1 block w-full focus:ring-cyan-100"
+                                :class="{ 'border-red-500': form.errors.country_code }"
+                                autocomplete="country_code"
+                                required
+                                autofocus
+                            />
+                            <jet-input-error :message="form.errors.country_code" class="mt-2" />
+                        </div>
+                        <!--flag-->
+                        <div class="grid grid-cols-3 gap-3 -mx-4">
+                            <div class="col-span-3 my-2">
+                                <label for="photo" class="block text-sm font-medium text-gray-700">
+                                    Flag
+                                </label>
+                                <div class="mt-1 flex items-center">
+<!--                                    <span v-if="flagPreview == null"-->
+<!--                                          class="h-12 w-12 p-3 rounded-full overflow-hidden bg-gray-100">-->
+<!--                                      <img class="w-full h-full" src="/images/icon/country.png" alt="Country Placeholder">-->
+<!--                                    </span>-->
+<!--                                    <div class="mt-2" v-show="flagPreview">-->
+<!--                                        <span class="block rounded-full w-12 h-12"-->
+<!--                                              :style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + flagPreview + '\');'">-->
+<!--                                        </span>-->
+<!--                                    </div>-->
+                                    <div class="mt-2 p-3 h-12 w-12 overflow-hidden rounded-full bg-gray-100" v-show="!flagPreview">
+                                        <img :src="country.flag_path ? getFileUrl(country.flag_path) : '/images/icon/country.png'" alt="Current Country Photo"
+                                             class="h-full w-full">
+                                    </div>
+                                    <input type="file" class="hidden"
+                                           ref="photo"
+                                           @change="updateFlagPreview">
+                                    <button type="button"
+                                            @click.native.prevent="selectNewFlag"
+                                            class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            :class="{ 'border-red-500' : form.errors.photo }">
+                                        Change
+                                    </button>
+                                </div>
+                                <jet-input-error :message="form.errors.photo" class="mt-2"/>
+                            </div>
+                        </div>
                     </template>
 
                     <template #actions>
@@ -46,6 +81,7 @@
                         <jet-button
                             :class="{ 'opacity-25': form.processing }"
                             :disabled="form.processing"
+                            class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                         >
                             Save
                         </jet-button>
@@ -57,7 +93,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";
@@ -69,7 +105,7 @@ import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 
 export default {
     props: {
-        countries: Object,
+        country: Object,
     },
     components: {
         AppLayout,
@@ -88,23 +124,38 @@ export default {
             form: this.$inertia.form(
                 {
                     _method: "PUT",
-                    name: this.countries.name,
+                    name: this.country.name,
+                    country_code: this.country.country_code,
+                    flag: this.country.flag_path
                 },
                 {
                     resetOnSuccess: true,
                 }
             ),
-            logoPreview: null,
+            flagPreview: null,
         };
     },
     methods: {
         submit() {
+            if (this.$refs.photo) {
+                this.form.flag = this.$refs.photo.files[0]
+            }
             this.form.post(
-                route("countries.update", this.countries.id),
+                route("settings.countries.update", this.country.id),
                 {
                     preserveScroll: true,
                 }
             );
+        },
+        selectNewFlag() {
+            this.$refs.photo.click();
+        },
+        updateFlagPreview() {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                this.flagPreview = e.target.result;
+            };
+            reader.readAsDataURL(this.$refs.photo.files[0]);
         },
     },
 };

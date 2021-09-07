@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 p-4">
             <breadcrumb
                 :links="[
                   {
@@ -9,34 +9,36 @@
                   },
                 ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
-                        class="flex items-center w-full bg-white shadow-sm rounded relative"
+                        class="h-10 flex items-center w-full bg-white shadow-sm border border-gray-200 overflow-hidden rounded-md relative"
                     >
-                        <SearchIcon class="h-5 w-5 text-gray-300 mx-2"/>
+                        <div class="mx-2 sm:mx-3">
+                            <SearchIcon class="h-5 w-5 text-gray-300"/>
+                        </div>
                         <input
                             v-model="queryForm.filter"
                             autocomplete="off"
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="block w-full h-full pl-8 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
+                            class="block w-full h-full pl-0 sm:pl-2 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
                     </div>
                     <button
                         type="button"
                         @click="reset"
-                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                        class="h-10 py-2 px-4 rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                     >
                         Reset
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        :href="route('users.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                        :href="route('settings.users.create')"
+                        class="h-10 py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add User
                     </inertia-link>
@@ -65,8 +67,10 @@
                                         @click="sort('name')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name"/>
-                                        Name
+                                        <div class="flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="name"/>
+                                            Name
+                                        </div>
                                     </th>
 
                                     <th
@@ -74,15 +78,16 @@
                                         @click="sort('phone')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="phone"/>
-                                        Phone
+                                        <div class="flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="phone"/>
+                                            Phone
+                                        </div>
                                     </th>
 
                                     <th
                                         scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <!--                                        <sort-arrow :sort="queryForm.sort" field="role"/>-->
                                         Role
                                     </th>
 
@@ -91,8 +96,10 @@
                                         @click="sort('created_at')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="created_at"/>
-                                        Created At
+                                        <div class="flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="created_at"/>
+                                            Created At
+                                        </div>
                                     </th>
 
                                     <th
@@ -100,12 +107,14 @@
                                         @click="sort('status')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="status"/>
-                                        Status
+                                        <div class="flex gap-2 items-center">
+                                            <sort-arrow :sort="queryForm.sort" field="status"/>
+                                            Status
+                                        </div>
                                     </th>
 
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <span>Actions</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -113,6 +122,7 @@
                                 <tr
                                     v-for="(user, index) in users.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
@@ -168,13 +178,13 @@
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('users.show', user.id)"
+                                            :href="route('settings.users.show', user.id)"
                                             class="text-white bg-cyan-500 hover:bg-cyan-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Show
                                         </inertia-link>
 
                                         <inertia-link
-                                            :href="route('users.edit', user.id)"
+                                            :href="route('settings.users.edit', user.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
@@ -188,7 +198,7 @@
                             v-else
                             resource="users"
                             action-text="Add Employee"
-                            :action-link="route('users.create')"
+                            :action-link="route('settings.users.create')"
                         />
                     </div>
                 </div>
@@ -198,7 +208,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
@@ -247,7 +257,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "users.index",
+                        "settings.users.index",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
@@ -272,7 +282,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("users.index"));
+            this.$inertia.visit(this.route("settings.users.index"));
         },
     },
 };

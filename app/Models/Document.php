@@ -11,7 +11,7 @@ class Document extends Model
 
     protected $guarded = ['id'];
 
-    public function employee()
+    public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Employee::class);
     }

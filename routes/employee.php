@@ -10,3 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\Employee\PayslipController;
+use App\Http\Controllers\SupportTicketController;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Employee/Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('supportTickets',SupportTicketController::class)
+    ->except('destroy')
+    ->middleware(['auth', 'verified']);
+
+Route::get('payslips', PayslipController::class)->name('payslips');
+

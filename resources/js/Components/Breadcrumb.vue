@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5 flex items-center">
+  <div class="mb-3 sm:mb-5 flex items-center">
     <template v-for="link in links">
       <template v-if="link.url">
         <inertia-link :href="link.url" class="text-xl text-cyan-700 font-bold"

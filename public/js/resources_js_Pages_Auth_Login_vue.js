@@ -4938,8 +4938,8 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   "class": "w-full flex justify-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
   "class": "h-12 w-auto",
-  src: "https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg",
-  alt: "Workflow"
+  src: "/images/logo2.png",
+  alt: "Sanubari"
 })], -1
 /* HOISTED */
 );

@@ -30,16 +30,19 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="basic_salary" value="Basic Salary *"/>
-                                        <jet-input
-                                            id="basic_salary"
-                                            type="text"
-                                            v-model="form.basic_salary"
-                                            :class="{ 'border-red-500': form.errors.basic_salary }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.basic_salary"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="basic_salary"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.basic_salary"
+                                                :class="{ 'border-red-500': form.errors.basic_salary }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.basic_salary"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- living_allowance-->
@@ -47,16 +50,19 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="living_allowance" value="Cost of Living Allowance *"/>
-                                        <jet-input
-                                            id="living_allowance"
-                                            type="text"
-                                            v-model="form.living_allowance"
-                                            :class="{ 'border-red-500': form.errors.living_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.living_allowance"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="living_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.living_allowance"
+                                                :class="{ 'border-red-500': form.errors.living_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.living_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- attendance_allowance-->
@@ -64,16 +70,19 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="attendance_allowance" value="Attendance Allowance *"/>
-                                        <jet-input
-                                            id="attendance_allowance"
-                                            type="text"
-                                            v-model="form.attendance_allowance"
-                                            :class="{ 'border-red-500': form.errors.attendance_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.attendance_allowance"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="attendance_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.attendance_allowance"
+                                                :class="{ 'border-red-500': form.errors.attendance_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.attendance_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                     <!-- levy-->
@@ -81,16 +90,19 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="levy" value="Levy *"/>
-                                        <jet-input
-                                            id="levy"
-                                            type="text"
-                                            v-model="form.levy"
-                                            :class="{ 'border-red-500': form.errors.levy }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.levy"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="levy"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.levy"
+                                                :class="{ 'border-red-500': form.errors.levy }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.levy"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
 
@@ -99,16 +111,19 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="in_charge_allowance" value="In Charge Allowance *"/>
-                                        <jet-input
-                                            id="in_charge_allowance"
-                                            type="text"
-                                            v-model="form.in_charge_allowance"
-                                            :class="{ 'border-red-500': form.errors.in_charge_allowance }"
-                                        />
-                                        <jet-input-error
-                                            :message="form.errors.in_charge_allowance"
-                                            class="mt-2"
-                                        />
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="in_charge_allowance"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.\d{2})\d*/, '$1').replace(/(\d)(?=(\d{3})+\b)/g, '$1,');"
+                                                v-model="form.in_charge_allowance"
+                                                :class="{ 'border-red-500': form.errors.in_charge_allowance }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.in_charge_allowance"
+                                                class="mt-2"
+                                            />
+                                        </div>
                                     </div>
 
                                 </div>

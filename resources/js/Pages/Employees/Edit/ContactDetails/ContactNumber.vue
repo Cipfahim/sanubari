@@ -20,24 +20,32 @@
         >
             <template #form class="md:col-span-12">
                 <div class="mt-1 sm:mt-0">
-                    <div class="relative" v-for="(item, index) in form.items">
-                        <jet-input
-                            id="phone"
-                            type="text"
-                            v-model="item.contact_number"
-                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                            :class="{ 'border-red-500': form.errors.phone }"
-                        />
-                        <jet-input-error
-                            :message="getNestedErrors('items.'+index+'.contact_number',form)"
-                            class="mt-2"
-                        />
-                        <button
-                            v-if="index !== 0"
-                            @click.prevent="removeItem(index, item)"
-                            class="absolute right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
-                            <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
-                        </button>
+                    <div class="flex gap-2" v-for="(item, index) in form.items">
+                        <select name="type" v-model="item.type"
+                                class="block h-10 w-24 sm:w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">
+                            <option disabled>Select Number Type</option>
+                            <option v-for="(type,index) in numberTypes" :key="index" :value="type">{{ type }}</option>
+                        </select>
+                        <div class="w-full relative">
+                            <jet-input
+                                id="phone"
+                                type="number"
+                                v-model="item.contact_number"
+                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                :class="{ 'border-red-500': form.errors.phone }"
+                                placeholder="Enter phone number"
+                            />
+                            <jet-input-error
+                                :message="getNestedErrors('items.'+index+'.contact_number',form)"
+                                class="mb-2"
+                            />
+                            <button
+                                v-if="index !== 0"
+                                @click.prevent="removeItem(index, item)"
+                                class="absolute right-1 sm:right-2 top-1.5 text-red-500 hover:bg-gray-200 rounded-full h-7 w-7 text-center">
+                                <XIcon class="h-5 w-5 text-red-400 mx-auto"/>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -52,13 +60,13 @@
                                 >
                                     <inertia-link
                                         :href="route('employees.edit.identification.index',employee.id)"
-                                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                                        class="py-2 px-2 sm:px-4 border border-transparent rounded-md ml-2 sm:ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                                     >
                                         Previous
                                     </inertia-link>
                                     <button
                                         type="submit"
-                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                        class="ml-2 sm:ml-3 inline-flex justify-center py-2 px-2 sm:px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                     >
                                         Save
                                     </button>
@@ -66,7 +74,7 @@
                                     <button
                                         type="button"
                                         @click="saveAndContinue()"
-                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                                        class="ml-2 sm:ml-3 inline-flex justify-center py-2 px-2 sm:px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                                     >
                                         Save & Continue
                                     </button>
@@ -98,7 +106,8 @@ export default {
         JetInput,
     },
     props: {
-        employee: Object
+        employee: Object,
+        numberTypes: Array
     },
     data() {
         return {
@@ -119,10 +128,11 @@ export default {
             this.form.items = []
             if (this.employee.contact_numbers.length) {
                 this.employee.contact_numbers.forEach((value, index) => {
+                    console.log(value);
                     let data = {
                         id: value.id,
                         type: value.type,
-                        contact_number: value.value
+                        contact_number: value.number
                     }
                     this.form.items.push(data)
                 })

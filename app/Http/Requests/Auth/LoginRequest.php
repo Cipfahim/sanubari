@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\Role;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -45,15 +46,17 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('phone', 'password'), $this->filled('remember'))) {
+        if (Auth::attempt(array_merge($this->only('phone', 'password'), ['role_id' => Role::Employee]),
+            $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+        }   else if(Auth::attempt(array_merge($this->only('phone', 'password'), ['role_id' => Role::Auditor]),
+            $this->filled('remember'))) {
+            RateLimiter::hit($this->throttleKey());
+        }   else {
             throw ValidationException::withMessages([
                 'phone' => __('auth.failed'),
             ]);
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**
@@ -65,7 +68,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited()
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -88,6 +91,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('phone')).'|'.$this->ip();
+        return Str::lower($this->input('phone')) . '|' . $this->ip();
     }
 }

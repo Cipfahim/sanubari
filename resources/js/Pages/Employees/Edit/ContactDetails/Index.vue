@@ -1,14 +1,14 @@
 <template>
     <app-layout>
         <!-- Start::Stepper -->
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 px-4 sm:px-6 lg:px-8 relative">
             <top-bar :employee="employee.id" :current="route('employees.edit.contact-details.index', employee.id)"/>
-            <div class="bg-gray-50 p-4 rounded-md mt-5">
+            <div class="bg-gray-50 px-4 pt-4 rounded-md mt-5 relative">
 
                 <!-- Tab for Desktop & mobile -->
-                <div class="block sm:block overflow-x-scroll scrollbar-hide text-center">
-                    <div class="border-b border-gray-200">
-                        <nav class="-mb-px flex space-x-6 sm:space-x-8" aria-label="Tabs">
+                <div class="block sm:block overflow-x-scroll scrollbar-hide text-center relative">
+                    <div class="border-b border-gray-200 sticky top-0">
+                        <nav class="-mb-px w-full flex justify-center space-x-2 sm:space-x-8" aria-label="Tabs">
                             <!-- Current: "border-cyan-500 text-cyan-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200" -->
                             <button
                                 type="button"
@@ -18,7 +18,7 @@
                     openTab !== 1,
                   'border-cyan-500 text-cyan-600': openTab === 1,
                 }"
-                                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                             >
                                 Contact Number
 
@@ -40,7 +40,7 @@
                     openTab !== 2,
                   'border-cyan-500 text-cyan-600': openTab === 2,
                 }"
-                                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                             >
                                 Personal Email
 
@@ -61,7 +61,7 @@
                     openTab !== 3,
                   'border-cyan-500 text-cyan-600': openTab === 3,
                 }"
-                                class="whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                                 aria-current="page"
                             >
                                 Contact Address
@@ -79,14 +79,14 @@
                 </div>
                 <!-- Personal Phone -->
                 <div
-                    class="mt-4 h-full sm:h-96"
+                    class="mt-4 pb-10 h-full"
                     :class="{ hidden: openTab !== 1, block: openTab === 1 }"
                 >
-                    <contact-number :employee="employee"/>
+                    <contact-number :employee="employee" :number-types="numberTypes"/>
                 </div>
                 <!-- Personal Email -->
                 <div
-                    class="mt-4 h-full sm:h-96"
+                    class="mt-4 pb-10 h-full"
                     :class="{ hidden: openTab !== 2, block: openTab === 2 }"
                 >
                     <personal-email :employee="employee"/>
@@ -94,10 +94,10 @@
                 </div>
                 <!-- Address -->
                 <div
-                    class="mt-4 h-full sm:h-96"
+                    class="pb-10 h-full"
                     :class="{ hidden: openTab !== 3, block: openTab === 3 }"
                 >
-                    <contact-address :employee="employee"/>
+                    <contact-address :employee="employee" :address-types="addressTypes"/>
                 </div>
             </div>
         </div>
@@ -137,6 +137,8 @@ import ContactAddress from "./ContactAddress";
 export default {
     props: {
         employee: Object,
+        addressTypes: Array,
+        numberTypes: Array
     },
     components: {
         ContactNumber,

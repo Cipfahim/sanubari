@@ -27,24 +27,22 @@
 
                                     <!-- Location field-->
                                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
-                                        <jet-label for="location" value="Location *"/>
+                                        <jet-label for="location" value="Bank Name *"/>
 
-                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                            <div class="max-w-lg flex justify-space-between">
-                                                <select
-                                                    v-model="form.bank"
-                                                    id="bank"
-                                                    name="bank"
-                                                    autocomplete="bank"
-                                                    class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                                    :class="{ 'border-red-500': form.errors.bank }"
-                                                >
-                                                    <option disabled selected>Select one</option>
-                                                    <option v-for="(bank) in banks"
-                                                            :value="bank.id">{{ bank.name }}
-                                                    </option>
-                                                </select>
-                                            </div>
+                                        <div class="col-span-2 max-w-lg">
+                                            <select
+                                                v-model="form.bank"
+                                                id="bank"
+                                                name="bank"
+                                                autocomplete="bank"
+                                                class="focus:ring-cyan-500 focus:border-cyan-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                :class="{ 'border-red-500': form.errors.bank }"
+                                            >
+                                                <option disabled selected>Select one</option>
+                                                <option v-for="(bank) in banks"
+                                                        :value="bank.id">{{ bank.name }}
+                                                </option>
+                                            </select>
                                             <jet-input-error
                                                 :message="form.errors.bank"
                                                 class="mt-2"
@@ -57,10 +55,11 @@
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="account_number" value="Account Number *"/>
-                                        <div class="block">
+                                        <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="account_number"
                                                 type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/\B(?=(\d{4})+(?!\d))/g, ' ');"
                                                 v-model="form.account_number"
                                                 :class="{ 'border-red-500': form.errors.account_number }"
                                             />
@@ -70,7 +69,6 @@
                                             />
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="pt-5">
@@ -139,12 +137,14 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import Input from "@/Components/Input";
 import JetCheckbox from "@/Jetstream/Checkbox";
+import {mask} from 'vue-the-mask'
 
 export default {
     props: {
         banks: Array,
         employee: Object,
     },
+    directives: {mask},
     components: {
         Input,
         TopBar,
@@ -163,7 +163,7 @@ export default {
         JetInputError,
         JetActionMessage,
         JetButton,
-        JetCheckbox
+        JetCheckbox,
     },
     data() {
         return {

@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 lg:px-8">
+        <div class="p-4">
             <breadcrumb
                 :links="[
           {
@@ -9,10 +9,10 @@
           },
         ]"
             />
-            <div class="mb-6 flex justify-between items-center">
-                <div class="flex items-center w-full max-w-md mr-4">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-y-2">
+                <div class="flex items-center w-full max-w-md sm:mr-4 order-2 sm:order-1">
                     <div
-                        class="flex items-center w-full bg-white shadow-sm rounded relative"
+                        class="h-10 flex items-center w-full bg-white shadow-sm border border-gray-200 overflow-hidden rounded-md relative"
                     >
                         <SearchIcon class="h-7 w-7 text-gray-300 mx-2"/>
                         <input
@@ -21,22 +21,22 @@
                             type="text"
                             name="search"
                             placeholder="Search…"
-                            class="relative w-full px-4 py-2 rounded-md border-0 border-transparent focus:outline-none focus:ring-2 focus:ring-transparent"
+                            class="block w-full h-full pl-0 sm:pl-2 pr-3 py-2 border-transparent text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm"
                         />
                     </div>
                     <button
                         type="button"
                         @click="reset"
-                        class="py-2 px-4 border border-transparent rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
+                        class="h-10 py-2 px-4 rounded-md ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
                     >
                         Reset
                     </button>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between order-1 sm:order-2 ml-auto">
                     <inertia-link
-                        :href="route('countries.create')"
-                        class="py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
+                        :href="route('settings.countries.create')"
+                        class="h-10 py-2 px-4 border border-transparent font-bold shadow-sm text-sm rounded-md text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                     >
                         Add Country
                     </inertia-link>
@@ -56,22 +56,34 @@
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        class="w-12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Sl.
+                                        <p class="w-12">
+                                            Sl.
+                                        </p>
                                     </th>
                                     <th
                                         scope="col"
                                         @click="sort('name')"
+                                        class="px-6 py-3 w-44 sm:w-auto text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                                    >
+                                        <div class="flex items-center gap-2">
+                                            <sort-arrow :sort="queryForm.sort" field="name"/>
+                                            <span>Country Name</span>
+                                        </div>
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        @click="sort('country_code')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
-                                        <sort-arrow :sort="queryForm.sort" field="name"/>
-                                        Name
+                                        <div class="flex items-center gap-2">
+                                            <sort-arrow :sort="queryForm.sort" field="country_code"/>
+                                            <span class="flex-1 w-44 sm:w-auto">Country Code</span>
+                                        </div>
                                     </th>
-
-
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Actions</span>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
                                     </th>
                                 </tr>
                                 </thead>
@@ -79,25 +91,35 @@
                                 <tr
                                     v-for="(country, index) in countries.data"
                                     :key="index"
+                                    class="hover:bg-gray-50"
                                 >
                                     <td
                                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ index + 1 }}
+                                        <div class="w-12">
+                                            {{ index + 1 }}
+                                        </div>
                                     </td>
-
                                     <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                                        class="px-6 py-4 w-44 sm:w-auto whitespace-nowrap text-sm text-gray-500"
                                     >
-                                        {{ country.name }}
+                                        <div class="flex gap-3 items-center">
+                                            <div class="w-12 h-12 rounded-full">
+                                                <img class="w-full h-full rounded-full" :src="country.flag_path ? getFileUrl(country.flag_path) : '/images/icon/country.png'" :alt="country.name">
+                                            </div>
+                                            <div class="flex-1">{{ country.name }}</div>
+                                        </div>
                                     </td>
-
-
+                                    <td
+                                        class="px-6 py-4 w-44 sm:w-auto whitespace-nowrap text-sm text-gray-500"
+                                    >
+                                        <p>+ {{ country.country_code }}</p>
+                                    </td>
                                     <td
                                         class="px-6 whitespace-nowrap text-right text-sm font-medium"
                                     >
                                         <inertia-link
-                                            :href="route('countries.edit', country.id)"
+                                            :href="route('settings.countries.edit', country.id)"
                                             class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                         >Edit
                                         </inertia-link>
@@ -117,9 +139,9 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="categories"
+                            resource="countries"
                             action-text="Add Country"
-                            :action-link="route('countries.create')"
+                            :action-link="route('settings.countries.create')"
                         />
                     </div>
                 </div>
@@ -152,7 +174,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import NoDataFound from "@/Components/NoDataFound";
 import Pagination from "@/Components/Pagination";
@@ -212,7 +234,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "countries.index",
+                        "settings.countries.index",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
@@ -248,7 +270,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("countries.index"));
+            this.$inertia.visit(this.route("settings.countries.index"));
         },
 
         // Confirm deletion.
@@ -260,7 +282,7 @@ export default {
         // Send delete request.
         destroy() {
             this.$inertia.delete(
-                this.route("countries.destroy", this.deleteCategory),
+                this.route("settings.countries.destroy", this.deleteCategory),
                 {
                     preserveState: true,
                     preserveScroll: true,
@@ -280,7 +302,7 @@ export default {
         // Send bulk delete request.
         bulkDestroy() {
             this.$inertia.post(
-                this.route("countries.bulk-destroy"),
+                this.route("settings.countries.bulk-destroy"),
                 {
                     _method: "DELETE",
                     categories: this.bulkIds,

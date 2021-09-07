@@ -1,31 +1,19 @@
 <template>
     <app-layout>
-        <div class="mt-4 px-4 sm:px-6 w-full sm:w-3/4 xl:w-2/4 sm:mr-auto">
-            <breadcrumb
-            :links="[
-                {
-                    title: 'Locations',
-                    url:route('locations.index'),
-                },
-                {
-                    title : 'Create',
-                    active: true
-                }
-            ]"
-            />
-            <div class="mt-10 sm:mt-0">
+        <div class="p-4">
+            <div class="w-full sm:w-96">
                 <jet-form-section @submitted="submit"
                                   class="md:grid md:grid-cols-1 md:gap-0 md:gap-y-6"
                 >
-                <template #title class="md:col-span-12">
-                    Create New Location
-                </template>
-                 <template #description class="md:col-span-12" >
-                     Provide Location Details
-                 </template>
+                    <template #title class="md:col-span-12">
+                        Create New Location
+                    </template>
+                    <template #description class="md:col-span-12" >
+                        Provide Location Details
+                    </template>
                     <template #form class="md:col-span-12" >
 <!--                        Name-->
-                        <div class="col-span-6 sm:col-span-12" >
+                        <div class="col-span-6 sm:col-span-12 -mx-4" >
                             <jet-label for="name" value="Location Name *" />
                             <jet-input
                                 type="text"
@@ -47,6 +35,7 @@
                         <jet-button
                         :class="{'opacity-25':form.processing}"
                         :disabled="form.processing"
+                        class="bg-cyan-500 hover:bg-cyan-600 focus:outline-none"
                         >
                         Create
                         </jet-button>
@@ -59,7 +48,7 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/App";
+import AppLayout from "@/Layouts/SettingLayout";
 import Breadcrumb from "@/Components/Breadcrumb";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetLabel from "@/Jetstream/Label";

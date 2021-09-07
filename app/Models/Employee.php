@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\EmployeeStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Employee extends Model
@@ -20,28 +22,36 @@ class Employee extends Model
         'status' => EmployeeStatusEnum::class,
     ];
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function location()
+    /**
+     * @return BelongsTo
+     */
+    public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function contactDetails()
+    /**
+     * @return HasMany
+     */
+    public function contactDetails(): HasMany
     {
         return $this->hasMany(ContactDetails::class);
     }
 
-    public function contactNumbers()
+    public function contactNumbers(): HasMany
     {
-        return $this->hasMany(ContactDetails::class)
-            ->where('type', 'number');
+        return $this->hasMany(ContactNumber::class);
     }
 
-    public function contactEmails()
+    public function contactEmails(): HasMany
     {
         return $this->hasMany(ContactDetails::class)
             ->where('type', 'email');
@@ -49,8 +59,7 @@ class Employee extends Model
 
     public function contactAddress()
     {
-        return $this->hasMany(ContactDetails::class)
-            ->where('type', 'address');
+        return $this->hasMany(ContactAddress::class);
     }
 
     public function contribution()
@@ -78,8 +87,8 @@ class Employee extends Model
         return $this->hasMany(Payslip::class);
     }
 
-    public function leave()
+    public function leaveQuota()
     {
-        return $this->belongsTo(Leave::class);
+        return $this->hasOne(LeaveQuota::class);
     }
 }
