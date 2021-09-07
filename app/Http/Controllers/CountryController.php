@@ -56,7 +56,7 @@ class CountryController extends Controller
             'name' => $request->get('name'),
             'slug' => Str::of($request->get('name'))->slug('-'),
         ]);
-        return Redirect::route('countries.index')->with('success',"Country Added");
+        return Redirect::route('cars.index')->with('success',"Car Added");
     }
 
     /**

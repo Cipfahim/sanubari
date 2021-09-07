@@ -1,4 +1,4 @@
-<template>
+we<template>
     <div class="h-screen flex overflow-hidden bg-gray-100">
         <sidebar ref="sidebar"/>
         <div class="flex-1 overflow-auto focus:outline-none">
