@@ -46,16 +46,17 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt(array_merge($this->only('phone', 'password'), ['role_id' => Role::Employee]),
+        if (Auth::attempt(array_merge($this->only('phone', 'password'), ['role_id' => Role::Employee]),
             $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+        }   else if(Auth::attempt(array_merge($this->only('phone', 'password'), ['role_id' => Role::Auditor]),
+            $this->filled('remember'))) {
+            RateLimiter::hit($this->throttleKey());
+        }   else {
             throw ValidationException::withMessages([
                 'phone' => __('auth.failed'),
             ]);
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**
