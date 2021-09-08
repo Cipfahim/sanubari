@@ -16,11 +16,11 @@
                     >
                         <select v-model="queryForm.field"
                                 class="h-full w-24 sm:w-40 truncate border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
-                            <option value="official_name">Official name</option>
-                            <option value="user.phone">Phone</option>
-                            <option value="location.name">Location</option>
-                            <option value="date_of_join">Date of join</option>
-                            <option value="user.status">Status</option>
+                            <option value="employee.official_name">Official name</option>
+                            <option value="employee.user.phone">Phone</option>
+                            <option value="employee.location.name">Location</option>
+                            <option value="employee.date_of_join">Date of join</option>
+                            <option value="employee.user.status">Status</option>
                         </select>
                         <input
                             v-model="queryForm.filter"
@@ -251,7 +251,7 @@ export default {
             queryForm: {
                 field: this.requests.filter
                     ? Object.keys(this.requests.filter)[0]
-                    : "official_name",
+                    : "employee.official_name",
                 filter: this.requests.filter
                     ? Object.values(this.requests.filter)[0]
                     : "",
@@ -274,7 +274,7 @@ export default {
                 let queryString = pickBy(customQuery);
                 this.$inertia.get(
                     this.route(
-                        "employees.index",
+                        "auditor.employees",
                         Object.keys(queryString).length
                             ? queryString
                             : {remember: "forget"}
@@ -310,53 +310,7 @@ export default {
 
         // Reset all filters
         reset() {
-            this.$inertia.visit(this.route("employees.index"));
-        },
-
-        // Confirm deletion.
-        confirmDeletion(employee) {
-            this.deleteEmployee = employee;
-            this.confirmingDeletion = true;
-        },
-
-        // Send delete request.
-        destroy() {
-            this.$inertia.delete(
-                this.route("employees.destroy", this.deleteEmployee),
-                {
-                    preserveState: true,
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        this.deleteEmployee = null;
-                        this.confirmingDeletion = false;
-                    },
-                }
-            );
-        },
-
-        // Confirm bulk deletion.
-        confirmBulkDeletion() {
-            this.confirmingBulkDeletion = true;
-        },
-
-        // Send bulk delete request.
-        bulkDestroy() {
-            this.$inertia.post(
-                this.route("employees.bulk-destroy"),
-                {
-                    _method: "DELETE",
-                    categories: this.bulkIds,
-                },
-                {
-                    preserveState: true,
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        this.bulkIds = [];
-                        this.confirmingBulkDeletion = false;
-                        this.checkAll = false;
-                    },
-                }
-            );
+            this.$inertia.visit(this.route("auditor.employees.index"));
         },
     },
 };

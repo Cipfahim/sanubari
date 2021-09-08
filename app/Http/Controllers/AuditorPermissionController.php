@@ -208,6 +208,8 @@ class AuditorPermissionController extends Controller
                 ->whereHas('auditSession', function (Builder $query) {
                     $query->where('user_id', Auth::user()->id);
                 })
+                ->allowedFilters('employee.official_name', 'employee.date_of_join', 'employee.user.phone', 'employee.user.status', 'employee.location.name')
+                ->allowedSorts(['user_id'])
                 ->latest('id')
                 ->paginate()
                 ->appends(\request()->query()),
