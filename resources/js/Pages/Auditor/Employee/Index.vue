@@ -115,7 +115,8 @@
                                             <span>Status</span>
                                         </div>
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th scope="col"
+                                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <span>Actions</span>
                                     </th>
                                 </tr>
@@ -184,13 +185,13 @@
                                         {{ session.employee.user.status }}
                                       </span>
                                     </td>
-                                    <td>
+                                    <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
                                         <inertia-link :href="route('auditor.employees.show',{
                                             'id': session.id
                                         })"
-                                                      class="max-w-sm truncate"
+                                                      class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10"
                                                       title="Click to show details">
-                                            ami ekhane
+                                            Show
                                         </inertia-link>
                                     </td>
                                 </tr>
