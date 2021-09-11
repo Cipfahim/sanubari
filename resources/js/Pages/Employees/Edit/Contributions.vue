@@ -28,6 +28,27 @@
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
+                                        <jet-label for="epf_no" value="EPF No *"/>
+                                        <div class="col-span-2 max-w-lg">
+                                            <jet-input
+                                                id="epf_no"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                maxlength="8"
+                                                v-model="form.epf_no"
+                                                :class="{ 'border-red-500': form.errors.epf_no }"
+                                            />
+                                            <jet-input-error
+                                                :message="form.errors.epf_no"
+                                                class="mt-2"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- epf_employee field-->
+                                    <div
+                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+                                    >
                                         <jet-label for="epf_employee" value="EPF Employee * (%)"/>
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
@@ -84,27 +105,6 @@
                                             </div>
                                             <jet-input-error
                                                 :message="form.errors.socso_group"
-                                                class="mt-2"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <!-- epf_employee field-->
-                                    <div
-                                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                    >
-                                        <jet-label for="epf_no" value="EPF No * (%)"/>
-                                        <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="epf_no"
-                                                type="text"
-                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                maxlength="8"
-                                                v-model="form.epf_no"
-                                                :class="{ 'border-red-500': form.errors.epf_no }"
-                                            />
-                                            <jet-input-error
-                                                :message="form.errors.epf_no"
                                                 class="mt-2"
                                             />
                                         </div>

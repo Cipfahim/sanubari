@@ -2,7 +2,7 @@
     <div class="w-full mx-auto">
         <div class="w-full mx-auto flex items-center justify-between mt-3">
             <label class="text-base font-medium text-gray-700 sm:mt-px sm:pt-2">
-                Contact Address<span class="text-blue-600"> *</span>
+                Address<span class="text-blue-600"> *</span>
             </label>
 
             <button
@@ -21,7 +21,7 @@
             <template #form>
                 <div class="h-[500px] overflow-y-auto scrollbar-hide">
                     <div class="mt-1 sm:mt-0 sm:grid grid-cols-2 gap-8">
-                        <div class="relative col-span-1 space-y-2 border-gray-300 border p-4 mb-3 sm:mb-0 rounded"
+                        <div class="relative col-span-1 border-gray-300 border p-4 mb-3 sm:mb-0 rounded"
                              v-for="(item, index) in form.items">
                             <button
                                 v-if="index !== 0"
@@ -29,102 +29,130 @@
                                 class="absolute right-1 top-1 text-white bg-red-200 rounded-full h-6 w-6 text-center">
                                 <XIcon class="h-5 w-5 text-red-600 mx-auto"/>
                             </button>
-                            <div>
-                                <label for="type" class="block text-sm font-medium text-gray-700">Address Type</label>
-                                <select v-model="item.addressType" id="type" name="type"
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option v-for="aType in addressTypes" :value="aType">{{ aType }}</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-sm text-gray-700">
-                                    Country/Territory<span class="text-blue-600"> *</span>
-                                </label>
-                                <jet-input
-                                    id="country"
-                                    type="text"
-                                    v-model="item.country"
-                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"
-                                />
-                            </div>
-                            <div>
-                                <label class="text-sm text-gray-700">
-                                    Address<span class="text-blue-600"> *</span>
-                                </label>
-                                <jet-input
-                                    id="address_line_one"
-                                    type="text"
-                                    v-model="item.address_line_one"
-                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_one',form) }"
-                                />
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-gray-700">
-                                    Address 2
-                                </label>
-                                <jet-input
-                                    id="address_line_two"
-                                    type="text"
-                                    v-model="item.address_line_two"
-                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_two',form) }"
-                                />
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-gray-700">
-                                    Address 3
-                                </label>
-                                <jet-input
-                                    id="address_line_three"
-                                    type="text"
-                                    v-model="item.address_line_three"
-                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_three',form) }"
-                                />
-                            </div>
-
-                            <div class="sm:grid grid-cols-3 gap-4">
+                            <div class="space-y-2">
+                                <div>
+                                    <label for="type" class="block text-sm font-medium text-gray-700">Address
+                                        Type</label>
+                                    <textarea
+                                        v-model="item.addressType"
+                                        class="mt-1 block w-full h-10 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"
+                                    ></textarea>
+                                </div>
                                 <div>
                                     <label class="text-sm text-gray-700">
-                                        Postal Code
+                                        Country/Territory<span class="text-blue-600"> *</span>
+                                    </label>
+                                    <!--                                <jet-input-->
+                                    <!--                                    id="country"-->
+                                    <!--                                    type="text"-->
+                                    <!--                                    v-model="item.country"-->
+                                    <!--                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"-->
+                                    <!--                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"-->
+                                    <!--                                />-->
+                                    <Multiselect
+                                        searchable
+                                        v-model="item.country"
+                                        :options="countries"
+                                        valueProp="id"
+                                        trackBy="name"
+                                        placeholder="Choose a nationality"
+                                        class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"
+                                    >
+                                        <template v-slot:singlelabel="{ value }">
+                                            <div class="flex gap-2 items-center multiselect-single-label">
+                                                <img class="h-8 w-10 rounded-md character-label-icon"
+                                                     :src="getFileUrl(value.flag_path)">
+                                                <p class="flex-1">{{ value.name }}</p>
+                                            </div>
+                                        </template>
+                                        <template v-slot:option="{ option }">
+                                            <div class="flex gap-2 items-center">
+                                                <img class="h-8 w-10 rounded-md"
+                                                     :src="getFileUrl(option.flag_path)">
+                                                <p class="flex-1">{{ option.name }}</p>
+                                            </div>
+                                        </template>
+                                    </Multiselect>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-gray-700">
+                                        Address<span class="text-blue-600"> *</span>
                                     </label>
                                     <jet-input
-                                        id="postal_code"
+                                        id="address_line_one"
                                         type="text"
-                                        v-model="item.postal_code"
+                                        v-model="item.address_line_one"
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.postal_code',form) }"
+                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_one',form) }"
                                     />
                                 </div>
 
                                 <div>
                                     <label class="text-sm text-gray-700">
-                                        City *
+                                        Address 2
                                     </label>
                                     <jet-input
-                                        id="city"
+                                        id="address_line_two"
                                         type="text"
-                                        v-model="item.city"
+                                        v-model="item.address_line_two"
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.city',form) }"
+                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_two',form) }"
                                     />
                                 </div>
 
                                 <div>
                                     <label class="text-sm text-gray-700">
-                                        State *
+                                        Address 3
                                     </label>
                                     <jet-input
-                                        id="state"
+                                        id="address_line_three"
                                         type="text"
-                                        v-model="item.state"
+                                        v-model="item.address_line_three"
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.state',form) }"
+                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_three',form) }"
                                     />
+                                </div>
+
+                                <div class="sm:grid grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="text-sm text-gray-700">
+                                            Postal Code
+                                        </label>
+                                        <jet-input
+                                            id="postal_code"
+                                            type="text"
+                                            v-model="item.postal_code"
+                                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                            :class="{ 'border-red-500': getNestedErrors('items.'+index+'.postal_code',form) }"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-sm text-gray-700">
+                                            City *
+                                        </label>
+                                        <jet-input
+                                            id="city"
+                                            type="text"
+                                            v-model="item.city"
+                                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                            :class="{ 'border-red-500': getNestedErrors('items.'+index+'.city',form) }"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label class="text-sm text-gray-700">
+                                            State *
+                                        </label>
+                                        <jet-input
+                                            id="state"
+                                            type="text"
+                                            v-model="item.state"
+                                            class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
+                                            :class="{ 'border-red-500': getNestedErrors('items.'+index+'.state',form) }"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -178,6 +206,8 @@ import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
 import JetInput from "@/Jetstream/Input";
 import JetFormSection from "@/Jetstream/FormSection";
+import Multiselect from "@vueform/multiselect";
+import '@vueform/multiselect/themes/default.css'
 
 export default {
     components: {
@@ -187,10 +217,12 @@ export default {
         JetLabel,
         JetInputError,
         JetInput,
+        Multiselect
     },
     props: {
         employee: Object,
-        addressTypes: Array
+        addressTypes: Array,
+        countries: Array,
     },
     data() {
         return {

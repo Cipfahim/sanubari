@@ -21,20 +21,29 @@
             <template #form class="md:col-span-12">
                 <div class="mt-1 sm:mt-0">
                     <div class="flex gap-2" v-for="(item, index) in form.items">
-                        <select name="type" v-model="item.type"
-                                class="block h-10 w-24 sm:w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">
-                            <option disabled>Select Number Type</option>
-                            <option v-for="(type,index) in numberTypes" :key="index" :value="type">{{ type }}</option>
-                        </select>
+<!--                        <select name="type" v-model="item.type"-->
+<!--                                class="block h-10 w-24 sm:w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">-->
+<!--                            <option disabled>Select Number Type</option>-->
+<!--                            <option v-for="(type,index) in numberTypes" :key="index" :value="type">{{ type }}</option>-->
+<!--                        </select>-->
+                        <textarea class="block h-10 w-24 sm:w-36 py-1 px-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md resize-none"></textarea>
                         <div class="w-full relative">
-                            <jet-input
-                                id="phone"
-                                type="number"
-                                v-model="item.contact_number"
-                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                :class="{ 'border-red-500': form.errors.phone }"
-                                placeholder="Enter phone number"
-                            />
+<!--                            <jet-input-->
+<!--                                id="phone"-->
+<!--                                type="number"-->
+<!--                                v-model="item.contact_number"-->
+<!--                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"-->
+<!--                                :class="{ 'border-red-500': form.errors.phone }"-->
+<!--                                placeholder="Enter phone number"-->
+<!--                            />-->
+                            <vue-tel-input ref="telPhone"
+                                           mode="international"
+                                           v-model="item.contact_number"
+                                           :class="{ 'border-red-500': form.errors.phone }"
+                                           class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden mb-3"
+                                           placeholder="Enter phone number"
+                            >
+                            </vue-tel-input>
                             <jet-input-error
                                 :message="getNestedErrors('items.'+index+'.contact_number',form)"
                                 class="mb-2"
@@ -95,6 +104,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetInputError from "@/Jetstream/InputError";
 import JetInput from "@/Jetstream/Input";
 import JetFormSection from "@/Jetstream/FormSection";
+import {VueTelInput} from 'vue3-tel-input'
 
 export default {
     components: {
@@ -104,6 +114,7 @@ export default {
         JetLabel,
         JetInputError,
         JetInput,
+        VueTelInput
     },
     props: {
         employee: Object,

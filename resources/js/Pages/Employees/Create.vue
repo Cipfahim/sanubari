@@ -219,7 +219,7 @@
                                         <div class="col-span-2 max-w-lg">
                                             <Switch
                                                 v-model="form.status"
-                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                :class="form.status ? 'bg-green-700' : 'bg-red-600'"
                                                 class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                             >
                                               <span
@@ -227,8 +227,8 @@
                                                   :class="form.status ? 'translate-x-20' : 'translate-x-0'"
                                                   class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200 select-none"
                                               >
-                                                <span v-if="form.status" class="text-cyan-900">Active</span>
-                                                <span v-else class="text-cyan-900">Inactive</span>
+                                                <span v-if="form.status" class="text-green-700">Active</span>
+                                                <span v-else class="text-red-600">Inactive</span>
                                               </span>
                                             </Switch>
                                             <jet-input-error

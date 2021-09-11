@@ -15,7 +15,7 @@
                         class="flex items-center w-full h-full bg-white shadow-sm rounded-md relative overflow-hidden"
                     >
                         <select v-model="queryForm.field"
-                                class="h-full w-24 sm:w-40 truncate border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
+                                class="h-full w-40 truncate border-none focus:outline-none focus:border-none focus:ring-0 bg-gray-50 text-gray-800 text-sm">
                             <option value="official_name">Official name</option>
                             <option value="user.phone">Phone</option>
                             <option value="location.name">Location</option>
