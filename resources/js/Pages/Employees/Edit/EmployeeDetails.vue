@@ -424,6 +424,7 @@ export default {
             this.form
                 .transform(data => ({
                     ...data,
+                    phone: this.$refs.telPhone.phoneObject.number,
                     status: this.form.status ? 'Active' : 'Inactive'
                 }))
                 .post(this.route('employees.update', this.employee.id))

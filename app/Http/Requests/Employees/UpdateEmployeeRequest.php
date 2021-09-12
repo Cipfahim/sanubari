@@ -32,7 +32,7 @@ class UpdateEmployeeRequest extends FormRequest
             'date_of_join' => ['required'],
             'phone' => [
                 'required', 'string', 'min:3', 'max:255',
-                'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/',
+//                'regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/',
                 Rule::unique('users')->where(function ($query) {
                     return $query->where('phone', request('phone'))->where('id', '!==', request()->route('employee'));
                 })
