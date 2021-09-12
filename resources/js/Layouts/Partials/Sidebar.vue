@@ -96,6 +96,17 @@
                         </div>
                     </template>
 
+                    <template v-else-if="$page.props.auth.user.role.slug === 'auditor'">
+                        <div class="px-2 space-y-1">
+                            <inertia-link v-for="item in auditorNavigation" :key="item.name" :href="item.href"
+                                          :class="[item.current ? 'bg-cyan-800 text-white' : 'text-cyan-100 hover:text-white hover:bg-cyan-600', 'group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md']"
+                                          :aria-current="item.current ? 'page' : undefined">
+                                <component :is="item.icon" class="mr-4 h-6 w-6 text-cyan-200" aria-hidden="true"/>
+                                {{ item.name }}
+                            </inertia-link>
+                        </div>
+                    </template>
+
                     <template v-else>
                         <div class="px-2 space-y-1">
                             <inertia-link v-for="item in navigation" :key="item.name" :href="item.href"
@@ -175,6 +186,20 @@ export default {
                     href: route('employee.supportTickets.index'),
                     icon: ChatAlt2Icon,
                     current: route().current('employee.supportTickets.*')
+                },
+            ],
+            auditorNavigation: [
+                {
+                    name: 'Dashboard',
+                    href: route('auditor.dashboard'),
+                    icon: HomeIcon,
+                    current: route().current('auditor.dashboard')
+                },
+                {
+                    name: 'Employee',
+                    href: route('auditor.employees'),
+                    icon: UserGroupIcon,
+                    current: route().current('auditor.employees.*')
                 },
             ],
             navigation: [

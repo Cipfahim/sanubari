@@ -13,4 +13,9 @@ class AuditSession extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function auditPermissions()
+    {
+        return $this->hasMany(AuditorPermission::class);
+    }
 }

@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
         ]);
         User::updateOrCreate([
             'name' => "Auditor Person",
-            "phone" => "0170123456448",
+            "phone" => "01648633792",
         ], [
             "password" => Hash::make('password'),
             "role_id" => Role::Auditor,

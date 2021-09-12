@@ -31,9 +31,11 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="annual_leave"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
                                                 v-model="form.annual_leave"
                                                 :class="{ 'border-red-500': form.errors.annual_leave }"
+                                                maxlength="2"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.annual_leave"
@@ -52,9 +54,11 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="medical_leave"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
                                                 v-model="form.medical_leave"
                                                 :class="{ 'border-red-500': form.errors.medical_leave }"
+                                                maxlength="2"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.medical_leave"
@@ -73,9 +77,11 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="bereavement_leave"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
                                                 v-model="form.bereavement_leave"
                                                 :class="{ 'border-red-500': form.errors.bereavement_leave }"
+                                                maxlength="2"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.bereavement_leave"
@@ -94,9 +100,11 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="hospital_leave"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
                                                 v-model="form.hospital_leave"
                                                 :class="{ 'border-red-500': form.errors.hospital_leave }"
+                                                maxlength="2"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.hospital_leave"
@@ -116,9 +124,11 @@
                                         <div class="col-span-2 max-w-lg">
                                             <jet-input
                                                 id="paternity_maternity_leave"
-                                                type="number"
+                                                type="text"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '');"
                                                 v-model="form.paternity_maternity_leave"
                                                 :class="{ 'border-red-500': form.errors.paternity_maternity_leave }"
+                                                maxlength="2"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.maternity_paternity_leave"

@@ -29,58 +29,58 @@
                         <div v-if="sessions.data.length" class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
-                                        <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                                            <sort-arrow :sort="queryForm.sort" field="name" />
-                                            Auditor
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Start Date</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">End Date</th>
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
+                                    <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="name" />
+                                        Auditor
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Start Date</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">End Date</th>
 
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Status</th>
 
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Actions</span>
-                                        </th>
-                                    </tr>
+                                    <th scope="col" class="relative px-6 py-3">
+                                        <span class="sr-only">Actions</span>
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr v-for="(session, index) in sessions.data" :key="index" class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ index + 1 }}
-                                        </td>
+                                <tr v-for="(session, index) in sessions.data" :key="index" class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ index + 1 }}
+                                    </td>
 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.user.name }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.start_date }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.end_date }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ session.status }}
-                                        </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.user.name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.start_date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.end_date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ session.status }}
+                                    </td>
 
-                                        <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
-                                            <inertia-link :href="route('auditor-access.edit', session.id)" class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">Edit </inertia-link>
+                                    <td class="px-6 whitespace-nowrap text-right text-sm font-medium">
+                                        <inertia-link :href="route('auditor-access.edit', session.id)" class="text-white bg-green-500 hover:bg-green-700 transition duration-500 px-3 py-1 rounded-md shadow-md ml-2 h-10">Edit </inertia-link>
 
-                                            <!-- <button
-                                          type="button"
-                                          @click="confirmDeletion(category)"
-                                          class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
-                                        >
-                                          Delete
-                                        </button> -->
-                                        </td>
-                                    </tr>
+                                        <!-- <button
+                                      type="button"
+                                      @click="confirmDeletion(category)"
+                                      class="text-white bg-red-500 hover:bg-red-700 transition duration-500 px-2 py-1 rounded-md shadow-md ml-2"
+                                    >
+                                      Delete
+                                    </button> -->
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <pagination class="m-2" :links="sessions.links" />
                         </div>
-                        <no-data-found v-else resource="sessions" action-text="Add Session" :action-link="route('auditor-access.create')" />
+                        <no-data-found v-else resource="sessions"/>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
 
                                 <div class="mt-1 sm:mt-0 sm:col-span-2 flex justify-between items-center">
                                     <div class="max-w-lg focus-within:z-10">
-<!--                                        <jet-input id="date_of_join" v-model="startDate" type="date" />-->
+                                        <!--                                        <jet-input id="date_of_join" v-model="startDate" type="date" />-->
                                         <DatePicker v-model="startDate" :masks="datePickerConfig.masks"
                                                     :model-config="datePickerConfig.modelConfig">
                                             <template #default="{ inputValue, inputEvents }">
@@ -118,7 +118,7 @@
                                     </div>
                                     <div>to</div>
                                     <div class="max-w-lg focus-within:z-10">
-<!--                                        <jet-input id="date_of_join" v-model="" type="date" />-->
+                                        <!--                                        <jet-input id="date_of_join" v-model="" type="date" />-->
                                         <DatePicker v-model="endDate" :masks="datePickerConfig.masks"
                                                     :model-config="datePickerConfig.modelConfig">
                                             <template #default="{ inputValue, inputEvents }">
@@ -229,7 +229,7 @@ export default {
     data() {
         return {
             queryForm: {
-                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "name",
+                field: this.requests.filter ? Object.keys(this.requests.filter)[0] : "user.name",
                 filter: this.requests.filter ? Object.values(this.requests.filter)[0] : "",
                 sort: this.requests.sort,
             },

@@ -41,4 +41,9 @@ class AuditorPermission extends Model
             $query->where('slug', 'auditor');
         })->get();
     }
+
+    public function auditSession()
+    {
+        return $this->belongsTo(AuditSession::class);
+    }
 }

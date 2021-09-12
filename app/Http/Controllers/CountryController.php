@@ -67,8 +67,6 @@ class CountryController extends Controller
                 folder: 'country',
                 disk: 'public')
         ]);
-        return Redirect::route('settings.countries.index')
-            ->with('success', "Country Added");
     }
 
     /**
