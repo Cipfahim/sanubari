@@ -97,7 +97,7 @@
                                         <jet-label for="location" value="Location *"/>
 
                                         <div class="col-span-2 max-w-lg">
-                                            <div class="w-full flex justify-space-between">
+                                            <div class="w-full sm:flex justify-space-between space-y-4 sm:space-y-0">
                                                 <Multiselect
                                                     searchable
                                                     v-model="form.location"
@@ -110,14 +110,24 @@
                                                     :class="{ 'border-red-500' : form.errors.location }"
                                                 />
 
-                                                <inertia-link
-                                                    :href="route('locations.create')"
-                                                    class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
-                                                >
-                                                    <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
-                                                    Add
-                                                </inertia-link>
+                                                <div class="flex gap-4 sm:gap-0">
+                                                    <inertia-link
+                                                        :href="route('locations.create')"
+                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                                                    >
+                                                        <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
+                                                        Add
+                                                    </inertia-link>
 
+                                                    <inertia-link
+                                                        :href="route('employees.edit', employee.id)"
+                                                        @click="rotate = true"
+                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                                                    >
+                                                        <RefreshIcon class="h-5 w-5 text-cyan-400 mr-2" :class="rotate ? 'animate-spin' : ''"/>
+                                                        Reload
+                                                    </inertia-link>
+                                                </div>
                                             </div>
                                             <jet-input-error
                                                 :message="form.errors.location"
@@ -230,7 +240,7 @@
                                         <div class="col-span-2 max-w-lg">
                                             <Switch
                                                 v-model="form.status"
-                                                :class="form.status ? 'bg-cyan-900' : 'bg-cyan-700'"
+                                                :class="form.status ? 'bg-green-700' : 'bg-red-600'"
                                                 class="relative inline-flex flex-shrink-0 h-[38px] w-[174px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                             >
                                               <span
@@ -238,8 +248,8 @@
                                                   :class="form.status ? 'translate-x-20' : 'translate-x-0'"
                                                   class="flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"
                                               >
-                                                <span v-if="form.status" class="text-cyan-900">Active</span>
-                                                <span v-else class="text-cyan-900">Inactive</span>
+                                                <span v-if="form.status" class="text-green-700">Active</span>
+                                                <span v-else class="text-red-600">Inactive</span>
                                               </span>
                                             </Switch>
                                             <jet-input-error
@@ -306,6 +316,7 @@ import {
     ChevronRightIcon,
     OfficeBuildingIcon,
     PlusCircleIcon,
+    RefreshIcon
 } from "@heroicons/vue/solid";
 import {
     ViewGridIcon,
@@ -343,6 +354,7 @@ export default {
         CheckIcon,
         CalendarIcon,
         PlusCircleIcon,
+        RefreshIcon,
         JetFormSection,
         JetSecondaryButton,
         JetLabel,
@@ -390,6 +402,7 @@ export default {
                     resetOnSuccess: true,
                 }
             ),
+            rotate: false
         }
     },
     methods: {

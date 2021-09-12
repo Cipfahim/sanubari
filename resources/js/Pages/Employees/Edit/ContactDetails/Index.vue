@@ -64,7 +64,7 @@
                                 class="whitespace-nowrap flex-1 sm:flex-none flex py-4 px-1 border-b-2 font-semibold text-xs sm:text-sm focus:outline-none"
                                 aria-current="page"
                             >
-                                Contact Address
+                                Address
 
                                 <span
                                     class="hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
