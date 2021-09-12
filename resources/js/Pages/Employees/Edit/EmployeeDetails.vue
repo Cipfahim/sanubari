@@ -111,22 +111,21 @@
                                                 />
 
                                                 <div class="flex gap-4 sm:gap-0">
-                                                    <inertia-link
-                                                        :href="route('locations.create')"
-                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
-                                                    >
-                                                        <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
-                                                        Add
-                                                    </inertia-link>
-
-                                                    <inertia-link
-                                                        :href="route('employees.edit', employee.id)"
-                                                        @click="rotate = true"
+                                                    <button
+                                                        @click.prevent="refreshLocations"
                                                         class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
                                                     >
                                                         <RefreshIcon class="h-5 w-5 text-cyan-400 mr-2" :class="rotate ? 'animate-spin' : ''"/>
                                                         Reload
-                                                    </inertia-link>
+                                                    </button>
+                                                    <a
+                                                        :href="route('locations.create')"
+                                                        target="_blank"
+                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                                                    >
+                                                        <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
+                                                        Add
+                                                    </a>
                                                 </div>
                                             </div>
                                             <jet-input-error
@@ -406,6 +405,15 @@ export default {
         }
     },
     methods: {
+        refreshLocations() {
+            this.rotate = true
+            this.$inertia.reload({
+                only: ['locations'],
+                onFinish: visit => {
+                    this.rotate = false
+                },
+            });
+        },
         submit() {
             if (this.$refs.photo) {
                 this.form.photo = this.$refs.photo.files[0]

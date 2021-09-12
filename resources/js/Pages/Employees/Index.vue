@@ -148,7 +148,7 @@
                                         <div class="flex items-center gap-2">
                                             <div class="h-8 w-8 rounded-full overflow-hidden">
                                                 <img class="h-full w-full"
-                                                     :src="employee.user.photo ? employee.user.photo : '/images/icon/avatar.png'"
+                                                     :src="employee.user.photo ? getFileUrl(employee.user.photo) : '/images/icon/avatar.png'"
                                                      :alt="employee.official_name">
                                             </div>
                                             <inertia-link :href="route('employees.show',employee.id)"
