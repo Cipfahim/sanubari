@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
-use App\Models\Payslip;
 use App\Models\PayslipSession;
-use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
@@ -46,8 +44,11 @@ class PayslipController extends Controller
         $paySlipSession = PayslipSession::findOrFail($id);
         return Inertia::render('PaySlips/Upload', [
             'paySlipSession' => $paySlipSession,
-            'payslips' => $paySlipSession->payslips()->with('employee')->success()->get(),
-            'failedUploads' => $paySlipSession->payslips()->failed()->get()
+            'payslips' => $paySlipSession->payslips()
+                ->with('employee')->success()
+                ->latest('id')->get(),
+            'failedUploads' => $paySlipSession->payslips()
+                ->failed()->latest('id')->get()
         ]);
     }
 
@@ -68,7 +69,7 @@ class PayslipController extends Controller
                 if (isset($employeeId) && isset($employee)) {
                     $payslipPath = 'payslips/payslip-session-' . $payslipSession->id .
                         '/' . uniqid() . '-' . now()->timestamp;
-                    $file->storeAs('public/' . $payslipPath, $originalFileName);
+                    $file->storeAs($payslipPath, $originalFileName);
                     $employee->payslips()->create([
                         'payslip_session_id' => $payslipSession->id,
                         'file_name' => $originalFileName,
@@ -79,7 +80,7 @@ class PayslipController extends Controller
                 } else {
                     $payslipPath = 'payslips/payslip-session-' . $payslipSession->id
                         . '/unknown/' . uniqid() . '-' . now()->timestamp;
-                    $file->storeAs('public/' . $payslipPath, $originalFileName);
+                    $file->storeAs($payslipPath, $originalFileName);
                     $payslipSession->payslips()->create([
                         'file_name' => $originalFileName,
                         'file_path' => $payslipPath . '/' . $originalFileName,
@@ -90,7 +91,7 @@ class PayslipController extends Controller
             } else {
                 $payslipPath = 'payslips/payslip-session-' . $payslipSession->id
                     . '/unknown/' . uniqid() . '-' . now()->timestamp;
-                $file->storeAs('public/' . $payslipPath, $originalFileName);
+                $file->storeAs($payslipPath, $originalFileName);
                 $payslipSession->payslips()->create([
                     'file_name' => $originalFileName,
                     'file_path' => $payslipPath . '/' . $originalFileName,

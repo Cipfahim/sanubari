@@ -17,7 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained();
             $table->string('description')->nullable();
-            $table->year('year')->nullable();
+            $table->string('year', 4)->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
         });

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Document;
 use App\Models\Employee;
 use App\Models\Payslip;
 use App\Models\PayslipSession;
 use App\Models\TemporaryFile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Illuminate\Support\Facades\Storage;
@@ -82,7 +80,7 @@ class SinglePayslipController extends Controller
         $payslipPath = 'payslips/payslip-session-' . $payslipSession->id .
             '/' . uniqid() . '-' . now()->timestamp . '/' . $tempFile->filename;
 
-        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/' . $payslipPath);
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, $payslipPath);
 
         $employee->payslips()->create([
             'payslip_session_id' => $payslipSession->id,
@@ -146,8 +144,7 @@ class SinglePayslipController extends Controller
 
         $payslipPath = 'payslips/payslip-session-' . $payslipSession->id .
             '/' . uniqid() . '-' . now()->timestamp . '/' . $tempFile->filename;
-        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename,
-            'public/' . $payslipPath);
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, $payslipPath);
 
         $employee->payslips()->findOrFail($payslipId)->update([
             'payslip_session_id' => $payslipSession->id,

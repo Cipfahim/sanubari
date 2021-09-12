@@ -37,11 +37,11 @@ class LeaveController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'annual_quota' => ['nullable', 'min:1', 'max:255', 'numeric'],
-            'medical_quota' => ['nullable', 'min:1', 'max:255', 'numeric'],
-            'bereavement_quota' => ['nullable', 'min:1', 'max:255', 'numeric'],
-            'hospital_quota' => ['nullable', 'min:1', 'max:255', 'numeric'],
-            'paternity_maternity_quota' => ['nullable', 'min:1', 'max:255', 'numeric'],
+            'annual_quota' => ['nullable', 'min:1', 'max:2', 'numeric'],
+            'medical_quota' => ['nullable', 'min:1', 'max:2', 'numeric'],
+            'bereavement_quota' => ['nullable', 'min:1', 'max:2', 'numeric'],
+            'hospital_quota' => ['nullable', 'min:1', 'max:2', 'numeric'],
+            'paternity_maternity_quota' => ['nullable', 'min:1', 'max:2', 'numeric'],
         ]);
 
         LeaveQuota::updateOrCreate([
