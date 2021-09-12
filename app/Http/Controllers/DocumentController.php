@@ -84,7 +84,7 @@ class DocumentController extends Controller
         }
 
         $documentPath = 'documents/' . $employee->id . '/' . now()->toDateString() . '-' . now()->timestamp . '/' . $tempFile->filename;
-        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/' . $documentPath);
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, $documentPath);
 
         $employee->documents()->create([
             'description' => $request->get('description'),
@@ -145,8 +145,7 @@ class DocumentController extends Controller
         $documentPath = 'documents/' . $employee->id .
             '/' . now()->toDateString() . '-' . now()->timestamp .
             '/' . $tempFile->filename;
-        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename,
-            'public/' . $documentPath);
+        Storage::move('temp/' . $tempFile->folder . '/' . $tempFile->filename, $documentPath);
 
         $employee->documents()->findOrFail($documentId)->update([
             'description' => $request->get('description'),
