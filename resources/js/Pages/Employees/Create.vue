@@ -88,7 +88,7 @@
                                         <jet-label for="location" value="Location *"/>
 
                                         <div class="col-span-2 max-w-lg">
-                                            <div class="w-full flex justify-space-between">
+                                            <div class="w-full sm:flex justify-space-between space-y-4 sm:space-y-0">
                                                 <Multiselect
                                                     searchable
                                                     v-model="form.location"
@@ -101,13 +101,24 @@
                                                     :class="{ 'border-red-500' : form.errors.location }"
                                                 />
 
-                                                <inertia-link
-                                                    :href="route('locations.create')"
-                                                    class="ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
-                                                >
-                                                    <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
-                                                    Add
-                                                </inertia-link>
+                                                <div class="flex gap-4 sm:gap-0">
+                                                    <inertia-link
+                                                        :href="route('locations.create')"
+                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                                                    >
+                                                        <PlusCircleIcon class="h-5 w-5 text-cyan-400 mr-2"/>
+                                                        Add
+                                                    </inertia-link>
+
+                                                    <inertia-link
+                                                        :href="route('employees.create')"
+                                                        @click="rotate = true"
+                                                        class="sm:ml-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 flex items-center"
+                                                    >
+                                                        <RefreshIcon class="h-5 w-5 text-cyan-400 mr-2" :class="rotate ? 'animate-spin' : ''"/>
+                                                        Reload
+                                                    </inertia-link>
+                                                </div>
                                             </div>
                                             <jet-input-error
                                                 :message="form.errors.location"
@@ -287,6 +298,7 @@ import {
     ChevronRightIcon,
     OfficeBuildingIcon,
     PlusCircleIcon,
+    RefreshIcon
 } from "@heroicons/vue/solid";
 import {
     ViewGridIcon,
@@ -328,6 +340,7 @@ export default {
         ViewGridIcon,
         EyeOffIcon,
         EyeIcon,
+        RefreshIcon,
         JetFormSection,
         JetSecondaryButton,
         JetLabel,
@@ -374,6 +387,7 @@ export default {
                     mask: 'YYYY-MM-DD', // Uses 'iso' if missing
                 },
             },
+            rotate: false
         }
     },
     methods: {
