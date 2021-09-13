@@ -129,7 +129,7 @@ class ContactDetailsController extends Controller
     {
         // dd($request->all());
         $this->validate($request, [
-            'items.*.addressType' => ['required'],
+            'items.*.type' => ['required'],
             // 'items.*.nationality' => ['required'],
             'items.*.city' => ['required'],
             'items.*.postal_code' => ['required'],
@@ -144,11 +144,12 @@ class ContactDetailsController extends Controller
         foreach ($request->get('items') as $item) {
             $employee->contactAddress()->updateOrCreate([
                 'employee_id' => $employee->id,
-                'type' => $item['addressType'],
+                'type' => $item['type'],
                 // 'country' => $item['country'],
                 'address_line_one' => $item['address_line_one'],
                 'address_line_two' => $item['address_line_one'],
                 'address_line_three' => $item['address_line_three'],
+                'postal_code' => $item['postal_code'],
                 'city' => $item['city'],
                 'state' => $item['state']
             ]);

@@ -170,7 +170,6 @@ export default {
             }
         },
         submit() {
-            let ids = [];
             let newItems = [];
 
             this.form.items.forEach((item, index) => {

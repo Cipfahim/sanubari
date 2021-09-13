@@ -24,6 +24,7 @@ class CreateContactAddressesTable extends Migration
             $table->string('address_line_three')->nullable();
             $table->string('city');
             $table->string('state');
+            $table->string('postal_code');
             $table->timestamps();
         });
     }
