@@ -6,28 +6,28 @@
                     <label id="listbox-label" class="block text-sm font-medium text-gray-700 mr-3 select-none"> Assigned to </label>
                 </div>
                 <!-- Location -->
-                <div class="flex items-center">
-                    <label id="listbox-label" class="block text-sm font-medium text-gray-700 mr-3 select-none"> Select Location </label>
-                    <div class="relative w-36">
-                        <select class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm">
-                            <option>demo</option>
-                        </select>
-                    </div>
-                </div>
+<!--                <div class="flex items-center">-->
+<!--                    <label id="listbox-label" class="block text-sm font-medium text-gray-700 mr-3 select-none"> Select Location </label>-->
+<!--                    <div class="relative w-36">-->
+<!--                        <select class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm">-->
+<!--                            <option>demo</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <!-- Filter -->
-                <div class="flex rounded-md shadow-sm">
-                    <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                        <input type="text" name="search" id="search" class="focus:ring-cyan-500 focus:border-cyan-500 block w-full rounded-none rounded-l-md pl-3 sm:text-sm border-gray-300" placeholder="John Doe" />
-                    </div>
-                    <button class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm text-gray-500 hover:text-white font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition duration-500 select-none">
-                        <!-- Heroicon name: solid/sort-ascending -->
-                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                        </svg>
-                        <span>Filter</span>
-                    </button>
-                </div>
+<!--                &lt;!&ndash; Filter &ndash;&gt;-->
+<!--                <div class="flex rounded-md shadow-sm">-->
+<!--                    <div class="relative flex items-stretch flex-grow focus-within:z-10">-->
+<!--                        <input type="text" name="search" id="search" class="focus:ring-cyan-500 focus:border-cyan-500 block w-full rounded-none rounded-l-md pl-3 sm:text-sm border-gray-300" placeholder="John Doe" />-->
+<!--                    </div>-->
+<!--                    <button class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm text-gray-500 hover:text-white font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 transition duration-500 select-none">-->
+<!--                        &lt;!&ndash; Heroicon name: solid/sort-ascending &ndash;&gt;-->
+<!--                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">-->
+<!--                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />-->
+<!--                        </svg>-->
+<!--                        <span>Filter</span>-->
+<!--                    </button>-->
+<!--                </div>-->
 
                 <div class="flex">
                     <inertia-link href="/" class="bg-red-600 hover:bg-red-500 text-white focus:outline-none rounded py-2 px-4 text-white transition duration-500 focus:outline-none focus:ring select-none">Back</inertia-link>

@@ -201,9 +201,6 @@
                         </div>
                         <no-data-found
                             v-else
-                            resource="employees"
-                            action-text="Add Employee"
-                            :action-link="route('employees.create')"
                         />
                     </div>
                 </div>

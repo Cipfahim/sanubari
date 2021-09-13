@@ -17,7 +17,7 @@ class CreateContactNumbersTable extends Migration
         Schema::create('contact_numbers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained();
-            $table->enum('type', ContactNumberType::getValues())->nullable();
+            $table->string('contact_type');
             $table->string('number')->nullable();
             $table->timestamps();
         });
