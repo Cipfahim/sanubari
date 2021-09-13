@@ -174,14 +174,21 @@ export default {
             let newItems = [];
 
             this.form.items.forEach((item, index) => {
-                if (item.contact_number_type === null) {
+                if (item.contact_number === null) {
                     newItems.push({
                         contact_number_type: item.contact_number_type,
                         contact_number: this.$refs['telPhone_' + index].phoneObject.number,
                     })
+                    this.form.items = newItems;
+                    this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id));
+                } else {
+                    if (this.employee.contact_numbers[index].number === this.$refs['telPhone_' + index].phoneObject.number) {
+                        this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id));
+                    }
                 }
             });
-            // console.log(ids);
+
+            // this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id))
 
             // let newItems = []
             // this.form.items.forEach((item, index) => {
