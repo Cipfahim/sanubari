@@ -130,7 +130,9 @@ class EmployeeController extends Controller
             'role_id' => Role::Employee,
             'name' => $request->get('nick_name'),
             'phone' => $request->get('phone'),
-            'password' => Hash::make($request->get('password')),
+            'password' => isset($request->password)
+                ? Hash::make($request->get('password'))
+                : $user->password,
             'photo' => upload($request->file('photo'), 'profile-photos', 'public', $user->photo),
             'status' => $request->get('status')
         ]);

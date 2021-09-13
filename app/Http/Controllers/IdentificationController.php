@@ -27,6 +27,7 @@ class IdentificationController extends Controller
 
     public function update(UpdateIdentificationDetailsRequest $request, $id)
     {
+        $request->dd();
         Employee::findOrFail($id)->update([
             'country_id' => $request->get('nationality'),
             'ic_number' => $request->get('identity_card_number'),

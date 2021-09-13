@@ -30,14 +30,47 @@
                                     >
                                         <jet-label for="epf_no" value="EPF No *"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="epf_no"
-                                                type="text"
-                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                maxlength="8"
-                                                v-model="form.epf_no"
-                                                :class="{ 'border-red-500': form.errors.epf_no }"
-                                            />
+                                            <div class="flex gap-1">
+                                                <jet-input
+                                                    id="epf_1"
+                                                    ref="epf_1"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    v-model="temp_epf.epf_1"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,1)"
+                                                    @paste="onPaste($event)"
+                                                />
+                                                <jet-input
+                                                    id="epf_2"
+                                                    ref="epf_2"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    v-model="temp_epf.epf_2"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,2)"
+                                                    @keyup.delete="focusPrev(2)"
+                                                />
+                                                <jet-input
+                                                    id="epf_3"
+                                                    ref="epf_3"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    v-model="temp_epf.epf_3"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,3)"
+                                                    @keyup.delete="focusPrev(3)"
+                                                />
+                                                <jet-input
+                                                    id="epf_4"
+                                                    ref="epf_4"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    v-model="temp_epf.epf_4"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup.delete="focusPrev(4)"
+                                                />
+                                            </div>
                                             <jet-input-error
                                                 :message="form.errors.epf_no"
                                                 class="mt-2"
@@ -206,6 +239,12 @@ export default {
     directives: {mask},
     data() {
         return {
+            temp_epf:{
+                epf_1: null,
+                epf_2: null,
+                epf_3: null,
+                epf_4: null,
+            },
             form: this.$inertia.form(
                 {
                     _method: 'PUT',
@@ -221,6 +260,12 @@ export default {
             ),
         };
     },
+    computed:{
+      epfNoResult(){
+          let numb = this.temp_epf.epf_1+this.temp_epf.epf_2+this.temp_epf.epf_3+this.temp_epf.epf_4
+          return parseInt(numb)
+      }
+    },
     mounted() {
         const contribution = this.employee.contribution;
         if (contribution) {
@@ -231,6 +276,60 @@ export default {
         }
     },
     methods: {
+        onPaste(event){
+            let pasteData = event.clipboardData.getData('text').split('')
+            pasteData.forEach((data,index) => {
+                switch (index){
+                    case 0:
+                        this.temp_epf.epf_1 = data
+                        break
+                    case 1:
+                        this.temp_epf.epf_2 = data
+                        break
+                    case 2:
+                        this.temp_epf.epf_3 = data
+                        break
+                    case 3:
+                        this.temp_epf.epf_4 = data
+                        break
+                }
+            })
+        },
+        focusNext(event,index){
+            if(event.keyCode >= 48 && event.keyCode <= 57){
+                switch (index){
+                    case 1:
+                        if(this.temp_epf.epf_1){
+                            this.$refs.epf_2.focus()
+                        }
+                        break;
+                    case 2:
+                        if(this.temp_epf.epf_2){
+                            this.$refs.epf_3.focus()
+                        }
+                        break;
+                    case 3:
+                        if(this.temp_epf.epf_3){
+                            this.$refs.epf_4.focus()
+                        }
+                        break
+                }
+            }
+        },
+        focusPrev(index){
+            switch (index){
+                case 2:
+                    this.$refs.epf_1.focus()
+                    break;
+                case 3:
+                    this.$refs.epf_2.focus()
+                    break
+                case 4:
+                    this.$refs.epf_3.focus()
+                    break
+            }
+
+        },
         submit() {
             this.form.post(this.route("employees.edit.contributions.update", this.employee.id));
         },
