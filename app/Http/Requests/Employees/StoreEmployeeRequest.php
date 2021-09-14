@@ -29,7 +29,7 @@ class StoreEmployeeRequest extends FormRequest
             'photo' => ['nullable', 'image'],
             'location' => ['required', 'numeric'],
             'date_of_join' => ['required'],
-            'phone' => ['required', 'string', 'min:3', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'min:3', 'max:255', 'unique:users','regex:/^(\+?6?01)[0|1|2|3|4|6|7|8|9]\-*[0-9]{7,8}$/'],
             'password' => ['required', 'string', 'min:3', 'max:255']
         ];
     }

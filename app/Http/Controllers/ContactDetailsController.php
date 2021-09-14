@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ContactAddressType;
 use App\Enums\ContactNumberType;
 use App\Models\ContactDetails;
+use App\Models\Country;
 use App\Models\Employee;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,12 +22,13 @@ class ContactDetailsController extends Controller
      * @param $id
      * @return Response
      */
-    public function index($id)
+    public function index($id): Response
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
             'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
             'addressTypes' => ContactAddressType::getValues(),
-            'numberTypes' => ContactNumberType::getValues()
+            'numberTypes' => ContactNumberType::getValues(),
+            'countries' => Country::select('id', 'name', 'flag_path', 'country_code')->get()
         ]);
     }
 
@@ -130,7 +132,7 @@ class ContactDetailsController extends Controller
         // dd($request->all());
         $this->validate($request, [
             'items.*.type' => ['required'],
-            // 'items.*.nationality' => ['required'],
+            'items.*.country' => ['required'],
             'items.*.city' => ['required'],
             'items.*.postal_code' => ['required'],
             'items.*.state' => ['required'],
@@ -145,7 +147,7 @@ class ContactDetailsController extends Controller
             $employee->contactAddress()->updateOrCreate([
                 'employee_id' => $employee->id,
                 'type' => $item['type'],
-                // 'country' => $item['country'],
+                'country' => $item['country'],
                 'address_line_one' => $item['address_line_one'],
                 'address_line_two' => $item['address_line_one'],
                 'address_line_three' => $item['address_line_three'],

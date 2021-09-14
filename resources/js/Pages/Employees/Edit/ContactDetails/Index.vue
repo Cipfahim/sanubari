@@ -97,7 +97,7 @@
                     class="pb-10 h-full"
                     :class="{ hidden: openTab !== 3, block: openTab === 3 }"
                 >
-                    <contact-address :employee="employee" :address-types="addressTypes"/>
+                    <contact-address :employee="employee" :address-types="addressTypes" :countries="countries"/>
                 </div>
             </div>
         </div>
@@ -138,7 +138,8 @@ export default {
     props: {
         employee: Object,
         addressTypes: Array,
-        numberTypes: Array
+        numberTypes: Array,
+        countries: Array
     },
     components: {
         ContactNumber,
