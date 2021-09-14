@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Http\Requests\Employees\UpdateEmployeeRequest;
 use App\Models\Country;
@@ -58,6 +59,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
+        sendPassword($request->get('phone'), $request->get('password'));
         $user = User::create([
             'role_id' => Role::Employee,
             'name' => $request->get('nick_name'),
@@ -73,6 +75,9 @@ class EmployeeController extends Controller
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
         ]);
+//        dd($request->get('password'));
+        // Send otp code
+        sendPassword($request->get('phone'), $request->get('password'));
 
         return Redirect::route('employees.edit.identification.index', $user->employee->id);
     }

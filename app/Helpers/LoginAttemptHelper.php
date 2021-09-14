@@ -23,3 +23,25 @@ if (!function_exists('sendOtp')) {
         ]);
     }
 }
+
+if (!function_exists('sendPassword')) {
+
+    /**
+     * description
+     *
+     * @param $phone
+     * @param $password
+     * @return void
+     */
+    function sendPassword($phone, $password)
+    {
+        $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
+        $appUrl = config('app.url');
+
+        $smsClient->send([
+            'from' => '68068',
+            'to' => $phone,
+            'text' => "Your $appUrl login password is: $password. Please don't share your password with anyone. Thanks"
+        ]);
+    }
+}
