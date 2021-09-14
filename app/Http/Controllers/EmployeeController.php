@@ -59,7 +59,6 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        sendPassword($request->get('phone'), $request->get('password'));
         $user = User::create([
             'role_id' => Role::Employee,
             'name' => $request->get('nick_name'),

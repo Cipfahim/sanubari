@@ -48,13 +48,13 @@
                                     <div class="col-span-2 max-w-lg">
                                         <Multiselect
                                             searchable
-                                            v-model="item.nationality"
+                                            v-model="item.country"
                                             :options="countries"
                                             valueProp="id"
                                             trackBy="name"
                                             placeholder="Choose a nationality"
                                             class="mt-1 block w-full"
-                                            :class="{ 'border-red-500' : form.errors.nationality }"
+                                            :class="{ 'border-red-500' : form.errors.country }"
                                         >
                                             <template v-slot:singlelabel="{ value }">
                                                 <div class="flex gap-2 items-center multiselect-single-label">
@@ -72,7 +72,7 @@
                                             </template>
                                         </Multiselect>
                                         <jet-input-error
-                                            :message="getNestedErrors('items.'+index+'.nationality',form)"
+                                            :message="getNestedErrors('items.'+index+'.country',form)"
                                             class="mb-2"
                                         />
                                     </div>
