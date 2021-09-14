@@ -75,7 +75,7 @@ class EmployeeController extends Controller
             'location_id' => $request->get('location'),
             'date_of_join' => Carbon::parse($request->get('date_of_join'))->toDateString(),
         ]);
-//        dd($request->get('password'));
+
         // Send otp code
         sendPassword($request->get('phone'), $request->get('password'));
 
