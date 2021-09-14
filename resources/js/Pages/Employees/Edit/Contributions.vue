@@ -36,8 +36,10 @@
                                                     ref="epf_1"
                                                     type="text"
                                                     maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                                     v-model="temp_epf.epf_1"
                                                     :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    class="w-12"
                                                     @keyup="focusNext($event,1)"
                                                     @paste="onPaste($event)"
                                                 />
@@ -46,7 +48,9 @@
                                                     ref="epf_2"
                                                     type="text"
                                                     maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                                     v-model="temp_epf.epf_2"
+                                                    class="w-12"
                                                     :class="{ 'border-red-500': form.errors.epf_no }"
                                                     @keyup="focusNext($event,2)"
                                                     @keyup.delete="focusPrev(2)"
@@ -56,7 +60,9 @@
                                                     ref="epf_3"
                                                     type="text"
                                                     maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                                     v-model="temp_epf.epf_3"
+                                                    class="w-12"
                                                     :class="{ 'border-red-500': form.errors.epf_no }"
                                                     @keyup="focusNext($event,3)"
                                                     @keyup.delete="focusPrev(3)"
@@ -66,9 +72,59 @@
                                                     ref="epf_4"
                                                     type="text"
                                                     maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                                     v-model="temp_epf.epf_4"
+                                                    class="w-12"
                                                     :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,4)"
                                                     @keyup.delete="focusPrev(4)"
+                                                />
+                                                <jet-input
+                                                    id="epf_5"
+                                                    ref="epf_5"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    v-model="temp_epf.epf_5"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,5)"
+                                                    @keyup.delete="focusPrev(5)"
+                                                />
+                                                <jet-input
+                                                    id="epf_6"
+                                                    ref="epf_6"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    v-model="temp_epf.epf_6"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,6)"
+                                                    @keyup.delete="focusPrev(6)"
+                                                />
+                                                <jet-input
+                                                    id="epf_7"
+                                                    ref="epf_7"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    v-model="temp_epf.epf_7"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup="focusNext($event,7)"
+                                                    @keyup.delete="focusPrev(7)"
+                                                />
+                                                <jet-input
+                                                    id="epf_8"
+                                                    ref="epf_8"
+                                                    type="text"
+                                                    maxlength="1"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    v-model="temp_epf.epf_8"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_no }"
+                                                    @keyup.delete="focusPrev(8)"
                                                 />
                                             </div>
                                             <jet-input-error
@@ -84,14 +140,60 @@
                                     >
                                         <jet-label for="epf_employee" value="EPF Employee * (%)"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="epf_employee"
-                                                type="text"
-                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                maxlength="5"
-                                                v-model="form.epf_employee"
-                                                :class="{ 'border-red-500': form.errors.epf_employee }"
-                                            />
+                                            <div class="flex gap-1">
+                                                <jet-input
+                                                    id="epf_employee_1"
+                                                    ref="epf_employee_1"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employee.epf_employee_1"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employee }"
+                                                    @keyup="focusNextEmployee($event , 1)"
+                                                />
+                                                <jet-input
+                                                    id="epf_employee_2"
+                                                    ref="epf_employee_2"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employee.epf_employee_2"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employee }"
+                                                    @keyup="focusNextEmployee($event , 2)"
+                                                    @keyup.delete="focusPrevEmployee(2)"
+                                                />
+                                                <div class="flex flex-col justify-end">
+                                                    <span class="text-lg font-bold text-gray-800">.</span>
+                                                </div>
+                                                <jet-input
+                                                    id="epf_employee_3"
+                                                    ref="epf_employee_3"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employee.epf_employee_3"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employee }"
+                                                    @keyup="focusNextEmployee($event , 3)"
+                                                    @keyup.delete="focusPrevEmployee(3)"
+                                                />
+                                                <jet-input
+                                                    id="epf_employee_4"
+                                                    ref="epf_employee_4"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employee.epf_employee_4"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employee }"
+                                                    @keyup.delete="focusPrevEmployee(4)"
+                                                />
+                                                <div class="flex flex-col justify-end">
+                                                    <span class="text-xl font-medium text-gray-800">%</span>
+                                                </div>
+                                            </div>
                                             <jet-input-error
                                                 :message="form.errors.epf_employee"
                                                 class="mt-2"
@@ -99,20 +201,66 @@
                                         </div>
                                     </div>
 
-                                    <!-- epf_employee field-->
+                                    <!-- epf_employer field-->
                                     <div
                                         class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                     >
                                         <jet-label for="epf_employer" value="EPF Employer * (%)"/>
                                         <div class="col-span-2 max-w-lg">
-                                            <jet-input
-                                                id="epf_employer"
-                                                type="text"
-                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                maxlength="5"
-                                                v-model="form.epf_employer"
-                                                :class="{ 'border-red-500': form.errors.epf_employer }"
-                                            />
+                                            <div class="flex gap-1">
+                                                <jet-input
+                                                    id="epf_employer_1"
+                                                    ref="epf_employer_1"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employer.epf_employer_1"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employer }"
+                                                    @keyup="focusNextEmployer($event , 1)"
+                                                />
+                                                <jet-input
+                                                    id="epf_employer_2"
+                                                    ref="epf_employer_2"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employer.epf_employer_2"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employer }"
+                                                    @keyup="focusNextEmployer($event , 2)"
+                                                    @keyup.delete="focusPrevEmployer(2)"
+                                                />
+                                                <div class="flex flex-col justify-end">
+                                                    <span class="text-lg font-bold text-gray-800">.</span>
+                                                </div>
+                                                <jet-input
+                                                    id="epf_employer_3"
+                                                    ref="epf_employer_3"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employer.epf_employer_3"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employer }"
+                                                    @keyup="focusNextEmployer($event , 3)"
+                                                    @keyup.delete="focusPrevEmployer(3)"
+                                                />
+                                                <jet-input
+                                                    id="epf_employer_4"
+                                                    ref="epf_employer_4"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    maxlength="1"
+                                                    v-model="epf_employer.epf_employer_4"
+                                                    class="w-12"
+                                                    :class="{ 'border-red-500': form.errors.epf_employer }"
+                                                    @keyup.delete="focusPrevEmployer(4)"
+                                                />
+                                                <div class="flex flex-col justify-end">
+                                                    <span class="text-xl font-medium text-gray-800">%</span>
+                                                </div>
+                                            </div>
                                             <jet-input-error
                                                 :message="form.errors.epf_employer"
                                                 class="mt-2"
@@ -244,6 +392,22 @@ export default {
                 epf_2: null,
                 epf_3: null,
                 epf_4: null,
+                epf_5: null,
+                epf_6: null,
+                epf_7: null,
+                epf_8: null,
+            },
+            epf_employee:{
+                epf_employee_1: null,
+                epf_employee_2: null,
+                epf_employee_3: null,
+                epf_employee_4: null
+            },
+            epf_employer:{
+                epf_employer_1: null,
+                epf_employer_2: null,
+                epf_employer_3: null,
+                epf_employer_4: null
             },
             form: this.$inertia.form(
                 {
@@ -262,7 +426,14 @@ export default {
     },
     computed:{
       epfNoResult(){
-          let numb = this.temp_epf.epf_1+this.temp_epf.epf_2+this.temp_epf.epf_3+this.temp_epf.epf_4
+          let numb = this.temp_epf.epf_1
+              +this.temp_epf.epf_2
+              +this.temp_epf.epf_3
+              +this.temp_epf.epf_4
+              +this.temp_epf.epf_5
+              +this.temp_epf.epf_6
+              +this.temp_epf.epf_7
+              +this.temp_epf.epf_8
           return parseInt(numb)
       }
     },
@@ -292,6 +463,18 @@ export default {
                     case 3:
                         this.temp_epf.epf_4 = data
                         break
+                    case 4:
+                        this.temp_epf.epf_5 = data
+                        break
+                    case 5:
+                        this.temp_epf.epf_6 = data
+                        break
+                    case 6:
+                        this.temp_epf.epf_7 = data
+                        break
+                    case 7:
+                        this.temp_epf.epf_8 = data
+                        break
                 }
             })
         },
@@ -312,7 +495,27 @@ export default {
                         if(this.temp_epf.epf_3){
                             this.$refs.epf_4.focus()
                         }
-                        break
+                        break;
+                    case 4:
+                        if(this.temp_epf.epf_4){
+                            this.$refs.epf_5.focus()
+                        }
+                        break;
+                    case 5:
+                        if(this.temp_epf.epf_5){
+                            this.$refs.epf_6.focus()
+                        }
+                        break;
+                    case 6:
+                        if(this.temp_epf.epf_6){
+                            this.$refs.epf_7.focus()
+                        }
+                        break;
+                    case 7:
+                        if(this.temp_epf.epf_7){
+                            this.$refs.epf_8.focus()
+                        }
+                        break;
                 }
             }
         },
@@ -326,6 +529,88 @@ export default {
                     break
                 case 4:
                     this.$refs.epf_3.focus()
+                    break
+                case 5:
+                    this.$refs.epf_4.focus()
+                    break;
+                case 6:
+                    this.$refs.epf_5.focus()
+                    break
+                case 7:
+                    this.$refs.epf_6.focus()
+                    break
+                case 8:
+                    this.$refs.epf_7.focus()
+                    break
+            }
+
+        },
+        focusNextEmployee(event,index){
+            if(event.keyCode >= 48 && event.keyCode <= 57){
+                switch (index){
+                    case 1:
+                        if(this.epf_employee.epf_employee_1){
+                            this.$refs.epf_employee_2.focus()
+                        }
+                        break;
+                    case 2:
+                        if(this.epf_employee.epf_employee_2){
+                            this.$refs.epf_employee_3.focus()
+                        }
+                        break;
+                    case 3:
+                        if(this.epf_employee.epf_employee_3){
+                            this.$refs.epf_employee_4.focus()
+                        }
+                        break;
+                }
+            }
+        },
+        focusPrevEmployee(index){
+            switch (index){
+                case 2:
+                    this.$refs.epf_employee_1.focus()
+                    break;
+                case 3:
+                    this.$refs.epf_employee_2.focus()
+                    break
+                case 4:
+                    this.$refs.epf_employee_3.focus()
+                    break
+            }
+
+        },
+        focusNextEmployer(event,index){
+            if(event.keyCode >= 48 && event.keyCode <= 57){
+                switch (index){
+                    case 1:
+                        if(this.epf_employer.epf_employer_1){
+                            this.$refs.epf_employer_2.focus()
+                        }
+                        break;
+                    case 2:
+                        if(this.epf_employer.epf_employer_2){
+                            this.$refs.epf_employer_3.focus()
+                        }
+                        break;
+                    case 3:
+                        if(this.epf_employer.epf_employer_3){
+                            this.$refs.epf_employer_4.focus()
+                        }
+                        break;
+                }
+            }
+        },
+        focusPrevEmployer(index){
+            switch (index){
+                case 2:
+                    this.$refs.epf_employer_1.focus()
+                    break;
+                case 3:
+                    this.$refs.epf_employer_2.focus()
+                    break
+                case 4:
+                    this.$refs.epf_employer_3.focus()
                     break
             }
 
