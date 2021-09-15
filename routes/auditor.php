@@ -12,11 +12,10 @@
 */
 use App\Http\Controllers\AuditorPermissionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auditor\DashboardController;
 use Inertia\Inertia;
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Auditor/Dashboard');
-})->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/employees', [AuditorPermissionController::class, 'employeeIndex'])->name('employees');
 Route::get('/employees/show/{id}', [AuditorPermissionController::class, 'employeeShow'])->name('employees.show');

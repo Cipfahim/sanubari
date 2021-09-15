@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ContactAddressType;
 use App\Enums\ContactNumberType;
 use App\Models\ContactDetails;
+use App\Models\Country;
 use App\Models\Employee;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,12 +22,13 @@ class ContactDetailsController extends Controller
      * @param $id
      * @return Response
      */
-    public function index($id)
+    public function index($id): Response
     {
         return Inertia::render('Employees/Edit/ContactDetails/Index', [
             'employee' => Employee::with('user', 'contactNumbers', 'contactEmails', 'contactAddress')->findOrFail($id),
             'addressTypes' => ContactAddressType::getValues(),
-            'numberTypes' => ContactNumberType::getValues()
+            'numberTypes' => ContactNumberType::getValues(),
+            'countries' => Country::select('id', 'name', 'flag_path', 'country_code')->get()
         ]);
     }
 
@@ -66,7 +68,7 @@ class ContactDetailsController extends Controller
     {
         $this->validate($request, [
             'items.*.contact_number' => ['required', 'string', 'min:3', 'max:255'],
-            'items.*.type' => ['required']
+            'items.*.contact_number_type' => ['required']
         ]);
 
         $employee = Employee::findOrFail($id);
@@ -75,11 +77,11 @@ class ContactDetailsController extends Controller
             if (isset($item['id'])) {
                 $employee->contactNumbers()->find($item['id'])->update([
                     'number' => $item['contact_number'],
-                    'type' => $item['type']
+                    'contact_type' => $item['contact_number_type']
                 ]);
             } else {
                 $employee->contactNumbers()->create([
-                    'type' => $item['type'],
+                    'contact_type' => $item['contact_number_type'],
                     'number' => $item['contact_number'],
                 ]);
             }
@@ -123,23 +125,33 @@ class ContactDetailsController extends Controller
      * @param Request $request
      * @param $id
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function storeAddress(Request $request, $id): RedirectResponse
     {
-//        $this->validate($request, [
-//            'items.*.address' => ['required', 'string', 'min:3', 'max:255']
-//        ]);
+        // dd($request->all());
+        $this->validate($request, [
+            'items.*.type' => ['required'],
+            'items.*.country' => ['required'],
+            'items.*.city' => ['required'],
+            'items.*.postal_code' => ['required'],
+            'items.*.state' => ['required'],
+            'items.*.address_line_one' => ['required'],
+            'items.*.address_line_two' => ['nullable'],
+            'items.*.address_line_three' => ['nullable'],
+        ]);
 
         $employee = Employee::findOrFail($id);
 
         foreach ($request->get('items') as $item) {
             $employee->contactAddress()->updateOrCreate([
                 'employee_id' => $employee->id,
-                'type' => $item['addressType'],
+                'type' => $item['type'],
                 'country' => $item['country'],
                 'address_line_one' => $item['address_line_one'],
                 'address_line_two' => $item['address_line_one'],
                 'address_line_three' => $item['address_line_three'],
+                'postal_code' => $item['postal_code'],
                 'city' => $item['city'],
                 'state' => $item['state']
             ]);

@@ -14,11 +14,11 @@
 use App\Http\Controllers\Employee\PayslipController;
 use App\Http\Controllers\SupportTicketController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Employee\DashboardController;
 use Inertia\Inertia;
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Employee/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('supportTickets',SupportTicketController::class)
     ->except('destroy')

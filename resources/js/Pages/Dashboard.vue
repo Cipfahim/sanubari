@@ -325,7 +325,6 @@ import {
     UsersIcon,
     ChatAlt2Icon
 } from "@heroicons/vue/solid";
-import {ScaleIcon} from "@heroicons/vue/outline/esm";
 
 const transactions = [
     {

@@ -21,27 +21,18 @@
             <template #form class="md:col-span-12">
                 <div class="mt-1 sm:mt-0">
                     <div class="flex gap-2" v-for="(item, index) in form.items">
-<!--                        <select name="type" v-model="item.type"-->
-<!--                                class="block h-10 w-24 sm:w-36 py-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md">-->
-<!--                            <option disabled>Select Number Type</option>-->
-<!--                            <option v-for="(type,index) in numberTypes" :key="index" :value="type">{{ type }}</option>-->
-<!--                        </select>-->
-                        <textarea class="block h-10 w-24 sm:w-36 py-1 px-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md resize-none"></textarea>
+                        <textarea v-model="item.contact_number_type"
+                                  class="block h-10 w-24 sm:w-36 py-1 px-1 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md resize-none"></textarea>
+                        <jet-input-error
+                            :message="getNestedErrors('items.'+index+'.contact_number_type',form)"
+                            class="mb-2"
+                        />
                         <div class="w-full relative">
-<!--                            <jet-input-->
-<!--                                id="phone"-->
-<!--                                type="number"-->
-<!--                                v-model="item.contact_number"-->
-<!--                                class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"-->
-<!--                                :class="{ 'border-red-500': form.errors.phone }"-->
-<!--                                placeholder="Enter phone number"-->
-<!--                            />-->
-                            <vue-tel-input ref="telPhone"
-                                           mode="international"
-                                           v-model="item.contact_number"
-                                           :class="{ 'border-red-500': form.errors.phone }"
-                                           class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden mb-3"
-                                           placeholder="Enter phone number"
+                            <vue-tel-input
+                                :value="item.contact_number"
+                                :ref="`telPhone_`+index"
+                                mode="international"
+                                class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
                             >
                             </vue-tel-input>
                             <jet-input-error
@@ -57,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="pt-5">
                     <div class="space-y-6 sm:space-y-5">
                         <div
@@ -125,10 +115,11 @@ export default {
             open: false,
             form: this.$inertia.form({
                 items: [],
-                continue: false
+                continue: false,
             }, {
                 resetOnSuccess: true,
             }),
+            phone: null,
         }
     },
     mounted() {
@@ -139,11 +130,11 @@ export default {
             this.form.items = []
             if (this.employee.contact_numbers.length) {
                 this.employee.contact_numbers.forEach((value, index) => {
-                    console.log(value);
                     let data = {
                         id: value.id,
                         type: value.type,
-                        contact_number: value.number
+                        contact_number: value.number,
+                        contact_number_type: value.contact_type
                     }
                     this.form.items.push(data)
                 })
@@ -151,10 +142,15 @@ export default {
                 this.addNewItem()
             }
         },
-
+        getValue(index) {
+            return this.employee.contact_numbers[index]
+                ? this.employee.contact_numbers[index].number
+                : '';
+        },
         addNewItem() {
             this.form.items.push({
                 contact_number: null,
+                contact_number_type: null,
             })
         },
         removeItem(index, item) {
@@ -174,7 +170,36 @@ export default {
             }
         },
         submit() {
-            this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id))
+            let newItems = [];
+
+            this.form.items.forEach((item, index) => {
+                if (item.contact_number === null) {
+                    newItems.push({
+                        contact_number_type: item.contact_number_type,
+                        contact_number: this.$refs['telPhone_' + index].phoneObject.number,
+                    })
+                    this.form.items = newItems;
+                    this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id));
+                } else {
+                    if (this.employee.contact_numbers[index].number === this.$refs['telPhone_' + index].phoneObject.number) {
+                        this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id));
+                    }
+                }
+            });
+
+            // this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id))
+
+            // let newItems = []
+            // this.form.items.forEach((item, index) => {
+            //     console.log(item);
+            //     newItems.push({
+            //         contact_number_type: item.contact_number_type,
+            //         contact_number: this.$refs['telPhone_' + index].phoneObject.number,
+            //     })
+            // });
+            // this.form.items = newItems
+
+            // this.form.post(this.route('employees.edit.contact-details.store.number', this.employee.id))
         },
         saveAndContinue() {
             this.form.continue = true

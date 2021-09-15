@@ -34,46 +34,48 @@
                                     <label for="type" class="block text-sm font-medium text-gray-700">Address
                                         Type</label>
                                     <textarea
-                                        v-model="item.addressType"
+                                        v-model="item.type"
                                         class="mt-1 block w-full h-10 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm rounded-md"
+                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.addressType',form) }"
                                     ></textarea>
+                                    <jet-input-error
+                                        :message="getNestedErrors('items.'+index+'.addressType',form)"
+                                        class="mb-2"
+                                    />
                                 </div>
                                 <div>
-                                    <label class="text-sm text-gray-700">
-                                        Country/Territory<span class="text-blue-600"> *</span>
-                                    </label>
-                                    <!--                                <jet-input-->
-                                    <!--                                    id="country"-->
-                                    <!--                                    type="text"-->
-                                    <!--                                    v-model="item.country"-->
-                                    <!--                                    class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"-->
-                                    <!--                                    :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"-->
-                                    <!--                                />-->
-                                    <Multiselect
-                                        searchable
-                                        v-model="item.country"
-                                        :options="countries"
-                                        valueProp="id"
-                                        trackBy="name"
-                                        placeholder="Choose a nationality"
-                                        class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
-                                        :class="{ 'border-red-500': getNestedErrors('items.'+index+'.country',form) }"
-                                    >
-                                        <template v-slot:singlelabel="{ value }">
-                                            <div class="flex gap-2 items-center multiselect-single-label">
-                                                <img class="h-8 w-10 rounded-md character-label-icon"
-                                                     :src="getFileUrl(value.flag_path)">
-                                                <p class="flex-1">{{ value.name }}</p>
-                                            </div>
-                                        </template>
-                                        <template v-slot:option="{ option }">
-                                            <div class="flex gap-2 items-center">
-                                                <img class="h-8 w-10 rounded-md"
-                                                     :src="getFileUrl(option.flag_path)">
-                                                <p class="flex-1">{{ option.name }}</p>
-                                            </div>
-                                        </template>
-                                    </Multiselect>
+                                    <jet-label for="nationality" value="Nationality *"/>
+                                    <div class="col-span-2 max-w-lg">
+                                        <Multiselect
+                                            searchable
+                                            v-model="item.country"
+                                            :options="countries"
+                                            valueProp="id"
+                                            trackBy="name"
+                                            placeholder="Choose a nationality"
+                                            class="mt-1 block w-full"
+                                            :class="{ 'border-red-500' : form.errors.country }"
+                                        >
+                                            <template v-slot:singlelabel="{ value }">
+                                                <div class="flex gap-2 items-center multiselect-single-label">
+                                                    <img class="h-8 w-10 rounded-md character-label-icon"
+                                                         :src="getFileUrl(value.flag_path)">
+                                                    <p class="flex-1">{{ value.name }}</p>
+                                                </div>
+                                            </template>
+                                            <template v-slot:option="{ option }">
+                                                <div class="flex gap-2 items-center">
+                                                    <img class="h-8 w-10 rounded-md"
+                                                         :src="getFileUrl(option.flag_path)">
+                                                    <p class="flex-1">{{ option.name }}</p>
+                                                </div>
+                                            </template>
+                                        </Multiselect>
+                                        <jet-input-error
+                                            :message="getNestedErrors('items.'+index+'.country',form)"
+                                            class="mb-2"
+                                        />
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="text-sm text-gray-700">
@@ -85,6 +87,10 @@
                                         v-model="item.address_line_one"
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                         :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_one',form) }"
+                                    />
+                                    <jet-input-error
+                                        :message="getNestedErrors('items.'+index+'.address_line_one',form)"
+                                        class="mb-2"
                                     />
                                 </div>
 
@@ -99,6 +105,10 @@
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                         :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_two',form) }"
                                     />
+                                    <jet-input-error
+                                        :message="getNestedErrors('items.'+index+'.address_line_two',form)"
+                                        class="mb-2"
+                                    />
                                 </div>
 
                                 <div>
@@ -111,6 +121,10 @@
                                         v-model="item.address_line_three"
                                         class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                         :class="{ 'border-red-500': getNestedErrors('items.'+index+'.address_line_three',form) }"
+                                    />
+                                    <jet-input-error
+                                        :message="getNestedErrors('items.'+index+'.address_line_three',form)"
+                                        class="mb-2"
                                     />
                                 </div>
 
@@ -126,6 +140,10 @@
                                             class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                             :class="{ 'border-red-500': getNestedErrors('items.'+index+'.postal_code',form) }"
                                         />
+                                        <jet-input-error
+                                            :message="getNestedErrors('items.'+index+'.postal_code',form)"
+                                            class="mb-2"
+                                        />
                                     </div>
 
                                     <div>
@@ -139,6 +157,10 @@
                                             class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                             :class="{ 'border-red-500': getNestedErrors('items.'+index+'.city',form) }"
                                         />
+                                        <jet-input-error
+                                            :message="getNestedErrors('items.'+index+'.city',form)"
+                                            class="mb-2"
+                                        />
                                     </div>
 
                                     <div>
@@ -151,6 +173,10 @@
                                             v-model="item.state"
                                             class="focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border border-gray-300 rounded-md mb-3"
                                             :class="{ 'border-red-500': getNestedErrors('items.'+index+'.state',form) }"
+                                        />
+                                        <jet-input-error
+                                            :message="getNestedErrors('items.'+index+'.state',form)"
+                                            class="mb-2"
                                         />
                                     </div>
                                 </div>
@@ -246,7 +272,13 @@ export default {
                     let data = {
                         id: value.id,
                         type: value.type,
-                        contact_address: value.address
+                        address_line_one: value.address_line_one,
+                        address_line_two: value.address_line_two,
+                        address_line_three: value.address_line_three,
+                        city: value.city,
+                        country: value.country,
+                        postal_code: value.postal_code,
+                        state: value.state,
                     }
                     this.form.items.push(data)
                 })
@@ -258,7 +290,7 @@ export default {
         addNewItem() {
             this.form.items.push({
                 addressType: null,
-                country: null,
+                nationality: null,
                 address_line_one: null,
                 address_line_two: null,
                 address_line_three: null,
