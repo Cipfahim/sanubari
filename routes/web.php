@@ -83,6 +83,7 @@ Route::middleware(['auth', 'role:system-admin|admin|auditor'])->group(function (
 
 
     Route::resource('employees', EmployeeController::class)->except('destroy');
+    Route::post('employees/{id}/send-password', [EmployeeController::class,'sendPassword'])->name('employees.send-password');
     //    Route::resource('payslips', SinglePayslipController::class)->except('destroy');
     Route::resource('locations', LocationController::class)->except('show');
 
