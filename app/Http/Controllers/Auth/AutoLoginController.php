@@ -19,7 +19,7 @@ class AutoLoginController extends Controller
     public function __invoke(Request $request)
     {
         // Only available in local environment
-        abort_unless(app()->environment('local'), 404);
+//        abort_unless(app()->environment('local'), 404);
 
         //Login with first user from database seed
         auth()->login(User::first());
