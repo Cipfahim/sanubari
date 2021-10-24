@@ -70,7 +70,8 @@
                         Log in
                     </breeze-button>
 
-                    <div v-if="$page.props.app.env === 'local'">
+<!--                    <div v-if="$page.props.app.env === 'local'">-->
+                    <div>
                         <div class="my-4 relative">
                             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                                 <div class="w-full border-t border-gray-300"></div>
