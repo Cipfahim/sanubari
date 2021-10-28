@@ -438,7 +438,7 @@ export default {
         },
         toggleShowPassword() {
             this.showPassword = !this.showPassword;
-        }
+        },
     }
 };
 </script>
