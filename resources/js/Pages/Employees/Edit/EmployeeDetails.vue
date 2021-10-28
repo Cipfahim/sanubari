@@ -184,7 +184,7 @@
                                                                :required="true"
                                                                :class="{ 'border-red-500': form.errors.phone }"
                                                                mode="international"
-                                                               class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
+                                                               class="focus:ring-cyan-500 focus:border-cyan-500 block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
                                                 >
                                                 </vue-tel-input>
                                             </div>
