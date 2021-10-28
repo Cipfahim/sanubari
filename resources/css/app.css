@@ -43,6 +43,12 @@ input[type=number] {
 .multiselect-search:focus{
     border: var(--cyan-500) !important;
 }
-ul.vti__dropdown-list.below{
-    display: none;
+.vti__dropdown-list.below{
+    top: 42px !important;
+    border-radius: 5px;
+    left: 0;
+    z-index: 11;
+}
+.vti__dropdown{
+    position: unset !important;
 }
