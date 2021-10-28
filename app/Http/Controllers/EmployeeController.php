@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -156,5 +157,13 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+    }
+
+    public function sendPassword($id)
+    {
+        $employee = Employee::findOrFail($id);
+        // Send otp code
+        sendPassword($employee->user->phone, rand(10000, 99999));
+        return Redirect::back()->with('success', 'Password successfully sent.');
     }
 }
