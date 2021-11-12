@@ -31,8 +31,8 @@
                                 <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sl.</th>
-                                    <th scope="col" @click="sort('name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
-                                        <sort-arrow :sort="queryForm.sort" field="name" />
+                                    <th scope="col" @click="sort('user.name')" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">
+                                        <sort-arrow :sort="queryForm.sort" field="user.name" />
                                         Auditor
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">Start Date</th>

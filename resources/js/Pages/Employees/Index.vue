@@ -83,7 +83,7 @@
 
                                     <th
                                         scope="col"
-                                        @click="sort('phone')"
+                                        @click="sort('user.phone')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex gap-2 items-center">
@@ -94,7 +94,7 @@
 
                                     <th
                                         scope="col"
-                                        @click="sort('location')"
+                                        @click="sort('location.name')"
                                         class="px-6 py-3 w-44 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex gap-2 items-center">
