@@ -20597,7 +20597,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // Sort data by field
     sort: function sort(field) {
-      this.queryForm.sort === field ? this.queryForm.sort = "-" + field : this.queryForm.sort = field;
+      console.log(field); // this.queryForm.sort === field
+      //     ? (this.queryForm.sort = "-" + field)
+      //     : (this.queryForm.sort = field);
     },
     // Reset all filters
     reset: function reset() {
@@ -22100,7 +22102,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       , ["sort"]), _hoisted_21])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
         scope: "col",
         onClick: _cache[5] || (_cache[5] = function ($event) {
-          return $options.sort('phone');
+          return $options.sort('user.phone');
         }),
         "class": "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sort_arrow, {
@@ -22111,7 +22113,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       , ["sort"]), _hoisted_23])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
         scope: "col",
         onClick: _cache[6] || (_cache[6] = function ($event) {
-          return $options.sort('location');
+          return $options.sort('location.name');
         }),
         "class": "px-6 py-3 w-44 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_sort_arrow, {

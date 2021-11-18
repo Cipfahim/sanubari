@@ -26,9 +26,9 @@ class AuditorPermissionController extends Controller
         return Inertia::render('AuditorAccess/Index', [
             'requests' => QueryRequest::all(['filter', 'sort']),
             'sessions' => QueryBuilder::for(AuditSession::class)
-                ->allowedFilters(['user.name'])
-                ->allowedSorts(['user_id'])
                 ->with(['user'])
+                ->allowedFilters(['user.name'])
+                ->allowedSorts(['user.name'])
                 ->latest('id')
                 ->paginate()
                 ->appends(\request()->query()),

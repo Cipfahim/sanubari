@@ -58,6 +58,7 @@
                                                 type="text"
                                                 v-model="form.official_name"
                                                 :class="{ 'border-red-500': form.errors.official_name }"
+                                                class="capitalize"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.official_name"
@@ -75,6 +76,7 @@
                                                 type="text"
                                                 v-model="form.nick_name"
                                                 :class="{ 'border-red-500': form.errors.nick_name }"
+                                                class="capitalize"
                                             />
                                             <jet-input-error
                                                 :message="form.errors.nick_name"
@@ -173,7 +175,7 @@
                                             <div class="relative flex">
                                                 <vue-tel-input ref="telPhone"
                                                                mode="international"
-                                                               class="h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
+                                                               class="!unset focus:ring-cyan-500 focus:border-cyan-500 block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
                                                 >
                                                 </vue-tel-input>
                                             </div>
@@ -391,6 +393,9 @@ export default {
             rotate: false
         }
     },
+    watch:{
+
+    },
     methods: {
         refreshLocations() {
             this.rotate = true
@@ -438,7 +443,7 @@ export default {
         },
         toggleShowPassword() {
             this.showPassword = !this.showPassword;
-        }
+        },
     }
 };
 </script>

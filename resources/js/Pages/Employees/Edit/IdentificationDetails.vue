@@ -107,55 +107,60 @@
                                         <div
                                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
                                         >
-                                            <jet-label class="sm:pl-2" for="dob" value="Passport Issue Date *"/>
-                                            <div class="col-span-2 max-w-lg">
-                                                <div class="max-w-lg focus-within:z-10">
-                                                    <DatePicker v-model="form.passport_issue_date" :masks="datePickerConfig.masks"
-                                                                :model-config="datePickerConfig.modelConfig">
-                                                        <template #default="{ inputValue, inputEvents }">
-                                                            <input
-                                                                class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                                :class="{ 'border-red-500': form.errors.passport_issue_date }"
-                                                                :value="inputValue"
-                                                                v-on="inputEvents"
-                                                                placeholder="dd/mm/yyyy"
-                                                            />
-                                                        </template>
-                                                    </DatePicker>
+                                            <jet-label class="sm:pl-2" for="dob" value="Passport Issue/Expiry Date *"/>
+                                            <div class="col-span-2 max-w-lg grid grid-cols-2 gap-4">
+                                                <div class="col-span-1 relative">
+                                                    <div class="max-w-lg focus-within:z-10">
+                                                        <DatePicker v-model="form.passport_issue_date" :masks="datePickerConfig.masks"
+                                                                    :model-config="datePickerConfig.modelConfig">
+                                                            <template #default="{ inputValue, inputEvents }">
+                                                                <input
+                                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                                    :class="{ 'border-red-500': form.errors.passport_issue_date }"
+                                                                    :value="inputValue"
+                                                                    v-on="inputEvents"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                />
+                                                            </template>
+                                                        </DatePicker>
+                                                    </div>
+                                                    <span class="absolute -top-2 left-2 bg-gray-50 rounded px-2 text-xs font-light text-gray-600">Issue Date</span>
+                                                    <jet-input-error
+                                                        :message="form.errors.date_of_birth"
+                                                        class="mt-2"
+                                                    />
                                                 </div>
-                                                <jet-input-error
-                                                    :message="form.errors.date_of_birth"
-                                                    class="mt-2"
-                                                />
+                                                <div class="col-span-1 relative">
+                                                    <div class="max-w-lg focus-within:z-10">
+                                                        <DatePicker v-model="form.passport_expiry_date" :masks="datePickerConfig.masks"
+                                                                    :model-config="datePickerConfig.modelConfig">
+                                                            <template #default="{ inputValue, inputEvents }">
+                                                                <input
+                                                                    class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
+                                                                    :class="{ 'border-red-500': form.errors.passport_expiry_date }"
+                                                                    :value="inputValue"
+                                                                    v-on="inputEvents"
+                                                                    placeholder="dd/mm/yyyy"
+                                                                />
+                                                            </template>
+                                                        </DatePicker>
+                                                    </div>
+                                                    <span class="absolute -top-2 left-2 bg-gray-50 rounded px-2 text-xs font-light text-gray-600">Expiry Date</span>
+                                                    <jet-input-error
+                                                        :message="form.errors.date_of_birth"
+                                                        class="mt-2"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
 
                                         <!-- passport_expiry_date field-->
-                                        <div
-                                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-                                        >
-                                            <jet-label class="sm:pl-2" for="dob" value="Passport Expiry Date *"/>
-                                            <div class="col-span-2 max-w-lg">
-                                                <div class="max-w-lg focus-within:z-10">
-                                                    <DatePicker v-model="form.passport_expiry_date" :masks="datePickerConfig.masks"
-                                                                :model-config="datePickerConfig.modelConfig">
-                                                        <template #default="{ inputValue, inputEvents }">
-                                                            <input
-                                                                class="px-3 py-2 text-sm border rounded w-full focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none shadow-sm border-gray-300"
-                                                                :class="{ 'border-red-500': form.errors.passport_expiry_date }"
-                                                                :value="inputValue"
-                                                                v-on="inputEvents"
-                                                                placeholder="dd/mm/yyyy"
-                                                            />
-                                                        </template>
-                                                    </DatePicker>
-                                                </div>
-                                                <jet-input-error
-                                                    :message="form.errors.date_of_birth"
-                                                    class="mt-2"
-                                                />
-                                            </div>
-                                        </div>
+<!--                                        <div-->
+<!--                                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"-->
+<!--                                        >-->
+<!--                                            <jet-label class="sm:pl-2" for="dob" value="Passport Expiry Date *"/>-->
+<!--                                            -->
+<!--                                        </div>-->
 
                                         <!-- passport_issuing_authority field-->
                                         <div

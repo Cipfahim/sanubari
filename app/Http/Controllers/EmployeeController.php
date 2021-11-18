@@ -14,7 +14,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -31,8 +30,8 @@ class EmployeeController extends Controller
             'requests' => QueryRequest::all(['filter', 'sort']),
             'employees' => QueryBuilder::for(Employee::class)
                 ->with(['user', 'location'])
-                ->allowedFilters(['official_name', 'date_of_join', 'user.phone', 'user.status', 'location.name'])
-                ->allowedSorts(['official_name', 'status'])
+                ->allowedFilters(['official_name', 'user.phone', 'location.name', 'date_of_join', 'user.status'])
+                ->allowedSorts(['official_name', 'date_of_join'])
                 ->latest('id')
                 ->paginate()
                 ->appends(request()->query()),
@@ -69,6 +68,7 @@ class EmployeeController extends Controller
             'photo' => upload($request->file('photo'), 'profile-photos', 'public'),
             'status' => $request->get('status')
         ]);
+
         $user->employee()->create([
             'official_name' => $request->get('official_name'),
             'nick_name' => $request->get('nick_name'),
