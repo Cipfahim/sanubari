@@ -20597,7 +20597,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     // Sort data by field
     sort: function sort(field) {
-      this.queryForm.sort === field ? this.queryForm.sort = "-" + field : this.queryForm.sort = field;
+      console.log(field); // this.queryForm.sort === field
+      //     ? (this.queryForm.sort = "-" + field)
+      //     : (this.queryForm.sort = field);
     },
     // Reset all filters
     reset: function reset() {

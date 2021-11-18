@@ -23666,6 +23666,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       rotate: false
     };
   },
+  watch: {},
   methods: {
     refreshLocations: function refreshLocations() {
       var _this = this;
@@ -25036,9 +25037,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
               return $data.form.official_name = $event;
             }),
-            "class": {
+            "class": [{
               'border-red-500': $data.form.errors.official_name
-            }
+            }, "capitalize"]
           }, null, 8
           /* PROPS */
           , ["modelValue", "class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
@@ -25056,9 +25057,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
               return $data.form.nick_name = $event;
             }),
-            "class": {
+            "class": [{
               'border-red-500': $data.form.errors.nick_name
-            }
+            }, "capitalize"]
           }, null, 8
           /* PROPS */
           , ["modelValue", "class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
@@ -25146,7 +25147,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_tel_input, {
             ref: "telPhone",
             mode: "international",
-            "class": "h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
+            "class": "!unset focus:ring-cyan-500 focus:border-cyan-500 block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"
           }, null, 512
           /* NEED_PATCH */
           )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {

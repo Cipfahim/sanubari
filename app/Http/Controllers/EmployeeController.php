@@ -31,7 +31,7 @@ class EmployeeController extends Controller
             'employees' => QueryBuilder::for(Employee::class)
                 ->with(['user', 'location'])
                 ->allowedFilters(['official_name', 'user.phone', 'location.name', 'date_of_join', 'user.status'])
-                ->allowedSorts(['official_name', 'user.phone', 'location.name', 'date_of_join', 'user.status'])
+                ->allowedSorts(['official_name', 'date_of_join'])
                 ->latest('id')
                 ->paginate()
                 ->appends(request()->query()),

@@ -832,6 +832,9 @@ select {
 .top-2\.5 {
 	top: 0.625rem;
 }
+.-top-2 {
+	top: -0.5rem;
+}
 .right-1 {
 	right: 0.25rem;
 }
@@ -2013,8 +2016,14 @@ select {
 .font-normal {
 	font-weight: 400;
 }
+.font-light {
+	font-weight: 300;
+}
 .uppercase {
 	text-transform: uppercase;
+}
+.capitalize {
+	text-transform: capitalize;
 }
 .leading-5 {
 	line-height: 1.25rem;
@@ -2375,8 +2384,14 @@ input[type=number] {
 .multiselect-search:focus{
     border: var(--cyan-500) !important;
 }
-ul.vti__dropdown-list.below{
-    display: none;
+.vti__dropdown-list.below{
+    top: 42px !important;
+    border-radius: 5px;
+    left: 0;
+    z-index: 11;
+}
+.vti__dropdown{
+    position: unset !important;
 }
 .focus-within\:z-10:focus-within {
 	z-index: 10;

@@ -24829,26 +24829,34 @@ var _hoisted_18 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
 };
 var _hoisted_19 = {
-  "class": "col-span-2 max-w-lg"
+  "class": "col-span-2 max-w-lg grid grid-cols-2 gap-4"
 };
 var _hoisted_20 = {
-  "class": "max-w-lg focus-within:z-10"
+  "class": "col-span-1 relative"
 };
 var _hoisted_21 = {
-  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
-};
-var _hoisted_22 = {
-  "class": "col-span-2 max-w-lg"
-};
-var _hoisted_23 = {
   "class": "max-w-lg focus-within:z-10"
 };
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "absolute -top-2 left-2 bg-gray-50 rounded px-2 text-xs font-light text-gray-600"
+}, "Issue Date", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "col-span-1 relative"
+};
 var _hoisted_24 = {
-  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+  "class": "max-w-lg focus-within:z-10"
 };
-var _hoisted_25 = {
-  "class": "col-span-2 max-w-lg"
-};
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "absolute -top-2 left-2 bg-gray-50 rounded px-2 text-xs font-light text-gray-600"
+}, "Expiry Date", -1
+/* HOISTED */
+);
+
 var _hoisted_26 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
 };
@@ -24856,31 +24864,31 @@ var _hoisted_27 = {
   "class": "col-span-2 max-w-lg"
 };
 var _hoisted_28 = {
-  "class": "max-w-lg focus-within:z-10"
-};
-var _hoisted_29 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
 };
-var _hoisted_30 = {
+var _hoisted_29 = {
   "class": "col-span-2 max-w-lg"
 };
+var _hoisted_30 = {
+  "class": "max-w-lg focus-within:z-10"
+};
 var _hoisted_31 = {
-  "class": "flex gap-2 items-center multiselect-single-label"
+  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
 };
 var _hoisted_32 = {
-  "class": "flex-1"
+  "class": "col-span-2 max-w-lg"
 };
 var _hoisted_33 = {
-  "class": "flex gap-2 items-center"
+  "class": "flex gap-2 items-center multiselect-single-label"
 };
 var _hoisted_34 = {
   "class": "flex-1"
 };
 var _hoisted_35 = {
-  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+  "class": "flex gap-2 items-center"
 };
 var _hoisted_36 = {
-  "class": "col-span-2 max-w-lg"
+  "class": "flex-1"
 };
 var _hoisted_37 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
@@ -24889,32 +24897,38 @@ var _hoisted_38 = {
   "class": "col-span-2 max-w-lg"
 };
 var _hoisted_39 = {
+  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
+};
+var _hoisted_40 = {
+  "class": "col-span-2 max-w-lg"
+};
+var _hoisted_41 = {
   key: 0,
   "class": "text-cyan-900"
 };
-var _hoisted_40 = {
+var _hoisted_42 = {
   key: 1,
   "class": "text-cyan-900"
 };
-var _hoisted_41 = {
+var _hoisted_43 = {
   "class": "pt-5"
 };
-var _hoisted_42 = {
+var _hoisted_44 = {
   "class": "space-y-6 sm:space-y-5"
 };
-var _hoisted_43 = {
+var _hoisted_45 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2"
 };
-var _hoisted_44 = {
+var _hoisted_46 = {
   "class": "mt-1 sm:mt-0 sm:col-span-2 sm:col-start-2"
 };
-var _hoisted_45 = {
+var _hoisted_47 = {
   "class": "max-w-lg relative flex justify-end items-stretch flex-grow focus-within:z-10"
 };
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Previous ");
+var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Previous ");
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
   type: "submit",
   "class": "ml-2 sm:ml-3 inline-flex justify-center py-2 px-2 sm:px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
 }, " Save ", -1
@@ -25050,8 +25064,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" passport_issue_date field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "class": "sm:pl-2",
             "for": "dob",
-            value: "Passport Issue Date *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
+            value: "Passport Issue/Expiry Date *"
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
             modelValue: $data.form.passport_issue_date,
             "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
               return $data.form.passport_issue_date = $event;
@@ -25078,16 +25092,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["modelValue", "masks", "model-config"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+          , ["modelValue", "masks", "model-config"])]), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
             message: $data.form.errors.date_of_birth,
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" passport_expiry_date field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
-            "class": "sm:pl-2",
-            "for": "dob",
-            value: "Passport Expiry Date *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
+          , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
             modelValue: $data.form.passport_expiry_date,
             "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
               return $data.form.passport_expiry_date = $event;
@@ -25114,16 +25124,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["modelValue", "masks", "model-config"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
+          , ["modelValue", "masks", "model-config"])]), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input_error, {
             message: $data.form.errors.date_of_birth,
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" passport_issuing_authority field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+          , ["message"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" passport_expiry_date field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        >"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            <jet-label class=\"sm:pl-2\" for=\"dob\" value=\"Passport Expiry Date *\"/>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" passport_issuing_authority field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "class": "sm:pl-2",
             "for": "passport",
             value: "Passport Issuing Authority"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_input, {
             id: "passport-issuing-authority",
             type: "text",
             modelValue: $data.form.passport_issuing_authority,
@@ -25140,10 +25150,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Date of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+          , ["message"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Date of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "for": "dob",
             value: "Date of Birth *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DatePicker, {
             modelValue: $data.form.date_of_birth,
             "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
               return $data.form.date_of_birth = $event;
@@ -25175,10 +25185,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Country of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Country of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "for": "cob",
             value: "Country of Birth *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Multiselect, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Multiselect, {
             searchable: "",
             modelValue: $data.form.country_of_birth,
             "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
@@ -25196,23 +25206,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             singlelabel: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref6) {
               var value = _ref6.value;
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
                 "class": "h-8 w-10 rounded-md character-label-icon",
                 src: _ctx.getFileUrl(value.flag_path)
               }, null, 8
               /* PROPS */
-              , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(value.name), 1
+              , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(value.name), 1
               /* TEXT */
               )])];
             }),
             option: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref7) {
               var option = _ref7.option;
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
                 "class": "h-8 w-10 rounded-md",
                 src: _ctx.getFileUrl(option.flag_path)
               }, null, 8
               /* PROPS */
-              , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1
+              , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1
               /* TEXT */
               )])];
             }),
@@ -25226,10 +25236,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" State of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" State of birth field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "for": "sob",
             value: "State/City of Birth *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Multiselect, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Multiselect, {
             searchable: "",
             modelValue: $data.form.state_of_birth,
             "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
@@ -25250,10 +25260,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Citizenship field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
+          , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Citizenship field"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_label, {
             "for": "citizenship",
             value: "Sex *"
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Switch, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Switch, {
             modelValue: $data.form.sex,
             "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
               return $data.form.sex = $event;
@@ -25264,7 +25274,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
                 "aria-hidden": "true",
                 "class": [$data.form.sex ? 'translate-x-20' : 'translate-x-0', "flex items-center justify-center pointer-events-none inline-block h-[34px] w-[90px] rounded-full bg-white shadow-sm transform ring-0 transition ease-in-out duration-200"]
-              }, [$data.form.sex ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_39, "Female")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_40, "Male"))], 2
+              }, [$data.form.sex ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_41, "Female")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_42, "Male"))], 2
               /* CLASS */
               )];
             }),
@@ -25278,19 +25288,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "mt-2"
           }, null, 8
           /* PROPS */
-          , ["message"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+          , ["message"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
             href: _ctx.route('employees.edit', $props.employee.id),
             "class": "py-2 px-2 sm:px-4 border border-transparent rounded-md ml-2 sm:ml-3 font-bold text-sm shadow-sm bg-red-500 hover:bg-red-600 text-white hover:text-gray-100 focus:outline-none"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_46];
+              return [_hoisted_48];
             }),
             _: 1
             /* STABLE */
 
           }, 8
           /* PROPS */
-          , ["href"]), _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+          , ["href"]), _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
             type: "button",
             onClick: _cache[11] || (_cache[11] = function ($event) {
               return $options.saveAndContinue();

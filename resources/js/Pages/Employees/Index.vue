@@ -83,22 +83,18 @@
 
                                     <th
                                         scope="col"
-                                        @click="sort('user.phone')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex gap-2 items-center">
-                                            <sort-arrow :sort="queryForm.sort" field="phone"/>
                                             Phone
                                         </div>
                                     </th>
 
                                     <th
                                         scope="col"
-                                        @click="sort('location.name')"
                                         class="px-6 py-3 w-44 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex gap-2 items-center">
-                                            <sort-arrow :sort="queryForm.sort" field="location"/>
                                             Location
                                         </div>
                                     </th>
@@ -116,11 +112,9 @@
 
                                     <th
                                         scope="col"
-                                        @click="sort('status')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex gap-2 items-center">
-                                            <sort-arrow :sort="queryForm.sort" field="status"/>
                                             <span>Status</span>
                                         </div>
                                     </th>
@@ -346,9 +340,7 @@ export default {
         },
         // Sort data by field
         sort(field) {
-            this.queryForm.sort === field
-                ? (this.queryForm.sort = "-" + field)
-                : (this.queryForm.sort = field);
+            this.queryForm.sort = field
         },
 
         // Reset all filters

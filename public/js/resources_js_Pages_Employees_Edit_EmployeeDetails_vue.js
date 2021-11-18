@@ -25172,7 +25172,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             required: true,
             "class": [{
               'border-red-500': $data.form.errors.phone
-            }, "h-10 focus:ring-cyan-500 focus:border-cyan-500 relative block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"],
+            }, "focus:ring-cyan-500 focus:border-cyan-500 block w-full !rounded-md sm:text-sm !border-gray-300 overflow-hidden"],
             mode: "international"
           }, null, 8
           /* PROPS */
