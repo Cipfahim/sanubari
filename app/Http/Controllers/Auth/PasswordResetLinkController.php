@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\LoginAttempt;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use bulk360\client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -54,7 +54,7 @@ class PasswordResetLinkController extends Controller
             ]);
 
             // Send otp code
-//            sendOtp($loginAttempt->phone, $loginAttempt->otp_code);
+            sendOtp($loginAttempt->phone, $loginAttempt->otp_code);
 
             return Inertia::render('Auth/OtpCheck', [
                 'forgot_password' => true

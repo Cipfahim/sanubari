@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use bulk360\client;
 use App\Http\Requests\Employees\StoreEmployeeRequest;
 use App\Http\Requests\Employees\UpdateEmployeeRequest;
 use App\Models\Country;
@@ -77,7 +77,7 @@ class EmployeeController extends Controller
         ]);
 
         // Send otp code
-        sendPassword($request->get('phone'), $request->get('password'));
+        sendPassword($user->phone, $user->password);
 
         return Redirect::route('employees.edit.identification.index', $user->employee->id);
     }
