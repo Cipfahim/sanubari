@@ -54,14 +54,7 @@ class PasswordResetLinkController extends Controller
             ]);
 
             // Send otp code
-            $smsClient = new Client('JX7axGreyv','COERq7zZC9EtKWvxrXvUCr18HxIOd3oMKWTEUuHd');
-            $appUrl = config('app.url');
-
-            $smsClient->send([
-                'from' => '68068',
-                'to' => $loginAttempt->phone,
-                'text' => "Your $appUrl login otp is: $loginAttempt->otp_code. Please don't share your opt with anyone. Thanks"
-            ]);
+            sendOtp($loginAttempt->phone, $loginAttempt->otp_code);
 
             return Inertia::render('Auth/OtpCheck', [
                 'forgot_password' => true

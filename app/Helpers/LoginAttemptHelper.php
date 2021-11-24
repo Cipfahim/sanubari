@@ -13,7 +13,7 @@ if (!function_exists('sendOtp')) {
      */
     function sendOtp($phone, $otp_code)
     {
-        $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
+        $smsClient = new Client(env('BULK360_KEY'),env('BULK360_SECRET'));
         $appUrl = config('app.url');
 
         $smsClient->send([
@@ -35,7 +35,7 @@ if (!function_exists('sendPassword')) {
      */
     function sendPassword($phone, $password)
     {
-        $smsClient = new Client(env('BULK360_USERNAME'), env('BULK360_PASSWORD'));
+        $smsClient = new Client(env('BULK360_KEY'),env('BULK360_SECRET'));
         $appUrl = config('app.url');
 
         $smsClient->send([

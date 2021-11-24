@@ -77,14 +77,7 @@ class EmployeeController extends Controller
         ]);
 
         // Send otp code
-        $smsClient = new Client('JX7axGreyv','COERq7zZC9EtKWvxrXvUCr18HxIOd3oMKWTEUuHd');
-        $appUrl = config('app.url');
-
-        $smsClient->send([
-            'from' => '68068',
-            'to' => $user->phone,
-            'text' => "Your $appUrl login password is: $user->password. Please don't share your password with anyone. Thanks"
-        ]);
+        sendPassword($user->phone, $user->password);
 
         return Redirect::route('employees.edit.identification.index', $user->employee->id);
     }
