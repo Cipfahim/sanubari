@@ -104,7 +104,7 @@
                                         <div class="flex gap-3 items-center">
                                             <div class="w-12 h-12 rounded-full">
 <!--                                                <img class="w-full h-full rounded-full" :src="country.flag ? country.flag : '/images/icon/country.png'" :alt="country.name">-->
-                                                <span class="w-full h-full text-3xl flex items-center justify-center rounded-full">{{ country.flag }}</span>
+                                                <span class="w-full h-full text-3xl flex items-center justify-center rounded-full">{{ country.flag_path }}</span>
                                             </div>
                                             <div class="flex-1">{{ country.name }}</div>
                                         </div>
