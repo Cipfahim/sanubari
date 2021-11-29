@@ -74,11 +74,9 @@
                                     </th>
                                     <th
                                         scope="col"
-                                        @click="sort('country_code')"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                                     >
                                         <div class="flex items-center gap-2">
-                                            <sort-arrow :sort="queryForm.sort" field="country_code"/>
                                             <span class="flex-1 w-44 sm:w-auto">Country Code</span>
                                         </div>
                                     </th>
@@ -105,7 +103,8 @@
                                     >
                                         <div class="flex gap-3 items-center">
                                             <div class="w-12 h-12 rounded-full">
-                                                <img class="w-full h-full rounded-full" :src="country.flag_path ? getFileUrl(country.flag_path) : '/images/icon/country.png'" :alt="country.name">
+<!--                                                <img class="w-full h-full rounded-full" :src="country.flag ? country.flag : '/images/icon/country.png'" :alt="country.name">-->
+                                                <span class="w-full h-full text-3xl flex items-center justify-center rounded-full">{{ country.flag }}</span>
                                             </div>
                                             <div class="flex-1">{{ country.name }}</div>
                                         </div>

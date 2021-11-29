@@ -28,7 +28,7 @@ class CountryController extends Controller
             'countries' => QueryBuilder::for(Country::class)
                 ->allowedFilters(['name'])
                 ->allowedSorts(['name'])
-                ->latest('id')
+                ->orderBy('name')
                 ->paginate()
                 ->appends(\request()->query()),
         ]);

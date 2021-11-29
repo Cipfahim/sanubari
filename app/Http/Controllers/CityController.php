@@ -28,7 +28,7 @@ class CityController extends Controller
             'cities' => QueryBuilder::for(City::class)
                 ->allowedFilters(['name'])
                 ->allowedSorts(['name'])
-                ->latest('id')
+                ->orderBy('name')
                 ->with('country')
                 ->paginate()
                 ->appends(\request()->query()),
