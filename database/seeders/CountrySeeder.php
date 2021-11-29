@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Country;
+use Illuminate\Support\Str;
+use App\Models\City;
+use Khsing\World\World;
 use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
@@ -14,7 +17,23 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::updateOrCreate(['name' => 'Malaysia'], ['slug' => 'malaysia']);
-        Country::updateOrCreate(['name' => 'Bhutan'], ['slug' => 'bhutan']);
+        $countries = World::Countries();
+//        dd($countries);
+        foreach ($countries as $data) {
+            $country = Country::create([
+                'name' => $data->name,
+                'slug' => Str::slug($data->name),
+                'flag' => $data->emoji,
+                'country_code' => $data->callingcode
+            ]);
+
+            foreach ($data->cities as $city) {
+                City::create([
+                    'country_id' => $country->id,
+                    'name' => $city->name,
+                    'slug' => Str::slug($city->name)
+                ]);
+            }
+        }
     }
 }

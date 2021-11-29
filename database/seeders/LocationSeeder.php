@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Location;
+use Illuminate\Support\Str;
+use Khsing\World\World;
 use Illuminate\Database\Seeder;
 
 class LocationSeeder extends Seeder
@@ -14,10 +16,13 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
-        Location::updateOrCreate(['name' => "Dhaka", "slug" => "Dhaka" ]);
-        Location::updateOrCreate(['name' => "Sylhet", "slug" => "Sylhet" ]);
-        Location::updateOrCreate(['name' => "Comilla", "slug" => "Comilla" ]);
-        Location::updateOrCreate(['name' => "Chittagong", "slug" => "Chittagong" ]);
-
+        $countries = World::Countries();
+//        dd($countries);
+        foreach ($countries as $data) {
+            Location::create([
+                'name' => $data->name,
+                'slug' => Str::slug($data->name)
+            ]);
+        }
     }
 }

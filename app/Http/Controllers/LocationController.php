@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as QueryRequest;
 use Inertia\Inertia;
+use Inertia\Response;
 use Spatie\QueryBuilder\QueryBuilder;
 
 
@@ -16,18 +17,18 @@ class LocationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Location/Index',[
            'requests' => QueryRequest::all(['filter','sort']),
            'locations' => QueryBuilder::for(Location::class)
-               ->allowedFilters(['name'])
-               ->allowedSorts(['name'])
-                ->latest('id')
-            ->paginate()
-            ->appends(\request()->query()),
+                ->allowedFilters(['name'])
+                ->allowedSorts(['name'])
+                ->orderBy('name')
+                ->paginate()
+                ->appends(\request()->query()),
         ]);
     }
 
