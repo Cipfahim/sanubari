@@ -23,7 +23,7 @@ class CountrySeeder extends Seeder
             $country = Country::create([
                 'name' => $data->name,
                 'slug' => Str::slug($data->name),
-                'flag' => $data->emoji,
+                'flag_path' => $data->emoji,
                 'country_code' => $data->callingcode
             ]);
 
