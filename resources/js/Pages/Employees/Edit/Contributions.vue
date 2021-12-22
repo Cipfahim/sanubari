@@ -631,9 +631,9 @@ export default {
 
         },
         submit() {
-            this.epf_no = this.epfNoResult
-            this.epf_employee = this.epfEmployeeResult
-            this.epf_employer = this.epfEmployerResult
+            this.form.epf_no = this.epfNoResult
+            this.form.epf_employee = this.epfEmployeeResult
+            this.form.epf_employer = this.epfEmployerResult
 
             this.form.post(this.route("employees.edit.contributions.update", this.employee.id));
         },
